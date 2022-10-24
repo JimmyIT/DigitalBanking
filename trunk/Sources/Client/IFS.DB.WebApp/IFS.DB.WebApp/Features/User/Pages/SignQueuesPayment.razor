@@ -1,0 +1,98 @@
+@layout MainLayout
+@page "/sign-queues/payment"
+
+<div class="payment-layout">
+    <div class="payment-container">
+        <div class="payment">
+            <div class="payment-header">
+                <div class="payment-header-breadcrumbs">
+                    <p class="payment-header-breadcrumbs__item">Sign Queues</p>
+                    <p class="payment-header-breadcrumbs__item active">Payment</p>
+                </div>
+
+                <div class="payment-header-wrapper">
+                    <img src="/img/icons/return.svg" alt="logo" class="payment-header__logo" />
+                    <p class="payment-header__title">Payment</p>
+                </div>
+            </div>
+
+            <div class="payment-table">
+                <div class="payment-table-back">
+                    <p class="payment-table-name">Queue list</p>
+                    <SignQueuesPaymentTableComponent></SignQueuesPaymentTableComponent>
+                    <PaginatorComponent></PaginatorComponent>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-layout" id="ModalSignatories">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalSignatories()"></div>
+        <div class="payment-modal-layout">
+            <div class="payment-modal">
+                <div class="payment-modal-header-wrapper">
+                    <div class="payment-modal-header">
+                        <div class="payment-modal-header-title">
+                            <p class="payment-modal-header-title-text">Signatories</p>
+                            <div class="payment-modal-header-title-amount">
+                                <p>4 of 12</p>
+                            </div>
+                        </div>
+                        <div class="payment-modal-header__icon" onclick="onTriggerModalSignatories()">
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                    </div>
+
+                    <div class="payment-modal-main">
+                        <div class="payment-modal-main-item">
+                            <div class="payment-modal-main-item-left">
+                                <img src="/img/sign/avatar5.svg" alt="avatar" class="payment-modal-main-item-left__image" />
+                                <p class="payment-modal-main-item-left-text">Tiana Lipshutz</p>
+                            </div>
+
+                            <div class="payment-modal-main-item-right">
+                                <p class="payment-modal-main-item-right-text">20 Nov 2021 at 11:43</p>
+                            </div>
+                        </div>
+
+                        <div class="payment-modal-main-item">
+                            <div class="payment-modal-main-item-left">
+                                <img src="/img/sign/avatar6.svg" alt="avatar" class="payment-modal-main-item-left__image" />
+                                <p class="payment-modal-main-item-left-text">Lindsey Calzoni</p>
+                            </div>
+
+                            <div class="payment-modal-main-item-right">
+                                <p class="payment-modal-main-item-right-text">23 Nov 2021 at 14:23</p>
+                            </div>
+                        </div>
+
+                        <div class="payment-modal-main-item">
+                            <div class="payment-modal-main-item-left">
+                                <img src="/img/sign/avatar7.svg" alt="avatar" class="payment-modal-main-item-left__image" />
+                                <p class="payment-modal-main-item-left-text">Ruben Rosser</p>
+                            </div>
+
+                            <div class="payment-modal-main-item-right">
+                                <p class="payment-modal-main-item-right-text">23 Nov 2021 at 15:01</p>
+                            </div>
+                        </div>
+
+                        <div class="payment-modal-main-item">
+                            <div class="payment-modal-main-item-left">
+                                <img src="/img/sign/avatar5.svg" alt="avatar" class="payment-modal-main-item-left__image" />
+                                <p class="payment-modal-main-item-left-text">Erin Baptista</p>
+                            </div>
+
+                            <div class="payment-modal-main-item-right">
+                                <p class="payment-modal-main-item-right-text">25 Nov 2021 at 10:56</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

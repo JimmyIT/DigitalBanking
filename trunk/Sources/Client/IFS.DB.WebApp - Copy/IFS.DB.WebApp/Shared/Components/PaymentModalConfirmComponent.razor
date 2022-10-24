@@ -1,0 +1,97 @@
+﻿<div class="modal-layout" id="ModalConfirm" style="display:block!important">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalConfirm()"></div>
+        <div class="payments-modal-layout">
+            <div class="payments-modal">
+                <div class="payments-modal-header-wrapper">
+                    <div class="payments-modal-header">
+                        <p class="payments-modal-header__title">Confirm Payment</p>
+                        <div class="payments-modal-header__icon" @onclick="@Close">
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                    </div>
+                    <p class="payments-modal-header__subtitle">To confirm payment, please enter your password</p>
+                </div>
+                <EditForm EditContext="@_confirmPasswordContext" OnValidSubmit="@Confirm">
+                    <DataAnnotationsValidator />
+
+                    <div class="payments-modal-main">
+                        <div class="payments-modal-main-info-card">
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Pay to</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.TemplateRefernce</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment type</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.PaymentType</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Method</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.PaymentMethod</p>
+                                </div>
+                            </div>
+
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">From account</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">Account No.: @CreatePaymentModel.PaymentFrom</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Credit amount</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.CreditAmount</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment date</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.PaymentDate</p>
+                                </div>
+                            </div>
+
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Reference</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.PaymentReference</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Narrative</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.DebitNarrative</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payments-modal-main-input">
+                            <label>Password</label>
+                            <div class="password">
+                                <InputText @bind-Value="@_confirmPasswordModel.Password" placeholder="Enter here"
+                                           class="input" id="password" type="password"></InputText>
+                                <div class="password__icon" id="passwordIcon" onclick="onClickVisiblePassword()">
+                                    <img class="icon" src="/img/icons/closeEyeIcon.svg" alt="close" />
+                                    <img class="iconHover" src="/img/icons/closeEyeIconHover.svg" alt="close" />
+                                </div>
+
+                            </div>
+                            <div class="input-alert" id="inputAlert" style="display:block!important;">
+                                <span class="input-alert__icon"></span>
+                                @if (_IsCorrectPassword)
+                                {
+                                    <p style="color:#28b72a;">Correct password</p>
+                                }
+                                else
+                                {
+                                    <CustomValidationMessage For="@(() => _confirmPasswordModel.Password)"></CustomValidationMessage>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payments-modal-footer">
+                        <button class="payments-modal-footer__buttonCancel" @onclick="@Close">Cancel</button>
+                        <button class="payments-modal-footer__buttonSuccess" type="submit">Confirm</button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>

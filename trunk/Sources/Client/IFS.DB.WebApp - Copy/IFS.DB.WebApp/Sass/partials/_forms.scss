@@ -1,0 +1,272 @@
+﻿@import "../common/variables";
+@import "../mixins/";
+
+.formgroup {
+    label {
+        @include labelForm;
+        color: $color-gray-600;
+        transition: $transitionDuration;
+    }
+
+    &__caption {
+        @include caption1;
+        color: $color-gray-600;
+        margin-top: $indent-4;
+    }
+
+    &:hover {
+        label {
+            color: $color-gray-900;
+        }
+    }
+}
+
+.formrow {
+    display: flex;
+
+    .formgroup {
+        flex: 1;
+        margin-right: $indent-16;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.input-layout,
+.select-layout {
+    width: 100%;
+    display: flex;
+
+    .input,
+    .select {
+        flex: 1;
+        margin-right: $indent-12;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &.input-layout--email {
+        position: relative;
+
+        .input {
+            padding-left: 48px;
+        }
+
+        &::before {
+            @include square-icon(24px);
+            content: "";
+            background: url(/img/icons/email.svg) no-repeat center / contain;
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+    }
+}
+
+.input,
+.select {
+    @include input;
+
+    &-error {
+        @include inputError;
+    }
+
+    &-button {
+        @include blueButton;
+    }
+
+    &--error {
+        border-color: $color-red-500;
+    }
+
+    &--success {
+        border-color: $color-green-400;
+    }
+}
+
+input[type="checkbox"] {
+    position: relative;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+input[type="checkbox"]:before,
+input[type="checkbox"]:checked:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 1.25px solid $color-sky-blue-500;
+    border-radius: 2px;
+    transition: all 0.2s linear;
+}
+
+.input-alert {
+    @include input-alert;
+
+    &--success {
+        @include input-alert--success;
+    }
+}
+
+.input-amount {
+    @include input;
+    padding: $indent-8 $indent-16;
+}
+
+.select {
+    background: url(/img/icons/dropdown.svg) $color-white no-repeat center right 16px;
+    padding-right: 40px;
+}
+
+.search {
+    position: relative;
+    width: 100%;
+
+    &__input {
+        padding-left: 48px;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 50%;
+        left: $indent-16;
+        transform: translate(0, -50%);
+    }
+}
+
+.password {
+    position: relative;
+    width: 100%;
+
+    &__input {
+        padding-left: 48px;
+    }
+
+    &__icon {
+        @include buttonIconSmall;
+        position: absolute;
+        top: 50%;
+        right: $indent-16;
+        transform: translate(0, -50%);
+        cursor: pointer;
+    }
+}
+
+.phone {
+    display: flex;
+
+    .customSelector {
+        width: unset;
+
+        &-input {
+            width: 88px;
+            border-right: 0;
+            border-radius: 8px 0 0 8px;
+
+            &__placeholder {
+                margin-right: 4px;
+            }
+        }
+
+        &-dropdown {
+            width: 89px;
+        }
+    }
+
+    .input {
+        border-radius: 0 8px 8px 0;
+    }
+}
+
+.customSelector {
+    position: relative;
+    width: 100%;
+
+    &:hover {
+        .customSelector-input__placeholder {
+            color: $color-gray-900;
+        }
+
+        .customSelector-input {
+            color: $color-gray-900;
+        }
+    }
+
+    &-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $indent-16 $indent-12;
+        border: 1px solid $color-sky-blue-200;
+        border-radius: 8px;
+
+        &__placeholder {
+            @include field;
+            color: $color-gray-500;
+            margin-right: $indent-8;
+        }
+    }
+
+    &-dropdown {
+        position: absolute;
+        left: 0;
+        display: none;
+        padding: $indent-8 0;
+        border: 1px solid $color-sky-blue-200;
+        background-color: $color-white;
+        border-radius: 0px 0px 8px 8px;
+
+        &-item,
+        &-item-input,
+        &-item-button {
+            @include field;
+            position: relative;
+            padding: 14px $indent-24 14px $indent-12;
+            color: $color-gray-600;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $color-sky-blue-100;
+            }
+
+            &__button {
+                @include blueButton;
+                width: 100%;
+            }
+
+            &__checkbox {
+                width: 16px;
+                height: 16px;
+                border: 1.25px solid $color-sky-blue-500;
+                border-radius: 2px;
+            }
+        }
+
+        &-item-input {
+            padding: $indent-8 $indent-12;
+
+            &:hover {
+                background-color: $color-white;
+            }
+
+            &__icon {
+                padding: $indent-8;
+            }
+
+            &__input {
+                width: 100%;
+                height: 40px;
+            }
+        }
+
+        &-item-button {
+            padding: $indent-8 $indent-12;
+        }
+    }
+}

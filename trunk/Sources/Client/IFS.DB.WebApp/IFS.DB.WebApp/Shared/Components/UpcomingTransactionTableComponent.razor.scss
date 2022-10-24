@@ -1,0 +1,85 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.transactionTable {
+	td {
+		@include textWithDots;
+		vertical-align: middle;
+		padding: $indent-8 6px;
+
+		&:first-child {
+			text-align: center;
+			padding-left: $indent-12;
+		}
+
+		&:last-child {
+			padding-right: $indent-12;
+		}
+
+		&:nth-child(5),
+		&:nth-child(6),
+		&:nth-child(7) {
+			text-align: right;
+		}
+	}
+
+	thead {
+		td {
+			@include label2;
+			background: $color-sky-blue-100;
+			color: $color-sky-blue-300;
+
+			&:first-child {
+				border-radius: 8px 0 0 8px;
+			}
+
+			&:last-child {
+				border-radius: 0 8px 8px 0;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid $color-sky-blue-100;
+
+			&:last-child {
+				border-bottom: 0;
+
+				td {
+					padding-bottom: 0;
+				}
+			}
+		}
+
+		td {
+			&.transactionTable-date {
+				text-align: left;
+				padding-top: $indent-12;
+				padding-bottom: $indent-4;
+			}
+
+			&:nth-child(3) {
+				@include h5;
+			}
+
+			&:nth-child(4) {
+				color: $color-gray-600;
+			}
+
+			&:nth-child(5),
+			&:nth-child(6),
+			&:nth-child(7) {
+				@include h5;
+			}
+
+			&:nth-child(5) {
+				color: $color-green-500;
+			}
+
+			&:nth-child(6) {
+				color: $color-red-500;
+			}
+		}
+	}
+}

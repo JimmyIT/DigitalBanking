@@ -1,0 +1,8 @@
+﻿@import '../common/variables';
+
+@mixin logo {
+    width: 122px;
+    height: 24px;
+    display: block;
+    background: url(/img/common/logo.png) no-repeat center / contain;
+}

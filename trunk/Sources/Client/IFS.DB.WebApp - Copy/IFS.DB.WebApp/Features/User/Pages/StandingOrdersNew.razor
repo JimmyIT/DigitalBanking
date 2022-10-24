@@ -1,0 +1,187 @@
+@layout BasicLayout
+@page "/standings-orders/new"
+
+<div class="standing-orders-new-layout">
+    <div class="standing-orders-new-container">
+        <div class="standing-orders-new">
+            <div class="standing-orders-new-breadcrumbs">
+                <p class="standing-orders-new-breadcrumbs__item">Home</p>
+                <p class="standing-orders-new-breadcrumbs__item">Standing Orders</p>
+                <p class="standing-orders-new-breadcrumbs__item active">New</p>
+            </div>
+
+            <div class="standing-orders-new-header">
+                <div class="standing-orders-new-header-wrapper">
+                    <img src="/img/icons/return.svg" alt="logo" class="standing-orders-new-header__logo" />
+                    <p class="standing-orders-new-header__title">New Standing Order</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip"
+                        class="standing-orders-new-header__tooltip-icon" />
+                </div>
+            </div>
+
+            <div class="standing-orders-new-choise">
+                <p class="standing-orders-new-choise__title">General details</p>
+                <p class="standing-orders-new-choise__subtitle">Select type of regular payments you want to add. Than click “Continue”</p>
+
+                <div class="standing-orders-new-choise-form">
+                    <div class="standing-orders-new-choise-form-radio">
+                        <input id="radioType1" name="radio-type" type="radio" />
+                        <label for="radioType1">Fixed amounts and fixed number of payments</label>
+                    </div>
+                    <div class="standing-orders-new-choise-form-radio">
+                        <input id="radioType2" name="radio-type" type="radio" />
+                        <label for="radioType2">Fixed amounts with an end date</label>
+                    </div>
+                    <div class="standing-orders-new-choise-form-radio">
+                        <input id="radioType3" name="radio-type" type="radio" />
+                        <label for="radioType3">Fixed amounts until cancelled</label>
+                    </div>
+                    <div class="standing-orders-new-choise-form-radio">
+                        <input id="radioType4" name="radio-type" type="radio" />
+                        <label for="radioType4">Differing First/Last amounts with fixed number of payments</label>
+                    </div>
+                    <div class="standing-orders-new-choise-form-radio">
+                        <input id="radioType5" name="radio-type" type="radio" />
+                        <label for="radioType5">Differing First/Last amounts with end dates</label>
+                    </div>
+                    <button class="standing-orders-new-choise-form__button">Continue</button>
+                </div>
+            </div>
+
+            <div class="standing-orders-new-data">
+                <p class="standing-orders-new-data__title">Fixed amounts and fixed number of payments</p>
+                
+                <div class="standing-orders-new-data-form">
+                    <div class="standing-orders-new-data-form__formrow standing-orders-new-data-form__formrow--1">
+                        <div class="formgroup standing-orders-new-data-form__formgroup">
+                            <label>Debit Narrative</label>
+                            <div class="input-layout">
+                                <input placeholder="Enter here" class="input" />
+                            </div>
+                        </div>
+                        <div class="formgroup standing-orders-new-data-form__formgroup">
+                            <label>Debit Account</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select account</option>
+                                    <option>Account No.:00256001</option>
+                                    <option>Account No.:00256002</option>
+                                    <option>Account No.:00256003</option>
+                                    <option>Account No.:00256004</option>
+                                    <option>Account No.:00256005</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formgroup standing-orders-new-data-form__formgroup standing-orders-new-data-form__formgroup--right">
+                            <label>Amount for regular payment</label>
+                            <div class="input-layout">
+                                <input placeholder="0.00" class="input" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="standing-orders-new-data__subtitle">Payment information</p>
+
+                    <div class="standing-orders-new-data-form__formrow standing-orders-new-data-form__formrow--2">
+                        <div class="formgroup standing-orders-new-data-form__formgroup">
+                            <label>Repetitive period</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select</option>
+                                    <option>Every day</option>
+                                    <option>Every week</option>
+                                    <option>Every month</option>
+                                    <option>Every day</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formgroup standing-orders-new-data-form__formgroup">
+                            <label>Payment day</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select</option>
+                                    <option>Monday</option>
+                                    <option>Tuesday</option>
+                                    <option>Wednesday</option>
+                                    <option>Thursday</option>
+                                    <option>Friday</option>
+                                    <option>Saturday</option>
+                                    <option>Sunday</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formgroup standing-orders-new-data-form__formgroup">
+                            <label>Number of payments</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>40</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="standing-orders-new-data__subtitle">Payee details</p>
+
+                    <div class="standing-orders-new-data-form__formrow standing-orders-new-data-form__formrow--3">
+                        <div class="formgroup standing-orders-new-data-form__formgroup">
+                            <label>Transaction type</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select</option>
+                                    <option>Payment</option>
+                                    <option>Transfer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formgroup standing-orders-new-data-form__formgroup standing-orders-new-data-form__formgroup--payment-account">
+                            <label>Pay to</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select</option>
+                                    <option>[Payee reference 1]</option>
+                                    <option>[Payee reference 2]</option>
+                                    <option>[Payee reference 3]</option>
+                                    <option>[Payee reference 4]</option>
+                                    <option>[Payee reference 5]</option>
+                                </select>
+                            </div>
+                            <legend class="formgroup__caption">Select an account to which you want to set up standing order</legend>
+                        </div>
+                        <p class="standing-orders-new-data-form__formrow-or">or</p>
+                        <button type="button" class="standing-orders-new-data-form__formrow-button">Create new Payee</button>
+                    </div>
+
+                    <div class="standing-orders-new-data-form__formrow standing-orders-new-data-form__formrow--3">
+                        <div class="formgroup standing-orders-new-data-form__formgroup">
+                            <label>Transaction type</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select</option>
+                                    <option>Payment</option>
+                                    <option>Transfer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formgroup standing-orders-new-data-form__formgroup">
+                            <label>Transfer to</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select account</option>
+                                    <option>Account No.:00256001</option>
+                                    <option>Account No.:00256002</option>
+                                    <option>Account No.:00256003</option>
+                                    <option>Account No.:00256004</option>
+                                    <option>Account No.:00256005</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,262 @@
+@layout MainLayout
+@page "/transfers"
+
+<div class="transfers-layout">
+    <div class="transfers-container">
+        <div class="transfers">
+            <div class="transfers-header">
+                <div class="transfers-header-wrapper">
+                    <img src="/img/transactionTable/transfer.svg" alt="logo" class="transfers-header__logo" />
+                    <p class="transfers-header__title">Transfers</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="transfers-header__tooltip-icon" />
+                </div>
+
+                <div>
+                    <button class="transfers-header__button" onclick="location.href='/payments'">Make Payment <img src="/img/icons/arrowRight.svg" alt="arrow"/></button>
+                </div>
+            </div>
+
+            <div class="transfers-main">
+                <div class="transfers-main__left">
+                    <div class="transfers-form">
+                        <p class="transfers-form__title">New Transfer</p>
+                        <div class="transfers-form-transfer">
+                            <div class="formgroup transfers-form-transfer-selector">
+                                <label>From account</label>
+                                <div class="select-layout">
+                                    <select class="select">
+                                        <option value="clear" selected>Select an account</option>
+                                        <option value="payeeReference1">Account No.: 00256001</option>
+                                        <option value="payeeReference2">Account No.: 00256001</option>
+                                        <option value="payeeReference3">Account No.: 00256001</option>
+                                        <option value="payeeReference4">Account No.: 00256001</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="transfers-form-transfer-selector__text">Please select an account from which you wish the funds to be taken.</p>
+                    </div>
+
+                    <div class="transfers-information">
+                        <p class="transfers-information__title">Payment information</p>
+                        <div class="transfers-information-form">
+                            <div class="formgroup transfers-information-form__selector">
+                                <label>Transfer to</label>
+                                <div class="select-layout">
+                                    <select class="select">
+                                        <option disabled selected>Select an account</option>
+                                        <option>Account No.: 00256002</option>
+                                        <option>Account No.: 00256002</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Credit amount</label>
+                                <div class="input-layout formgroup">
+                                    <input placeholder="0.00" class="input transfers-information-form__amount" />
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Transfer date</label>
+                                <div class="input-layout">
+                                    <input placeholder="_ /_ /__" class="input" />
+                                </div>
+                            </div>
+                        </div>
+                        <p class="transfers-form-transfer-selector__text">Please select an account to credit.</p>
+                        <div class="formgroup transfers-information-form__textarea">
+                            <label>Debit Narrative</label>
+                            <div class="input-layout">
+                                <textarea placeholder="Enter here" class="input"></textarea>
+                            </div>
+                        </div>
+                        <div class="formgroup transfers-information-form__textarea">
+                            <label>Credit Narrative</label>
+                            <div class="input-layout">
+                                <textarea placeholder="Enter here" class="input"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="transfers-footer">
+                        <button class="transfers-footer__buttonCancel">Cancel</button>
+                        <button class="transfers-footer__buttonSuccess" onclick="onTriggerModalConfirm()">Proceed</button>
+                    </div>
+
+                    <div class="modal-layout" id="ModalConfirm">
+                        <div class="modal-scroll">
+                            <div class="modal-background" onclick="onTriggerModalConfirm()"></div>
+                            <div class="transfers-modal-layout">
+                                <div class="transfers-modal">
+                                    <div class="transfers-modal-header-wrapper">
+                                        <div class="transfers-modal-header">
+                                            <p class="transfers-modal-header__title">Confirm Transfer</p>
+                                            <div class="transfers-modal-header__icon" onclick="onTriggerModalConfirm()">
+                                                <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                                <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                                            </div>
+                                        </div>
+                                        <p class="transfers-modal-header__subtitle">To confirm transfer, please enter your password</p>
+                                    </div>
+
+                                    <div class="transfers-modal-main">
+                                        <div class="transfers-modal-main-info-card">
+                                            <div class="transfers-modal-main-info-card-content">
+                                                <div class="transfers-modal-main-info-card-content-item">
+                                                    <p class="transfers-modal-main-info-card-content-item__title">From</p>
+                                                    <p class="transfers-modal-main-info-card-content-item__text">Account No. 00256001</p>
+                                                </div>
+                                                <div class="transfers-modal-main-info-card-content-item">
+                                                    <p class="transfers-modal-main-info-card-content-item__title">To</p>
+                                                    <p class="transfers-modal-main-info-card-content-item__text">Account No. 00256002</p>
+                                                </div>
+                                                <div class="transfers-modal-main-info-card-content-item">
+                                                    <p class="transfers-modal-main-info-card-content-item__title">Entered amount</p>
+                                                    <p class="transfers-modal-main-info-card-content-item__text">1200.00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="transfers-modal-main-input">
+                                            <label>Password</label>
+                                            <div class="password">
+                                                <input placeholder="Enter here" class="input" id="password" type="password"/>
+                                                <div class="password__icon" id="passwordIcon" onclick="onClickVisiblePassword()">
+                                                    <img src="/img/icons/closeEyeIcon.svg" alt="eye" class="icon"/>
+                                                    <img src="/img/icons/closeEyeIconHover.svg" alt="eye" class="iconHover"/>
+                                                </div>
+                                            </div>
+                                            <div class="input-alert" id="inputAlert">
+                                                <span class="input-alert__icon"></span>
+                                                <p class="input-alert__text">Incorrect password</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="transfers-modal-footer">
+                                        <button class="transfers-modal-footer__buttonCancel" onclick="onTriggerModalConfirm()">Cancel</button>
+                                        <button class="transfers-modal-footer__buttonSuccess" onclick="onSuccessModalConfirm()">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-layout" id="ModalSuccess">
+                        <div class="modal-scroll">
+                            <div class="modal-background" onclick="onTriggerModalSuccess()"></div>
+                            <div class="transfers-modal-layout">
+                                <div class="transfers-modal">
+                                    <div class="transfers-modal-header-wrapper">
+                                        <div class="transfers-modal-header">
+                                            <p class="transfers-modal-header__title">Transfer was confirmed</p>
+                                            <div class="transfers-modal-header__icon" onclick="onTriggerModalSuccess()">
+                                                <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                                <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                                            </div>
+                                        </div>
+                                        <p class="transfers-modal-header__subtitle">We let you know once [Account No.] will get the money</p>
+                                    </div>
+
+                                    <div class="transfers-modal-main">
+                                        <div class="transfers-modal-main-info-card">
+                                            <div class="transfers-modal-main-info-card-content">
+                                                <div class="transfers-modal-main-info-card-content-item">
+                                                    <p class="transfers-modal-main-info-card-content-item__title">From</p>
+                                                    <p class="transfers-modal-main-info-card-content-item__text">Account No. 00256001</p>
+                                                </div>
+                                                <div class="transfers-modal-main-info-card-content-item">
+                                                    <p class="transfers-modal-main-info-card-content-item__title">To</p>
+                                                    <p class="transfers-modal-main-info-card-content-item__text">Account No. 00256002</p>
+                                                </div>
+                                                <div class="transfers-modal-main-info-card-content-item">
+                                                    <p class="transfers-modal-main-info-card-content-item__title">Entered amount</p>
+                                                    <p class="transfers-modal-main-info-card-content-item__text">1200.00</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="transfers-modal-footer">
+                                        <button class="transfers-modal-footer__buttonSuccess" onclick="onTriggerModalSuccess()">Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transfers-main__right">
+                    <div class="transfers-history">
+                        <p class="transfers-history__title">Last transfers</p>
+
+                        <div class="transfers-history-info">
+                            <p class="transfers-history-info__title">
+                                Account No.: 00256001
+                            </p>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">From Account No.: 00256002</p>
+                            </div>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">08/07/2021</p>
+                                <p class="transfers-history-info-description__sum">$1200.00</p>
+                            </div>
+                        </div>
+
+                        <div class="transfers-history-info">
+                            <p class="transfers-history-info__title">
+                                Account No.: 00256001
+                            </p>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">From Account No.: 00256002</p>
+                            </div>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">08/07/2021</p>
+                                <p class="transfers-history-info-description__sum">$1200.00</p>
+                            </div>
+                        </div>
+
+                        <div class="transfers-history-info">
+                            <p class="transfers-history-info__title">
+                                Account No.: 00256001
+                            </p>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">From Account No.: 00256002</p>
+                            </div>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">08/07/2021</p>
+                                <p class="transfers-history-info-description__sum">$1200.00</p>
+                            </div>
+                        </div>
+
+                        <div class="transfers-history-info">
+                            <p class="transfers-history-info__title">
+                                Account No.: 00256001
+                            </p>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">From Account No.: 00256002</p>
+                            </div>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">08/07/2021</p>
+                                <p class="transfers-history-info-description__sum">$1200.00</p>
+                            </div>
+                        </div>
+
+                        <div class="transfers-history-info">
+                            <p class="transfers-history-info__title">
+                                Account No.: 00256001
+                            </p>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">From Account No.: 00256002</p>
+                            </div>
+                            <div class="transfers-history-info-description">
+                                <p class="transfers-history-info-description__text">08/07/2021</p>
+                                <p class="transfers-history-info-description__sum">$1200.00</p>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

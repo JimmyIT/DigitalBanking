@@ -1,0 +1,5 @@
+.menu-box {
+    @include menu;
+    width: 208px;
+    margin-right: $indent-24;
+}

@@ -1,0 +1,65 @@
+@using Microsoft.AspNetCore.Components.Authorization
+<div class="main-header-layout">
+    <div class="main-header-container">
+        <div class="main-header">
+            <div class="main-header__left">
+                <a href="/" class="main-header__logo"></a>
+            </div>
+            <div class="main-header__right">
+                <AuthorizeView>
+                    <Authorized>
+                        <nav class="main-header-menu">
+                            <div class="main-header-menu__item main-header-menu__item--active">
+                                <a href="/" class="main-header-menu__item-link">@_localizer["dashboard"]</a>
+                            </div>
+                            <div class="main-header-menu__item">
+                                <a href="/payments" class="main-header-menu__item-link">
+                                    @_localizer["payments"]
+                                    <img src="/img/icons/dropdown.svg" alt="dropdown"
+                                         class="main-header-menu__item-link-dropdown" />
+                                </a>
+                            </div>
+                            <div class="main-header-menu__item">
+                                <a href="/transfers" class="main-header-menu__item-link">@_localizer["transfers"]</a>
+                            </div>
+                            <div class="main-header-menu__item">
+                                <a href="/" class="main-header-menu__item-link">@_localizer["standing_orders"]</a>
+                            </div>
+                            <div class="main-header-menu__item">
+                                <a href="/" class="main-header-menu__item-link">@_localizer["history"]</a>
+                            </div>
+                            <div class="main-header-menu__item">
+                                <a href="/" class="main-header-menu__item-link">
+                                    @_localizer["signing_queues"]
+                                    <span class="main-header-menu__item-link-counter">4</span>
+                                </a>
+                            </div>
+                            <div class="main-header-menu__item">
+                                <a href="/" class="main-header-menu__item-link">@_localizer["other"]</a>
+                            </div>
+                        </nav>
+                        <nav class="main-header-nav">
+                            <div class="main-header-nav__item">
+                                <img src="/img/icons/bell.svg" alt="bell" class="main-header-nav__item-icon" />
+                            </div>
+                            <div class="main-header-nav__item">
+                                <img src="/img/icons/notification.svg" alt="notification" class="main-header-nav__item-icon" />
+                            </div>
+                        </nav>
+
+                        <div class="main-header-profile">
+                            <div class="main-header-profile-avatar">
+                                <img src="/img/header/avatarDummy.png" alt="avatar" class="main-header-profile-avatar__image" />
+                            </div>
+                        </div>
+                    </Authorized>
+                    <NotAuthorized>
+                        @* Should show the buttons: log in, registraion *@
+                    </NotAuthorized>
+                </AuthorizeView>
+
+                <CultureSelectorComponent></CultureSelectorComponent>
+            </div>
+        </div>
+    </div>
+</div>

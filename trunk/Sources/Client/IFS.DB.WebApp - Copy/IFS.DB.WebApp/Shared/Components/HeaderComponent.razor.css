@@ -1,0 +1,118 @@
+.main-header-layout {
+  padding-top: 12px;
+}
+
+.main-header-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.main-header {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.main-header:last-child {
+  margin-bottom: 0;
+}
+.main-header__right {
+  display: flex;
+  align-items: center;
+}
+.main-header__logo {
+  width: 122px;
+  height: 24px;
+  display: block;
+  background: url(/img/common/logo.png) no-repeat center/contain;
+}
+.main-header-menu {
+  display: flex;
+  align-items: center;
+}
+.main-header-menu__item {
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-right: 24px;
+}
+.main-header-menu__item:last-child {
+  margin-right: 0;
+}
+.main-header-menu__item-link {
+  display: flex;
+  align-items: center;
+  color: #b8b8b8;
+}
+.main-header-menu__item-link:hover {
+  color: #0360db;
+}
+.main-header-menu__item-link-dropdown, .main-header-menu__item-link-counter {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-left: 8px;
+}
+.main-header-menu__item-link-counter {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  border-radius: 50%;
+  background: #fd693b;
+  line-height: 20px;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 4px;
+}
+.main-header-menu__item.main-header-menu__item--active {
+  background: #f2f7fd;
+}
+.main-header-menu__item.main-header-menu__item--active .main-header-menu__item-link {
+  color: #0360db;
+}
+.main-header-nav {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+}
+.main-header-nav__item {
+  margin-right: 12px;
+}
+.main-header-nav__item:last-child {
+  margin-right: 0;
+}
+.main-header-nav__item-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  object-fit: cover;
+  cursor: pointer;
+}
+.main-header-profile {
+  margin-left: 12px;
+}
+.main-header-profile-avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #CDDFF8;
+  padding: 2px;
+}
+.main-header-profile-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: inherit;
+}

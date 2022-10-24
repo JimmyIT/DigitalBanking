@@ -1,0 +1,107 @@
+@import "../common/variables";
+@import "../mixins/";
+
+.main-header-layout {
+    padding-top: $indent-12;
+}
+
+.main-header-container {
+    @include container;
+}
+
+.main-header {
+    @include box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: $indent-16;
+    padding-bottom: $indent-16;
+
+    &__right {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        @include logo;
+    }
+
+    &-menu {
+        display: flex;
+        align-items: center;
+
+        &__item {
+            border-radius: $indent-8;
+            padding: $indent-8 $indent-12;
+            margin-right: $indent-24;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &-link {
+                display: flex;
+                align-items: center;
+                color: $color-gray-400;
+
+                &:hover {
+                    color: $color-sky-blue-500;
+                }
+
+                &-dropdown,
+                &-counter {
+                    @include square-icon(24px);
+                    margin-left: $indent-8;
+                }
+
+                &-counter {
+                    @include label;
+                    border-radius: 50%;
+                    background: $color-red-400;
+                    line-height: 20px;
+                    color: $color-white;
+                    text-align: center;
+                    padding-top: $indent-4;
+                }
+            }
+
+            &.main-header-menu__item--active {
+                background: $color-sky-blue-100;
+
+                .main-header-menu__item-link {
+                    color: $color-sky-blue-500;
+                }
+            }
+        }
+    }
+
+    &-nav {
+        display: flex;
+        align-items: center;
+        margin-left: $indent-12;
+
+        &__item {
+            margin-right: $indent-12;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &-icon {
+                width: 40px;
+                height: 40px;
+                display: block;
+                object-fit: cover;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &-profile {
+        margin-left: $indent-12;
+
+        &-avatar {
+            @include avatar;
+        }
+    }
+}

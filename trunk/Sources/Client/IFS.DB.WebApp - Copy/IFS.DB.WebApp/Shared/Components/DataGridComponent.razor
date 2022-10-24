@@ -1,0 +1,171 @@
+﻿@using IFS.DB.WebApp.Helpers.CompnentConfiguration
+@typeparam TItem
+
+@if (Columns == null || Columns.Count <= 0)
+{
+    <p class="text-info"> Table's columns have not been defined. </p>
+}
+else
+{
+    <table class="transactionTable">
+        <thead>
+            <tr>
+                @foreach (var column in Columns)
+                {
+                    string columnName = @column.Caption;
+                    string textAlignStyle = string.Empty;
+                    switch (column.HeaderAlignment)
+                    {
+                        case Alignment.Center:
+                            {
+                                textAlignStyle = "align-center";
+                                break;
+                            }
+                        case Alignment.Right:
+                            {
+                                textAlignStyle = "align-right";
+                                break;
+                            }
+                        case Alignment.NotSet:
+                        case Alignment.Left:
+                        default:
+                            {
+                                textAlignStyle = "align-left";
+                                break;
+                            }
+                    }
+
+                    <td class="@textAlignStyle ">
+                        <div class="tooltip">
+                            @columnName
+                            @if (column.SortDirection != SortDirection.NotSet)
+                            {
+                                <span style="cursor: pointer;" @onclick="() => SortDataChanged(column)" too>
+                                    <img src="/img/icons/blueArrow.svg" alt="arrow" class="history-table__arrow" />
+                                </span>
+                                <span class="tooltiptext">@column.DataField - @column.SortDirection.ToString()</span>
+                            }
+                        </div>
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in DataItems)
+            {
+                <tr>
+                    @foreach (var column in Columns)
+                    {
+                        if (!string.IsNullOrEmpty(column.Format) && column.DataType != DataType.NotSet)
+                        {
+                            string value = string.Empty;
+                            switch (column.DataType)
+                            {
+                                case DataType.Date:
+                                case DataType.DateTime:
+                                    {
+                                        value = DateTime.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()).ToString(column.Format);
+                                        break;
+                                    }
+                                case DataType.Boolean:
+                                    {
+                                        value = bool.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()).ToString();
+                                        break;
+                                    }
+                                case DataType.Currency:
+                                    {
+                                        value = Math.Round(double.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()), 2).ToString(column.Format);
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
+
+                            <td align="@column.BodyAlignment.ToString().ToLower()" class="@column.CssClass">
+                                @value
+                            </td>
+                        }
+                        else
+                        {
+                            @if (column.BodyAlignment == Alignment.NotSet)
+                            {
+                                <td class="@column.CssClass">
+                                    @typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()
+                                </td>
+                            }
+                            else
+                            {
+                                <td align="@column.BodyAlignment.ToString().ToLower()" class="@column.CssClass">
+                                    @typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()
+                                </td>
+                            }
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+        @if (@CustomTableFooter != null)
+        {
+            <tfoot>
+                <tr>
+                    @CustomTableFooter
+                </tr>
+            </tfoot>
+        }
+    </table>
+    @if (PagingConfig != null && PagingConfig.Enabled)
+    {
+        @if (TotalItems > 0)
+        {
+            @if (PagingConfig.CustomPager)
+            {
+                @CustomHtmlPager
+            }
+            else
+            {
+                <div class="paginator">
+                    <div class="paginator-pagination">
+                        <div class="paginator-pagination-left">
+                            @if (CurrentPageNumber == 0 || CurrentPageNumber == 1)
+                            {
+                                <span disabled><img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowleft" /></span>
+                                <span disabled><img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowleft" /></span>
+                            }
+                            else
+                            {
+                                <span @onclick="PrevPageChanged"><img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowleft" /></span>
+                                <span @onclick="PrevPageChanged"><img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowleft" /></span>
+                            }
+                        </div>
+                        @for (int index = 1; index <= TotalPages; index++)
+                        {
+                            int _temp = index;
+                            @if (CurrentPageNumber.Equals(_temp))
+                            {
+                                <button class="paginator-pagination-button paginator-pagination-button--active" @onclick="@(() => GotoSelectedPage(@_temp))">@_temp</button>
+                            }
+                            else
+                            {
+                                <button class="paginator-pagination-button" @onclick="@(() => GotoSelectedPage(@_temp))">@_temp</button>
+                            }
+                        }
+                        <div class="paginator-pagination-right">
+                            @if (CurrentPageNumber == TotalPages)
+                            {
+                            <span disabled><img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowRight" /></span>
+                            <span disabled><img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowRight" /></span>
+                            }
+                            else
+                            {
+                            <span @onclick="NextPageChanged"><img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowRight" /></span>
+                            <span @onclick="NextPageChanged"><img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowRight" /></span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+}

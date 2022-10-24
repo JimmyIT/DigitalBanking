@@ -1,0 +1,1366 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700&display=swap");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+video {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+label {
+  display: block;
+}
+
+input,
+textarea,
+select {
+  display: block;
+  transition: 0.4s;
+}
+
+textarea {
+  resize: none;
+}
+
+.br-12 {
+  display: block;
+  margin-top: 12px;
+}
+
+.formgroup label {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+  transition: 0.4s;
+  color: #6a6a6a;
+  transition: 0.4s;
+}
+.formgroup label:last-child {
+  margin-bottom: 0;
+}
+.formgroup__caption {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  margin-top: 4px;
+}
+.formgroup:hover label {
+  color: #212121;
+}
+
+.formrow {
+  display: flex;
+}
+.formrow .formgroup {
+  flex: 1;
+  margin-right: 16px;
+}
+.formrow .formgroup:last-child {
+  margin-right: 0;
+}
+
+.input-layout,
+.select-layout {
+  width: 100%;
+  display: flex;
+}
+.input-layout .input,
+.input-layout .select,
+.select-layout .input,
+.select-layout .select {
+  flex: 1;
+  margin-right: 12px;
+}
+.input-layout .input:last-child,
+.input-layout .select:last-child,
+.select-layout .input:last-child,
+.select-layout .select:last-child {
+  margin-right: 0;
+}
+.input-layout.input-layout--email,
+.select-layout.input-layout--email {
+  position: relative;
+}
+.input-layout.input-layout--email .input,
+.select-layout.input-layout--email .input {
+  padding-left: 48px;
+}
+.input-layout.input-layout--email::before,
+.select-layout.input-layout--email::before {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  content: "";
+  background: url(/img/icons/email.svg) no-repeat center/contain;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.input,
+.select {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #CDDFF8;
+  background-color: #ffffff;
+  color: #212121;
+  padding: calc(16px - 1px);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  transition: 0.4s;
+}
+.input::placeholder,
+.select::placeholder {
+  color: #9d9d9d;
+  transition: 0.4s;
+}
+.input:focus, .input:active,
+.select:focus,
+.select:active {
+  background-color: #f2f7fd;
+}
+.input:focus::placeholder, .input:active::placeholder,
+.select:focus::placeholder,
+.select:active::placeholder {
+  color: #212121;
+}
+.input:hover.input,
+.select:hover.input {
+  color: #212121;
+}
+.input:hover::placeholder,
+.select:hover::placeholder {
+  color: #212121;
+}
+.input.error,
+.select.error {
+  border-color: #fc4c16;
+}
+.input-error,
+.select-error {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #fc4c16;
+  margin-top: 4px;
+}
+.input-error::before,
+.select-error::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #fc4c16;
+  margin-right: 4px;
+}
+.input-button,
+.select-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+}
+.input-button:hover .iconBlock .icon,
+.select-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.input-button:hover .iconBlock .iconHover,
+.select-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.input-button:hover .iconBlock.active .iconActive,
+.select-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.input-button:hover .iconBlock.active .iconActiveHover,
+.select-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.input-button .iconBlock,
+.select-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.input-button .iconBlock:hover .icon,
+.select-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.input-button .iconBlock:hover .iconHover,
+.select-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.input-button .iconBlock:hover.active .iconActive,
+.select-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.input-button .iconBlock:hover.active .iconActiveHover,
+.select-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.input-button .iconBlock.active .icon,
+.select-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.input-button .iconBlock.active .iconActive,
+.select-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.input-button .iconBlock .icon,
+.input-button .iconBlock .iconHover,
+.input-button .iconBlock .iconActive,
+.input-button .iconBlock .iconActiveHover,
+.select-button .iconBlock .icon,
+.select-button .iconBlock .iconHover,
+.select-button .iconBlock .iconActive,
+.select-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.input-button .iconBlock .iconHover,
+.input-button .iconBlock .iconActive,
+.input-button .iconBlock .iconActiveHover,
+.select-button .iconBlock .iconHover,
+.select-button .iconBlock .iconActive,
+.select-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.input-button > img,
+.select-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.input-button .iconBlock,
+.input-button > img,
+.select-button .iconBlock,
+.select-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.input-button .iconBlock:first-child,
+.input-button > img:first-child,
+.select-button .iconBlock:first-child,
+.select-button > img:first-child {
+  margin-left: 0;
+}
+.input-button .iconBlock:last-child,
+.input-button > img:last-child,
+.select-button .iconBlock:last-child,
+.select-button > img:last-child {
+  margin-right: 0;
+}
+.input-button:hover,
+.select-button:hover {
+  background-color: #0248a4;
+}
+.input--error,
+.select--error {
+  border-color: #fc4c16;
+}
+.input--success,
+.select--success {
+  border-color: #28b72a;
+}
+
+input[type=checkbox] {
+  position: relative;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+input[type=checkbox]:before,
+input[type=checkbox]:checked:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1.25px solid #0360db;
+  border-radius: 2px;
+  transition: all 0.2s linear;
+}
+
+.input-alert {
+  display: none;
+  align-items: center;
+  margin-top: 4px;
+}
+.input-alert__icon {
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  background: #fc4c16;
+  border-radius: 8px;
+}
+.input-alert__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #fc4c16;
+}
+.input-alert--success .input-alert__icon {
+  background: #28b72a;
+}
+.input-alert--success .input-alert__text {
+  color: #28b72a;
+}
+
+.input-amount {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #CDDFF8;
+  background-color: #ffffff;
+  color: #212121;
+  padding: calc(16px - 1px);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  transition: 0.4s;
+  padding: 8px 16px;
+}
+.input-amount::placeholder {
+  color: #9d9d9d;
+  transition: 0.4s;
+}
+.input-amount:focus, .input-amount:active {
+  background-color: #f2f7fd;
+}
+.input-amount:focus::placeholder, .input-amount:active::placeholder {
+  color: #212121;
+}
+.input-amount:hover.input {
+  color: #212121;
+}
+.input-amount:hover::placeholder {
+  color: #212121;
+}
+.input-amount.error {
+  border-color: #fc4c16;
+}
+
+.select {
+  background: url(/img/icons/dropdown.svg) #ffffff no-repeat center right 16px;
+  padding-right: 40px;
+}
+
+.search {
+  position: relative;
+  width: 100%;
+}
+.search__input {
+  padding-left: 48px;
+}
+.search__icon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translate(0, -50%);
+}
+
+.password {
+  position: relative;
+  width: 100%;
+}
+.password__input {
+  padding-left: 48px;
+}
+.password__icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translate(0, -50%);
+  cursor: pointer;
+}
+.password__icon:hover .icon {
+  opacity: 0;
+}
+.password__icon:hover .iconHover {
+  opacity: 1;
+}
+.password__icon:hover.active .iconActive {
+  opacity: 0;
+}
+.password__icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.password__icon.active .icon {
+  opacity: 0;
+}
+.password__icon.active .iconActive {
+  opacity: 1;
+}
+.password__icon .icon,
+.password__icon .iconHover,
+.password__icon .iconActive,
+.password__icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.password__icon .iconHover,
+.password__icon .iconActive,
+.password__icon .iconActiveHover {
+  opacity: 0;
+}
+
+.phone {
+  display: flex;
+}
+.phone .customSelector {
+  width: unset;
+}
+.phone .customSelector-input {
+  width: 88px;
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
+}
+.phone .customSelector-input__placeholder {
+  margin-right: 4px;
+}
+.phone .customSelector-dropdown {
+  width: 89px;
+}
+.phone .input {
+  border-radius: 0 8px 8px 0;
+}
+
+.customSelector {
+  position: relative;
+  width: 100%;
+}
+.customSelector:hover .customSelector-input__placeholder {
+  color: #212121;
+}
+.customSelector:hover .customSelector-input {
+  color: #212121;
+}
+.customSelector-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 12px;
+  border: 1px solid #CDDFF8;
+  border-radius: 8px;
+}
+.customSelector-input__placeholder {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  color: #9d9d9d;
+  margin-right: 8px;
+}
+.customSelector-dropdown {
+  position: absolute;
+  left: 0;
+  display: none;
+  padding: 8px 0;
+  border: 1px solid #CDDFF8;
+  background-color: #ffffff;
+  border-radius: 0px 0px 8px 8px;
+}
+.customSelector-dropdown-item, .customSelector-dropdown-item-input, .customSelector-dropdown-item-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  position: relative;
+  padding: 14px 24px 14px 12px;
+  color: #6a6a6a;
+  cursor: pointer;
+}
+.customSelector-dropdown-item:hover, .customSelector-dropdown-item-input:hover, .customSelector-dropdown-item-button:hover {
+  background-color: #f2f7fd;
+}
+.customSelector-dropdown-item__button, .customSelector-dropdown-item-input__button, .customSelector-dropdown-item-button__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  width: 100%;
+}
+.customSelector-dropdown-item__button:hover .iconBlock .icon, .customSelector-dropdown-item-input__button:hover .iconBlock .icon, .customSelector-dropdown-item-button__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.customSelector-dropdown-item__button:hover .iconBlock .iconHover, .customSelector-dropdown-item-input__button:hover .iconBlock .iconHover, .customSelector-dropdown-item-button__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.customSelector-dropdown-item__button:hover .iconBlock.active .iconActive, .customSelector-dropdown-item-input__button:hover .iconBlock.active .iconActive, .customSelector-dropdown-item-button__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.customSelector-dropdown-item__button:hover .iconBlock.active .iconActiveHover, .customSelector-dropdown-item-input__button:hover .iconBlock.active .iconActiveHover, .customSelector-dropdown-item-button__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.customSelector-dropdown-item__button .iconBlock, .customSelector-dropdown-item-input__button .iconBlock, .customSelector-dropdown-item-button__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.customSelector-dropdown-item__button .iconBlock:hover .icon, .customSelector-dropdown-item-input__button .iconBlock:hover .icon, .customSelector-dropdown-item-button__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.customSelector-dropdown-item__button .iconBlock:hover .iconHover, .customSelector-dropdown-item-input__button .iconBlock:hover .iconHover, .customSelector-dropdown-item-button__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.customSelector-dropdown-item__button .iconBlock:hover.active .iconActive, .customSelector-dropdown-item-input__button .iconBlock:hover.active .iconActive, .customSelector-dropdown-item-button__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.customSelector-dropdown-item__button .iconBlock:hover.active .iconActiveHover, .customSelector-dropdown-item-input__button .iconBlock:hover.active .iconActiveHover, .customSelector-dropdown-item-button__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.customSelector-dropdown-item__button .iconBlock.active .icon, .customSelector-dropdown-item-input__button .iconBlock.active .icon, .customSelector-dropdown-item-button__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.customSelector-dropdown-item__button .iconBlock.active .iconActive, .customSelector-dropdown-item-input__button .iconBlock.active .iconActive, .customSelector-dropdown-item-button__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.customSelector-dropdown-item__button .iconBlock .icon,
+.customSelector-dropdown-item__button .iconBlock .iconHover,
+.customSelector-dropdown-item__button .iconBlock .iconActive,
+.customSelector-dropdown-item__button .iconBlock .iconActiveHover, .customSelector-dropdown-item-input__button .iconBlock .icon,
+.customSelector-dropdown-item-input__button .iconBlock .iconHover,
+.customSelector-dropdown-item-input__button .iconBlock .iconActive,
+.customSelector-dropdown-item-input__button .iconBlock .iconActiveHover, .customSelector-dropdown-item-button__button .iconBlock .icon,
+.customSelector-dropdown-item-button__button .iconBlock .iconHover,
+.customSelector-dropdown-item-button__button .iconBlock .iconActive,
+.customSelector-dropdown-item-button__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.customSelector-dropdown-item__button .iconBlock .iconHover,
+.customSelector-dropdown-item__button .iconBlock .iconActive,
+.customSelector-dropdown-item__button .iconBlock .iconActiveHover, .customSelector-dropdown-item-input__button .iconBlock .iconHover,
+.customSelector-dropdown-item-input__button .iconBlock .iconActive,
+.customSelector-dropdown-item-input__button .iconBlock .iconActiveHover, .customSelector-dropdown-item-button__button .iconBlock .iconHover,
+.customSelector-dropdown-item-button__button .iconBlock .iconActive,
+.customSelector-dropdown-item-button__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.customSelector-dropdown-item__button > img, .customSelector-dropdown-item-input__button > img, .customSelector-dropdown-item-button__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.customSelector-dropdown-item__button .iconBlock,
+.customSelector-dropdown-item__button > img, .customSelector-dropdown-item-input__button .iconBlock,
+.customSelector-dropdown-item-input__button > img, .customSelector-dropdown-item-button__button .iconBlock,
+.customSelector-dropdown-item-button__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.customSelector-dropdown-item__button .iconBlock:first-child,
+.customSelector-dropdown-item__button > img:first-child, .customSelector-dropdown-item-input__button .iconBlock:first-child,
+.customSelector-dropdown-item-input__button > img:first-child, .customSelector-dropdown-item-button__button .iconBlock:first-child,
+.customSelector-dropdown-item-button__button > img:first-child {
+  margin-left: 0;
+}
+.customSelector-dropdown-item__button .iconBlock:last-child,
+.customSelector-dropdown-item__button > img:last-child, .customSelector-dropdown-item-input__button .iconBlock:last-child,
+.customSelector-dropdown-item-input__button > img:last-child, .customSelector-dropdown-item-button__button .iconBlock:last-child,
+.customSelector-dropdown-item-button__button > img:last-child {
+  margin-right: 0;
+}
+.customSelector-dropdown-item__button:hover, .customSelector-dropdown-item-input__button:hover, .customSelector-dropdown-item-button__button:hover {
+  background-color: #0248a4;
+}
+.customSelector-dropdown-item__checkbox, .customSelector-dropdown-item-input__checkbox, .customSelector-dropdown-item-button__checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1.25px solid #0360db;
+  border-radius: 2px;
+}
+.customSelector-dropdown-item-input {
+  padding: 8px 12px;
+}
+.customSelector-dropdown-item-input:hover {
+  background-color: #ffffff;
+}
+.customSelector-dropdown-item-input__icon {
+  padding: 8px;
+}
+.customSelector-dropdown-item-input__input {
+  width: 100%;
+  height: 40px;
+}
+.customSelector-dropdown-item-button {
+  padding: 8px 12px;
+}
+
+.daterangepicker {
+  border-color: #CDDFF8;
+  border-radius: 0 0 4px 4px;
+  filter: drop-shadow(4px 4px 16px rgba(3, 60, 135, 0.08));
+  margin-top: 0;
+}
+.daterangepicker:before, .daterangepicker:after {
+  display: none;
+}
+.daterangepicker .ranges {
+  border-right: 1px solid #f2f7fd;
+}
+.daterangepicker .ranges ul {
+  width: 320px;
+}
+.daterangepicker .ranges ul li {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  color: #6a6a6a;
+  padding: 14px 56px 14px 16px;
+}
+.daterangepicker .ranges ul li:hover {
+  background-color: #ededed;
+}
+.daterangepicker .ranges ul li.active {
+  background: url(/img/icons/check.svg) no-repeat center right 16px, #f2f7fd;
+  color: #212121;
+}
+.daterangepicker .drp-calendar {
+  max-width: 100%;
+}
+.daterangepicker .drp-calendar.left {
+  border-right: 1px solid #f7f7f7;
+  padding: 16px 12px 12px 16px;
+}
+.daterangepicker .drp-calendar.left .calendar-table {
+  padding-right: 0;
+}
+.daterangepicker .drp-calendar.right {
+  padding: 16px 16px 12px 12px;
+}
+.daterangepicker .calendar-table th,
+.daterangepicker .calendar-table td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  color: #6a6a6a;
+  line-height: 40px;
+}
+.daterangepicker .calendar-table th.month,
+.daterangepicker .calendar-table td.month {
+  width: auto;
+}
+.daterangepicker .calendar-table .prev span,
+.daterangepicker .calendar-table .next span {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: no-repeat center/contain;
+  transform: none;
+}
+.daterangepicker .calendar-table .prev span {
+  background-image: url(/img/icons/arrowLeftIcon.svg);
+}
+.daterangepicker .calendar-table .next span {
+  background-image: url(/img/icons/arrowRight.svg);
+}
+.daterangepicker td.available:hover,
+.daterangepicker th.available:hover {
+  background-color: #ededed;
+}
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #0360db;
+  color: #ffffff;
+}
+.daterangepicker td.in-range:not(.active):not(.off) {
+  background-color: #f2f7fd;
+}
+.daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
+  color: #ededed;
+}
+.daterangepicker .drp-buttons {
+  border-color: #f7f7f7;
+  padding: 16px;
+}
+.daterangepicker .drp-buttons .btn {
+  margin-left: 16px;
+}
+.daterangepicker .drp-buttons .btn:first-child {
+  margin-left: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+}
+.daterangepicker .drp-buttons .btn.btn-default:hover .iconBlock .icon {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-default:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock:hover .icon {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock.active .icon {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock .icon,
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock .iconHover,
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock .iconActive,
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock .iconHover,
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock .iconActive,
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock,
+.daterangepicker .drp-buttons .btn.btn-default > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock:first-child,
+.daterangepicker .drp-buttons .btn.btn-default > img:first-child {
+  margin-left: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default .iconBlock:last-child,
+.daterangepicker .drp-buttons .btn.btn-default > img:last-child {
+  margin-right: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-default:hover {
+  color: #0248a4;
+}
+.daterangepicker .drp-buttons .btn.btn-primary {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+}
+.daterangepicker .drp-buttons .btn.btn-primary:hover .iconBlock .icon {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-primary:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock:hover .icon {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock.active .icon {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock .icon,
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock .iconHover,
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock .iconActive,
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock .iconHover,
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock .iconActive,
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock,
+.daterangepicker .drp-buttons .btn.btn-primary > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock:first-child,
+.daterangepicker .drp-buttons .btn.btn-primary > img:first-child {
+  margin-left: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary .iconBlock:last-child,
+.daterangepicker .drp-buttons .btn.btn-primary > img:last-child {
+  margin-right: 0;
+}
+.daterangepicker .drp-buttons .btn.btn-primary:hover {
+  background-color: #0248a4;
+}
+.daterangepicker .drp-selected {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  color: #6a6a6a;
+  padding-right: 16px;
+}
+.daterangepicker.show-calendar .ranges {
+  margin-top: 0;
+}
+.daterangepicker.show-calendar.ltr .drp-calendar.left {
+  border-left: 0;
+}
+
+.custom-file-input {
+  border-radius: 8px;
+  position: relative;
+}
+.custom-file-input__dummy {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  border-radius: inherit;
+  border: 1px dashed #81afed;
+  background: url(/img/icons/attach.svg) no-repeat center left 24px, #f2f7fd;
+  color: #0360db;
+  line-height: 24px;
+  padding: 15px 15px 15px 55px;
+}
+.custom-file-input__upload, .custom-file-input__file {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.custom-file-input__upload {
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.custom-file-input__file {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d2d2d2;
+  border-radius: inherit;
+  background: #f7f7f7;
+  padding: 15px 15px 15px 23px;
+  z-index: -1;
+  opacity: 0;
+  transition: 0.2s;
+}
+.custom-file-input__file-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 24px;
+  flex: 1;
+}
+.custom-file-input__file-delete {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  background: url(/img/icons/delete.svg) no-repeat center/contain;
+  margin-left: 8px;
+}
+.custom-file-input.custom-file-input--active .custom-file-input__file {
+  opacity: 1;
+  z-index: 3;
+}
+
+.modal-layout {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: none;
+}
+.modal-layout.modal-layout--block {
+  display: block;
+  overflow-y: auto;
+}
+.modal-layout.modal-layout--block .modal-scroll {
+  padding: 80px 0;
+}
+
+.modal-scroll {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.modal-background {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 64, 148, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.menu-box {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  width: 324px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 8px 0;
+  width: 208px;
+  margin-right: 24px;
+}
+.menu-box-item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #6a6a6a;
+  padding: 16px 24px 16px 20px;
+  transition: 0.4s;
+}
+.menu-box-item:hover, .menu-box-item.active {
+  color: #212121;
+}
+.menu-box-item:hover .iconBlock .icon {
+  opacity: 0;
+}
+.menu-box-item:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.menu-box-item:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.menu-box-item:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.menu-box-item .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.menu-box-item .iconBlock:hover .icon {
+  opacity: 0;
+}
+.menu-box-item .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.menu-box-item .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.menu-box-item .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.menu-box-item .iconBlock.active .icon {
+  opacity: 0;
+}
+.menu-box-item .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.menu-box-item .iconBlock .icon,
+.menu-box-item .iconBlock .iconHover,
+.menu-box-item .iconBlock .iconActive,
+.menu-box-item .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.menu-box-item .iconBlock .iconHover,
+.menu-box-item .iconBlock .iconActive,
+.menu-box-item .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.menu-box-item > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.menu-box-item .iconBlock,
+.menu-box-item > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.menu-box-item .iconBlock:first-child,
+.menu-box-item > img:first-child {
+  margin-left: 0;
+}
+.menu-box-item .iconBlock:last-child,
+.menu-box-item > img:last-child {
+  margin-right: 0;
+}
+.menu-box-item.active {
+  background: #f2f7fd;
+}
+
+body {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  background: #f7f7f7;
+  color: #212121;
+  word-break: break-word;
+}

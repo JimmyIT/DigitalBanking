@@ -1,0 +1,26 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.payments {
+    &-history {
+        @include box;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        &-header {
+            @include boxTabs;
+            margin-bottom: $indent-16;
+        }
+
+        &-selector {
+            margin-bottom: $indent-16;
+        }
+
+        &-info-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

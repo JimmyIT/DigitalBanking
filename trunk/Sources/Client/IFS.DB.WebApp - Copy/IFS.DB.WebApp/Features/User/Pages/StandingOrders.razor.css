@@ -1,0 +1,206 @@
+.standing-orders-layout {
+  padding: 24px 0;
+}
+
+.standing-orders-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.standing-orders-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  margin-bottom: 24px;
+}
+.standing-orders-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.standing-orders-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.standing-orders-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.standing-orders-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.standing-orders-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.standing-orders-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.standing-orders-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.standing-orders-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.standing-orders-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.standing-orders-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.standing-orders-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.standing-orders-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.standing-orders-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.standing-orders-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.standing-orders-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.standing-orders-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.standing-orders-header__button .iconBlock .icon,
+.standing-orders-header__button .iconBlock .iconHover,
+.standing-orders-header__button .iconBlock .iconActive,
+.standing-orders-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.standing-orders-header__button .iconBlock .iconHover,
+.standing-orders-header__button .iconBlock .iconActive,
+.standing-orders-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.standing-orders-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.standing-orders-header__button .iconBlock,
+.standing-orders-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.standing-orders-header__button .iconBlock:first-child,
+.standing-orders-header__button > img:first-child {
+  margin-left: 0;
+}
+.standing-orders-header__button .iconBlock:last-child,
+.standing-orders-header__button > img:last-child {
+  margin-right: 0;
+}
+.standing-orders-header__button:hover {
+  color: #0248a4;
+}
+.standing-orders-box {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.standing-orders-box:last-child {
+  margin-bottom: 0;
+}
+.standing-orders-filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.standing-orders-filters__left {
+  flex: 1;
+}
+.standing-orders-search {
+  max-width: 508px;
+}
+.standing-orders-soring-button {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 56px;
+  height: 56px;
+  padding: 16px;
+}
+.standing-orders-soring-button:hover .icon {
+  opacity: 0;
+}
+.standing-orders-soring-button:hover .iconHover {
+  opacity: 1;
+}
+.standing-orders-soring-button:hover.active .iconActive {
+  opacity: 0;
+}
+.standing-orders-soring-button:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.standing-orders-soring-button.active .icon {
+  opacity: 0;
+}
+.standing-orders-soring-button.active .iconActive {
+  opacity: 1;
+}
+.standing-orders-soring-button .icon,
+.standing-orders-soring-button .iconHover,
+.standing-orders-soring-button .iconActive,
+.standing-orders-soring-button .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.standing-orders-soring-button .iconHover,
+.standing-orders-soring-button .iconActive,
+.standing-orders-soring-button .iconActiveHover {
+  opacity: 0;
+}

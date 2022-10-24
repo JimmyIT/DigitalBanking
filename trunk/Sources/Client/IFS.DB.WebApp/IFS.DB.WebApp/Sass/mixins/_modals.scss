@@ -1,0 +1,16 @@
+@mixin modalDefault {
+    background: $color-white;
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+}
+
+@mixin modalBig {
+    @include modalDefault;
+    padding: 56px;
+}
+
+@mixin modalDefaultContainer {
+    @include container;
+    max-width: calc(672px + $indent-36 * 2);
+}

@@ -1,0 +1,9 @@
+.home-transactions {
+    @include box;
+    flex: 1;
+
+    &__title {
+        @include h3;
+        margin-bottom: $indent-16;
+    }
+}

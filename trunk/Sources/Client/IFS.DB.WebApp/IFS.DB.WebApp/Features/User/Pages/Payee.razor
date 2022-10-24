@@ -1,0 +1,529 @@
+@layout BasicLayout
+@page "/payee"
+
+<div class="payee-layout">
+    <div class="payee-container">
+        <div class="payee">
+            <div class="payee-header">
+                <div class="payee-header-wrapper">
+                    <img src="/img/payee/payeeIcon.svg" alt="logo"
+                         class="payee-header__logo" />
+                    <p class="payee-header__title">Payee’s templates</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payee-header__tooltip-icon" />
+                </div>
+                <button class="payee-header__button" onclick="onShowModalNewPayee()">
+                    <div class="iconBlock">
+                        <img class="icon" src="/img/icons/add.svg" alt="arrow" />
+                        <img class="iconHover icon" src="/img/icons/addHoverIcon.svg" alt="arrow" />
+                    </div>
+                    Add Payee template
+                </button>
+            </div>
+
+            <div class="payee-box">
+                <div class="payee-filters">
+                    <div class="payee-filters__left">
+                        <div class="search payee-search">
+                            <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon" />
+                            <input placeholder="Search here" class="input search__input">
+                        </div>
+                        <div class="select-layout payee-account-selector">
+                            <select class="select">
+                                <option disabled selected>Select account</option>
+                                <option>Account No.:00256001</option>
+                                <option>Account No.:00256002</option>
+                                <option>Account No.:00256003</option>
+                                <option>Account No.:00256004</option>
+                                <option>Account No.:00256005</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="payee-filters__right">
+                        <div class="payee-filters-buttons">
+                            <button class="payee-filters-button" id="payeeRowsButton" onclick="showRowsLayout()" style="display: none;">
+                                <img src="/img/icons/layoutRowsIcon.svg" alt="layout" class="icon" />
+                                <img src="/img/icons/layoutRowsHover.svg" alt="layout" class="iconHover" />
+                            </button>
+                            <button class="payee-filters-button" id="payeeCardsButton" onclick="showCardsLayout()">
+                                <img src="/img/icons/layoutBoxes.svg" alt="layout" class="icon" />
+                                <img src="/img/icons/layoutBoxesHover.svg" alt="layout" class="iconHover" />
+                            </button>
+                            <button class="payee-filters-button">
+                                <img src="/img/icons/dotsIcon.svg" alt="action" class="icon"/>
+                                <img src="/img/icons/dotsHoverIcon.svg" alt="action" class="iconHover"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payee-table" id="payeeTable">
+                    <TransactionTableComponent></TransactionTableComponent>
+                </div>
+
+                <div class="payee-cards" id="payeeCards" style="display: none;">
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/favorite.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type payee-card-description__type--2">SWIFT</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+
+                    <div class="payee-card">
+                        <div class="payee-card-description">
+                            <p class="payee-card__title">
+                                [Payee reference]
+                            </p>
+                            <div class="payee-card-description__text">
+                                <div class="payee-card-description__icon">
+                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                </div>
+                                <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+                            </div>
+                        </div>
+                        <div class="payee-card-description">
+                            <p class="payee-card-description__text">
+                                Debit Account No.: 00256001
+                            </p>
+                            <span class="payee-card-description__type">Domestic</span>
+                        </div>
+                        <div class="payee-card-description">
+                            <div class="payee-card-description__text">
+                                <p>[Account name]</p>
+                                <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>[Account No.]</p>
+                            </div>
+                        </div>
+                        <button class="payee-card__button">Make payment</button>
+                    </div>
+                </div>
+
+                <PaginatorComponent></PaginatorComponent>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-layout" id="modalNewPayee">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalNewPayee()"></div>
+        <div class="payee-add-modal-layout">
+            <div class="payee-add-modal">
+                <div class="payee-add-modal-header-wrapper">
+                    <div class="payee-add-modal-header">
+                        <p class="payee-add-modal-header__title">Add Payee template</p>
+                        <div class="payee-add-modal-header__close" onclick="onCloseModalNewPayee()">
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payee-add-modal-main">
+                    <div class="payee-add-modal-form">
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Template reference</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input" />
+                                </div>
+                                <legend class="formgroup__caption">Has to be explanation of this template</legend>
+                            </div>
+                        </div>
+
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Debit account</label>
+                                <div class="select-layout">
+                                    <select class="select">
+                                        <option disabled selected>Select an account</option>
+                                        <option>Account 1</option>
+                                        <option>Account 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Payment type</label>
+                                <div class="select-layout">
+                                    <select class="select">
+                                        <option disabled selected>Select type</option>
+                                        <option>SWIFT</option>
+                                        <option>Domestic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="payee-add-modal__subtitle">Payment information</p>
+
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Account name</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input" />
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Account No.</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Payment reference</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input" />
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Sort code</label>
+                                <div class="input-layout">
+                                    <input placeholder="_ _ _" class="input" />
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Currency</label>
+                                <div class="select-layout">
+                                    <select class="select">
+                                        <option disabled selected>Select currency</option>
+                                        <option>USD</option>
+                                        <option>EUR</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Statement narrative</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payee-add-modal-footer">
+                    <button class="payee-add-modal-footer__buttonCancel" onclick="onCloseModalNewPayee()">Cancel</button>
+                    <button class="payee-add-modal-footer__buttonSuccess" onclick="onCloseModalNewPayee()">Save Payee template</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

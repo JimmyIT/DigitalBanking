@@ -1,0 +1,78 @@
+@layout MainLayout
+@page "/transfers"
+
+<div class="transfers-layout">
+    <div class="transfers-container">
+        <div class="transfers">
+            <div class="transfers-header">
+                <div class="transfers-header-wrapper">
+                    <img src="/img/transactionTable/transfer.svg" alt="logo" class="transfers-header__logo" />
+                    <p class="transfers-header__title">Transfers</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="transfers-header__tooltip-icon" />
+                </div>
+
+                <div>
+                    <button class="transfers-header__button" onclick="location.href='/payments'">Make Payment <img src="/img/icons/arrowRight.svg" alt="arrow" /></button>
+                </div>
+            </div>
+
+            <div class="transfers-main">
+                <div class="transfers-main__left">
+                    <div class="transfers-form">
+                        <p class="transfers-form__title">New Transfer</p>
+                        <div class="transfers-form-transfer">
+                            <div class="formgroup transfers-form-transfer-selector">
+                                <AccountSelectionComponent />
+                            </div>
+                        </div>
+                        <p class="transfers-form-transfer-selector__text">Please select an account from which you wish the funds to be taken.</p>
+                    </div>
+
+                    <div class="transfers-information">
+                        <p class="transfers-information__title">Payment information</p>
+                        <div class="transfers-information-form">
+                            <div class="formgroup transfers-information-form__selector">
+                                <AccountSelectionComponent />
+                            </div>
+                            <div class="formgroup">
+                                @*<AmountComponent @bind-Value="@_amount" />*@
+                                <label>Credit amount</label>
+                                <div class="input-layout formgroup">
+                                    <input placeholder="0.00" class="input transfers-information-form__amount" />
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <DateComponent />
+                            </div>
+                        </div>
+                        <p class="transfers-form-transfer-selector__text">Please select an account to credit.</p>
+                        <div class="formgroup transfers-information-form__textarea">
+                            <NarrativeComponent />
+                        </div>
+                        <div class="formgroup transfers-information-form__textarea">
+                            <NarrativeComponent />
+                        </div>
+                    </div>
+
+                    <div class="transfers-footer">
+                        <button class="transfers-footer__buttonCancel">Cancel</button>
+                        <button class="transfers-footer__buttonSuccess" onclick="onTriggerModalConfirm()">Proceed</button>
+                    </div>
+
+                    <TransfersModalConfirmComponent />
+
+                    <TransfersModalSuccessComponent />
+
+                </div>
+
+                <div class="transfers-main__right">
+                    <TransfersHistoryComponent />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private decimal _amount = 0;
+}

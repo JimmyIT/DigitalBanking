@@ -1,0 +1,807 @@
+@layout MainLayout
+@page "/payments"
+
+<div class="payments-layout">
+    <div class="payments-container">
+        <div class="payments">
+            <div class="payments-header">
+                <div class="payments-header-wrapper">
+                    <img src="/img/transactionTable/payment.svg" alt="logo" class="payments-header__logo" />
+                    <p class="payments-header__title">Payments</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payments-header__tooltip-icon" />
+                </div>
+
+                <div>
+                    <button class="payments-header__button" onclick="location.href='/transfers'">Make Transfer <img src="/img/icons/arrowRight.svg" alt="arrow" /></button>
+                </div>
+            </div>
+            @if (_createPaymentContext != null)
+            {
+                <EditForm id="createPaymentContext" EditContext="@_createPaymentContext" OnInvalidSubmit="@InvalidSubmit" OnValidSubmit="@CreatePayment">
+                    <DataAnnotationsValidator />
+
+                    <div class="payments-main">
+                        <div class="payments-main__left">
+                            <div class="payments-new">
+                                <p class="payments-new__title">New Payment</p>
+                                <div class="payments-new-payee">
+                                    <div class="formgroup payments-new-payee-selector">
+                                        <label>Pay to</label>
+                                        <div class="select-layout">
+                                            <InputSelect ValueExpression="@(() => _createPaymentModel.TemplateRefernce)"
+                                                     Value="@_createPaymentModel.TemplateRefernce"
+                                                     ValueChanged="@((string value) => OnSelectedPayeeChanged(value))"
+                                                     class="select" id="payeeSelector">
+                                                <option value="">Select classification ...</option>
+                                                @foreach (var item in _listPayees)
+                                            {
+                                            <option value="@item.Name">@item.Name</option>
+                                            }
+                                        </InputSelect>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.TemplateRefernce)"></CustomValidationMessage>
+                                </div>
+                                <div class="formgroup payments-new-payee-create">
+                                    <p class="formgroup payments-new-payee-create__text">or</p>
+                                    <button class="payments-new-payee-create__button" onclick="onTriggerModalNewPayee()">Create new Payee</button>
+
+                                    <div class="modal-layout" id="ModalNewPayee">
+                                        <div class="modal-scroll">
+                                            <div class="modal-background" onclick="onTriggerModalNewPayee()"></div>
+                                            <div class="payments-modal-layout">
+                                                <div class="payments-modal">
+                                                    <div class="payments-modal-header-wrapper">
+                                                        <div class="payments-modal-header">
+                                                            <p class="payments-modal-header__title">Create new Payee</p>
+                                                            <div class="payments-modal-header__icon" onclick="onTriggerModalNewPayee()">
+                                                                <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                                                <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="payments-modal-main">
+                                                        <div class="payments-modal-main-input">
+                                                            <label>Template reference</label>
+                                                            <input placeholder="Enter here" class="input" />
+                                                            <p class="payments-new-payee-selector__text">Please select an account to credit.</p>
+                                                        </div>
+
+                                                        <div class="payments-modal-main-form">
+                                                            <div class="formgroup">
+                                                                <label>Debit account</label>
+                                                                <div class="select-layout">
+                                                                    <select class="select">
+                                                                        <option selected>Select an account</option>
+                                                                        <option>Account 1</option>
+                                                                        <option>Account 2</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="formgroup">
+                                                                <label>Payment type</label>
+                                                                <div class="select-layout">
+                                                                    <select class="select">
+                                                                        <option selected>Select a type</option>
+                                                                        <option>Domestic</option>
+                                                                        <option>SWIFT</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="payments-modal-main-form">
+                                                            <p class="payments-modal-main-form__title">Payment information</p>
+                                                        </div>
+
+                                                        <div class="payments-modal-main-form">
+                                                            <div class="formgroup">
+                                                                <label>Account name</label>
+                                                                <input placeholder="Enter here" class="input" />
+                                                            </div>
+
+                                                            <div class="formgroup">
+                                                                <label>Account No.</label>
+                                                                <input placeholder="Enter here" class="input" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="payments-modal-main-form">
+                                                            <div class="formgroup">
+                                                                <label>Payment reference</label>
+                                                                <input placeholder="Enter here" class="input" />
+                                                            </div>
+
+                                                            <div class="formgroup">
+                                                                <label>Sort code</label>
+                                                                <input placeholder="_ _ _" class="input" />
+                                                            </div>
+
+                                                            <div class="formgroup">
+                                                                <label>Currency</label>
+                                                                <div class="select-layout">
+                                                                    <select class="select">
+                                                                        <option selected>Select a currency</option>
+                                                                        <option>USD</option>
+                                                                        <option>EUR</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="payments-modal-main-input">
+                                                            <label>Statement narrative</label>
+                                                            <input placeholder="Enter here" class="input" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="payments-modal-footer">
+                                                        <button class="payments-modal-footer__buttonCancel" onclick="onTriggerModalNewPayee()">Cancel</button>
+                                                        <button class="payments-modal-footer__buttonSuccess">Save and apply Payee</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="payments-new-payee-selector__text">Please select an account to credit.</p>
+                        </div>
+
+                        <div class="payments-details">
+                            <p class="payments-details__title" id="details">To see this details please select Payee first</p>
+                            <div class="payments-details-item-wrapper">
+                                <div class="payments-details-item">
+                                    <p class="payments-details-item__label">Template reference</p>
+                                    <p class="payments-details-item__body" id="text">
+                                        @_selectedPayee.Name
+                                    </p>
+                                </div>
+                                <div class="payments-details-item">
+                                    <p class="payments-details-item__label">Debit Account</p>
+                                    <p class="payments-details-item__body" id="type">
+                                        @_selectedPayee.DebitAccount
+                                    </p>
+                                </div>
+                                <div class="payments-details-item">
+                                    <p class="payments-details-item__label">Payment type</p>
+                                    <p class="payments-details-item__body" id="account">
+                                        @_selectedPayee.Type
+                                    </p>
+                                </div>
+                                <div class="payments-details-item">
+                                    <p class="payments-details-item__label">Payment Method</p>
+                                    <InputSelect @bind-Value="@_createPaymentModel.PaymentMethod"
+                                                 class="select payments-details-item__selector" id="detailsSelector">
+                                        <option value="">Select a method</option>
+                                        @foreach (var item in _listPaymentMethods)
+                                        {
+                                        <option value="@item.Name">@item.Name</option>
+                                        }
+                                    </InputSelect>
+                                    <p class="payments-details-item__body" id="method"></p>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.PaymentMethod)"></CustomValidationMessage>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payments-information">
+                            <p class="payments-information__title">Payment information</p>
+                            <div class="payments-information-form">
+                                <div class="formgroup payments-information-form__selector">
+                                    <label>From</label>
+                                    <div class="select-layout">
+                                        <InputSelect @bind-Value="_createPaymentModel.PaymentFrom" class="select">
+                                            <option value="">Select an account</option>
+                                            @foreach (var item in _listAccounts)
+                                            {
+                                            <option value="@item.AccountNumber">@item.AccountDetails</option>
+                                            }
+                                        </InputSelect>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.PaymentFrom)"></CustomValidationMessage>
+                                </div>
+                                <div class="formgroup">
+                                    <label>Credit amount</label>
+                                    <div class="input-layout formgroup">
+                                        <InputNumberFormattedComponent @bind-Value="@_createPaymentModel.CreditAmount"
+                                                                       IsCultureIndependent="true"
+                                                                       NumberFormatType="FormatType.N2"
+                                                                       class="input payments-information-form__amount"/>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.CreditAmount)"></CustomValidationMessage>
+                                </div>
+                                <div class="formgroup">
+                                    <label>Payment date</label>
+                                    <div class="input-layout">
+                                        <InputDate @bind-Value="_createPaymentModel.PaymentDate" class="input" />
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.PaymentDate)"></CustomValidationMessage>
+                                </div>
+                            </div>
+                            <p class="payments-new-payee-selector__text">Please select an account from which you wish the funds to be taken.</p>
+                            <div class="formgroup payments-information-form__textarea">
+                                <label>Payment Reference</label>
+                                <div class="input-layout">
+                                    <InputTextArea placeholder="Enter here" class="input" @bind-Value="_createPaymentModel.PaymentReference"></InputTextArea>
+                                </div>
+                                <CustomValidationMessage For="@(() => _createPaymentModel.PaymentReference)"></CustomValidationMessage>
+                            </div>
+                            <div class="formgroup payments-information-form__textarea">
+                                <label>Debit Narrative</label>
+                                <div class="input-layout">
+                                    <InputTextArea placeholder="Enter here" class="input" @bind-Value="_createPaymentModel.DebitNarrative"></InputTextArea>
+                                </div>
+                                <CustomValidationMessage For="@(() => _createPaymentModel.PaymentReference)"></CustomValidationMessage>
+                            </div>
+
+                            <div class="payments-information-form">
+                                <div class="payments-information-form__document-selector">
+                                    <label>Type of document</label>
+                                    <div class="select-layout">
+                                        <InputSelect @bind-Value="@_createPaymentModel.TypeOfDocument"
+                                                     class="select qwe" id="detailsSelector">
+                                            <option value="">Select a type</option>
+                                            <option value="Name and Address">Name and Address</option>
+                                            <option value="Address">Address</option>
+                                            <option value="Name">Name</option>
+                                            <option value="CV">CV</option>
+                                        </InputSelect>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.TypeOfDocument)"></CustomValidationMessage>
+                                </div>
+                                <div>
+                                    <label>&ensp;</label>
+                                    <div class="input-layout">
+                                        <input class="input payments-information-form__upload" placeholder="Attach a document" type="file" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payments-footer">
+                            <button class="payments-footer__buttonCancel">Cancel</button>
+                            <button type="submit" class="payments-footer__buttonSuccess">Proceed</button>
+                        </div>
+                        @*
+                        <div class="modal-layout" id="ModalConfirm">
+                        <div class="modal-scroll">
+                        <div class="modal-background" onclick="onTriggerModalConfirm()"></div>
+                        <div class="payments-modal-layout">
+                        <div class="payments-modal">
+                        <div class="payments-modal-header-wrapper">
+                        <div class="payments-modal-header">
+                        <p class="payments-modal-header__title">Confirm Payment</p>
+                        <div class="payments-modal-header__icon" onclick="onTriggerModalConfirm()">
+                        <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                        <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                        </div>
+                        <p class="payments-modal-header__subtitle">To confirm payment, please enter your password</p>
+                        </div>
+
+                        <div class="payments-modal-main">
+                        <div class="payments-modal-main-info-card">
+                        <div class="payments-modal-main-info-card-content">
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Pay to</p>
+                        <p class="payments-modal-main-info-card-content-item__text">[Payee reference 1]</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment type</p>
+                        <p class="payments-modal-main-info-card-content-item__text">Domestic</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment Method</p>
+                        <p class="payments-modal-main-info-card-content-item__text">BASK</p>
+                        </div>
+                        </div>
+
+                        <div class="payments-modal-main-info-card-content">
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">From account</p>
+                        <p class="payments-modal-main-info-card-content-item__text">Account No.: 00256001</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Credit amount</p>
+                        <p class="payments-modal-main-info-card-content-item__text">1000.00</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment date</p>
+                        <p class="payments-modal-main-info-card-content-item__text">12/12/2021</p>
+                        </div>
+                        </div>
+
+                        <div class="payments-modal-main-info-card-content">
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment Reference</p>
+                        <p class="payments-modal-main-info-card-content-item__text">Payment Reference text the user should write here</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment Narrative</p>
+                        <p class="payments-modal-main-info-card-content-item__text">Debit Narrative text the user should write here</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="payments-modal-main-input">
+                        <label>Password</label>
+                        <div class="password">
+                        <input placeholder="Enter here" class="input" id="password" type="password" />
+                        <div class="password__icon" id="passwordIcon" onclick="onClickVisiblePassword()">
+                        <img class="icon" src="/img/icons/closeEyeIcon.svg" alt="close" />
+                        <img class="iconHover" src="/img/icons/closeEyeIconHover.svg" alt="close" />
+                        </div>
+                        </div>
+                        <div class="input-alert" id="inputAlert">
+                        <span class="input-alert__icon"></span>
+                        <p class="input-alert__text">Incorrect password</p>
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="payments-modal-footer">
+                        <button class="payments-modal-footer__buttonCancel" onclick="onTriggerModalConfirm()">Cancel</button>
+                        <button class="payments-modal-footer__buttonSuccess" onclick="onSuccessModalConfirm()">Confirm</button>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>*@
+
+                        @*<div class="modal-layout" id="ModalConfirm2FA">
+                        <div class="modal-scroll">
+                        <div class="modal-background" onclick="onTriggerModalConfirm2FA()"></div>
+                        <div class="payments-modal-layout">
+                        <div class="payments-modal">
+                        <div class="payments-modal-header-wrapper">
+                        <div class="payments-modal-header">
+                        <p class="payments-modal-header__title">Payment was confirmed</p>
+                        <div class="payments-modal-header__icon" onclick="onTriggerModalConfirm2FA()">
+                        <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                        <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                        </div>
+                        <p class="payments-modal-header__subtitle">To confirm payment, please enter your financial phone number</p>
+                        </div>
+
+                        <div class="payments-modal-main">
+                        <div class="payments-modal-main-info-card">
+                        <div class="payments-modal-main-info-card-content">
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Pay to</p>
+                        <p class="payments-modal-main-info-card-content-item__text">[Payee reference 1]</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment type</p>
+                        <p class="payments-modal-main-info-card-content-item__text">Domestic</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment Method</p>
+                        <p class="payments-modal-main-info-card-content-item__text">BASK</p>
+                        </div>
+                        </div>
+
+                        <div class="payments-modal-main-info-card-content">
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">From account</p>
+                        <p class="payments-modal-main-info-card-content-item__text">Account No.: 00256001</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Credit amount</p>
+                        <p class="payments-modal-main-info-card-content-item__text">1000.00</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment date</p>
+                        <p class="payments-modal-main-info-card-content-item__text">12/12/2021</p>
+                        </div>
+                        </div>
+
+                        <div class="payments-modal-main-info-card-content">
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment Reference</p>
+                        <p class="payments-modal-main-info-card-content-item__text">Payment Reference text the user should write here</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        <p class="payments-modal-main-info-card-content-item__title">Payment Narrative</p>
+                        <p class="payments-modal-main-info-card-content-item__text">Debit Narrative text the user should write here</p>
+                        </div>
+                        <div class="payments-modal-main-info-card-content-item">
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="payments-modal-main-input">
+                        <label>Phone number</label>
+                        <div class="phone">
+                        <div class="customSelector search">
+                        <div class="customSelector-input" onclick="onTriggerPhoneSelector()" id="typesSelector">
+                        <p class="customSelector-input__placeholder">+44</p>
+                        <img src="/img/icons/dropdown.svg" alt="dropdown" />
+                        </div>
+
+                        <div class="customSelector-dropdown" id="types">
+                        <div class="customSelector-dropdown-item">
+                        <p>+55</p>
+                        </div>
+                        <div class="customSelector-dropdown-item">
+                        <p>+66</p>
+                        </div>
+                        <div class="customSelector-dropdown-item">
+                        <p>+77</p>
+                        </div>
+                        </div>
+                        </div>
+                        <input placeholder="000 000 000" class="input" />
+                        </div>
+                        </div>
+
+                        <p class="payments-modal-main__subtitle">Or scan QR code through your mobile application to confirm Payment</p>
+
+                        <img src="/img/payment/qrIcon.svg" alt="qr" />
+
+                        </div>
+
+                        <div class="payments-modal-footer">
+                        <button class="payments-modal-footer__buttonSuccess" onclick="onSuccessModalConfirm2FA()">Ok</button>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>*@
+
+                        <div class="modal-layout" id="ModalSuccess">
+                            <div class="modal-scroll">
+                                <div class="modal-background" onclick="onTriggerModalSuccess()"></div>
+                                <div class="payments-modal-layout">
+                                    <div class="payments-modal">
+                                        <div class="payments-modal-header-wrapper">
+                                            <div class="payments-modal-header">
+                                                <p class="payments-modal-header__title">Payment was confirmed</p>
+                                                <div class="payments-modal-header__icon" onclick="onTriggerModalSuccess()">
+                                                    <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                                    <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                                                </div>
+                                            </div>
+                                            <p class="payments-modal-header__subtitle">We let you know once your Payee will get the money</p>
+                                        </div>
+
+                                        <div class="payments-modal-main">
+                                            <div class="payments-modal-main-info-card">
+                                                <div class="payments-modal-main-info-card-content">
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                        <p class="payments-modal-main-info-card-content-item__title">Pay to</p>
+                                                        <p class="payments-modal-main-info-card-content-item__text">[Payee reference 1]</p>
+                                                    </div>
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                        <p class="payments-modal-main-info-card-content-item__title">Payment type</p>
+                                                        <p class="payments-modal-main-info-card-content-item__text">Domestic</p>
+                                                    </div>
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                        <p class="payments-modal-main-info-card-content-item__title">Payment Method</p>
+                                                        <p class="payments-modal-main-info-card-content-item__text">BASK</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="payments-modal-main-info-card-content">
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                        <p class="payments-modal-main-info-card-content-item__title">From account</p>
+                                                        <p class="payments-modal-main-info-card-content-item__text">Account No.: 00256001</p>
+                                                    </div>
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                        <p class="payments-modal-main-info-card-content-item__title">Credit amount</p>
+                                                        <p class="payments-modal-main-info-card-content-item__text">1000.00</p>
+                                                    </div>
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                        <p class="payments-modal-main-info-card-content-item__title">Payment date</p>
+                                                        <p class="payments-modal-main-info-card-content-item__text">12/12/2021</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="payments-modal-main-info-card-content">
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                        <p class="payments-modal-main-info-card-content-item__title">Payment Reference</p>
+                                                        <p class="payments-modal-main-info-card-content-item__text">Payment Reference text the user should write here</p>
+                                                    </div>
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                        <p class="payments-modal-main-info-card-content-item__title">Payment Narrative</p>
+                                                        <p class="payments-modal-main-info-card-content-item__text">Debit Narrative text the user should write here</p>
+                                                    </div>
+                                                    <div class="payments-modal-main-info-card-content-item">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="payments-modal-footer">
+                                            <button class="payments-modal-footer__buttonSuccess" onclick="onTriggerModalSuccess()">Ok</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <!-- -->
+                    <div class="payments-main__right">
+                        <div class="payments-history">
+                            <div class="payments-history-header">
+                                <button type="button" class="payments-history-header__item active" onclick="onClickTab(event, 'History')">Last payments</button>
+                                <button type="button" class="payments-history-header__item" onclick="onClickTab(event, 'Template')">Payee templates</button>
+                            </div>
+
+                            <div class="check" id="History">
+                                <div class="select-layout payments-history-selector">
+                                    <select class="select">
+                                        <option disabled selected>Last week</option>
+                                        <option>Account 1</option>
+                                        <option>Account 2</option>
+                                    </select>
+                                </div>
+
+                                <div class="payments-history-info">
+                                    <p class="payments-history-info__title">
+                                        [Payee reference]
+                                    </p>
+                                    <div class="payments-history-info-description">
+                                        <div class="payments-history-info-description__text">
+                                            <p>Domestic</p>
+                                            <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                            <p>BASK</p>
+                                        </div>
+                                        <p class="payments-history-info-description__text">Account No.: 00256001</p>
+                                    </div>
+                                    <div class="payments-history-info-description">
+                                        <p class="payments-history-info-description__text">08/07/2021</p>
+                                        <p class="payments-history-info-description__sum">$1200.00</p>
+                                    </div>
+                                </div>
+
+                                <div class="payments-history-info">
+                                    <p class="payments-history-info__title">
+                                        [Payee reference]
+                                    </p>
+                                    <div class="payments-history-info-description">
+                                        <div class="payments-history-info-description__text">
+                                            <p>Domestic</p>
+                                            <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                            <p>BASK</p>
+                                        </div>
+                                        <p class="payments-history-info-description__text">Account No.: 00256001</p>
+                                    </div>
+                                    <div class="payments-history-info-description">
+                                        <p class="payments-history-info-description__text">08/07/2021</p>
+                                        <p class="payments-history-info-description__sum">$1200.00</p>
+                                    </div>
+                                </div>
+
+                                <div class="payments-history-info">
+                                    <p class="payments-history-info__title">
+                                        [Payee reference]
+                                    </p>
+                                    <div class="payments-history-info-description">
+                                        <div class="payments-history-info-description__text">
+                                            <p>Domestic</p>
+                                            <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                            <p>BASK</p>
+                                        </div>
+                                        <p class="payments-history-info-description__text">Account No.: 00256001</p>
+                                    </div>
+                                    <div class="payments-history-info-description">
+                                        <p class="payments-history-info-description__text">08/07/2021</p>
+                                        <p class="payments-history-info-description__sum">$1200.00</p>
+                                    </div>
+                                </div>
+
+                                <div class="payments-history-info">
+                                    <p class="payments-history-info__title">
+                                        [Payee reference]
+                                    </p>
+                                    <div class="payments-history-info-description">
+                                        <div class="payments-history-info-description__text">
+                                            <p>Domestic</p>
+                                            <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                            <p>BASK</p>
+                                        </div>
+                                        <p class="payments-history-info-description__text">Account No.: 00256001</p>
+                                    </div>
+                                    <div class="payments-history-info-description">
+                                        <p class="payments-history-info-description__text">08/07/2021</p>
+                                        <p class="payments-history-info-description__sum">$1200.00</p>
+                                    </div>
+                                </div>
+
+                                <div class="payments-history-info">
+                                    <p class="payments-history-info__title">
+                                        [Payee reference]
+                                    </p>
+                                    <div class="payments-history-info-description">
+                                        <div class="payments-history-info-description__text">
+                                            <p>Domestic</p>
+                                            <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                            <p>BASK</p>
+                                        </div>
+                                        <p class="payments-history-info-description__text">Account No.: 00256001</p>
+                                    </div>
+                                    <div class="payments-history-info-description">
+                                        <p class="payments-history-info-description__text">08/07/2021</p>
+                                        <p class="payments-history-info-description__sum">$1200.00</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="payments-history-info-wrapper check" id="Template" style="display: none">
+                                <div>
+                                    <div class="payments-history-info">
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info__title">
+                                                [Payee reference]
+                                            </p>
+                                            <div class="payments-history-info-description__text">
+                                                <div class="payments-history-info-description__icon">
+                                                    <div class="payments-history-info-description__icon">
+                                                        <img class="icon" src="/img/icons/starIcon.svg" alt="star" />
+                                                        <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="star" />
+                                                    </div>
+                                                    <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="star" />
+                                                </div>
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/dotsIcon.svg" alt="menu" />
+                                                    <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="menu" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info-description__text">
+                                                Debit Account No.: 00256001
+                                            </p>
+                                            <span class="payments-history-info-description__type">Domestic</span>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <div class="payments-history-info-description__text">
+                                                <p>[Account name]</p>
+                                                <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                                <p>[Account No.]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="payments-history-info">
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info__title">
+                                                [Payee reference]
+                                            </p>
+                                            <div class="payments-history-info-description__text">
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/starIcon.svg" alt="star" />
+                                                    <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="star" />
+                                                </div>
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/dotsIcon.svg" alt="menu" />
+                                                    <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="menu" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info-description__text">
+                                                Debit Account No.: 00256001
+                                            </p>
+                                            <span class="payments-history-info-description__type">Domestic</span>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <div class="payments-history-info-description__text">
+                                                <p>[Account name]</p>
+                                                <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                                <p>[Account No.]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="payments-history-info">
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info__title">
+                                                [Payee reference]
+                                            </p>
+                                            <div class="payments-history-info-description__text">
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                                </div>
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/dotsIcon.svg" alt="menu" />
+                                                    <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="menu" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info-description__text">
+                                                Debit Account No.: 00256001
+                                            </p>
+                                            <span class="payments-history-info-description__type">Domestic</span>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <div class="payments-history-info-description__text">
+                                                <p>[Account name]</p>
+                                                <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                                <p>[Account No.]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="payments-history-info">
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info__title">
+                                                [Payee reference]
+                                            </p>
+                                            <div class="payments-history-info-description__text">
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/starIcon.svg" alt="star" />
+                                                    <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="star" />
+                                                </div>
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/dotsIcon.svg" alt="menu" />
+                                                    <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="menu" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info-description__text">
+                                                Debit Account No.: 00256001
+                                            </p>
+                                            <span class="payments-history-info-description__type">Domestic</span>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <div class="payments-history-info-description__text">
+                                                <p>[Account name]</p>
+                                                <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                                <p>[Account No.]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="payments-history-info">
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info__title">
+                                                [Payee reference]
+                                            </p>
+                                            <div class="payments-history-info-description__text">
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                                                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                                                </div>
+                                                <div class="payments-history-info-description__icon">
+                                                    <img class="icon" src="/img/icons/dotsIcon.svg" alt="menu" />
+                                                    <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="menu" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <p class="payments-history-info-description__text">
+                                                Debit Account No.: 00256001
+                                            </p>
+                                            <span class="payments-history-info-description__type">Domestic</span>
+                                        </div>
+                                        <div class="payments-history-info-description">
+                                            <div class="payments-history-info-description__text">
+                                                <p>[Account name]</p>
+                                                <img class="payments-history-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                                <p>[Account No.]</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="Template" class="payments-history-info-button">All payee templates</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="auth-layout">
+    <div class="auth-container">
+        <div class="auth">
+            <p class="auth__title">Sign up</p>
+            <div class="auth-box">
+                <div class="auth-box-header">
+                    <div class="auth-box-header__item disabled">Step 1</div>
+                    <div class="auth-box-header__item active">Step 2</div>
+                    <div class="auth-box-header__item disabled">Step 3</div>
+                    <div class="auth-box-header__item disabled">Step 4</div>
+                </div>
+                <div class="auth-box-main">
+                    <p class="auth-box-main__title">MSE Authentication Code</p>
+                    <div class="auth-box-main__subtitle">
+                        <p class="auth-box-main__subtitle-text">Please enter your MSE Authentication code. If you are unsure of your code, please contact our Customer Service team on 020 7398 5400.</p>
+                        <div class="auth-box-main__subtitle-info">
+                            <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payments-header__tooltip-icon" />
+                        </div>
+                    </div>
+                    <div class="auth-box-form">
+                        <div class="formgroup">
+                            <label>MSE Authentication Code</label>
+                            <div class="input-layout">
+                                <input placeholder="Enter here" class="input" />
+                            </div>
+                        </div>
+                        <div class="auth-box-form__footer">
+                            <button type="button" class="auth-box-form__footer-back" @onclick="(() => ButtonBackOnClick())">Back</button>
+                            <button type="button" class="auth-box-form__footer-next" @onclick="(() => ButtonNextOnClick())">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

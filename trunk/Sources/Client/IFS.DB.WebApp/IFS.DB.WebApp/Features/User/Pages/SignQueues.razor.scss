@@ -1,0 +1,26 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.sign-layout {
+	padding: $indent-24 0 $indent-36;
+}
+
+.sign-container {
+	@include container;
+}
+
+.sign-header {
+	@include pageTitle;
+}
+
+.sign-table {
+	&-back {
+		@include box;
+	}
+
+	&-name {
+		@include h2;
+		padding: $indent-12 0;
+		margin-bottom: $indent-16;
+	}
+}

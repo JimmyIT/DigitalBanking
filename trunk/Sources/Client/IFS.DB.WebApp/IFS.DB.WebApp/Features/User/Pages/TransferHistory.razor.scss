@@ -1,0 +1,84 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.history-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.history-container {
+    @include container;
+}
+
+.history-header {
+    @include pageTitle;
+}
+
+.history {
+    @include box;
+
+    &-search {
+        display: flex;
+        align-items: center;
+
+        &-body {
+            display: flex;
+            flex: 1;
+            &__input {
+                max-width: 508px;
+                margin-right: $indent-12;
+            }
+        }
+
+        &-icons {
+            display: flex;
+
+            &__icon {
+                @include buttonIconMedium;
+            }
+        }
+    }
+
+    &-filters {
+        display: none;
+        margin-top: $indent-16;
+    }
+
+    &-info-cards {
+        display: flex;
+        justify-content: space-between;
+        padding: $indent-12;
+        margin-top: $indent-16;
+        border-radius: $indent-12;
+        background-color: $color-gray-100;
+
+        &-title {
+            @include label;
+            color: $color-gray-600;
+        }
+
+        &-description {
+            display: flex;
+            &__text {
+                @include h5;
+                color: $color-gray-900;
+            }
+
+            &__icon {
+                height: 20px;
+            }
+        }
+
+        &-right {
+            display: flex;
+            justify-content: flex-end;
+
+            &-content {
+                margin-right: 44px;
+            }
+        }
+    }
+
+    &-table {
+        margin-top: $indent-16;
+    }
+}

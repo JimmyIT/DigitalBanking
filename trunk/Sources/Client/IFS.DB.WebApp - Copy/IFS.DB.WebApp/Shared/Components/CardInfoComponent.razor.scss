@@ -1,0 +1,18 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.card-info-list {
+	width: 100vw;
+	display: flex;
+	padding-left: calc(50vw - #{$container} / 2);
+	padding-right: calc(50vw - #{$container} / 2);
+	position: relative;
+	left: calc(50% - 50vw);
+	overflow-x: hidden;
+	margin-bottom: $indent-24;
+
+	@include laptop {
+		padding-left: $indent-36;
+		padding-right: $indent-36;
+	}
+}

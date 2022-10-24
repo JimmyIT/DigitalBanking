@@ -1,0 +1,10 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.sign-queues-single-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.sign-queues-single-container {
+    @include container;
+}

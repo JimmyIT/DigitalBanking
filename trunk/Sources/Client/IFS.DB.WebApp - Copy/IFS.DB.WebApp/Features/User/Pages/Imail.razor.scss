@@ -1,0 +1,215 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.imail-layout {
+    padding: $indent-24 0 $indent-32;
+}
+
+.imail-container {
+    @include container;
+}
+
+.imail-header {
+    @include pageTitle;
+    margin-bottom: $indent-24;
+}
+
+.imail {
+    &-section {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    &-main {
+        @include box;
+        width: calc(100% - 464px);
+        max-height: 844px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 $indent-24 0 0;
+
+        &-tabs {
+            @include boxTabs;
+            margin-bottom: $indent-16;
+        }
+    }
+
+    &-sidebar {
+        @include box;
+        width: 440px;
+
+        &__title {
+            @include h2;
+        }
+
+        &-form {
+            margin-top: $indent-16;
+
+            &__submit {
+                @include blueButton;
+                width: 100%;
+                margin-top: $indent-16;
+            }
+        }
+
+        &-formgroup {
+            margin-top: $indent-16;
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        &-attach {
+            display: flex;
+            flex-wrap: wrap;
+
+            &__button,
+            &__file {
+                margin: $indent-16 $indent-12 0 0;
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            &__button {
+                @include transparentButton;
+                padding: $indent-8 $indent-12 $indent-8 $indent-8;
+            }
+
+            &__file {
+                min-width: 112px;
+                display: flex;
+                align-items: center;
+                border-radius: 8px;
+                background: $color-sky-blue-100;
+                padding: $indent-8 $indent-12;
+
+                &-text {
+                    flex: 1;
+                    color: $color-sky-blue-400;
+                }
+
+                &-remove {
+                    @include buttonIcon;
+                }
+
+                &-icon {
+                    @include square-icon(24px);
+                    margin-left: $indent-8;
+                }
+            }
+        }
+    }
+
+    &-messages {
+        @include customScroll;
+        flex: 1;
+        overflow-y: auto;
+        padding-right: $indent-16;
+    }
+
+    &-message {
+        @include card;
+        border-color: $color-gray-100;
+        margin-bottom: $indent-12;
+        cursor: pointer;
+        &:hover,
+        &.imail-message--active {
+            border-color: $color-sky-blue-200;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: $indent-12;
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &-info {
+                flex: 1;
+                display: flex;
+                align-items: center;
+
+                &-avatar {
+                    @include avatar;
+                    margin-right: $indent-8;
+                }
+
+                &-about {
+                    &__top {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    &__name {
+                        @include h4;
+                        margin-right: $indent-8;
+                    }
+
+                    &__position {
+                        @include caption1;
+                        color: $color-gray-600;
+                        margin-right: $indent-8;
+                    }
+
+                    &__status {
+                        @include blueTextBox;
+                    }
+
+                    &__date {
+                        @include label2;
+                        color: $color-gray-600;
+                    }
+                }
+            }
+
+            &-buttons {
+                display: flex;
+                align-items: center;
+
+                &__delete {
+                    @include buttonIcon;
+                }
+
+                &__answer {
+                    @include lightBlueButton;
+                    padding-top: $indent-8;
+                    padding-bottom: $indent-8;
+                    margin-left: $indent-4;
+                }
+            }
+        }
+
+        &-main {
+            &__top {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: $indent-4;
+            }
+
+            &__priority {
+                @include redTextBox;
+                margin-right: $indent-8;
+            }
+
+            &__subject {
+                @include h4;
+                flex: 1;
+            }
+
+            &__text {
+                color: $color-gray-600;
+            }
+        }
+
+        &:not(.imail-message--active) {
+            .imail-message-main__text {
+                @include textWithDots;
+            }
+        }
+    }
+}

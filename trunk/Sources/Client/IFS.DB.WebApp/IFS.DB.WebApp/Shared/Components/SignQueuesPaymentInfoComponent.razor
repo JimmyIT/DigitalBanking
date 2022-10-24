@@ -1,0 +1,223 @@
+<div class="sign-queues-single">
+    <div class="sign-queues-single-header">
+        <div class="sign-queues-single-header-breadcrumbs">
+            <p class="sign-queues-single-header-breadcrumbs__item">Sign Queues</p>
+            <p class="sign-queues-single-header-breadcrumbs__item">Payments</p>
+            <p class="sign-queues-single-header-breadcrumbs__item active">RQ201842998-11</p>
+        </div>
+
+        <div class="sign-queues-single-header-title">
+            <div class="sign-queues-single-header-title-line">
+                <img src="/img/icons/return.svg" alt="return" class="sign-queues-single-header-title-line__return-icon" />
+                <p class="sign-queues-single-header-title-line-name">RQ201842998-11</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sign-queues-single-card">
+        <div class="sign-queues-single-card-info">
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Template Reference</p>
+                <p class="sign-queues-single-card-info-item-text">RH6</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Default Account</p>
+                <p class="sign-queues-single-card-info-item-text">Bank Operational Account - IB Account No. 00256001</p>
+            </div>
+        </div>
+
+        <hr class="sign-queues-single-card-dash" />
+        
+        <p class="sign-queues-single-card-title">Payee’s Details</p>
+        <div class="sign-queues-single-card-info">
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Sort Code</p>
+                <p class="sign-queues-single-card-info-item-text">12 - 34 - 56</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Account name</p>
+                <p class="sign-queues-single-card-info-item-text">Angel Press</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Account number</p>
+                <p class="sign-queues-single-card-info-item-text">00256001</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Payee Reference</p>
+                <p class="sign-queues-single-card-info-item-text">Text for Payee Reference that explaine everything</p>
+            </div>
+        </div>
+
+        <hr class="sign-queues-single-card-dash" />
+
+        <p class="sign-queues-single-card-title">Other details</p>
+        <div class="sign-queues-single-card-info">
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Debit Account</p>
+                <p class="sign-queues-single-card-info-item-text">Account No. 00256001  </p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">User Reference</p>
+                <p class="sign-queues-single-card-info-item-text">Reference text</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Payment Date</p>
+                <p class="sign-queues-single-card-info-item-text">04/12/2021</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Attached files</p>
+                <p class="sign-queues-single-card-info-item-text"><img src="/img/sign/file.svg" alt="file" class="sign-queues-single-card-info-item-text__image" />Screenshot.pdf</p>
+            </div>
+        </div>
+
+        <div class="sign-queues-single-card-info">
+            <div class="sign-queues-single-card-info-item sign-queues-single-card-info-item--fullwidth">
+                <p class="sign-queues-single-card-info-item-title">Debit Narrative</p>
+                <p class="sign-queues-single-card-info-item-text">Narrative Text</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Default Credit Narrative</p>
+                <p class="sign-queues-single-card-info-item-text">Default Credit Narrative Text. Default Credit Narrative Text.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-layout" id="ModalSignOff">
+        <div class="modal-scroll">
+            <div class="modal-background" onclick="onTriggerModalSignOff()"></div>
+            <div class="signoff-modal-layout">
+                <div class="signoff-modal">
+                    <div class="signoff-modal-header-wrapper">
+                        <div class="signoff-modal-header">
+                            <p class="signoff-modal-header__title">Sign off RQ201842998-11</p>
+                            <div class="signoff-modal-header__icon" onclick="onTriggerModalSignOff()">
+                                <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                            </div>
+                        </div>
+                        <p class="signoff-modal-header__subtitle">Please enter your password to confirm payment Sign off</p>
+                    </div>
+
+                    <div class="signoff-modal-main">
+                        <div class="signoff-modal-main-input">
+                            <label>Password</label>
+                            <div class="password">
+                                <input placeholder="Enter here" class="input" id="passwordSignOff" type="password"/>
+                                <div class="password__icon" id="passwordIconSignOff" onclick="onClickVisiblePasswordSignOff()">
+                                    <img src="/img/icons/closeEyeIcon.svg" alt="eye" class="icon"/>
+                                    <img src="/img/icons/closeEyeIconHover.svg" alt="eye" class="iconHover"/>
+                                </div>
+                            </div>
+                            <div class="input-alert" id="inputAlertSignOff">
+                                <span class="input-alert__icon"></span>
+                                <p class="input-alert__text">Incorrect password</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="signoff-modal-footer">
+                        <button class="signoff-modal-footer__buttonCancel" onclick="onTriggerModalSignOff()">Cancel</button>
+                        <button class="signoff-modal-footer__buttonSuccess" onclick="onSuccessModalSignOff()">Sign  off</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-layout" id="ModalSignOffConfirm">
+        <div class="modal-scroll">
+            <div class="modal-background" onclick="onTriggerModalSignOffConfirm()"></div>
+            <div class="signoff-modal-layout">
+                <div class="signoff-modal">
+                    <div class="signoff-modal-header-wrapper">
+                        <div class="signoff-modal-header">
+                            <p class="signoff-modal-header__title">Sign-off confirmed</p>
+                            <div class="signoff-modal-header__icon" onclick="onTriggerModalSignOffConfirm()">
+                                <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                            </div>
+                        </div>
+                        <p class="signoff-modal-header__subtitle">The reference was confirmed</p>
+                    </div>
+                    
+                    <div class="signoff-modal-footer">
+                        <button class="signoff-modal-footer__buttonSuccess" onclick="onTriggerModalSignOffConfirm()">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-layout" id="ModalReject">
+        <div class="modal-scroll">
+            <div class="modal-background" onclick="onTriggerModalReject()"></div>
+            <div class="signoff-modal-layout">
+                <div class="signoff-modal">
+                    <div class="signoff-modal-header-wrapper">
+                        <div class="signoff-modal-header">
+                            <p class="signoff-modal-header__title">Reject RQ201842998-11</p>
+                            <div class="signoff-modal-header__icon" onclick="onTriggerModalReject()">
+                                <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                            </div>
+                        </div>
+                        <p class="signoff-modal-header__subtitle">Please enter your password to confirm payment rejection</p>
+                    </div>
+
+                    <div class="signoff-modal-main">
+                        <div class="signoff-modal-main-input">
+                            <label>Password</label>
+                            <div class="password">
+                                <input placeholder="Enter here" class="input" id="passwordReject" type="password"/> 
+                                <div class="password__icon" id="passwordIconReject" onclick="onClickVisiblePasswordReject()">
+                                    <img src="/img/icons/closeEyeIcon.svg" alt="eye" class="icon"/>
+                                    <img src="/img/icons/closeEyeIconHover.svg" alt="eye" class="iconHover"/>
+                                </div>
+                            </div>
+                            <div class="input-alert" id="inputAlertReject">
+                                <span class="input-alert__icon"></span>
+                                <p class="input-alert__text">Incorrect password</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="signoff-modal-footer">
+                        <button class="signoff-modal-footer__buttonCancel" onclick="onTriggerModalReject()">Cancel</button>
+                        <button class="signoff-modal-footer__buttonReject" onclick="onSuccessModalReject()">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-layout" id="ModalRejectConfirm">
+        <div class="modal-scroll">
+            <div class="modal-background" onclick="onTriggerModalRejectConfirm()"></div>
+            <div class="signoff-modal-layout">
+                <div class="signoff-modal">
+                    <div class="signoff-modal-header-wrapper">
+                        <div class="signoff-modal-header">
+                            <p class="signoff-modal-header__title">Rejection confirmed</p>
+                            <div class="signoff-modal-header__icon" onclick="onTriggerModalRejectConfirm()">
+                                <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="signoff-modal-footer">
+                        <button class="signoff-modal-footer__buttonSuccess" onclick="onTriggerModalRejectConfirm()">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

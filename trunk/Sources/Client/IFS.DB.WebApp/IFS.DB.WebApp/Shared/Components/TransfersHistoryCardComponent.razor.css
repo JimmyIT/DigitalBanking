@@ -1,0 +1,43 @@
+.transfers-history-info {
+    background: #ffffff;
+    border: 2px solid #f4f0ff;
+    border-radius: 12px;
+    padding: 16px;
+    transition: 0.4s;
+    border-color: #e0f6ff;
+    margin-bottom: 12px;
+}
+.transfers-history-info:last-child {
+    margin-bottom: 0;
+}
+.transfers-history-info:hover:not(:disabled) {
+    border-color: #a1e1ff;
+}
+.transfers-history-info__title {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+}
+.transfers-history-info-description {
+    display: flex;
+    justify-content: space-between;
+}
+.transfers-history-info-description__text {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    color: #6a6a6a;
+}
+.transfers-history-info-description__sum {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 24px;
+    color: #6a6a6a;
+}

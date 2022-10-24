@@ -1,0 +1,333 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.payments-layout {
+    padding: $indent-24 0 $indent-12;
+}
+
+.payments-container {
+    @include container;
+}
+
+.payments-header {
+    @include pageTitle;
+}
+
+.payments {
+    &-title {
+        @include h1;
+        margin-bottom: $indent-24;
+    }
+
+    &-main {
+        display: flex;
+
+        &__left {
+            @include box;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0;
+        }
+
+        &__right {
+            width: 440px;
+            margin-left: $indent-24;
+            display: flex;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &-new {
+        margin-bottom: $indent-16;
+
+        &__title {
+            @include h2;
+            color: $color-wireframes-900;
+            margin-bottom: $indent-16;
+        }
+
+        &-payee {
+            @include formHorizontal;
+
+            &-selector {
+                flex: 1;
+
+                &__text {
+                    @include caption1;
+                    color: $color-gray-600;
+                    margin-top: $indent-4;
+                }
+            }
+
+            &-create {
+                display: flex;
+                align-items: center;
+                margin-top: 20px;
+
+                &__text {
+                    @include label2;
+                }
+
+                &__button {
+                    @include lightBlueButton;
+                    max-height: 56px;
+                }
+            }
+        }
+    }
+
+    &-details {
+        padding: $indent-16;
+        background-color: $color-gray-100;
+        border-radius: 12px;
+
+        &__title {
+            @include h4;
+            color: $color-gray-800;
+        }
+
+        &-item-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin-top: $indent-4;
+        }
+
+        &-item {
+            margin-right: $indent-12;
+            width: 100%;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &__label {
+                @include label;
+            }
+
+            &__body {
+                @include body;
+
+                &.payments-details-item__body--additional {
+                    @include caption1Additional;
+                    margin-top: $indent-4;
+                }
+            }
+
+            &__selector {
+                min-width: 308px;
+                margin-top: $indent-4;
+            }
+        }
+    }
+
+    &-information {
+        margin-top: $indent-16;
+        &__title {
+            @include h4;
+        }
+
+        &-form {
+            @include formHorizontal;
+            margin-top: $indent-16;
+
+            &__selector {
+                width: 100%;
+            }
+
+            &__amount {
+                text-align: end;
+            }
+
+            &__textarea {
+                margin-top: $indent-16;
+            }
+
+            &__document-selector {
+                margin-right: 10px;
+            }
+
+            &__upload {
+                border: 1.5px dashed $color-sky-blue-300;
+            }
+        }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: $indent-16;
+
+        &__buttonCancel {
+            @include lightBlueButton;
+            min-width: 160px;
+        }
+
+        &__buttonSuccess {
+            @include blueButton;
+            min-width: 160px;
+        }
+    }
+
+    &-history {
+        @include box;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        &-header {
+            @include boxTabs;
+            margin-bottom: $indent-16;
+        }
+
+        &-selector {
+            margin-bottom: $indent-16;
+        }
+
+        &-info-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &-info {
+            @include paymentCard;
+            margin-bottom: $indent-12;
+            cursor: pointer;
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &:hover:not(:disabled) {
+                border-color: $color-violet-200;
+            }
+
+            &-button {
+                @include lightBlueButton;
+                width: 100%;
+                margin-top: $indent-16;
+            }
+        }
+    }
+}
+
+.check {
+    flex-direction: column;
+}
+
+.payments-modal {
+    @include modalDefault;
+
+    &-layout {
+        @include modalDefaultContainer;
+    }
+
+    &-header-wrapper {
+        margin-bottom: $indent-16;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__title {
+            @include h2;
+            color: $color-wireframes-900;
+        }
+
+        &__subtitle {
+            @include h5;
+            margin-top: $indent-4;
+            color: $color-gray-900;
+        }
+
+        &__icon {
+            @include buttonIconMedium;
+        }
+    }
+
+    &-main {
+        margin-bottom: $indent-16;
+
+        &__subtitle {
+            @include h5;
+            margin-bottom: $indent-8;
+            color: $color-gray-900;
+        }
+
+        &-input {
+            margin-right: 0;
+            margin-bottom: $indent-16;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &-form {
+            @include formHorizontal;
+            margin-bottom: $indent-16;
+
+            .formgroup {
+                width: 100%;
+            }
+
+            &__title {
+                @include h4;
+            }
+        }
+
+        &-info-card {
+            @include card;
+            margin-bottom: $indent-16;
+
+            &-content {
+                display: flex;
+                margin-bottom: $indent-12;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &-item {
+                    width: 200px;
+                    margin-right: 12px;
+
+                    &:last-child {
+                        width: unset;
+                        margin-right: 0;
+                    }
+
+                    &__title {
+                        @include caption1;
+                        color: $color-gray-600;
+                        font-weight: 600;
+                    }
+
+                    &__text {
+                        @include body;
+                    }
+                }
+            }
+        }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+
+        &__buttonCancel {
+            @include lightBlueButton;
+            min-width: 144px;
+        }
+
+        &__buttonSuccess {
+            @include blueButton;
+            min-width: 144px;
+        }
+    }
+}

@@ -1,0 +1,313 @@
+﻿@layout BasicLayout
+@page "/imail"
+
+<div class="imail-layout">
+    <div class="imail-container">
+        <div class="imail">
+            <div class="imail-header">
+                <div class="imail-header-wrapper">
+                    <img src="/img/imail/imail.svg" alt="logo" class="imail-header__logo" />
+                    <p class="imail-header__title">iMail</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="imail-header__tooltip-icon" />
+                </div>
+            </div>
+
+            <div class="imail-section">
+                <div class="imail-main">
+                    <div class="imail-main-tabs">
+                        <button type="button" class="imail-main-tabs__item active">
+                            <img src="/img/imail/mailAll.svg" alt="all" class="imail-main-tabs__item-icon" />
+                            All mails
+                        </button>
+                        <button type="button" class="imail-main-tabs__item">
+                            <img src="/img/imail/mailInbox.svg" alt="inbox" class="imail-main-tabs__item-icon" />
+                            Inbox mails
+                        </button>
+                        <button type="button" class="imail-main-tabs__item">
+                            <img src="/img/imail/mailSent.svg" alt="sent" class="imail-main-tabs__item-icon" />
+                            Sent mails
+                        </button>
+                    </div>
+
+                    <div class="imail-messages">
+                        <div class="imail-message imail-message--active">
+                            <div class="imail-message-header">
+                                <div class="imail-message-header-info">
+                                    <div class="imail-message-header-info-avatar">
+                                        <img src="/img/header/avatarDummy.png" alt="avatar" class="imail-message-header-info-avatar__image" />
+                                    </div>
+
+                                    <div class="imail-message-header-info-about">
+                                        <div class="imail-message-header-info-about__top">
+                                            <p class="imail-message-header-info-about__name">Anna Smith</p>
+                                            <p class="imail-message-header-info-about__position">Relationship Manager</p>
+                                            <p class="imail-message-header-info-about__status">New</p>
+                                        </div>
+                                        <p class="imail-message-header-info-about__date">10 June, 2021 at 09:00 am</p>
+                                    </div>
+                                </div>
+                                <div class="imail-message-header-buttons">
+                                    <button type="button" class="imail-message-header-buttons__delete">
+                                        <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                        <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                                    </button>
+                                    <button class="imail-message-header-buttons__answer">Answer</button>
+                                </div>
+                            </div>
+                            <div class="imail-message-main">
+                                <div class="imail-message-main__top">
+                                    <p class="imail-message-main__priority">High Priority</p>
+                                    <p class="imail-message-main__subject">Subject: Credit opportunity</p>
+                                </div>
+                                <p class="imail-message-main__text">
+                                    Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability. Have a great weekends!Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="imail-message">
+                            <div class="imail-message-header">
+                                <div class="imail-message-header-info">
+                                    <div class="imail-message-header-info-avatar">
+                                        <img src="/img/header/avatarDummy.png" alt="avatar" class="imail-message-header-info-avatar__image" />
+                                    </div>
+
+                                    <div class="imail-message-header-info-about">
+                                        <div class="imail-message-header-info-about__top">
+                                            <p class="imail-message-header-info-about__name">Anna Smith</p>
+                                            <p class="imail-message-header-info-about__position">Relationship Manager</p>
+                                            <p class="imail-message-header-info-about__status">New</p>
+                                        </div>
+                                        <p class="imail-message-header-info-about__date">10 June, 2021 at 09:00 am</p>
+                                    </div>
+                                </div>
+                                <div class="imail-message-header-buttons">
+                                    <button type="button" class="imail-message-header-buttons__delete">
+                                        <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                        <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                                    </button>
+                                    <button class="imail-message-header-buttons__answer">Answer</button>
+                                </div>
+                            </div>
+                            <div class="imail-message-main">
+                                <div class="imail-message-main__top">
+                                    <p class="imail-message-main__priority">High Priority</p>
+                                    <p class="imail-message-main__subject">Subject: Credit opportunity</p>
+                                </div>
+                                <p class="imail-message-main__text">
+                                    Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability. Have a great weekends!Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="imail-message">
+                            <div class="imail-message-header">
+                                <div class="imail-message-header-info">
+                                    <div class="imail-message-header-info-avatar">
+                                        <img src="/img/header/avatarDummy.png" alt="avatar" class="imail-message-header-info-avatar__image" />
+                                    </div>
+
+                                    <div class="imail-message-header-info-about">
+                                        <div class="imail-message-header-info-about__top">
+                                            <p class="imail-message-header-info-about__name">Anna Smith</p>
+                                            <p class="imail-message-header-info-about__position">Relationship Manager</p>
+                                            <p class="imail-message-header-info-about__status">New</p>
+                                        </div>
+                                        <p class="imail-message-header-info-about__date">10 June, 2021 at 09:00 am</p>
+                                    </div>
+                                </div>
+                                <div class="imail-message-header-buttons">
+                                    <button type="button" class="imail-message-header-buttons__delete">
+                                        <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                        <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                                    </button>
+                                    <button class="imail-message-header-buttons__answer">Answer</button>
+                                </div>
+                            </div>
+                            <div class="imail-message-main">
+                                <div class="imail-message-main__top">
+                                    <p class="imail-message-main__priority">High Priority</p>
+                                    <p class="imail-message-main__subject">Subject: Credit opportunity</p>
+                                </div>
+                                <p class="imail-message-main__text">
+                                    Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability. Have a great weekends!Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="imail-message">
+                            <div class="imail-message-header">
+                                <div class="imail-message-header-info">
+                                    <div class="imail-message-header-info-avatar">
+                                        <img src="/img/header/avatarDummy.png" alt="avatar" class="imail-message-header-info-avatar__image" />
+                                    </div>
+
+                                    <div class="imail-message-header-info-about">
+                                        <div class="imail-message-header-info-about__top">
+                                            <p class="imail-message-header-info-about__name">Anna Smith</p>
+                                            <p class="imail-message-header-info-about__position">Relationship Manager</p>
+                                            <p class="imail-message-header-info-about__status">New</p>
+                                        </div>
+                                        <p class="imail-message-header-info-about__date">10 June, 2021 at 09:00 am</p>
+                                    </div>
+                                </div>
+                                <div class="imail-message-header-buttons">
+                                    <button type="button" class="imail-message-header-buttons__delete">
+                                        <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                        <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                                    </button>
+                                    <button class="imail-message-header-buttons__answer">Answer</button>
+                                </div>
+                            </div>
+                            <div class="imail-message-main">
+                                <div class="imail-message-main__top">
+                                    <p class="imail-message-main__priority">High Priority</p>
+                                    <p class="imail-message-main__subject">Subject: Credit opportunity</p>
+                                </div>
+                                <p class="imail-message-main__text">
+                                    Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability. Have a great weekends!Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="imail-message">
+                            <div class="imail-message-header">
+                                <div class="imail-message-header-info">
+                                    <div class="imail-message-header-info-avatar">
+                                        <img src="/img/header/avatarDummy.png" alt="avatar" class="imail-message-header-info-avatar__image" />
+                                    </div>
+
+                                    <div class="imail-message-header-info-about">
+                                        <div class="imail-message-header-info-about__top">
+                                            <p class="imail-message-header-info-about__name">Anna Smith</p>
+                                            <p class="imail-message-header-info-about__position">Relationship Manager</p>
+                                            <p class="imail-message-header-info-about__status">New</p>
+                                        </div>
+                                        <p class="imail-message-header-info-about__date">10 June, 2021 at 09:00 am</p>
+                                    </div>
+                                </div>
+                                <div class="imail-message-header-buttons">
+                                    <button type="button" class="imail-message-header-buttons__delete">
+                                        <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                        <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                                    </button>
+                                    <button class="imail-message-header-buttons__answer">Answer</button>
+                                </div>
+                            </div>
+                            <div class="imail-message-main">
+                                <div class="imail-message-main__top">
+                                    <p class="imail-message-main__priority">High Priority</p>
+                                    <p class="imail-message-main__subject">Subject: Credit opportunity</p>
+                                </div>
+                                <p class="imail-message-main__text">
+                                    Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability. Have a great weekends!Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="imail-message">
+                            <div class="imail-message-header">
+                                <div class="imail-message-header-info">
+                                    <div class="imail-message-header-info-avatar">
+                                        <img src="/img/header/avatarDummy.png" alt="avatar" class="imail-message-header-info-avatar__image" />
+                                    </div>
+
+                                    <div class="imail-message-header-info-about">
+                                        <div class="imail-message-header-info-about__top">
+                                            <p class="imail-message-header-info-about__name">Anna Smith</p>
+                                            <p class="imail-message-header-info-about__position">Relationship Manager</p>
+                                            <p class="imail-message-header-info-about__status">New</p>
+                                        </div>
+                                        <p class="imail-message-header-info-about__date">10 June, 2021 at 09:00 am</p>
+                                    </div>
+                                </div>
+                                <div class="imail-message-header-buttons">
+                                    <button type="button" class="imail-message-header-buttons__delete">
+                                        <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                        <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                                    </button>
+                                    <button class="imail-message-header-buttons__answer">Answer</button>
+                                </div>
+                            </div>
+                            <div class="imail-message-main">
+                                <div class="imail-message-main__top">
+                                    <p class="imail-message-main__priority">High Priority</p>
+                                    <p class="imail-message-main__subject">Subject: Credit opportunity</p>
+                                </div>
+                                <p class="imail-message-main__text">
+                                    Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability. Have a great weekends!Hello, Jane! Your request about credit of $50,000 was approved by Bank. We will contact you for further details. Notice that you will need to provide additional documentation to prove your payment availability.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="imail-sidebar">
+                    <p class="imail-sidebar__title">Send mail</p>
+                    <div class="imail-sidebar-form">
+                        <div class="formgroup imail-sidebar-formgroup">
+                            <label>To</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select account manager</option>
+                                    <option>Account 1</option>
+                                    <option>Account 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formgroup imail-sidebar-formgroup">
+                            <label>Priority</label>
+                            <div class="select-layout">
+                                <select class="select">
+                                    <option disabled selected>Select</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formgroup imail-sidebar-formgroup">
+                            <label>Subject</label>
+                            <div class="input-layout">
+                                <input placeholder="Enter here" class="input" />
+                            </div>
+                        </div>
+                        <div class="formgroup imail-sidebar-formgroup">
+                            <label>Message</label>
+                            <div class="input-layout">
+                                <textarea placeholder="Enter here" class="input" rows="5"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="imail-sidebar-attach">
+                            <button type="button" class="imail-sidebar-attach__button">
+                                <div class="iconBlock">
+                                    <img src="/img/icons/attach.svg" alt="attach" class="icon" />
+                                    <img src="/img/icons/attachHover.svg" alt="attach" class="iconHover" />
+                                </div>
+                                
+                                Attach a file
+                            </button>
+                            <div class="imail-sidebar-attach__file">
+                                <p class="imail-sidebar-attach__file-text">file.pdf</p>
+                                <div class="imail-sidebar-attach__file-remove">
+                                    <img src="/img/icons/closeIcon.svg" alt="remove" class="icon" />
+                                    <img src="/img/icons/closeIconHover.svg" alt="remove" class="iconHover" />
+                                </div>
+                            </div>
+                            <div class="imail-sidebar-attach__file">
+                                <p class="imail-sidebar-attach__file-text">file.pdf</p>
+                                <div class="imail-sidebar-attach__file-remove">
+                                    <img src="/img/icons/closeIcon.svg" alt="remove" class="icon" />
+                                    <img src="/img/icons/closeIconHover.svg" alt="remove" class="iconHover" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="imail-sidebar-form__submit">Send mail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

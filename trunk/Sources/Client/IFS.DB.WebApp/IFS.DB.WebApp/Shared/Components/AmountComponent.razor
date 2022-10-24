@@ -1,0 +1,141 @@
+@using static IFS.DB.WebApp.Helpers.Enums.NumberFormattingEnum
+@inherits InputBase<TValue>
+@typeparam TValue
+
+<input @attributes="AdditionalAttributes"
+       class="input @CssClass"
+       value="@_stringValue"
+       @oninput="OnInput" @oninput:preventDefault="true"
+       @onchange="OnValueChanged" />
+
+
+@code {
+    private string NumberFormatType = FormatType.C.ToString();
+    private string _stringValue = null;
+    private string _currentValue = null;
+
+    // Sets up the initial value of the input
+    protected override void OnInitialized()
+    {
+        _stringValue = FormatValueAsString(Value);
+        base.OnInitialized();
+    }
+
+    // The Renderer still thinks the value of the input is what we last set it to, not what the user has just typed
+    // So we need to con the Renderer that the value is something else first before we set it properly.
+    // The diffing engine then sees the change and updatea the browser
+    // we use a task based event handler so we get two render events, one on the first yield and one on completion
+    private async Task OnInput(ChangeEventArgs e)
+    {
+        _currentValue = e.Value.ToString();
+
+        await Task.Yield();
+
+        var val = GetNumbers(_currentValue);
+        if (!BindConverter.TryConvertTo<TValue>(val, CultureInfo.CurrentCulture, out TValue? value))
+        {
+            _stringValue = "";
+        }
+        else
+        {            
+            CurrentValueAsString = val;
+        }
+
+        StateHasChanged();
+    }
+
+    // We set the base CurrentValueAsString to let it handle all the EditContext changes and validation process
+    private void OnValueChanged(ChangeEventArgs e)
+    {
+        _currentValue = e.Value.ToString();
+
+        _stringValue = "";
+
+        var val = GetNumbers(_currentValue);
+        CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+        if (BindConverter.TryConvertTo<TValue>(val, cultureInfo, out TValue? value))
+        {
+            _stringValue = FormatValueAsString(value);
+        }
+        else
+            _stringValue = "0";
+
+        CurrentValueAsString = _stringValue;
+        StateHasChanged();
+    }
+
+    // Necessary override for InputBase
+    protected override bool TryParseValueFromString(string? value, out TValue? result, out string? validationErrorMessage)
+    {
+        var val = GetNumbers(value);
+        if (BindConverter.TryConvertTo<TValue?>(val, CultureInfo.CurrentCulture, out result))
+        {
+            validationErrorMessage = null;
+            return true;
+        }
+        else
+        {
+            validationErrorMessage = "Incorrect value format";
+            return false;
+        }
+    }
+
+    // Gets only the numbers in the input string
+    // ignores any other chars including our commas
+    private static string GetNumbers(string input)
+        => new string(!string.IsNullOrEmpty(input) ? input.Where(c => (char.IsDigit(c)) || c.Equals('.') || c.Equals(',')).ToArray() : "0");
+
+    private static string GetDecimalPlacesNumbers(string input)
+        => new string(!string.IsNullOrEmpty(input) ? input.Where(c => (char.IsDigit(c)) || c.Equals('.') || c.Equals(',')).ToArray() : "");
+
+    protected override string? FormatValueAsString(TValue? value)
+    {
+        string val = null;
+        // Gets a NumberFormatInfo associated with the en-US culture.
+        CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+        NumberFormatInfo numberFormatInfo = new CultureInfo(CultureInfo.CurrentCulture.Name, false).NumberFormat;
+
+        //use Regex to see if we have a decimal with or without trailing zeros
+        // We need to detect these as ToString() will ignore them.
+        var reg = new Regex(@"(\.0*)$");
+        Match match = null;
+        if (_currentValue is not null)
+            match = reg.Match(_currentValue);
+
+        var hasDecimal = match?.Success ?? false;
+        string decimalPlaces = hasDecimal
+            ? match.Groups[1].Value
+            : string.Empty;
+        decimalPlaces = GetDecimalPlacesNumbers(decimalPlaces);
+
+        switch (value)
+        {
+            case null:
+                return null;
+            case int @int:
+                return @int.ToString(NumberFormatType, numberFormatInfo);
+            case long @long:
+                return @long.ToString(NumberFormatType, numberFormatInfo);
+            case short @short:
+                return @short.ToString(NumberFormatType, numberFormatInfo);
+
+            case float @float:
+                val = @float.ToString(NumberFormatType, numberFormatInfo);
+                break;
+
+            case double @double:
+                val = @double.ToString(NumberFormatType, numberFormatInfo);
+                break;
+
+            case decimal @decimal:
+                val = @decimal.ToString(NumberFormatType, numberFormatInfo);
+                break;
+        }
+
+        return !hasDecimal ? $"{val}{decimalPlaces}" : val;
+    }
+
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/globalization/locale/number-formatting-in-dotnet-framework
+    /// </summary>
+}

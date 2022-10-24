@@ -1,0 +1,36 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.home-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.home-container {
+    @include container;
+}
+
+.home {
+    &-title {
+        @include h1;
+        margin-bottom: $indent-24;
+    }
+
+    &-main {
+        display: flex;
+
+        &__left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__right {
+            width: 440px;
+            margin-left: $indent-24;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+}

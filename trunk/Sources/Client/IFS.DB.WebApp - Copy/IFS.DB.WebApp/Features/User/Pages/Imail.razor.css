@@ -1,0 +1,877 @@
+.imail-layout {
+  padding: 24px 0 32px;
+}
+
+.imail-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.imail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  margin-bottom: 24px;
+}
+.imail-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.imail-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.imail-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.imail-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.imail-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.imail-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.imail-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.imail-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.imail-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.imail-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.imail-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.imail-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.imail-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.imail-header__button .iconBlock .icon,
+.imail-header__button .iconBlock .iconHover,
+.imail-header__button .iconBlock .iconActive,
+.imail-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-header__button .iconBlock .iconHover,
+.imail-header__button .iconBlock .iconActive,
+.imail-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.imail-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.imail-header__button .iconBlock,
+.imail-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.imail-header__button .iconBlock:first-child,
+.imail-header__button > img:first-child {
+  margin-left: 0;
+}
+.imail-header__button .iconBlock:last-child,
+.imail-header__button > img:last-child {
+  margin-right: 0;
+}
+.imail-header__button:hover {
+  color: #0248a4;
+}
+
+.imail-section {
+  display: flex;
+  align-items: flex-start;
+}
+.imail-main {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: calc(100% - 464px);
+  max-height: 844px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 24px 0 0;
+}
+.imail-main:last-child {
+  margin-bottom: 0;
+}
+.imail-main-tabs {
+  display: flex;
+  background: #f2f7fd;
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+.imail-main-tabs__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  flex: 1;
+  text-align: center;
+  padding: 7px 12px 5px;
+  margin-right: 8px;
+  transition: 0.4s;
+}
+.imail-main-tabs__item:hover .iconBlock .icon {
+  opacity: 0;
+}
+.imail-main-tabs__item:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.imail-main-tabs__item:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.imail-main-tabs__item:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-main-tabs__item .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.imail-main-tabs__item .iconBlock:hover .icon {
+  opacity: 0;
+}
+.imail-main-tabs__item .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.imail-main-tabs__item .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-main-tabs__item .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-main-tabs__item .iconBlock.active .icon {
+  opacity: 0;
+}
+.imail-main-tabs__item .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.imail-main-tabs__item .iconBlock .icon,
+.imail-main-tabs__item .iconBlock .iconHover,
+.imail-main-tabs__item .iconBlock .iconActive,
+.imail-main-tabs__item .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-main-tabs__item .iconBlock .iconHover,
+.imail-main-tabs__item .iconBlock .iconActive,
+.imail-main-tabs__item .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.imail-main-tabs__item > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.imail-main-tabs__item .iconBlock,
+.imail-main-tabs__item > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.imail-main-tabs__item .iconBlock:first-child,
+.imail-main-tabs__item > img:first-child {
+  margin-left: 0;
+}
+.imail-main-tabs__item .iconBlock:last-child,
+.imail-main-tabs__item > img:last-child {
+  margin-right: 0;
+}
+.imail-main-tabs__item:hover {
+  color: #0248a4;
+}
+.imail-main-tabs__item:hover:not(.active):not(.disabled) {
+  background-color: #CDDFF8;
+}
+.imail-main-tabs__item:last-child {
+  margin-right: 0;
+}
+.imail-main-tabs__item-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin: 0 4px;
+}
+.imail-main-tabs__item-icon:first-child {
+  margin-left: 0;
+}
+.imail-main-tabs__item-icon:last-child {
+  margin-right: 0;
+}
+.imail-main-tabs__item.active {
+  background-color: #ffffff;
+}
+.imail-main-tabs__item.disabled {
+  cursor: default;
+}
+.imail-sidebar {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 440px;
+}
+.imail-sidebar:last-child {
+  margin-bottom: 0;
+}
+.imail-sidebar__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+}
+.imail-sidebar-form {
+  margin-top: 16px;
+}
+.imail-sidebar-form__submit {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  width: 100%;
+  margin-top: 16px;
+}
+.imail-sidebar-form__submit:hover .iconBlock .icon {
+  opacity: 0;
+}
+.imail-sidebar-form__submit:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-form__submit:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-form__submit:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-form__submit .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.imail-sidebar-form__submit .iconBlock:hover .icon {
+  opacity: 0;
+}
+.imail-sidebar-form__submit .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-form__submit .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-form__submit .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-form__submit .iconBlock.active .icon {
+  opacity: 0;
+}
+.imail-sidebar-form__submit .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.imail-sidebar-form__submit .iconBlock .icon,
+.imail-sidebar-form__submit .iconBlock .iconHover,
+.imail-sidebar-form__submit .iconBlock .iconActive,
+.imail-sidebar-form__submit .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-sidebar-form__submit .iconBlock .iconHover,
+.imail-sidebar-form__submit .iconBlock .iconActive,
+.imail-sidebar-form__submit .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.imail-sidebar-form__submit > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.imail-sidebar-form__submit .iconBlock,
+.imail-sidebar-form__submit > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.imail-sidebar-form__submit .iconBlock:first-child,
+.imail-sidebar-form__submit > img:first-child {
+  margin-left: 0;
+}
+.imail-sidebar-form__submit .iconBlock:last-child,
+.imail-sidebar-form__submit > img:last-child {
+  margin-right: 0;
+}
+.imail-sidebar-form__submit:hover {
+  background-color: #0248a4;
+}
+.imail-sidebar-formgroup {
+  margin-top: 16px;
+}
+.imail-sidebar-formgroup:first-child {
+  margin-top: 0;
+}
+.imail-sidebar-attach {
+  display: flex;
+  flex-wrap: wrap;
+}
+.imail-sidebar-attach__button, .imail-sidebar-attach__file {
+  margin: 16px 12px 0 0;
+}
+.imail-sidebar-attach__button:last-child, .imail-sidebar-attach__file:last-child {
+  margin-right: 0;
+}
+.imail-sidebar-attach__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  padding: 8px 12px 8px 8px;
+}
+.imail-sidebar-attach__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-attach__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.imail-sidebar-attach__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-attach__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.imail-sidebar-attach__button .iconBlock .icon,
+.imail-sidebar-attach__button .iconBlock .iconHover,
+.imail-sidebar-attach__button .iconBlock .iconActive,
+.imail-sidebar-attach__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-sidebar-attach__button .iconBlock .iconHover,
+.imail-sidebar-attach__button .iconBlock .iconActive,
+.imail-sidebar-attach__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.imail-sidebar-attach__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.imail-sidebar-attach__button .iconBlock,
+.imail-sidebar-attach__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.imail-sidebar-attach__button .iconBlock:first-child,
+.imail-sidebar-attach__button > img:first-child {
+  margin-left: 0;
+}
+.imail-sidebar-attach__button .iconBlock:last-child,
+.imail-sidebar-attach__button > img:last-child {
+  margin-right: 0;
+}
+.imail-sidebar-attach__button:hover {
+  color: #0248a4;
+}
+.imail-sidebar-attach__file {
+  min-width: 112px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  background: #f2f7fd;
+  padding: 8px 12px;
+}
+.imail-sidebar-attach__file-text {
+  flex: 1;
+  color: #4288e4;
+}
+.imail-sidebar-attach__file-remove {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.imail-sidebar-attach__file-remove:hover .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__file-remove:hover .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__file-remove:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-attach__file-remove:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__file-remove.active .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__file-remove.active .iconActive {
+  opacity: 1;
+}
+.imail-sidebar-attach__file-remove .icon,
+.imail-sidebar-attach__file-remove .iconHover,
+.imail-sidebar-attach__file-remove .iconActive,
+.imail-sidebar-attach__file-remove .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-sidebar-attach__file-remove .iconHover,
+.imail-sidebar-attach__file-remove .iconActive,
+.imail-sidebar-attach__file-remove .iconActiveHover {
+  opacity: 0;
+}
+.imail-sidebar-attach__file-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-left: 8px;
+}
+.imail-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 16px;
+}
+.imail-messages::-webkit-scrollbar {
+  width: 4px;
+  cursor: pointer;
+}
+.imail-messages::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.imail-messages::-webkit-scrollbar-thumb {
+  background-color: #ededed;
+  border-radius: 4px;
+}
+.imail-messages::-webkit-scrollbar-thumb:window-inactive {
+  background-color: #d2d2d2;
+}
+.imail-message {
+  background: #ffffff;
+  border: 2px solid #f4f0ff;
+  border-radius: 12px;
+  padding: 16px;
+  transition: 0.4s;
+  border-color: #f7f7f7;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.imail-message:hover, .imail-message.imail-message--active {
+  border-color: #CDDFF8;
+}
+.imail-message:last-child {
+  margin-bottom: 0;
+}
+.imail-message-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.imail-message-header:last-child {
+  margin-bottom: 0;
+}
+.imail-message-header-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.imail-message-header-info-avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #CDDFF8;
+  padding: 2px;
+  margin-right: 8px;
+}
+.imail-message-header-info-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: inherit;
+}
+.imail-message-header-info-about__top {
+  display: flex;
+  align-items: center;
+}
+.imail-message-header-info-about__name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  margin-right: 8px;
+}
+.imail-message-header-info-about__position {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  margin-right: 8px;
+}
+.imail-message-header-info-about__status {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #1199d6;
+  background-color: #f2f7fd;
+}
+.imail-message-header-info-about__date {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #6a6a6a;
+}
+.imail-message-header-buttons {
+  display: flex;
+  align-items: center;
+}
+.imail-message-header-buttons__delete {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.imail-message-header-buttons__delete:hover .icon {
+  opacity: 0;
+}
+.imail-message-header-buttons__delete:hover .iconHover {
+  opacity: 1;
+}
+.imail-message-header-buttons__delete:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-message-header-buttons__delete:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-message-header-buttons__delete.active .icon {
+  opacity: 0;
+}
+.imail-message-header-buttons__delete.active .iconActive {
+  opacity: 1;
+}
+.imail-message-header-buttons__delete .icon,
+.imail-message-header-buttons__delete .iconHover,
+.imail-message-header-buttons__delete .iconActive,
+.imail-message-header-buttons__delete .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-message-header-buttons__delete .iconHover,
+.imail-message-header-buttons__delete .iconActive,
+.imail-message-header-buttons__delete .iconActiveHover {
+  opacity: 0;
+}
+.imail-message-header-buttons__answer {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-left: 4px;
+}
+.imail-message-header-buttons__answer:hover .iconBlock .icon {
+  opacity: 0;
+}
+.imail-message-header-buttons__answer:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.imail-message-header-buttons__answer:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.imail-message-header-buttons__answer:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-message-header-buttons__answer .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.imail-message-header-buttons__answer .iconBlock:hover .icon {
+  opacity: 0;
+}
+.imail-message-header-buttons__answer .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.imail-message-header-buttons__answer .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-message-header-buttons__answer .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-message-header-buttons__answer .iconBlock.active .icon {
+  opacity: 0;
+}
+.imail-message-header-buttons__answer .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.imail-message-header-buttons__answer .iconBlock .icon,
+.imail-message-header-buttons__answer .iconBlock .iconHover,
+.imail-message-header-buttons__answer .iconBlock .iconActive,
+.imail-message-header-buttons__answer .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-message-header-buttons__answer .iconBlock .iconHover,
+.imail-message-header-buttons__answer .iconBlock .iconActive,
+.imail-message-header-buttons__answer .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.imail-message-header-buttons__answer > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.imail-message-header-buttons__answer .iconBlock,
+.imail-message-header-buttons__answer > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.imail-message-header-buttons__answer .iconBlock:first-child,
+.imail-message-header-buttons__answer > img:first-child {
+  margin-left: 0;
+}
+.imail-message-header-buttons__answer .iconBlock:last-child,
+.imail-message-header-buttons__answer > img:last-child {
+  margin-right: 0;
+}
+.imail-message-header-buttons__answer:hover {
+  color: #0248a4;
+}
+.imail-message-main__top {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+.imail-message-main__priority {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #fc4c16;
+  background-color: #fff1ed;
+  margin-right: 8px;
+}
+.imail-message-main__subject {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  flex: 1;
+}
+.imail-message-main__text {
+  color: #6a6a6a;
+}
+.imail-message:not(.imail-message--active) .imail-message-main__text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
