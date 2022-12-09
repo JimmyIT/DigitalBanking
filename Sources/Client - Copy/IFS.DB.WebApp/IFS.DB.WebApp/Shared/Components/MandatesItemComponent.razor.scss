@@ -1,0 +1,203 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.mandates {
+    &-value {
+        @include box;
+        padding: $indent-24;
+
+        &-name {
+            @include h2;
+            margin-bottom: $indent-12;
+        }
+
+        &-subtitle {
+            @include h5;
+            margin-bottom: $indent-12;
+            color: $color-gray-600;
+        }
+
+        &-item {
+            &-first {
+                padding: $indent-16;
+                margin-bottom: $indent-12;
+                background-color: $color-background;
+                border-radius: $indent-12;
+
+                &-head {
+                    display: flex;
+                    justify-content: space-between;
+
+                    &-name {
+                        @include h3;
+                        color: $color-sky-blue-500;
+                    }
+
+                    &__icon {
+                        @include buttonIconSmall;
+                    }
+                }
+
+                &-line {
+                    @include line;
+                    width: 100%;
+                    margin: $indent-12 0;
+                }
+
+                &-pick {
+                    @include boxTabs;
+                    max-width: 392px;
+                }
+
+                &-point {
+                    &-content {
+                        &-name {
+                            @include label;
+                            margin-bottom: $indent-4;
+                            color: $color-gray-600;
+                        }
+
+                        &-input {
+                            @include input;
+                            text-align: end;
+                        }
+                    }
+
+                    &-number {
+                        &-name {
+                            @include label;
+                            margin-bottom: $indent-4;
+                            color: $color-gray-600;
+                        }
+
+                        &-input {
+                            @include input;
+                        }
+                    }
+
+                    &-text {
+                        @include label;
+                        margin: 48px $indent-16 $indent-16;
+                        color: $color-gray-600;
+                    }
+                }
+
+                &-formula {
+                    flex-direction: column;
+
+                    &-content {
+                        max-width: 260px;
+
+                        &-name {
+                            @include label;
+                            margin-bottom: $indent-4;
+                            color: $color-gray-600;
+                        }
+
+                        &-input {
+                            @include input;
+                            text-align: end;
+                        }
+                    }
+
+                    &-cards {
+                        margin-top: $indent-12;
+                        padding: $indent-16;
+                        padding-bottom: 19px;
+                        background-color: $color-white;
+                        border: 1px dashed $color-gray-300;
+                        border-radius: $indent-8;
+
+                        &-title {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: $indent-12;
+
+                            &-text {
+                                @include h5;
+                                color: $color-gray-800;
+                            }
+                        }
+
+                        &-info {
+                            display: flex;
+                            align-items: center;
+
+                            &-number {
+                                max-width: 152px;
+                                margin-right: $indent-12;
+
+                                &-name {
+                                    @include label;
+                                    margin-bottom: $indent-4;
+                                    color: $color-gray-600;
+                                }
+
+                                &-input {
+                                    @include input;
+                                    text-align: end;
+                                }
+                            }
+
+                            &-selector {
+                                .customSelector-input {
+                                    width: 152px;
+                                    margin-top: 4px;
+                                }
+
+                                .customSelector-dropdown-item {
+                                    width: 152px;
+                                    border-bottom: 1px solid $color-sky-blue-200;
+
+                                    &:last-child {
+                                        border-bottom: 0;
+                                    }
+                                }
+
+                                &-name {
+                                    @include label;
+                                    color: $color-gray-600;
+                                }
+                            }
+
+                            &-add {
+                                @include buttonIconSmall;
+                                margin: $indent-24 0 $indent-12 $indent-16;
+                            }
+
+                            &-and {
+                                @include label2;
+                                margin: 0 $indent-16;
+                                padding: 42px 0 22px 0;
+                                color: $color-sky-blue-400;
+                            }
+                        }
+                    }
+
+                    &-new {
+                        margin-top: $indent-12;
+
+                        &-button {
+                            @include transparentButton2;
+                        }
+                    }
+
+                    &-or {
+                        display: flex;
+                        align-items: center;
+                        margin-top: $indent-12;
+
+                        &-text {
+                            width: $indent-16;
+                            margin-right: $indent-8;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__button {
+            @include lightBlueButton;
+        }
+    }
+}

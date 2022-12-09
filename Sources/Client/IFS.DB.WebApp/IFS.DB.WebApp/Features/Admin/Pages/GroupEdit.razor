@@ -1,0 +1,42 @@
+@layout AdminLayout
+@page "/admin/group-maintenance/edit"
+
+<div class="edit-group-layout">
+    <div class="edit-group-container">
+        <div class="edit-group">
+            <div class="edit-group-breadcrumbs">
+                <p class="edit-group-breadcrumbs__item" @onclick=@(() => _navigateManager.NavigateTo("/admin/group-maintenance"))>Group Maintenance</p>
+                <p class="edit-group-breadcrumbs__item">@_groupInfoModel.Name</p>
+                <p class="edit-group-breadcrumbs__item active">Edit Group</p>
+            </div>
+
+            <div class="edit-group-header">
+                <div class="edit-group-header-wrapper">
+                    <img src="/img/icons/return.svg" alt="return" class="edit-group-header__logo" @onclick=@(() => _navigateManager.NavigateTo("/admin/group-maintenance")) />
+                    <p class="edit-group-header__title">@_groupInfoModel.Name</p>
+                </div>
+            </div>
+
+            <div class="edit-group-main">
+                <CascadingValue Name="GroupEdit" Value="this">
+                    <GroupCreationDetailsComponent />
+                    <GroupCreationMembersComponent />
+                </CascadingValue>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer class="edit-group-footer-layout">
+    <div class="edit-group-footer-container">
+        <div class="edit-group-footer">
+            <div class="edit-group-footer-item">
+                <p class="edit-group-footer-item-name">Members in the group:</p>
+                <p class="edit-group-footer-item-text">@_updatedGroupInfoModel.TotalMembers</p>
+            </div>
+
+            <button class="edit-group-footer-button" @onclick=@OnSaveUpdates>Save updates</button>
+        </div>
+    </div>
+</footer>

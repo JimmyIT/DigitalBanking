@@ -1,0 +1,18 @@
+﻿<div class="profile-menu">
+
+    @foreach (ProfileMenuTabContentComponent tabContent in TabContents)
+    {
+        <button class="profile-menu-item @GetButtonClass(tabContent)" @onclick=@(() => ActivatePage(tabContent))>
+            <span class="iconBlock">
+                <img class="icon" src="@tabContent.Icon" alt="settings" />
+                <img class="iconHover" src="@tabContent.IconHover" alt="settings" />
+            </span>
+            <span>@tabContent.Text</span>
+        </button>
+    }
+
+</div>
+
+<CascadingValue Value="this">
+    @ProfileTabControlContent
+</CascadingValue>

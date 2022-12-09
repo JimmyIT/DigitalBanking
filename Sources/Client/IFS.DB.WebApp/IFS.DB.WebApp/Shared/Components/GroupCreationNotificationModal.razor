@@ -1,0 +1,43 @@
+﻿@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.GroupMaintenance
+<div class="modal-layout" id="ModalSave">
+    <div class="modal-scroll">
+        <div class="modal-background" @onclick=@Confirm></div>
+        <div class="save-modal-layout">
+            <div class="save-modal">
+                <div class="save-modal-header-wrapper">
+                    <div class="save-modal-header">
+                        <p class="save-modal-header__title">Group with name @GroupInfo.Name was saved</p>
+                        <img class="save-modal-header__icon" src="/img/icons/closeIcon.svg" alt="close"
+                             @onclick=@Confirm />
+                    </div>
+                    <p class="save-modal-header__subtitle">
+                        You can find this group in the Group Maintenance
+                    </p>
+                </div>
+
+                <div class="save-modal-footer">
+                    <button class="save-modal-footer__buttonSuccess"
+                            @onclick=@Confirm >
+                        Ok
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
+    [Parameter] public GroupInfoModel GroupInfo { get; set; }
+
+    private async Task Confirm()
+    {
+        await Close();
+        await Task.Delay(100);
+        _navigateManager.NavigateTo("/admin/group-maintenance");
+    }
+
+    private async Task Close() => await BlazoredModal.CloseAsync();
+    private async Task Cancel() => await BlazoredModal.CancelAsync();
+}

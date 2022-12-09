@@ -1,0 +1,99 @@
+@using IFS.DB.WebApp.Helpers.Enums
+@if (iMailMessageItem != null)
+{
+    <div class="imail-message imail-message--active">
+        <div class="imail-message-header">
+            <div class="imail-message-header-info">
+
+
+                @if (AuthenticatedUserID == iMailMessageItem.SenderID)
+                {
+                    <div class="imail-message-header-info-about">
+                        <div class="imail-message-header-info-about__top">
+                            <p class="imail-message-header-info-about__name">To: Anna Smith</p>
+                            @if (@iMailMessageItem.Status == IMailStatusEnum.New)
+                            {
+                                <p class="imail-message-header-info-about__status">@iMailMessageItem.Status.ToDescription()</p>
+                            }
+                        </div>
+                        <p class="imail-message-header-info-about__date">@iMailMessageItem.CreatedDate?.ToString("dd MMMM yyyy hh:mm tt")</p>
+                        @*<p class="imail-message-header-info-about__date">@iMailMessageItem.CreatedDate 10 June, 2021 at 09:00 am</p>*@
+                    </div>
+                }
+                else
+                {
+                    <div class="imail-message-header-info-avatar">
+                        <img src="/img/header/avatarDummy.png" alt="avatar" class="imail-message-header-info-avatar__image" />
+                    </div>
+                    <div class="imail-message-header-info-about">
+                        <div class="imail-message-header-info-about__top">
+                            <p class="imail-message-header-info-about__name">Anna Smith</p>
+                            <p class="imail-message-header-info-about__position">Relationship Manager</p>
+                            @if (@iMailMessageItem.Status == IMailStatusEnum.New)
+                            {
+                                <p class="imail-message-header-info-about__status">@iMailMessageItem.Status.ToDescription()</p>
+                            }
+                        </div>
+                        <p class="imail-message-header-info-about__date">@iMailMessageItem.CreatedDate?.ToString("dd MMMM yyyy hh:mm tt")</p>
+                        @*<p class="imail-message-header-info-about__date">@iMailMessageItem.CreatedDate 10 June, 2021 at 09:00 am</p>*@
+                    </div>
+                }
+            </div>
+            <div class="imail-message-header-buttons">
+                <button type="button" class="imail-message-header-buttons__delete" @onclick=@(() => DeleteiMailMessage(iMailMessageItem))>
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+                @if (AuthenticatedUserID != iMailMessageItem.SenderID)
+                {
+                    <button class="imail-message-header-buttons__answer" @onclick=@(() => AnsweriMailMessage(iMailMessageItem))>Answer</button>
+                }
+            </div>
+        </div>
+        <div class="imail-message-main">
+            <div class="imail-message-main__top">
+                <p class="imail-message-main__priority">
+                    @iMailMessageItem.Priority.ToDescription()
+                </p>
+                <p class="imail-message-main__subject">Subject: @iMailMessageItem.Subject</p>
+            </div>
+            <p class="imail-message-main__text">
+                @iMailMessageItem.Message
+            </p>
+        </div>
+        
+        <div class="imail-message-answer">
+            <p class="imail-message-answer__text">
+                Answer
+            </p>
+            <img src="/img/icons/dotIcon.svg" alt="dot"/>
+            <p class="imail-message-answer__button">1</p>
+        </div>
+
+        <hr class="imail-message__hr" />
+
+        <div class="imail-message-header">
+            <div class="imail-message-header-info">
+                <div class="imail-message-header-info-avatar">
+                    <img src="/img/header/avatarDummy.png" alt="avatar" class="imail-message-header-info-avatar__image" />
+                </div>
+
+                <div class="imail-message-header-info-about">
+                    <div class="imail-message-header-info-about__top">
+                        <p class="imail-message-header-info-about__name">Anna Smith</p>
+                    </div>
+                    <p class="imail-message-header-info-about__date">10 June, 2021 at 09:00 am</p>
+                </div>
+            </div>
+        </div>
+        <div class="imail-message-main">
+            <div class="imail-message-main__top">
+                <p class="imail-message-main__priority">High Priority</p>
+                <p class="imail-message-main__subject">Subject: Credit opportunity</p>
+            </div>
+            <p class="imail-message-main__text">
+                Thank you, Anna for the answer. Let me know please does bank require these documents for the payment opportunity prove?
+            </p>
+        </div>
+    </div>
+}

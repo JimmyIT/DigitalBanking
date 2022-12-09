@@ -1,0 +1,40 @@
+@layout AdminLayout
+@page "/admin/group-maintenance/create"
+
+<div class="new-group-layout">
+    <div class="new-group-container">
+        <div class="new-group">
+            <div class="new-group-breadcrumbs">
+                <p class="new-group-breadcrumbs__item" @onclick=@(() => _navigateManager.NavigateTo("/admin/group-maintenance"))>Group Maintenance</p>
+                <p class="new-group-breadcrumbs__item active">New Group</p>
+            </div>
+
+            <div class="new-group-header">
+                <div class="new-group-header-wrapper">
+                    <img src="/img/icons/return.svg" alt="return" class="new-group-header__logo" @onclick=@(() => _navigateManager.NavigateTo("/admin/group-maintenance"))/>
+                    <p class="new-group-header__title">New Group</p>
+                </div>
+            </div>
+
+            <div class="new-group-main">
+                <CascadingValue Name="GroupCreation" Value="this">
+                    <GroupCreationDetailsComponent />
+                    <GroupCreationMembersComponent />
+                </CascadingValue>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<footer class="edit-group-footer-layout">
+    <div class="edit-group-footer-container">
+        <div class="edit-group-footer">
+            <div class="edit-group-footer-item">
+                <p class="edit-group-footer-item-name">Members in the group:</p>
+                <p class="edit-group-footer-item-text">@(_groupInfoModel.TotalMembers)</p>
+            </div>
+
+            <button class="edit-group-footer-button" @onclick=@OnSave>Save group</button>
+        </div>
+    </div>
+</footer>

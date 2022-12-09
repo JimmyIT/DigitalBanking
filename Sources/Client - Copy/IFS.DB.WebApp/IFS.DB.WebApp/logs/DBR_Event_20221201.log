@@ -1,0 +1,10 @@
+[10:41:10 Warning] **** Unhandled exception rendering component: Authorization requires a cascading parameter of type Task<AuthenticationState>. Consider using CascadingAuthenticationState to supply this. 
+[10:41:10 Error] **** Unhandled exception in circuit 'G6F9SLlyj0A1GWwXgLS-197u2iK7DlMRTn3VHTu2lok'. 
+[10:41:10 Warning] **** Unhandled exception rendering component: Authorization requires a cascading parameter of type Task<AuthenticationState>. Consider using CascadingAuthenticationState to supply this. 
+[10:41:10 Error] **** Unhandled exception in circuit 'G6F9SLlyj0A1GWwXgLS-197u2iK7DlMRTn3VHTu2lok'. 
+[10:41:10 Warning] **** Unhandled exception rendering component: Authorization requires a cascading parameter of type Task<AuthenticationState>. Consider using CascadingAuthenticationState to supply this. 
+[10:41:10 Error] **** Unhandled exception in circuit 'G6F9SLlyj0A1GWwXgLS-197u2iK7DlMRTn3VHTu2lok'. 
+[14:04:57 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[14:04:57 Error] **** Unhandled exception in circuit 'Bt75vTmdTjRUnAg4ko9JiTf1UMKCMiM5itEWTc6_Fjo'. 
+[14:04:57 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[14:04:57 Error] **** Unhandled exception in circuit 'Bt75vTmdTjRUnAg4ko9JiTf1UMKCMiM5itEWTc6_Fjo'. 

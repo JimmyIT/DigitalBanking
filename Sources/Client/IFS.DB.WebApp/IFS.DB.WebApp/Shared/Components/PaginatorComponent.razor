@@ -1,0 +1,49 @@
+<div class="paginator">
+    <div class="paginator-pagination">
+        <div class="paginator-pagination-left" @onclick="async () => await SetIndex(CurrentIndex - 1)">
+            <img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowleft"/>
+            <img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowleft"/>
+        </div>
+        @for (var index = 1; index <= Pages; index++)
+        {
+            var temp = index;
+            <button
+                class="paginator-pagination-button @(temp == CurrentIndex ? "paginator-pagination-button--active" : string.Empty)"
+                @onclick="async () => await SetIndex(temp)">
+                @index
+            </button>
+        }
+        <div class="paginator-pagination-right" @onclick="async () => await SetIndex(CurrentIndex + 1)">
+            <img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowRight"/>
+            <img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowRight"/>
+        </div>
+    </div>
+
+    <div>
+        <button class="paginator-button">Load more</button>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public int Size { get; set; } = 10;
+
+    [Parameter]
+    public int CurrentIndex { get; set; }
+
+    [Parameter]
+    public EventCallback<int> CurrentIndexChanged { get; set; }
+
+    [Parameter]
+    public int Total { get; set; }
+
+    private double Pages => Math.Ceiling((double)Total / Size);
+
+    private async Task SetIndex(int index)
+    {
+        if (index <= Pages && index >= 1) 
+            await CurrentIndexChanged.InvokeAsync(index);
+    }
+
+}

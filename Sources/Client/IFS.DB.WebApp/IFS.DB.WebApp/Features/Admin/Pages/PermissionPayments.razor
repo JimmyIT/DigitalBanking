@@ -1,0 +1,66 @@
+@layout AdminLayout
+@page "/admin/permission/payments"
+
+<div class="overview-layout">
+    <div class="overview-container">
+        <div class="overview">
+            <div class="overview-header">
+                <div class="overview-header-breadcrumbs">
+                    <p class="overview-header-breadcrumbs__item">Sign Queues</p>
+                    <p class="overview-header-breadcrumbs__item active">Payment</p>
+                </div>
+                <div class="overview-header-wrapper">
+                    <img src="/img/icons/return.svg" alt="return" class="overview-header__logo" />
+                    <p class="overview-header__title">Jacob Jones permissions</p>
+                </div>
+            </div>
+
+
+            <div class="overview-info-box">
+                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="overview-info-box-icon" />
+                <p class="overview-info-box-text">
+                    Jacob Jones belongs to the Developer group, but now he has Personal Permissions set up. If you want
+                    to decline Personal Permission for this user, please <a class="overview-info-box-text__link">click
+                        here.</a>
+                </p>
+            </div>
+
+            <div class="overview-wrapper">
+                <div class="menu-box">
+                    <a class="menu-box-item" href="/admin/permission/accounts">
+                        Available Accounts
+                    </a>
+                    <a class="menu-box-item" href="/admin/permission/transfers">
+                        Transfers
+                    </a>
+                    <a class="menu-box-item active" href="/admin/permission/payments">
+                        Payments
+                    </a>
+                    <a class="menu-box-item" href="/admin/permission/payees">
+                        Payees
+                    </a>
+                    <a class="menu-box-item" href="/admin/permission/batch-bayments">
+                        Batch Payments
+                    </a>
+                </div>
+
+                <div class="overview-box">
+                    <p class="overview-box-title">Payments</p>
+
+                    <p class="overview-box-description">
+                        This user doesn’t have visible accounts. Check <a
+                            class="overview-box-description__link">Available Accounts</a> settings before set up
+                        Payments.
+                    </p>
+
+                    <PermissionPaymentComponent/>
+
+                    <div class="overview-box-footer">
+                        <div class="overview-box-footer-hr"></div>
+                        <button class="overview-box-footer-button">Save Updates</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

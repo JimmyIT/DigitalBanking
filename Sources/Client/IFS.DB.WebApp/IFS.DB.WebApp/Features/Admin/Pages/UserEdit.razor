@@ -1,0 +1,103 @@
+@layout AdminLayout
+@page "/admin/user-maintenance/edit"
+
+<div class="edit-user-layout">
+    <div class="edit-user-container">
+        <div class="edit-user">
+            <div class="edit-user-breadcrumbs">
+                <p class="edit-user-breadcrumbs__item">
+                    <a @onclick=@(() => _navigateManager.NavigateTo("/company-admin/user-maintenance"))>
+                        User Maintenance
+                    </a>
+                </p>
+                <p class="edit-user-breadcrumbs__item active">@_userCreationRequestModel.UserName</p>
+            </div>
+
+            <div class="edit-user-header">
+                <div class="edit-user-header-wrapper">
+                    <button @onclick=@(() => _navigateManager.NavigateTo("/company-admin/user-maintenance"))>
+                        <img src="/img/icons/return.svg" alt="return" class="edit-user-header__logo" />
+                    </button>
+                    <p class="edit-user-header__title">@_userCreationRequestModel.UserName</p>
+                </div>
+            </div>
+
+            <div class="edit-user-info">
+                <div class="edit-user-info-left">
+                    <div class="edit-user-info-left-main">
+                        <div class="edit-user-info-left-main-item">
+                            <p class="edit-user-info-left-main-item-title">Profile status:</p>
+                            <p class="edit-user-info-left-main-item-subtitle" id="current">
+                                @(_userCreationRequestModel.ActionStatus.HasValue ?
+                                (_userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.Locked) ||
+                                 _userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.AwaitingSignoff)  ? UserActionStatusEnum.Locked.ToDescription() :
+                                (_userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.Confirmed) ? UserActionStatusEnum.Confirmed.ToDescription() : "")) : "")
+                            </p>
+                        </div>
+                        <div class="edit-user-info-left-main-item"
+                             style="@(_userCreationRequestModel.ActionStatus.HasValue && _userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.Locked) ||
+                                 _userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.AwaitingSignoff)  ? "" : "display: none;")" id="access">
+                            <p class="edit-user-info-left-main-item-title">Lock reason:</p>
+                            <p class="edit-user-info-left-main-item-subtitle">
+                                @(_userCreationRequestModel.ActionStatus.HasValue && _userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.Locked) ||
+                                 _userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.AwaitingSignoff)  ? _userCreationRequestModel.LockReason : "")
+                             </p>
+                        </div>
+                    </div>
+
+                    <div class="edit-user-info-left-infomation"
+                         style="@(_userCreationRequestModel.ActionStatus.HasValue && _userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.Locked) ||
+                                 _userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.AwaitingSignoff)  ? "" : "display: none;")" id="information">
+                        <p style="display:flex;"> <img src="/img/user/informationRed.svg" alt="information" class="edit-user-info-infomation__img" /> We will notify another admin about this solution. Your collegue needs to Confirm or Reject this action.</p>
+                    </div>
+                </div>
+
+                <div class="edit-user-info-right">
+                    @if (_userCreationRequestModel.ActionStatus.HasValue && _userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.AwaitingSignoff))
+                    {
+                        <div class="edit-user-info-right-buttons" id='buttons'>
+                            <button class="edit-user-info-right-buttons__reject" @onclick=@RejectLockUser>Reject</button>
+                            <button class="edit-user-info-right-buttons__confirm" @onclick=@ShowConfirmLockUserModal>Confirm</button>
+                        </div>
+                    }
+
+                    @if (_userCreationRequestModel.ActionStatus.GetValueOrDefault().Equals(UserActionStatusEnum.Confirmed))
+                    {
+                        <button class="edit-user-info-right-button" style="display: flex;" id='button' @onclick=@ShowConfirmLockUserModal>
+                            <span class="iconBlock">
+                                <img src="/img/user/lockedBlueIcon.svg" alt="locked" class="icon" />
+                                <img src="/img/user/lockedBlueIconHover.svg" alt="locked" class="iconHover" />
+                            </span>
+                            <span>Lock profile</span>
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <div class="edit-user-main">
+                <CascadingValue Name="UserEdit" Value=@this>
+                    <UserCreationDetailsComponent />
+                    <UserCreationPreferenceComponent />
+                </CascadingValue>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="edit-user-footer-layout">
+    <div class="edit-user-footer-container">
+        <div class="edit-user-footer">
+            <button class="edit-user-footer__button" @onclick=@OnSaveUpdates>Save Updates</button>
+        </div>
+    </div>
+</footer>
+
+@*<AdminUserModalLock/>
+
+<AdminUserModalUpdate/>
+
+<AdminUserModalConfirm/>
+
+<AdminUserModalArchive/>
+*@

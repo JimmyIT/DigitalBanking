@@ -1,0 +1,116 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.payments-modal {
+    @include modalDefault;
+
+    &-layout {
+        @include modalDefaultContainer;
+    }
+
+    &-header-wrapper {
+        margin-bottom: $indent-16;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__title {
+            @include h2;
+            color: $color-wireframes-900;
+        }
+
+        &__subtitle {
+            @include h5;
+            margin-top: $indent-4;
+            color: $color-gray-900;
+        }
+
+        &__icon {
+            @include buttonIconMedium;
+        }
+    }
+
+    &-main {
+        margin-bottom: $indent-16;
+
+        &__subtitle {
+            @include h5;
+            margin-bottom: $indent-8;
+            color: $color-gray-900;
+        }
+
+        &-input {
+            margin-right: 0;
+            margin-bottom: $indent-16;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &-form {
+            @include formHorizontal;
+            margin-bottom: $indent-16;
+
+            .formgroup {
+                width: 100%;
+            }
+
+            &__title {
+                @include h4;
+            }
+        }
+
+        &-info-card {
+            @include card;
+            margin-bottom: $indent-16;
+
+            &-content {
+                display: flex;
+                margin-bottom: $indent-12;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &-item {
+                    width: 200px;
+                    margin-right: 12px;
+
+                    &:last-child {
+                        width: unset;
+                        margin-right: 0;
+                    }
+
+                    &__title {
+                        @include caption1;
+                        color: $color-gray-600;
+                        font-weight: 600;
+                    }
+
+                    &__text {
+                        @include body;
+                    }
+                }
+            }
+        }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+
+        &__buttonCancel {
+            @include lightBlueButton;
+            min-width: 144px;
+        }
+
+        &__buttonSuccess {
+            @include blueButton;
+            min-width: 144px;
+        }
+    }
+}

@@ -1,0 +1,133 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.batch-footer-layout {
+	background: $color-white;
+	padding: $indent-24 0;
+}
+
+.batch-footer-container {
+	@include container;
+}
+
+.batch-footer {
+	display: flex;
+	justify-content: space-between;
+
+	&-left {
+		display: flex;
+		align-items: center;
+
+		&-info {
+			position: relative;
+			display: flex;
+			align-items: center;
+			margin-right: 40px;
+
+			&:first-child {
+				cursor: pointer;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&-text {
+				@include h4;
+
+				&:first-child {
+					margin-right: $indent-8;
+					color: $color-gray-600;
+				}
+
+				&:last-child {
+					color: $color-gray-800;
+				}
+			}
+
+			&-tooltip {
+				position: absolute;
+				width: 180px;
+				display: none;
+				padding: 12px 16px;
+				background-color: $color-white;
+				bottom: 30px;
+				border: 1px solid $color-gray-200;
+				border-radius: 8px;
+				box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+
+				&-item {
+					margin-bottom: $indent-8;
+					display: flex;
+					align-items: center;
+
+					&__image {
+						margin-right: $indent-8;
+					}
+
+					&__title {
+						@include label;
+						color: $color-gray-800;
+					}
+
+					&__name {
+						@include body;
+						color: $color-gray-600;
+					}
+				}
+			}
+
+			&-tooltip-icon {
+				position: absolute;
+				display: none;
+				bottom: 22px;
+				left: 10px;
+			}
+		}
+	}
+
+	&-right {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		&-batch {
+			display: flex;
+			align-items: center;
+
+			&-text {
+				@include h4;
+
+				&:nth-child(1) {
+					margin-right: $indent-8;
+					color: $color-gray-600;
+				}
+
+				&:nth-child(2) {
+					@include h2;
+					margin-right: 44px;
+					color: $color-gray-800;
+				}
+			}
+		}
+
+		&-buttons {
+			display: flex;
+			align-items: center;
+
+			&-reject,
+			&-confirm {
+				min-width: 148px;
+			}
+
+			&-reject {
+				@include lightBlueButton;
+				margin-right: $indent-16;
+			}
+
+			&-confirm {
+				@include blueButton;
+			}
+		}
+	}
+}

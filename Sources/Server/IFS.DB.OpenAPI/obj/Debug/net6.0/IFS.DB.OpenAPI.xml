@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IFS.DB.OpenAPI</name>
+    </assembly>
+    <members>
+        <member name="M:IFS.DB.OpenAPI.Filters.AsyncMessageActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
+            <summary>
+            This function is use to handle the action message both before and after executing
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+    </members>
+</doc>

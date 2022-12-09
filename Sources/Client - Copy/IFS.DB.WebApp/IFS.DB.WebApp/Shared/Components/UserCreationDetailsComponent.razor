@@ -1,0 +1,97 @@
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.GroupMaintenance
+
+<div class="details">
+
+    <EditForm EditContext=@_userCreationDetailsContext>
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+
+        <p class="details-head">General details</p>
+        <div class="details-formgroup">
+            <p class="details-formgroup-name">User ID</p>
+            <InputNumber placeholder="Enter here" class="input" @bind-Value=@_userCreationRequestDetails.UserId />
+            <CustomValidationMessage For="@(() => _userCreationRequestDetails.UserId)" />
+        </div>
+        <div class="details-formgroup">
+            <p class="details-formgroup-name">User Name</p>
+            <InputText placeholder="Enter here" class="input" @bind-Value=@_userCreationRequestDetails.UserName />
+            <CustomValidationMessage For="@(() => _userCreationRequestDetails.UserName)" />
+        </div>
+        <div class="details-formgroup">
+            @*TODO*@
+            @*<EmailComponent />*@
+            <div>
+                <label>Email</label>
+                <div class="input-layout input-layout--email">
+                    <InputText placeholder="Email" class="input" @bind-Value=@_userCreationRequestDetails.EmailAddress />
+                    <CustomValidationMessage For="@(() => _userCreationRequestDetails.EmailAddress)" />
+                </div>
+            </div>
+        </div>
+        <div class="details-formgroup">
+            @*TODO*@
+            @*<PhoneNumberComponent/>*@
+            <div>
+                <label>Mobile phone number</label>
+                <div class="phone">
+                    <DropdownComponent TItem="CultureInfoModel"
+                                       OnSelectedItem=@OnSelectedPhoneNumberIDD>
+                        <InitialTip>@(_userCreationRequestDetails.PhoneNumberIDD ?? "IDD")</InitialTip>
+                        <DropdownChildContent>
+                            @foreach (var cultureInfo in _listCulturesModel)
+                            {
+                                <DropdownItemComponent TItem="CultureInfoModel" Item="@cultureInfo" Context="_">
+                                    <DropdownItemChildContent>
+                                        @cultureInfo.PhoneNumberIDD
+                                    </DropdownItemChildContent>
+                                </DropdownItemComponent>
+                            }
+                        </DropdownChildContent>
+                    </DropdownComponent>
+                    <InputText placeholder="000 000 000" class="input" @bind-Value=@_userCreationRequestDetails.PhoneNumber />
+
+                </div>
+                <CustomValidationMessage For="@(() => _userCreationRequestDetails.PhoneNumberIDD)" />
+                <CustomValidationMessage For="@(() => _userCreationRequestDetails.PhoneNumber)" />
+            </div>
+        </div>
+        <div class="details-formgroup">
+            <label>Language</label>
+            <DropdownComponent TItem="CultureInfoModel"
+                               OnSelectedItem=@OnSelectedLanguage>
+                <InitialTip>@(_userCreationRequestDetails.Language ?? "Language")</InitialTip>
+                <DropdownChildContent>
+                    @foreach (var cultureInfo in _listCulturesModel)
+                    {
+                        <DropdownItemComponent TItem="CultureInfoModel" Item="@cultureInfo" Context="_">
+                            <DropdownItemChildContent>
+                                @cultureInfo.Country
+                            </DropdownItemChildContent>
+                        </DropdownItemComponent>
+                    }
+                </DropdownChildContent>
+            </DropdownComponent>
+            <CustomValidationMessage For="@(() => _userCreationRequestDetails.Language)" />
+        </div>
+        <div class="details-formgroup">
+            <div class="details-formgroup-title">
+                <p class="details-formgroup-title-name">Assign user to group</p>
+                <p class="details-formgroup-title-subtitle">Optional</p>
+            </div>
+            <DropdownComponent TItem="GroupInfoModel"
+                               OnSelectedItem=@OnSelectedGroup>
+                <InitialTip>@(_listGroupMaintenanceModel.FirstOrDefault(x => x.ID == _userCreationRequestDetails.GroupID.GetValueOrDefault())?.Name  ?? "Assign user to group")</InitialTip>
+                <DropdownChildContent>
+                    @foreach (var group in _listGroupMaintenanceModel)
+                    {
+                        <DropdownItemComponent TItem="GroupInfoModel" Item="@group" Context="_">
+                            <DropdownItemChildContent>
+                                @group.Name
+                            </DropdownItemChildContent>
+                        </DropdownItemComponent>
+                    }
+                </DropdownChildContent>
+            </DropdownComponent>
+        </div>
+    </EditForm>
+</div>

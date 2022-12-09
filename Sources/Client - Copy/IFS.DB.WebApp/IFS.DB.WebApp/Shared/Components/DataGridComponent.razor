@@ -1,0 +1,184 @@
+﻿@using IFS.DB.WebApp.Helpers.CompnentConfiguration
+@typeparam TItem
+
+@if (Columns.Count <= 0)
+{
+    <p class="text-info"> Table's columns have not been defined. </p>
+}
+else
+{
+    <table class="@TableClass">
+        <thead>
+            <tr>
+                @foreach (var column in Columns)
+                {
+                    string columnName = column.Caption;
+                    string textAlignStyle = column.HeaderAlignment switch
+                    {
+                        Alignment.Center => "align-center",
+                        Alignment.Right => "align-right",
+                        _ => "align-left"
+                    };
+
+                    <td class="@textAlignStyle ">
+                        @columnName
+                        @if (column.Sortable)
+                        {
+                            <span style="cursor: pointer;" @onclick="() => SortDataChanged(column)" too>
+                                <img src="/img/icons/blueArrow.svg"
+                         alt="arrow"
+                         class="history-table__arrow @(column.SortDirection switch
+                                                                {
+                                                                    SortDirection.Asc => "sort-asc",
+                                                                    SortDirection.Desc => "sort-desc",
+                                                                    _ => "sort-unset"
+                                                                })" />
+                            </span>
+                        }
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in DataItems)
+            {
+                <tr>
+                    @foreach (var column in Columns)
+                    {
+                        if (column.FragmentTemplateFunc == null)
+                        {
+                            if (!string.IsNullOrEmpty(column.Format) && column.DataType != DataType.NotSet)
+                            {
+                                string value = string.Empty;
+                                string _showValueFuncResult = column.ShowValueFunc != null ? column.ShowValueFunc.Invoke(item) : string.Empty;
+                                switch (column.DataType)
+                                {
+                                    case DataType.Date:
+                                    case DataType.DateTime:
+                                        {
+                                            value = DateTime.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()).ToString(column.Format);
+                                            break;
+                                        }
+                                    case DataType.Boolean:
+                                        {
+                                            value = bool.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()).ToString();
+                                            break;
+                                        }
+                                    case DataType.Currency:
+                                        {
+                                            value = Math.Round(double.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()), 2).ToString(column.Format);
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            break;
+                                        }
+                                }
+
+                                <td align="@column.BodyAlignment.ToString().ToLower()" class="@column.CssClass">
+                                    @value
+                                </td>
+                            }
+
+                            if (string.IsNullOrEmpty(column.Format) && column.DataType == DataType.NotSet)
+                            {
+                                @if (column.BodyAlignment == Alignment.NotSet)
+                                {
+                                    <td class="@column.CssClass">
+                                        @(column.ShowValueFunc != null ? column.ShowValueFunc.Invoke(item) : typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString())
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td align="@column.BodyAlignment.ToString().ToLower()" class="@column.CssClass">
+                                        @(column.ShowValueFunc != null ? column.ShowValueFunc.Invoke(item) : typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString())
+                                    </td>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <td class="@column.CssClass">
+                                @column.FragmentTemplateFunc.Invoke(item)
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+        @if (@CustomTableFooter != null)
+        {
+            <tfoot>
+                <tr>
+                    @CustomTableFooter
+                </tr>
+            </tfoot>
+        }
+    </table>
+    @if (PagingConfig != null && PagingConfig.Enabled)
+    {
+        @if (TotalItems > 0)
+        {
+            @if (PagingConfig.CustomPager)
+            {
+                @CustomHtmlPager
+            }
+            else
+            {
+                <div class="paginator">
+                    <div class="paginator-pagination">
+                        <div class="paginator-pagination-left">
+                            @if (CurrentPageNumber == 0 || CurrentPageNumber == 1)
+                            {
+                                <span disabled><img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowleft" /></span>
+                                <span disabled><img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowleft" /></span>
+                            }
+                            else
+                            {
+                                <span @onclick="PrevPageChanged"><img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowleft" /></span>
+                                <span @onclick="PrevPageChanged"><img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowleft" /></span>
+                            }
+                        </div>
+                        @for (int index = 1; index <= TotalPages; index++)
+                        {
+                            int _temp = index;
+                            @if (CurrentPageNumber.Equals(_temp))
+                            {
+                                <button class="paginator-pagination-button paginator-pagination-button--active" @onclick="@(() => PageIndexChanged(@_temp))">@_temp</button>
+                            }
+                            else
+                            {
+                                <button class="paginator-pagination-button" @onclick="@(() => PageIndexChanged(@_temp))">@_temp</button>
+                            }
+                        }
+                        <div class="paginator-pagination-right">
+                            @if (CurrentPageNumber == TotalPages)
+                            {
+                                <span disabled><img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowRight" /></span>
+                                <span disabled><img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowRight" /></span>
+                            }
+                            else
+                            {
+                                <span @onclick="NextPageChanged"><img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowRight" /></span>
+                                <span @onclick="NextPageChanged"><img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowRight" /></span>
+                            }
+                        </div>
+                    </div>
+                    @if (ChangablePageSize)
+                    {
+                        <div class="paginator-pagination">
+                            <span class="paginator-pagination-button paginator-pagination-select__pagesize" disabled>&nbsp; Display &nbsp;</span>
+                            <select class="paginator-pagination-button paginator-pagination-select__pagesize" id="sltPageSize" @onchange="PageSizeChanged">
+                                @foreach (string itemSize in CustomPageSize)
+                                {
+                                    <option value="@itemSize">@itemSize</option>
+                                }
+                            </select>
+                            <span class="paginator-pagination-button paginator-pagination-select__pagesize" disabled>&nbsp; items per page. &nbsp;</span>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    }
+}

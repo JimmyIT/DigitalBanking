@@ -1,0 +1,263 @@
+@layout MandatesLayout
+@page "/customer/mandates"
+
+<div class="mandates-layout">
+    <div class="mandates-container">
+        <div class="mandates-header">
+            <div class="mandates-header-wrapper">
+                <img src="/img/icons/mandatesIcon.svg" alt="logo" class="mandates-header__logo" />
+                <p class="mandates-header__title">Mandates</p>
+                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="mandates-header__tooltip-icon" />
+            </div>
+
+            <div>
+                <button class="mandates-header__button" onclick="onclickEdit" id="amount">Edit</button>
+            </div>
+        </div>
+
+        <div class="mandates">
+            <p class="mandates-subtitle">Default settings for all customers and products</p>
+
+            <MaximumAmountComponent/>
+
+            <div class="mandates-value">
+                <p class="mandates-value-name">Value items</p>
+                <p class="mandates-value-subtitle">This section will reflect the conditions under which mandates can be
+                    implemented</p>
+
+                <div class="mandates-value-item">
+
+                    <div class="mandates-value-item-first">
+                        <div class="mandates-value-item-first-head">
+                            <p class="mandates-value-item-first-head-name">Value item No.1</p>
+                            <div class="mandates-value-item-first-head__icon">
+                                <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                            </div>
+                        </div>
+
+                        <div class="mandates-value-item-first-pick">
+                            <button class="mandates-value-item-first-pick__item"
+                                onclick="onClickTab(event, 'History')">Simple value</button>
+                            <button class="mandates-value-item-first-pick__item active"
+                                onclick="onClickTab(event, 'Template')" id="defaultOpen">Formula</button>
+                        </div>
+
+                        <hr class="mandates-value-item-first-line" />
+
+                        <div class="mandates-value-item-first-point" id="History" style="display: none;">
+                            <div class="mandates-value-item-first-point-content">
+                                <p class="mandates-value-item-first-point-content-name">Items up to a value of (GBR)</p>
+                                <input placeholder="0,00" class="mandates-value-item-first-point-content-input" />
+                            </div>
+
+                            <p class="mandates-value-item-first-point-text">Require</p>
+
+                            <div class="mandates-value-item-first-point-number">
+                                <p class="mandates-value-item-first-point-number-name">Number of signatures</p>
+                                <input placeholder="0" class="mandates-value-item-first-point-number-input" />
+                            </div>
+                        </div>
+
+                        <div class="mandates-value-item-first-formula mandates-value-item-first-point" id="Template">
+                            <div class="mandates-value-item-first-formula-content">
+                                <p class="mandates-value-item-first-formula-content-name">Items up to a value of (GBR)
+                                </p>
+                                <input placeholder="0,00" class="mandates-value-item-first-formula-content-input" />
+                            </div>
+
+                            <div class="mandates-value-item-first-formula-cards">
+                                <div class="mandates-value-item-first-formula-cards-title">
+                                    <p class="mandates-value-item-first-formula-cards-title-text">Formula 1</p>
+                                    <div class="mandates-value-item-first-head__icon">
+                                        <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                        <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                                    </div>
+                                </div>
+
+                                <div class="mandates-value-item-first-formula-cards-info">
+                                    <div class="mandates-value-item-first-formula-cards-info-number">
+                                        <p class="mandates-value-item-first-formula-cards-info-number-name">Number of
+                                            signatures</p>
+                                        <input placeholder="0,00"
+                                            class="mandates-value-item-first-formula-cards-info-number-input" />
+                                    </div>
+
+                                    <div class="mandates-value-item-first-formula-cards-info-selector">
+                                        <p class="mandates-value-item-first-formula-cards-info-selector-name">Level of
+                                            User</p>
+                                        <div class="customSelector">
+                                            <div class="customSelector-input" onclick="onClickFilterIcon()"
+                                                id="filtersSelector">
+                                                <p
+                                                    class="customSelector-input__placeholder admin-box-selections-customer-name">
+                                                    Select level</p>
+                                                <img src="/img/icons/dropdown.svg" alt="dropdown"
+                                                    class="admin-box-selections-customer-icon" />
+                                            </div>
+
+                                            <div class="customSelector-dropdown" id="filters">
+                                                <div class="customSelector-dropdown-item">
+                                                    <p>A</p>
+                                                </div>
+                                                <div class="customSelector-dropdown-item">
+                                                    <p>B</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="mandates-value-item-first-formula-cards-info-and">and</p>
+
+                                    <div class="mandates-value-item-first-formula-cards-info-number">
+                                        <p class="mandates-value-item-first-formula-cards-info-number-name">Number of
+                                            signatures</p>
+                                        <input placeholder="0,00"
+                                            class="mandates-value-item-first-formula-cards-info-number-input" />
+                                    </div>
+
+                                    <div class="mandates-value-item-first-formula-cards-info-selector">
+                                        <p class="mandates-value-item-first-formula-cards-info-selector-name">Level of
+                                            User</p>
+                                        <div class="customSelector">
+                                            <div class="customSelector-input" onclick="onClickTypesIcon()"
+                                                id="typesSelector">
+                                                <p
+                                                    class="customSelector-input__placeholder admin-box-selections-customer-name">
+                                                    Select level</p>
+                                                <img src="/img/icons/dropdown.svg" alt="dropdown"
+                                                    class="admin-box-selections-customer-icon" />
+                                            </div>
+
+                                            <div class="customSelector-dropdown" id="types">
+                                                <div class="customSelector-dropdown-item">
+                                                    <p>A</p>
+                                                </div>
+                                                <div class="customSelector-dropdown-item">
+                                                    <p>B</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="mandates-value-item-first-formula-cards-info-add">
+                                        <img src="/img/icons/add.svg" alt="add" class="icon" />
+                                        <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mandates-value-item-first-formula-or">
+                                <p class="mandates-value-item-first-formula-or-text">or</p>
+                                <hr class="mandates-value-item-first-line" />
+                            </div>
+
+                            <div class="mandates-value-item-first-formula-cards">
+                                <div class="mandates-value-item-first-formula-cards-title">
+                                    <p class="mandates-value-item-first-formula-cards-title-text">Formula 1</p>
+                                    <div class="mandates-value-item-first-head__icon">
+                                        <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                                        <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                                    </div>
+                                </div>
+
+                                <div class="mandates-value-item-first-formula-cards-info">
+                                    <div class="mandates-value-item-first-formula-cards-info-number">
+                                        <p class="mandates-value-item-first-formula-cards-info-number-name">Number of
+                                            signatures</p>
+                                        <input placeholder="0,00"
+                                            class="mandates-value-item-first-formula-cards-info-number-input" />
+                                    </div>
+
+                                    <div class="mandates-value-item-first-formula-cards-info-selector">
+                                        <p class="mandates-value-item-first-formula-cards-info-selector-name">Level of
+                                            User</p>
+                                        <div class="customSelector">
+                                            <div class="customSelector-input" onclick="onClickFilterIcon()"
+                                                id="filtersSelector">
+                                                <p
+                                                    class="customSelector-input__placeholder admin-box-selections-customer-name">
+                                                    Select level</p>
+                                                <img src="/img/icons/dropdown.svg" alt="dropdown"
+                                                    class="admin-box-selections-customer-icon" />
+                                            </div>
+
+                                            <div class="customSelector-dropdown" id="filters">
+                                                <div class="customSelector-dropdown-item">
+                                                    <p>A</p>
+                                                </div>
+                                                <div class="customSelector-dropdown-item">
+                                                    <p>B</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="mandates-value-item-first-formula-cards-info-and">and</p>
+
+                                    <div class="mandates-value-item-first-formula-cards-info-number">
+                                        <p class="mandates-value-item-first-formula-cards-info-number-name">Number of
+                                            signatures</p>
+                                        <input placeholder="0,00"
+                                            class="mandates-value-item-first-formula-cards-info-number-input" />
+                                    </div>
+
+                                    <div class="mandates-value-item-first-formula-cards-info-selector">
+                                        <p class="mandates-value-item-first-formula-cards-info-selector-name">Level of
+                                            User</p>
+                                        <div class="customSelector">
+                                            <div class="customSelector-input" onclick="onClickFilterIcon()"
+                                                id="filtersSelector">
+                                                <p
+                                                    class="customSelector-input__placeholder admin-box-selections-customer-name">
+                                                    Select level</p>
+                                                <img src="/img/icons/dropdown.svg" alt="dropdown"
+                                                    class="admin-box-selections-customer-icon" />
+                                            </div>
+
+                                            <div class="customSelector-dropdown" id="filters">
+                                                <div class="customSelector-dropdown-item">
+                                                    <p>A</p>
+                                                </div>
+                                                <div class="customSelector-dropdown-item">
+                                                    <p>B</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="mandates-value-item-first-formula-cards-info-add">
+                                        <img src="/img/icons/add.svg" alt="add" class="icon" />
+                                        <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+                            <div class="mandates-value-item-first-formula-new">
+                                <button class="mandates-value-item-first-formula-new-button">
+                                    <span class="iconBlock">
+                                        <img src="/img/icons/add.svg" alt="add" class="icon" />
+                                        <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+                                    </span>
+                                    <span>Add formula</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="mandates-value__button">
+                        <span class="iconBlock">
+                            <img src="/img/icons/add.svg" alt="add" class="icon" />
+                            <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+                        </span>
+                        <span>Add Value Item</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

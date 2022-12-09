@@ -1,0 +1,7 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.profile-menu {
+    @include menu;
+    margin-right: $indent-24;
+}

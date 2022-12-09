@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = IFS.DB.OpenAPI.Client
+build_property.ProjectDir = D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\

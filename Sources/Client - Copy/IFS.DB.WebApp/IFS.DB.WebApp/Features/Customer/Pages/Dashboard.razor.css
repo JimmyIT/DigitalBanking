@@ -1,0 +1,182 @@
+.dashboard-layout {
+  padding: 24px 0 36px;
+}
+
+.dashboard-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.dashboard-breadcrumbs {
+  display: flex;
+  margin-bottom: 8px;
+}
+.dashboard-breadcrumbs__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  padding: 4px 0;
+  margin-right: 8px;
+}
+.dashboard-breadcrumbs__item::after {
+  content: "/";
+  margin-left: 8px;
+}
+.dashboard-breadcrumbs__item:last-child {
+  margin-right: 0;
+}
+.dashboard-breadcrumbs__item:last-child::after {
+  display: none;
+}
+.dashboard-breadcrumbs__item.active {
+  color: #212121;
+}
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.dashboard-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.dashboard-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.dashboard-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.dashboard-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.dashboard-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.dashboard-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.dashboard-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.dashboard-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.dashboard-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.dashboard-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.dashboard-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.dashboard-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.dashboard-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.dashboard-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.dashboard-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.dashboard-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.dashboard-header__button .iconBlock .icon,
+.dashboard-header__button .iconBlock .iconHover,
+.dashboard-header__button .iconBlock .iconActive,
+.dashboard-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.dashboard-header__button .iconBlock .iconHover,
+.dashboard-header__button .iconBlock .iconActive,
+.dashboard-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.dashboard-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.dashboard-header__button .iconBlock,
+.dashboard-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.dashboard-header__button .iconBlock:first-child,
+.dashboard-header__button > img:first-child {
+  margin-left: 0;
+}
+.dashboard-header__button .iconBlock:last-child,
+.dashboard-header__button > img:last-child {
+  margin-right: 0;
+}
+.dashboard-header__button:hover {
+  color: #0248a4;
+}
+.dashboard .dashboard-table-back {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.dashboard .dashboard-table-back:last-child {
+  margin-bottom: 0;
+}
+.dashboard .dashboard-table-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 16px;
+}

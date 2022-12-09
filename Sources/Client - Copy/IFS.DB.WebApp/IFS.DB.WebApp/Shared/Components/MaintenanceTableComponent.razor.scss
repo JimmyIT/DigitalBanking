@@ -1,0 +1,159 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.maintenanceTable {
+	td {
+		@include textWithDots;
+		vertical-align: middle;
+		padding: $indent-12 $indent-16;
+
+		&:nth-child(6) {
+			text-align: center;
+		}
+
+		&:last-child {
+			text-align: end;
+			overflow: visible;
+		}
+	}
+
+	thead {
+		td {
+			@include label2;
+			background: $color-sky-blue-100;
+			color: $color-sky-blue-300;
+
+			&:first-child {
+				border-radius: 8px 0 0 8px;
+			}
+
+			&:last-child {
+				border-radius: 0 8px 8px 0;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid $color-sky-blue-100;
+		}
+
+		td {
+			&:nth-child(1),
+			&:nth-child(3) {
+				@include h5;
+				color: $color-gray-600;
+			}
+
+			&:nth-child(2),
+			&:nth-child(4) {
+				@include body;
+				color: $color-gray-600;
+			}
+
+			&:nth-child(5) {
+				@include h5;
+			}
+		}
+	}
+
+	&-button {
+		@include transparentButton;
+
+		&.maintenanceTable-button--disabled {
+			@include transparentDisabledButton;
+		}
+	}
+
+	&-status {
+		@include grayTextBox;
+
+		&.maintenanceTable-status--error {
+			@include redTextBox;
+		}
+
+		&.maintenanceTable-status--success {
+			@include greenTextBox;
+		}
+	}
+
+	&-action {
+		position: relative;
+		box-sizing: border-box;
+
+		&-icon {
+			@include buttonIcon;
+			margin-left: auto;
+		}
+
+		&-dropdown {
+			position: absolute;
+			top: 45px;
+			right: 10px;
+			width: 156px;
+			display: none;
+			padding: 8px 1px;
+			border: 1px solid $color-sky-blue-200;
+			border-radius: 8px;
+			background-color: $color-white;
+			box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+			z-index: 2;
+
+			&-item {
+				@include field;
+				padding: 14px 16px;
+				text-align: left;
+				color: $color-gray-600;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.batch-modal {
+	@include modalDefault;
+
+	&-layout {
+		@include modalDefaultContainer;
+	}
+
+	&-header-wrapper {
+		margin-bottom: $indent-16;
+	}
+
+	&-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&__title {
+			@include h2;
+			color: $color-wireframes-900;
+		}
+
+		&__subtitle {
+			@include h5;
+			margin-top: $indent-4;
+			color: $color-gray-900;
+		}
+
+		&__icon {
+			cursor: pointer;
+		}
+	}
+
+	&-footer {
+		display: flex;
+		justify-content: space-between;
+
+		&__buttonCancel {
+			@include lightBlueButton;
+			min-width: 144px;
+		}
+
+		&__buttonSuccess {
+			@include blueButton;
+			min-width: 144px;
+		}
+	}
+}

@@ -1,0 +1,29 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.home-transfer {
+    @include box;
+
+    &__title {
+        @include h3;
+        margin-bottom: $indent-8;
+    }
+
+    &__subtitle {
+        color: $color-gray-500;
+        margin-bottom: $indent-12;
+    }
+
+    &__form {
+        @include form;
+
+        &-amount {
+            width: 100%;
+            margin-right: 12px;
+        }
+
+        &-button {
+            margin-top: 20px;
+        }
+    }
+}

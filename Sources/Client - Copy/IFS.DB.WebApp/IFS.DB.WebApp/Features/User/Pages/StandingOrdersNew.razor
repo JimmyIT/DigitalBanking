@@ -1,0 +1,367 @@
+@layout UserLayout
+@page "/standings-orders/new"
+@using Z.Core.Extensions
+@using Microsoft.AspNetCore.Components.Rendering
+@using IFS.DB.WebApp.Models.StandingOrder
+@using IFS.DB.WebApp.Models.PayeeTemplate
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Helpers.FluentValidator
+@using IFS.DB.WebApp.Models
+
+<div class="standing-orders-new-layout">
+<div class="standing-orders-new-container">
+<div class="standing-orders-new">
+<div class="standing-orders-new-breadcrumbs">
+    <p class="standing-orders-new-breadcrumbs__item">Home</p>
+    <p class="standing-orders-new-breadcrumbs__item">Standing Orders</p>
+    <p class="standing-orders-new-breadcrumbs__item active">New</p>
+</div>
+
+<div class="standing-orders-new-header">
+    <div class="standing-orders-new-header-wrapper">
+        <img src="/img/icons/return.svg" alt="logo" class="standing-orders-new-header__logo"/>
+        <p class="standing-orders-new-header__title">New Standing Order</p>
+        <img src="/img/icons/tooltipIcon.svg" alt="tooltip"
+             class="standing-orders-new-header__tooltip-icon"/>
+    </div>
+</div>
+
+<div class="general-details">
+    <p class="general-details__title">General details</p>
+    <p class="general-details__subtitle">Select type of regular payments you want to add. Than click “Continue”</p>
+
+    <div class="general-details-form">
+
+        @foreach (var item in StandingOrderTypes)
+        {
+            <div class="general-details-form-radio @(_showTypeOption == false ? "disabled" : string.Empty)">
+                <input id="radio@(item.ToString())" name="radio-type" type="checkbox" disabled="@(_showTypeOption == false)" @onclick:preventDefault checked="@(item == _model.Type)" @onclick="@(() => _model.Type = item)"/>
+                <label for="radio@(item.ToString())">@item.GetCustomAttributeDescription()</label>
+            </div>
+        }
+
+        <button class="general-details-form__button" @onclick="ToggleShowTypeOption">
+            @(_showTypeOption ? "Continue" : "Change option")
+        </button>
+    </div>
+</div>
+
+<div class="standing-orders-new-data" style="display: @(_showTypeOption ? "none" : "block")">
+<p class="standing-orders-new-data__title">Fixed amounts and fixed number of payments</p>
+
+<EditForm EditContext="_standingOrderContext" OnSubmit="Submit">
+<EnableFluentValidator TValidator="StandingOrderModelValidator"/>
+<div class="standing-orders-new-data-form">
+<div class="standing-orders-new-data-form__formrow standing-orders-new-data-form__formrow--1">
+    <div class="formgroup standing-orders-new-data-form__formgroup">
+        <label>Debit Narrative</label>
+        <div class="input-layout">
+            <InputText placeholder="Enter here" class="input" @bind-Value="_model.DebitNarrative"></InputText>
+        </div>
+        <CustomValidationMessage For="@(() => _model.DebitNarrative)"/>
+    </div>
+    <div class="formgroup standing-orders-new-data-form__formgroup">
+        <label>Debit Account</label>
+        <InputSelect
+            Value="_model.DebitAccount"
+            ValueExpression="@(() => _model.DebitAccount)"
+            ValueChanged="@(value => _model.DebitAccount = string.IsNullOrEmpty(value) ? null : value)"
+            TValue="string"
+            class="select">
+            <option value="">Select an account</option>
+            @foreach (AccountModel item in _fromAccounts
+                .ExceptBy(new List<string> { _model.TransferTo ?? string.Empty }, x => x.AccountNumber))
+            {
+                <option value="@item.AccountNumber">@item.AccountDescription</option>
+            }
+        </InputSelect>
+        <CustomValidationMessage For="@(() => _model.DebitAccount)"></CustomValidationMessage>
+    </div>
+    <div class="formgroup standing-orders-new-data-form__formgroup standing-orders-new-data-form__formgroup--right">
+        @if (StandingOrderModelValidator.DifferingFistLast(_model) is false)
+        {
+            <AmountComponent
+                LabelText="Amount for regular payment"
+                @bind-Value="@_model.RegularAmount"
+                class="input payments-information-form__amount"
+                ValidationFor="@(() => _model.RegularAmount)">
+            </AmountComponent>
+        }
+    </div>
+</div>
+@if (StandingOrderModelValidator.DifferingFistLast(_model))
+{
+    <div class="standing-orders-new-data-form__formrow standing-orders-new-data-form__formrow--2">
+
+        <div class="formgroup standing-orders-new-data-form__formgroup">
+            <AmountComponent
+                LabelText="Fist payment"
+                @bind-Value="@_model.FirstAmount"
+                class="input payments-information-form__amount"
+                ValidationFor="@(() => _model.FirstAmount)">
+            </AmountComponent>
+        </div>
+        <div class="formgroup standing-orders-new-data-form__formgroup">
+            <AmountComponent
+                LabelText="Regular payment"
+                @bind-Value="@_model.RegularAmount"
+                class="input payments-information-form__amount"
+                ValidationFor="@(() => _model.RegularAmount)">
+            </AmountComponent>
+        </div>
+        <div class="formgroup standing-orders-new-data-form__formgroup">
+
+            <AmountComponent
+                LabelText="Last payment"
+                @bind-Value="@_model.LastAmount"
+                class="input payments-information-form__amount"
+                ValidationFor="@(() => _model.LastAmount)">
+            </AmountComponent>
+
+        </div>
+    </div>
+}
+
+<p class="standing-orders-new-data__subtitle">Payment information</p>
+
+<div class="standing-orders-new-data-form__formrow standing-orders-new-data-form__formrow--2">
+    <div class="formgroup standing-orders-new-data-form__formgroup">
+        <label>Repetitive period</label>
+        <InputSelectEnum @bind-Value="@_model.RepetitivePeriod"
+                         DefaultOption="Select type"
+                         class="select">
+        </InputSelectEnum>
+        <CustomValidationMessage For="@(() => _model.RepetitivePeriod)"/>
+    </div>
+    @* <div class="formgroup standing-orders-new-data-form__formgroup"> *@
+    @*     <DateRangeComponent/> *@
+    @* </div> *@
+    @if (_model.RepetitivePeriod is not StandingOrderPeriodType.EveryDay and not null)
+    {
+        <div class="formgroup standing-orders-new-data-form__formgroup">
+            <label>Payment date</label>
+            <div class="input-layout">
+                @if (_model.RepetitivePeriod == StandingOrderPeriodType.EveryWeek)
+                {
+                    <select class="select"
+                            @onchange="@(args => _model.PaymentDay = StandingOrderModelValidator.CalculateDayOfWeeksBaseOnCurrentDate()[int.Parse(args.Value!.ToString()!)])">
+                        @foreach (DayOfWeek day in _dayOfWeeks)
+                        {
+                            <option value="@((int)day)" selected="@(day == _model.PaymentDay?.DayOfWeek)">@day.ToString()</option>
+                        }
+                    </select>
+                }
+                @if (_model.RepetitivePeriod is StandingOrderPeriodType.EveryMonth or StandingOrderPeriodType.EveryYear)
+                {
+                    <InputDate @bind-Value="_model.PaymentDay" class="input"/>
+                }
+            </div>
+            @if (_model.RepetitivePeriod == StandingOrderPeriodType.EveryWeek)
+            {
+                <legend class="formgroup__caption">Start from: @((_model.PaymentDay ?? DateTime.Now).ToString("dd MMM yyyy"))</legend>
+            }
+            <CustomValidationMessage For="@(() => _model.PaymentDay)"/>
+        </div>
+    }
+    @if (_model.Type is StandingOrderType.Type1 or StandingOrderType.Type4) // fixed payment
+    {
+        <div class="formgroup standing-orders-new-data-form__formgroup">
+            <label>@(StandingOrderModelValidator.DifferingFistLast(_model) ? "No. of Regular Payments" : "Number of payments")</label>
+            <InputSelect
+                class="select"
+                TValue="int"
+                ValueExpression="() => _model.NoOfPayment"
+                Value="@_model.NoOfPayment"
+                ValueChanged="@(value => _model.NoOfPayment = value)">
+                <option value="0">Select</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+            </InputSelect>
+            <CustomValidationMessage For="@(() => _model.NoOfPayment)"/>
+        </div>
+    }
+
+    @if (_model.Type is StandingOrderType.Type2 or StandingOrderType.Type5) // with end date
+    {
+        <div class="formgroup standing-orders-new-data-form__formgroup">
+            <div>
+                <label>Last payment</label>
+                @* <div class="input-layout"> *@
+                @*     <input placeholder="_ /_ /__" class="input datepicker-input"/> *@
+                @* </div> *@
+                <div class="input-layout">
+                    <InputDate @bind-Value="_model.LastPaymentDay" class="input"/>
+                </div>
+            </div>
+            <CustomValidationMessage For="@(() => _model.LastPaymentDay)"/>
+        </div>
+    }
+</div>
+
+<p class="standing-orders-new-data__subtitle">Payee details</p>
+
+<div class="standing-orders-new-data-form__formrow standing-orders-new-data-form__formrow--3">
+    <div class="formgroup standing-orders-new-data-form__formgroup">
+        <label>Transaction type</label>
+        <InputSelectEnum @bind-Value="@_model.TransactionType"
+                         DefaultOption="Select type"
+                         class="select">
+        </InputSelectEnum>
+        <CustomValidationMessage For="@(() => _model.TransactionType)"/>
+    </div>
+
+    @if (_model.TransactionType == TransactionType.Payment)
+    {
+        <div class="formgroup standing-orders-new-data-form__formgroup standing-orders-new-data-form__formgroup--payment-account">
+            <label>Pay to</label>
+            <div class="select-layout">
+                <InputSelect ValueExpression="@(() => _model.PayeeReference)"
+                             Value="@_model.PayeeReference"
+                             ValueChanged="@((string value) => _model.PayeeReference = value)"
+                             class="select" id="payeeSelector">
+                    <option value="">Select a payee</option>
+                    @foreach (PayeeTemplateModel item in _listPayees ?? Enumerable.Empty<PayeeTemplateModel>())
+                    {
+                        <option value="@item.HostReference">@item.HostReference</option>
+                    }
+                </InputSelect>
+            </div>
+            <legend class="formgroup__caption">Select an account to which you want to set up standing order</legend>
+            <CustomValidationMessage For="@(() => _model.PayeeReference)"/>
+        </div>
+        <p class="standing-orders-new-data-form__formrow-or">or</p>
+        <button type="button" class="standing-orders-new-data-form__formrow-button" @onclick="ShowModalCreatePayee">Create new Payee</button>
+    }
+
+    @if (_model.TransactionType == TransactionType.Transfer)
+    {
+        <div class="formgroup standing-orders-new-data-form__formgroup">
+            <label>Transfer to</label>
+            <InputSelect
+                ValueExpression="() => _model.TransferTo"
+                Value="_model.TransferTo"
+                TValue="string"
+                ValueChanged="@(value => _model.TransferTo = string.IsNullOrEmpty(value) ? null : value)"
+                class="select">
+                <option value="">Select an account</option>
+                @foreach (AccountModel item in _toAccounts
+                    .ExceptBy(new List<string> { _model.DebitAccount ?? string.Empty }, x => x.AccountNumber))
+                {
+                    <option value="@item.AccountNumber">@item.AccountDescription</option>
+                }
+            </InputSelect>
+            <CustomValidationMessage For="@(() => _model.TransferTo)"></CustomValidationMessage>
+        </div>
+    }
+
+</div>
+
+</div>
+
+<div class="standing-orders-new-data-footer">
+    <button class="standing-orders-new-data-footer__buttonSuccess" type="submit">
+        Save Standing Order
+    </button>
+</div>
+
+</EditForm>
+</div>
+
+
+</div>
+</div>
+</div>
+
+
+@code {
+
+    [CascadingParameter]
+    IModalService PaymentModalSvc { get; set; } = default!;
+
+    private static IEnumerable<StandingOrderType> StandingOrderTypes => Enum.GetValues<StandingOrderType>();
+
+    private bool _showTypeOption = true;
+
+    private StandingOrderModel _model;
+    private EditContext _standingOrderContext;
+    private ValidationMessageStore _validationMessageStore;
+    private ICollection<PayeeTemplateModel>? _listPayees;
+    private List<AccountModel> _fromAccounts;
+    private List<AccountModel> _toAccounts;
+
+    private readonly DayOfWeek[] _dayOfWeeks =
+    {
+        DayOfWeek.Sunday,
+        DayOfWeek.Monday,
+        DayOfWeek.Tuesday,
+        DayOfWeek.Wednesday,
+        DayOfWeek.Thursday,
+        DayOfWeek.Friday,
+        DayOfWeek.Saturday,
+    };
+
+    public StandingOrdersNew()
+    {
+        _model = new StandingOrderModel();
+        _standingOrderContext = new EditContext(_model);
+        _standingOrderContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _validationMessageStore = new ValidationMessageStore(_standingOrderContext);
+        _fromAccounts = FakeData.Accounts;
+        _toAccounts = FakeData.Accounts;
+    }
+
+    protected override void OnInitialized()
+    {
+        _model.Type = StandingOrderTypes.First();
+        _model.PaymentDay = DateTime.Now;
+        _standingOrderContext.OnFieldChanged += (_, args) => { _validationMessageStore.Clear(args.FieldIdentifier); };
+
+        _listPayees = FakeData.PayeeTemplates;
+    }
+
+    private void ToggleShowTypeOption(MouseEventArgs _)
+    {
+        _showTypeOption = !_showTypeOption;
+        SetModelForm(new StandingOrderModel
+        {
+            Type = _model.Type
+        });
+    }
+
+    private async Task Submit()
+    {
+        if (!_standingOrderContext.Validate())
+            return;
+
+        StandingOrderModel addingItem = _model 
+            with 
+        {
+            Id = FakeData.StandingOrders.Count + 1,
+            Status = StandingOrderStatus.Finished
+            };
+        FakeData.StandingOrders.Add(addingItem);
+
+        _navigateManager.NavigateTo("/standings-orders");
+    }
+
+    private void ShowModalCreatePayee()
+    {
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+        PaymentModalSvc.Show<NewPayeeModalComponent>("Create new Payee", options);
+    }
+
+    private void SetModelForm(StandingOrderModel value)
+    {
+        _model = value with { };
+        _standingOrderContext = new EditContext(_model);
+        _standingOrderContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _validationMessageStore = new ValidationMessageStore(_standingOrderContext);
+    }
+
+}

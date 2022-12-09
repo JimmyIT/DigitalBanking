@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="SourcesOfIncome\GetAMLOccupation\**" />
+    <EmbeddedResource Remove="SourcesOfIncome\GetAMLOccupation\**" />
+    <None Remove="SourcesOfIncome\GetAMLOccupation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Domain\Enumeration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
+    <PackageReference Include="Mapster" Version="7.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Z.ExtensionMethods.WithNamespace" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Card\" />
+    <Folder Include="Common\Lloyd\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IFS.DB.EF\IFS.DB.EF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="IFS.Common">
+      <HintPath>..\References\IFS.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY &quot;$(ProjectDir)bin\$(Configuration)\net6.0\$(TargetFileName)&quot; &quot;..\..\..\bin\$(Configuration)\&quot; /Y" />
+  </Target>
+
+</Project>

@@ -1,0 +1,22 @@
+﻿@typeparam TItem
+
+
+@if (DropdownComponent.MultiSelect)
+{
+    <div @ref=@_dropdownItemEle id="@ElementId" class="customSelector-dropdown-item" style="display: flex;"
+         @onmouseup="@(() => DropdownComponent.ToggleSelectItemOfMultiSelectionDropdownAsync(this, TValue, !_isChecked))"
+         @onmousedown="() => {}" @onmousedown:preventDefault @attributes="@Attributes">
+        <input style="margin-right: 8px;" type="checkbox" @onclick:preventDefault checked=@_isChecked />
+        @ChildContent(TValue)
+    </div>
+}
+else
+{
+    <div @ref=@_dropdownItemEle id="@ElementId" class="customSelector-dropdown-item" style="display: flex;"
+         @onmouseup="@(() => DropdownComponent.ToggleDropdownItemComponentAsync(this, ChildContent, TValue))"
+         @onmousedown="() => {}"
+         @onmousedown:preventDefault
+         @attributes="@Attributes">
+        @ChildContent(TValue)
+    </div>
+}

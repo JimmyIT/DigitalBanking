@@ -1,0 +1,429 @@
+@layout NewBatchLayout
+@page "/maintenance/new"
+@using IFS.DB.WebApp.Models.Batch
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Helpers.FluentValidator
+@using IFS.DB.WebApp.Models
+
+<div class="batch-layout">
+<div class="batch-container">
+<div class="batch-breadcrumbs">
+    <p class="batch-breadcrumbs__item">Home</p>
+    <p class="batch-breadcrumbs__item active">New Batch</p>
+</div>
+
+<div class="batch-header">
+    <div class="batch-header-wrapper">
+        <img src="/img/icons/return.svg" alt="logo" class="batch-header__logo" style="cursor:pointer;" onclick="@(() => _navigateManager.NavigateTo("/maintenance"))"/>
+        <p class="batch-header__title">New Batch</p>
+        <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="batch-header__tooltip-icon"/>
+    </div>
+
+    <div>
+        <button class="batch-header__button" onclick="location.href='/maintenance'">Cancel</button>
+    </div>
+</div>
+
+<div class="batch">
+    <div class="batch-main">
+        <div class="batch-main__left @(ShowFormElement ? "" : "batch-main__left--inactive")" id="left">
+            <div class="batch-details">
+                <div class="batch-details-header">
+                    <p class="batch-details-header-step @(_isBatchSaved ? "batch-items-header-step--inactive" : "")" id="step1">Step 1</p>
+                    <p class="batch-details-header__title">
+                        General details
+                    </p>
+                </div>
+
+                <div class="batch-details-wrapper">
+                    <div class="batch-details-form" onkeyup="onFilledForm()">
+
+                        <EditForm EditContext="@_batchModelCtx">
+                            <EnableFluentValidator TValidator="BatchModelValidator"/>
+                            <div class="formgroup">
+                                @* <label>User Reference</label> *@
+                                @* <input placeholder="Enter here" class="input" id="reference"/> *@
+                                @* <p class="batch-details-form__text" id="referenceText"></p> *@
+                                <label>User Reference</label>
+                                @if (ShowFormElement)
+                                {
+                                    <div class="input-layout">
+                                        <InputText placeholder="Enter here" class="input" @bind-Value="_batchModel.UserReference"/>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _batchModel.UserReference)"/>
+                                }
+                                else
+                                {
+                                    <p class="batch-details-form__text" id="referenceText">@_batchModel.UserReference</p>
+                                }
+                            </div>
+
+                            <div class="formgroup">
+                                <label>Debit Account</label>
+                                @if (ShowFormElement)
+                                {
+                                    <InputSelect
+                                        Value="_batchModel.DebitAccount"
+                                        ValueExpression="@(() => _batchModel.DebitAccount)"
+                                        ValueChanged="@(value => _batchModel.DebitAccount = string.IsNullOrEmpty(value) ? null : value)"
+                                        TValue="string"
+                                        class="select">
+                                        <option value="">Select an account</option>
+                                        @foreach (AccountModel item in _fromAccounts)
+                                        {
+                                            <option value="@item.AccountNumber">@item.AccountDescription</option>
+                                        }
+                                    </InputSelect>
+                                    <CustomValidationMessage For="@(() => _batchModel.DebitAccount)"></CustomValidationMessage>
+                                }
+                                else
+                                {
+                                    <p class="batch-details-form__text" id="accountText">@_batchModel.DebitAccount</p>
+                                }
+                            </div>
+
+                            <div class="formgroup batch-details-form-row">
+                                <div class="formgroup">
+                                    <label>Batch Amount</label>
+                                    @if (ShowFormElement)
+                                    {
+                                        <AmountComponent
+                                            @bind-Value="@_batchModel.Amount"
+                                            class="input payments-information-form__amount"
+                                            ValidationFor="@(() => _batchModel.Amount)">
+                                        </AmountComponent>
+                                    }
+                                    else
+                                    {
+                                        <p class="batch-details-form__text" id="amountText">@_batchModel.Amount.ToNumberFormat()</p>
+                                    }
+                                </div>
+                                <div>
+                                    <label>Payment date</label>
+                                    @if (ShowFormElement)
+                                    {
+                                        <div class="input-layout">
+                                            <InputDate @bind-Value="_batchModel.PaymentDate" class="input"/>
+                                        </div>
+                                        <CustomValidationMessage For="@(() => _batchModel.PaymentDate)"></CustomValidationMessage>
+                                    }
+                                    else
+                                    {
+                                        <p class="batch-details-form__text" id="dateText">@(_batchModel.PaymentDate?.ToString("MMMM dd, yyyy"))</p>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="formgroup">
+                                @* <div> *@
+                                @*     <label>Debit Narrative</label> *@
+                                @*     <div class="input-layout"> *@
+                                @*         <textarea placeholder="Enter here" class="input"></textarea> *@
+                                @*     </div> *@
+                                @* </div> *@
+                                @* <p class="batch-details-form__text" id="narrativeText"></p> *@
+
+                                <label>Debit Narrative</label>
+                                @if (ShowFormElement)
+                                {
+                                    <div class="input-layout">
+                                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="_batchModel.DebitNarrative"></InputTextArea>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _batchModel.DebitNarrative)"></CustomValidationMessage>
+                                }
+                                else
+                                {
+                                    <p class="batch-details-form__text" id="narrativeText">@_batchModel.DebitNarrative</p>
+                                }
+                            </div>
+
+                            <div class="formgroup">
+                                <label>Default Credit Narrative</label>
+                                @if (ShowFormElement)
+                                {
+                                    <div class="input-layout">
+                                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="_batchModel.DefaultCreditNarrative"></InputTextArea>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _batchModel.DefaultCreditNarrative)"></CustomValidationMessage>
+                                }
+                                else
+                                {
+                                    <p class="batch-details-form__text" id="creditText">@_batchModel.DefaultCreditNarrative</p>
+                                }
+                            </div>
+                        </EditForm>
+
+                    </div>
+
+                    <div class="batch-details-footer">
+                        @* batch-details-footer__button--inactive *@
+                        @if (!_isBatchSaved)
+                        {
+                            <button class="batch-details-footer__button" id="detailsButton" @onclick="@SubmitBatchItem">Next</button>
+                        }
+                        else
+                        {
+                            @if (_isBatchEditing)
+                            {
+                                <button class="batch-details-footer__button" id="saveButton" @onclick="@SubmitBatchItem">Save updates</button>
+                            }
+                            else
+                            {
+                                <button class="batch-details-footer__editButton" id="editButton" @onclick="@(() => _isBatchEditing = true)" @onclick:preventDefault>
+                                    <img src="/img/icons/editIcon.svg" alt="edit"/>Edit details
+                                </button>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="batch-main__right @(ShowFormElement ? "batch-main__right--inactive" : "")" id="right">
+            <div class="batch-items">
+                <div class="batch-items-header">
+                    <div class="batch-items-header-wrapper">
+                        <div>
+                            <p class="batch-items-header-step @(_isBatchSaved is false ? "batch-items-header-step--inactive" : "")" id="step2">Step 2</p>
+                            <p class="batch-items-header__title">
+                                Add Batch items
+                            </p>
+                        </div>
+                        @if (_isBatchSaved)
+                        {
+                            <button class="batch-items-header__button" id="itemsHeaderButton" onclick="@NewBatchItem">
+                                <img src="/img/icons/add.svg" alt="plus"/>Add Item
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                @if (!_isBatchSaved)
+                {
+                    <p class="batch-items__description" id="headerDesctiption">Fill the Step 1 information before create the first Batch</p>
+                }
+
+                <CascadingValue Value="this">
+                    @for (var i = 0; i < _batchItems.Count; i++)
+                    {
+                        <BatchItemComponent
+                            Item="_batchItems[i]"
+                            Accounts="_toAccounts"
+                            ItemNo="i"
+                            EditMode="i == _selectedNum"
+                            OnSelected="OnSelectBatchItem"
+                            OnDelete="DeleteItem"
+                            IsExceedTotal="@(TotalAmount > _batchModel.Amount)"
+                            TriggerCalculateTotalAmount="StateHasChanged">
+                        </BatchItemComponent>
+                    }
+                </CascadingValue>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<footer class="batch-footer-layout">
+    <div class="batch-footer-container">
+        <div class="batch-footer">
+            <div class="batch-footer-left">
+            </div>
+
+            <div class="batch-footer-right">
+                <div class="batch-footer-right-batch">
+                    <p class="batch-footer-right-batch-text">Total allocated amount:</p>
+                    <p class="batch-footer-right-batch-text @(TotalAmount == _batchModel.Amount ? "batch-footer-right-batch-text--success" : "")">@TotalAmount</p>
+                </div>
+
+                <div class="batch-footer-right-act">
+                    <button class="batch-footer-right-act-reject @(IsBatchInValid ? "batch-footer-right-act-reject--inactive" : "")" disabled="@IsBatchInValid" onclick="@SaveBatch">Save Batch</button>
+                    <button class="batch-footer-right-act-sign @(IsBatchInValid ? "batch-footer-right-act-sign--inactive" : "")" disabled="@IsBatchInValid" onclick="@SubmitBatch">Submit Batch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+@code {
+
+    [CascadingParameter]
+    IModalService ModalSvc { get; set; } = default!;
+
+    private BatchModel _batchModel;
+    private EditContext _batchModelCtx;
+    private ValidationMessageStore _validationMessageStore;
+
+    private List<BatchItemModel> _batchItems = new();
+
+    private readonly List<AccountModel> _fromAccounts;
+    private readonly List<AccountModel> _toAccounts;
+
+    private bool _isBatchEditing;
+    private bool _isBatchSaved;
+
+    private BatchItemModel? _selectedNumItem;
+    private int? _selectedNum;
+
+    private bool ShowFormElement => !_isBatchSaved || _isBatchEditing;
+
+    private readonly Dictionary<int, EditContext> _batchItemEditCtxDict = new();
+
+    private decimal TotalAmount => _batchItems.Sum(x => x.Amount) ?? 0;
+
+    internal void AddChildContext(int no, EditContext ctx) => _batchItemEditCtxDict.Add(no, ctx);
+
+    private bool IsBatchInValid => _batchModelCtx.GetValidationMessages().Any()
+                                   || _batchItemEditCtxDict.Count == 0
+                                   || _batchItemEditCtxDict.Values.Any(x => x.Validate() is false);
+
+    private bool IsEditMode => _appStore.BatchStore is {};
+
+    public BatchMaintenanceNew()
+    {
+        _batchModel = new BatchModel
+        {
+            PaymentDate = DateTime.Now
+        };
+        _batchModelCtx = new EditContext(_batchModel);
+        _batchModelCtx.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _validationMessageStore = new ValidationMessageStore(_batchModelCtx);
+
+        _toAccounts = FakeData.Accounts;
+        _fromAccounts = FakeData.Accounts;
+    }
+
+    protected override void OnInitialized()
+    {
+        _batchModelCtx.OnFieldChanged += (_, args) => { _validationMessageStore.Clear(args.FieldIdentifier); };
+
+        if (_appStore.BatchStore is {})
+        {
+            _batchModel = _appStore.BatchStore;
+            _batchItems = _batchModel!.BatchItems?.ToList() ?? Enumerable.Empty<BatchItemModel>().ToList();
+            _isBatchSaved = true;
+            SetModelForm(_batchModel);
+            return;
+        }
+
+        if (_batchModel.Status == BatchStatus.Submitted)
+        {
+            _isBatchSaved = true;
+        }
+    }
+
+    private void SetModelForm(BatchModel value)
+    {
+        _batchModel = value with { };
+        _batchModelCtx = new EditContext(_batchModel);
+        _batchModelCtx.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _validationMessageStore = new ValidationMessageStore(_batchModelCtx);
+    }
+
+    private void NewBatchItem()
+    {
+        if (_batchItemEditCtxDict.Values.Any(x => x.Validate() is false))
+            return;
+
+        var newItem = new BatchItemModel();
+        _batchItems.Add(newItem);
+        _selectedNum = _batchItems.Count - 1;
+    }
+
+    private async Task SubmitBatchItem()
+    {
+        if (!_batchModelCtx.Validate())
+            return;
+
+        if (!_isBatchSaved)
+        {
+            NewBatchItem();
+        }
+
+        _isBatchSaved = true;
+        _isBatchEditing = false;
+    }
+
+    private void DeleteItem(BatchItemModel model)
+    {
+        var no = _batchItems.IndexOf(model);
+        _batchItems.Remove(model);
+        _batchItemEditCtxDict.Remove(no);
+        _selectedNum = null;
+    }
+
+    private void OnSelectBatchItem((int? index, BatchItemModel? item) param)
+    {
+        if (_batchItemEditCtxDict.Values.Any(x => x.Validate() is false))
+            return;
+        _selectedNum = param.index;
+    }
+
+    private async Task SaveBatch()
+    {
+        if (IsBatchInValid)
+            return;
+
+        SaveBatchInternal(BatchStatus.Draft);
+        _navigateManager.NavigateTo("/maintenance");
+    }
+
+    private async Task SubmitBatch()
+    {
+        if (IsBatchInValid)
+            return;
+
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(BatchSubmitConfirmationComponent.BatchModel), _batchModel);
+
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+
+        IModalReference confirmModal = ModalSvc
+            .Show<BatchSubmitConfirmationComponent>(
+                title: $"Submit {_batchModel.UserReference} Batch",
+                parameters: parameters,
+                options: options);
+
+        ModalResult confirmModalResult = await confirmModal.Result;
+
+        if (confirmModalResult.Confirmed)
+        {
+            SaveBatchInternal(BatchStatus.Waiting);
+            _ = ModalSvc
+                .Show<BatchSubmitSuccessAnnoucementComponent>(
+                    title: $"{_batchModel.UserReference} Batch was submitted",
+                    parameters: new ModalParameters { { "BatchName", _batchModel.UserReference } },
+                    options: options);
+        }
+    }
+
+    private void SaveBatchInternal(BatchStatus batchStatus)
+    {
+        if (IsEditMode is false)
+        {
+            FakeData.Batches.Add(
+                _batchModel 
+                    with{
+                    Status = batchStatus,
+                    SubmittedDate = DateTime.Now,
+                    BatchItems = _batchItems
+                    });
+        }
+        else
+        {
+            var index = FakeData.Batches.FindIndex(x => x.Id == _batchModel.Id);
+            if (index > -1)
+            {
+                FakeData.Batches[index] = _batchModel with { BatchItems = _batchItems};
+            }
+        }
+    }
+
+}

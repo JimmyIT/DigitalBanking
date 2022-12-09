@@ -1,0 +1,8 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.underline-text {
+    @include caption1;
+    margin-top: $indent-4;
+    color: $color-gray-600;
+}

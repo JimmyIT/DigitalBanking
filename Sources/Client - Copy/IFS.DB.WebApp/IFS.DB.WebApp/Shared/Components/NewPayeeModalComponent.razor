@@ -1,0 +1,111 @@
+@using IFS.DB.WebApp.Helpers.Enums
+<div class="modal-layout" id="ModalNewPayee" style="display:block!important">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalNewPayee()"></div>
+        <div class="payments-modal-layout">
+            <div class="payments-modal">
+                <div class="payments-modal-header-wrapper">
+                    <div class="payments-modal-header">
+                        <p class="payments-modal-header__title">Create new Payee</p>
+                        <div class="payments-modal-header__icon" @onclick="@Close">
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                    </div>
+                </div>
+                <EditForm EditContext="@_createPayeeContext" OnInvalidSubmit=@InvalidSubmit OnValidSubmit=@CreatePayee>
+                    <DataAnnotationsValidator />
+
+                    <div class="payments-modal-main">
+                        <div class="payments-modal-main-input">
+                            <div class="formgroup">
+                                <label>Template reference</label>
+                                <InputText placeholder="Enter here" class="input" @bind-Value="_createPayeeModel.TemplateRefernce"></InputText>
+                                <CustomValidationMessage For="@(() => _createPayeeModel.TemplateRefernce)"></CustomValidationMessage>
+                                <p class="underline-text">Has to be explaination of this template</p>
+                            </div>
+                        </div>
+                        <div class="payments-modal-main-form">
+                            <div class="formgroup">
+                                <AccountSelectionComponent TValue="string"
+                                                           Label="Debit account"
+                                                           DefaultOption="Selected when making a payment"
+                                                           ValidationFor="() => _createPayeeModel.FromAccountNumber"
+                                                           @bind-Value="@_createPayeeModel.FromAccountNumber">
+                                </AccountSelectionComponent>
+                            </div>
+
+                            <div class="formgroup">
+                                <PaymentTypeComponent TValue="PaymentTypeEnum"
+                                                      Label="Select a type"
+                                                      ValidationFor="() => _createPayeeModel.PaymentType" 
+                                                      @bind-Value="@_createPayeeModel.PaymentType">
+                                </PaymentTypeComponent>
+                            </div>
+                        </div>
+
+                        <div class="payments-modal-main-form">
+                            <p class="payments-modal-main-form__title">Payment information</p>
+                        </div>
+
+                        <div class="payments-modal-main-form">
+                            <div class="formgroup">
+                                <label>Account name</label>
+                                <InputText placeholder="Enter here" class="input" @bind-Value="_createPayeeModel.AccountName"></InputText>
+                                <CustomValidationMessage For="@(() => _createPayeeModel.AccountName)"></CustomValidationMessage>
+                            </div>
+
+                            <div class="formgroup">
+                                <label>Account No.</label>
+                                <InputText placeholder="Enter here" class="input" @bind-Value="_createPayeeModel.ToAccountNumber"></InputText>
+                                <CustomValidationMessage For="@(() => _createPayeeModel.ToAccountNumber)"></CustomValidationMessage>
+                            </div>
+                        </div>
+
+                        <div class="payments-modal-main-form">
+                            <div class="formgroup">
+                                <label>Payment reference</label>
+                                <InputText placeholder="Enter here" class="input" @bind-Value="_createPayeeModel.PaymentReference"></InputText>
+                                <CustomValidationMessage For="@(() => _createPayeeModel.PaymentReference)"></CustomValidationMessage>
+                            </div>
+
+                            <div class="formgroup">
+                                <label>Sort code</label>
+                                <InputText placeholder="_ _ _" class="input" @bind-Value="_createPayeeModel.SortCode"></InputText>
+                                <CustomValidationMessage For="@(() => _createPayeeModel.SortCode)"></CustomValidationMessage>
+                            </div>
+
+                            <div class="formgroup">
+                                @*TODO*@
+                                <CurrencySelectionComponent TValue="string"
+                                                           Label="Currency"
+                                                           DefaultOption="Select a currency"
+                                                           ValidationFor="() => _createPayeeModel.Currency"
+                                                           @bind-Value="@_createPayeeModel.Currency">
+                                </CurrencySelectionComponent>
+                            </div>
+                        </div>
+
+                        <div class="payments-modal-main-input">
+                            <div class="formgroup">
+                                <label>Debit Narrative</label>
+                                <div class="input-layout">
+                                    <InputTextArea placeholder="Enter here" class="input" @bind-Value="_createPayeeModel.DebitNarrative"></InputTextArea>
+                                    <CustomValidationMessage For="@(() => _createPayeeModel.DebitNarrative)"></CustomValidationMessage>
+                                </div>
+                            </div>
+                            @*TODO*@
+                            @*<NarrativeComponent />*@
+                        </div>
+                    </div>
+
+                    <div class="payments-modal-footer">
+                        <button class="payments-modal-footer__buttonCancel" @onclick="@Close" @onclick:preventDefault>Cancel</button>
+                        <button type="submit" class="payments-modal-footer__buttonSuccess">Save and apply Payee</button>
+                    </div>
+
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>

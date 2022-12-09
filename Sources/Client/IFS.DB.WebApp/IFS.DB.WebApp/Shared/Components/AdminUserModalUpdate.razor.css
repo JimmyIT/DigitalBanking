@@ -1,0 +1,142 @@
+.update-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+}
+.update-modal-layout {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+  max-width: 744px;
+}
+.update-modal-header-wrapper {
+  margin-bottom: 16px;
+}
+.update-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.update-modal-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #121217;
+}
+.update-modal-header__subtitle {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 4px;
+  color: #212121;
+}
+.update-modal-header__icon {
+  cursor: pointer;
+}
+.update-modal-footer {
+  display: flex;
+  justify-content: flex-start;
+}
+.update-modal-footer__buttonOk {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  min-width: 144px;
+}
+.update-modal-footer__buttonOk:hover .iconBlock .icon {
+  opacity: 0;
+}
+.update-modal-footer__buttonOk:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.update-modal-footer__buttonOk:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.update-modal-footer__buttonOk:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.update-modal-footer__buttonOk .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.update-modal-footer__buttonOk .iconBlock:hover .icon {
+  opacity: 0;
+}
+.update-modal-footer__buttonOk .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.update-modal-footer__buttonOk .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.update-modal-footer__buttonOk .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.update-modal-footer__buttonOk .iconBlock.active .icon {
+  opacity: 0;
+}
+.update-modal-footer__buttonOk .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.update-modal-footer__buttonOk .iconBlock .icon,
+.update-modal-footer__buttonOk .iconBlock .iconHover,
+.update-modal-footer__buttonOk .iconBlock .iconActive,
+.update-modal-footer__buttonOk .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.update-modal-footer__buttonOk .iconBlock .iconHover,
+.update-modal-footer__buttonOk .iconBlock .iconActive,
+.update-modal-footer__buttonOk .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.update-modal-footer__buttonOk > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.update-modal-footer__buttonOk .iconBlock,
+.update-modal-footer__buttonOk > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.update-modal-footer__buttonOk .iconBlock:first-child,
+.update-modal-footer__buttonOk > img:first-child {
+  margin-left: 0;
+}
+.update-modal-footer__buttonOk .iconBlock:last-child,
+.update-modal-footer__buttonOk > img:last-child {
+  margin-right: 0;
+}
+.update-modal-footer__buttonOk:hover {
+  background-color: #0248a4;
+}

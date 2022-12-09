@@ -1,0 +1,10 @@
+.underline-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  margin-top: 4px;
+  color: #6a6a6a;
+}

@@ -1,0 +1,173 @@
+[14:59:45 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'LoB4c0wifK_7QTHXNC7JKEPKxbMNNqLkldsouF0oFyw'. **** System.InvalidOperationException: Object of type 'System.String' does not have a property matching the name 'Item'.
+   at Microsoft.AspNetCore.Components.Reflection.ComponentProperties.ThrowForUnknownIncomingParameterName(Type targetType, String parameterName)
+   at Microsoft.AspNetCore.Components.Reflection.ComponentProperties.SetProperties(ParameterView& parameters, Object target)
+   at Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties(Object target)
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.SetParametersAsync(ParameterView parameters) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 12
+
+[14:59:45 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'LoB4c0wifK_7QTHXNC7JKEPKxbMNNqLkldsouF0oFyw'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[15:59:46 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '_LrtFDR5MZsEBcn7oayUyc14rUIt-jumFU0TcR0DXmk'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Features.Admin.Pages.MandatesMaintenance.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\MandatesMaintenance.razor:line 57
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[16:04:35 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'VGG8NikjCl6Z38nDdWKYXU5NTQDi3wohcAmZ3s_248I'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Features.Admin.Pages.MandatesMaintenance.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\MandatesMaintenance.razor:line 57
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[16:05:26 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'LsGcxrSMnIZHlbR-wI8eploYdS_wbj4zNUbliOf_c0c'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 24
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.SetParametersAsync(ParameterView parameters) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 19
+
+[16:05:26 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'LsGcxrSMnIZHlbR-wI8eploYdS_wbj4zNUbliOf_c0c'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[16:11:20 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'bgbMynN5qpPUmhUG8P1egOKl-wsetL7wU4-m_proiyE'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 24
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.SetParametersAsync(ParameterView parameters) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 19
+
+[16:11:21 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'bgbMynN5qpPUmhUG8P1egOKl-wsetL7wU4-m_proiyE'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[17:03:25 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'Rf-v9TZA-ZuQWHDjqUU5L2rcOIt5VoemhO8jM_uNTWM'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 28
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.SetParametersAsync(ParameterView parameters) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 21
+
+[17:03:25 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'Rf-v9TZA-ZuQWHDjqUU5L2rcOIt5VoemhO8jM_uNTWM'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[17:15:50 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'GZtba8WOenugYDS0C0y-y9y8K4nKGezi80TcrAWaElY'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.ActiveSimpleValueSectionAync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 70
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.PrepareUIAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 40
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 29
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.SetParametersAsync(ParameterView parameters) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 24
+
+[17:15:50 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'GZtba8WOenugYDS0C0y-y9y8K4nKGezi80TcrAWaElY'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[17:16:49 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'dVTg0aBP6bM_CMcsGXxePqYDYEKfcnjWe_m177zS_18'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.ActiveSimpleValueSectionAync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 70
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.PrepareUIAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 40
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 29
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.SetParametersAsync(ParameterView parameters) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 24
+
+[17:16:49 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'dVTg0aBP6bM_CMcsGXxePqYDYEKfcnjWe_m177zS_18'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[17:23:04 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'Sh2ubELdRH5AQhGtvKvImT6bAuHuHmQRNLPYHXT0FnU'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'model')
+   at Microsoft.AspNetCore.Components.Forms.EditContext..ctor(Object model)
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.ActiveFormulaSection() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 84
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[17:29:15 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'oKSxNdXvkmJOa39L0R475JE3FT9oxnQrWKV4_dCEoNI'. **** System.InvalidOperationException: The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state.
+   at Microsoft.AspNetCore.Components.Dispatcher.AssertAccess()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.AddToRenderQueue(Int32 componentId, RenderFragment renderFragment)
+   at Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged()
+   at IFS.DB.WebApp.Features.Admin.Pages.MandatesMaintenance.<ForceStateHasChangeAsync>b__8_0() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\MandatesMaintenance.razor.cs:line 23
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at IFS.DB.WebApp.Features.Admin.Pages.MandatesMaintenance.ForceStateHasChangeAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\MandatesMaintenance.razor.cs:line 21
+   at IFS.DB.WebApp.Shared.Components.MandatesItemComponent.RemoveMandatesItemAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\MandatesItemComponent.razor.cs:line 97
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+

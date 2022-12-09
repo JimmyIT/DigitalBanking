@@ -1,0 +1,11 @@
+﻿Dear $FirstName $LastName,<br/>
+<br/>
+In order to proceed with your application please click on the link below to complete the KYC Registration process.<br/>
+<br/>
+<a href='$ConfirmURL'>KYC Registration Process</a><br/>
+<br/>
+This link will expire in $ExpiryTime hours from the time of this email. <br/>
+<br/>
+Kind Regards, <br/>
+<br/>
+The Registration Team <br/>

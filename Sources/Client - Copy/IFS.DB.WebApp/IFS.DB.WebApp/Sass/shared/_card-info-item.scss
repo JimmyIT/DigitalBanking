@@ -1,0 +1,138 @@
+.card-info {
+	min-width: 364px;
+	width: 364px;
+	min-height: 184px;
+	background: $color-gray-100;
+	border: 2px solid $color-gray-200;
+	border-radius: 16px;
+	color: $color-gray-600;
+	padding: $indent-24;
+	cursor: pointer;
+	transition: $transitionDuration;
+	margin-right: $indent-24;
+	&:last-child {
+		margin-right: 0;
+	}
+	&:hover:not(.card-info--active) {
+		@include shadowGray;
+		border-color: #8bbdff;
+		background: $color-white;
+		color: $color-gray-900;
+	}
+
+	&__header-1,
+	&__header-2 {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__header-1 {
+		margin-bottom: $indent-4;
+	}
+
+	&__caption {
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 24px;
+	}
+
+	&__currency {
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 16px;
+	}
+
+	&__title {
+		@include h4;
+		display: flex;
+		align-items: center;
+
+		&-copy {
+			@include square-icon(24px);
+			margin-left: $indent-4;
+			cursor: pointer;
+		}
+	}
+
+	&__favorite {
+		@include buttonIconSmall;
+	}
+
+	&__hr {
+		@include hr;
+		margin: $indent-12 0;
+	}
+
+	&-balance {
+		&__title__box {
+			width: 100%;
+			display: inline-flex;
+
+			.card-info-balance__title {
+				font-weight: 700;
+				font-size: 10px;
+				line-height: 12px;
+				text-transform: uppercase;
+				display: inline-flex;
+				width: 50%;
+				align-items: center;
+			}
+
+			.card-info-tooltip__button {
+				margin-left: 4px;
+				width: 50%;
+				display: inline-flex;
+				text-align: right;
+				justify-content: end;
+			}
+		}
+
+		&__title {
+			font-weight: 700;
+			font-size: 10px;
+			line-height: 12px;
+			text-transform: uppercase;
+		}
+
+		&-list {
+			display: flex;
+			flex-wrap: wrap;
+
+			&__item {
+				margin: $indent-8 $indent-36 0 0;
+
+				&:last-child {
+					margin-right: 0;
+				}
+
+				&-caption {
+					font-size: 12px;
+					line-height: 16px;
+					white-space: nowrap;
+				}
+
+				&-number {
+					font-weight: 600;
+					font-size: 17px;
+					line-height: 24px;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+
+	&.card-info--active {
+		@include shadowBlue;
+		background: radial-gradient(
+			100% 493.08% at 2.16% 0%,
+			#3188fa 0%,
+			#3f51b5 100%
+		);
+		color: $color-white;
+
+		.card-info__hr {
+			@include hr-white;
+		}
+	}
+}

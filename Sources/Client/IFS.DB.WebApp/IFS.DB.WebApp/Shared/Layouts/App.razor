@@ -1,0 +1,18 @@
+﻿<CascadingAuthenticationState>
+    <CascadingBlazoredModal>
+        <Router AppAssembly="@typeof(Program).Assembly">
+            <Found Context="routeData">
+                <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(BasicLayout)">
+                    <Authorizing>
+                        <text>Please wait, we are authorizint the user.</text>
+                    </Authorizing>
+                </AuthorizeRouteView>
+                @*<RouteView RouteData="@routeData" DefaultLayout="@typeof(BasicLayout)" />
+                <FocusOnNavigate RouteData="@routeData" Selector="h1" />*@
+            </Found>
+            <NotFound>
+                <LayoutView Layout="@typeof(BasicLayout)" />
+            </NotFound>
+        </Router>
+    </CascadingBlazoredModal>
+</CascadingAuthenticationState>

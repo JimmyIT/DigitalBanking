@@ -1,0 +1,161 @@
+.usersTable td {
+  vertical-align: middle;
+}
+.usersTable td:nth-child(4) {
+  text-align: right;
+}
+.usersTable thead td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: #f2f7fd;
+  color: #81afed;
+}
+.usersTable thead td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.usersTable thead td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.usersTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+.usersTable tbody tr:last-child {
+  border-bottom: 0;
+}
+.usersTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+.usersTable tbody td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 20px;
+  color: #6a6a6a;
+}
+.usersTable tbody td:first-child {
+  color: #212121;
+}
+.usersTable tbody td:last-child {
+  color: #0360db;
+}
+.usersTable-item {
+  display: flex;
+  align-items: center;
+}
+.usersTable-item__input {
+  margin-right: 8px;
+  border: 1.25px solid #0360db;
+  border-radius: 2px;
+}
+.usersTable-item__img {
+  margin-right: 8px;
+}
+.usersTable-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  padding: 8px 16px;
+}
+.usersTable-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.usersTable-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.usersTable-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.usersTable-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.usersTable-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.usersTable-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.usersTable-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.usersTable-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.usersTable-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.usersTable-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.usersTable-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.usersTable-button .iconBlock .icon,
+.usersTable-button .iconBlock .iconHover,
+.usersTable-button .iconBlock .iconActive,
+.usersTable-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.usersTable-button .iconBlock .iconHover,
+.usersTable-button .iconBlock .iconActive,
+.usersTable-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.usersTable-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.usersTable-button .iconBlock,
+.usersTable-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.usersTable-button .iconBlock:first-child,
+.usersTable-button > img:first-child {
+  margin-left: 0;
+}
+.usersTable-button .iconBlock:last-child,
+.usersTable-button > img:last-child {
+  margin-right: 0;
+}
+.usersTable-button:hover {
+  color: #0248a4;
+}
+.usersTable-button.usersTable-button--inactive {
+  color: #d2d2d2;
+}

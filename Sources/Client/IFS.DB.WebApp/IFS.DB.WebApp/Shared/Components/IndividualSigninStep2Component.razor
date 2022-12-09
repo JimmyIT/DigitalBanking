@@ -1,0 +1,49 @@
+﻿@using IFS.DB.WebApp.Features.Identity.Pages
+
+@if (SseCustomerIdentify is not null)
+{
+    <div class="auth-layout">
+        <div class="auth-container">
+            <div class="auth">
+                <p class="auth__title">@L["sign_in"]</p>
+                <div class="auth-box">
+                    <div class="auth-box-header">
+                        <div class="auth-box-header__item" 
+                             @onclick="@(async () => await  OnValueChanged.InvokeAsync(IndividualSignin.SigninStepsEnum.FirstStep))">@L["step"] 1</div>
+                        <div class="auth-box-header__item active" >@L["step"] 2</div>
+                    </div>
+                    <div class="auth-box-main">
+                        <p class="auth-box-main__title">@L["security_details"]</p>
+                        <div class="auth-box-main__subtitle">
+                            <p class="auth-box-main__subtitle-text">@L["user_name"]: <b>Jane Watson</b></p>
+                            <div class="auth-box-main__subtitle-info">
+                                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payments-header__tooltip-icon" />
+                            </div>
+                        </div>
+                        <div class="auth-box-form">
+
+                            <PasswordComponent 
+                                IsSubmitting="@_isSubmitting"
+                                PasswordLength="@SseCustomerIdentify!.PasswordLength"
+                                @bind-PasswordDict="@_passwordDict"
+                                ShowInvalid="_showInvalid"/>
+                            
+                            <PinComponent 
+                                IsSubmitting="_isSubmitting" 
+                                @bind-Codes="_passCodes"
+                                ShowInvalid="_showInvalid"/>
+
+                            <div class="auth-box-form__footer">
+                                <button type="button" class="auth-box-form__footer-back" @onclick="Back">@L["back"]</button>
+                                <div>
+                                    <button type="button" class="auth-box-form__footer-forgot">@L["forgot_security_details"]</button>
+                                    <button type="submit" class="auth-box-form__footer-next" @onclick="Signin">@L["sign_in"]</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

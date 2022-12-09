@@ -1,0 +1,169 @@
+@layout UserLayout
+@page "/transfers"
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Models.Transfer
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+
+<div class="transfers-layout">
+    <div class="transfers-container">
+        <div class="transfers">
+            <div class="transfers-header">
+                <div class="transfers-header-wrapper">
+                    <img src="/img/transactionTable/transfer.svg" alt="logo" class="transfers-header__logo"/>
+                    <p class="transfers-header__title">Transfers</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="transfers-header__tooltip-icon"/>
+                </div>
+                <div>
+                    <button class="transfers-header__button" onclick="location.href='/payments'">Make Payment <img src="/img/icons/arrowRight.svg" alt="arrow"/></button>
+                </div>
+            </div>
+            <div class="transfers-main">
+                <div class="transfers-main__left">
+                    <EditForm id="createPaymentContext" EditContext="@_transferContext" @ref="@_formRef" OnValidSubmit="@ShowTransfersModalConfirmComponent">
+                        <DataAnnotationsValidator/>
+                        <div class="transfers-form">
+                            <p class="transfers-form__title">New Transfer</p>
+                            <div class="transfers-form-transfer">
+                                <div class="formgroup transfers-form-transfer-selector">
+                                    <label>From account</label>
+                                    <InputSelect @bind-Value="_transferModel.DebitAccount"
+                                                 class="select">
+                                        <option value="">Select an account</option>
+                                        @foreach (var item in _fromAccounts
+                                            .ExceptBy(new List<string> { _transferModel.CreditAccount }, x => x.AccountNumber))
+                                        {
+                                            <option value="@item.AccountNumber">@item.AccountDescription</option>
+                                        }
+                                    </InputSelect>
+                                    <p class="underline-text">Please select an account from which you wish the funds to be taken.</p>
+                                    <CustomValidationMessage For="@(() => _transferModel.DebitAccount)"></CustomValidationMessage>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transfers-information">
+                            <p class="transfers-information__title">Payment information</p>
+                            <div class="transfers-information-form">
+                                <div class="formgroup transfers-information-form__selector">
+                                    <label>Transfer to</label>
+                                    <InputSelect @bind-Value="_transferModel.CreditAccount"
+                                                 class="select">
+                                        <option value="">Select an account</option>
+                                        @foreach (var item in _toAccounts
+                                            .ExceptBy(new List<string> { _transferModel.DebitAccount }, x => x.AccountNumber))
+                                        {
+                                            <option value="@item.AccountNumber">@item.AccountDescription</option>
+                                        }
+                                    </InputSelect>
+                                    <p class="underline-text">Please select an account to credit.</p>
+                                    <CustomValidationMessage For="@(() => _transferModel.CreditAccount)"></CustomValidationMessage>
+                                </div>
+                                <div class="formgroup">
+                                    <AmountComponent
+                                        LabelText="Credit amount"
+                                        @bind-Value="@_transferModel.Amount"
+                                        class="input payments-information-form__amount"
+                                        ValidationFor="@(() => _transferModel.Amount)">
+                                    </AmountComponent>
+                                </div>
+                                <div class="formgroup">
+                                    <label>Transfer date</label>
+                                    <div class="input-layout">
+                                        <InputDate @bind-Value="_transferModel.TransferDate" class="input"/>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _transferModel.TransferDate)"></CustomValidationMessage>
+                                </div>
+                            </div>
+                            <div class="formgroup transfers-information-form__textarea">
+                                <div>
+                                    <label>Debit Narrative</label>
+                                    <div class="input-layout">
+                                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="_transferModel.DebitNarrative"></InputTextArea>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _transferModel.DebitNarrative)"></CustomValidationMessage>
+                                </div>
+                            </div>
+                            <div class="formgroup transfers-information-form__textarea">
+                                <div>
+                                    <label>Credit Narrative</label>
+                                    <div class="input-layout">
+                                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="_transferModel.CreditNarrative"></InputTextArea>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _transferModel.CreditNarrative)"></CustomValidationMessage>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transfers-footer">
+                            <button class="transfers-footer__buttonCancel" @onclick="@(() => _navigateManager.NavigateTo("/user/dashboard"))" @onclick:preventDefault>
+                                Cancel
+                            </button>
+                            <button class="transfers-footer__buttonSuccess" type="submit">Proceed</button>
+                        </div>
+                        @*<TransfersModalConfirmComponent />*@
+                        @*<TransfersModalSuccessComponent />*@
+                    </EditForm>
+                </div>
+                <div class="transfers-main__right">
+                    <TransfersHistoryComponent SetTransfer="@SetTransferModelForm"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    IModalService PaymentModalSvc { get; set; } = default!;
+
+    private List<AccountModel>? _fromAccounts;
+    private List<AccountModel>? _toAccounts;
+
+    private EditForm _formRef = new();
+
+    private CreateTransferRequestModel _transferModel;
+    private EditContext _transferContext;
+    private ValidationMessageStore _transferValidateMsgStore;
+
+
+    protected override void OnInitialized()
+    {
+        SetTransferModelForm(new CreateTransferRequestModel());
+
+        _fromAccounts = FakeData.Accounts;
+        _toAccounts = FakeData.Accounts;
+
+        _transferContext.OnFieldChanged += (_, args) => { _transferValidateMsgStore.Clear(args.FieldIdentifier); };
+    }
+
+    private void ShowTransfersModalConfirmComponent()
+    {
+        ModalParameters parameters = new ModalParameters()
+            .Add(nameof(TransfersModalConfirmComponent.TransferRequestModel), _transferModel);
+
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+
+        PaymentModalSvc.Show<TransfersModalConfirmComponent>("Confirm Transfer", parameters, options);
+
+    //SetTransferModelForm(new CreateTransferRequestModel());
+    }
+
+    private void ResetForm()
+    {
+        SetTransferModelForm(new CreateTransferRequestModel());
+    }
+
+    private void SetTransferModelForm(CreateTransferRequestModel value)
+    {
+        _transferModel = value with { };
+        _transferContext = new EditContext(_transferModel);
+        _transferContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _transferValidateMsgStore = new ValidationMessageStore(_transferContext);
+    }
+
+}

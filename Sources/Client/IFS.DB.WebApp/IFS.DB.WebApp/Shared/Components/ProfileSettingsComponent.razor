@@ -1,0 +1,126 @@
+@using IFS.DB.WebApp.Models
+<div class="profile-main">
+    <EditForm id="_profileSettingsEditContextId"
+              style="min-height: 100vh;display: contents;"
+              EditContext="@_profileSettingsEditContext" 
+              OnValidSubmit=@OnValidSubmit_Click 
+              OnInvalidSubmit=@OnInvalidSubmit_Click>
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <div class="profile-main__content">
+            <p class="profile-main__title">Profile Settings</p>
+            <div class="profile-info">
+                <div class="profile-info-avatar">
+                    @if (!string.IsNullOrEmpty(_changeProfileSettingsRequestModel.AvartaUrl))
+                    {
+                        <img src="@_changeProfileSettingsRequestModel.AvartaUrl" alt="avatar" class="profile-info-avatar__image" />
+                    }
+                    else
+                    {
+                        <div class="profile-info-avatar__initials">
+                            @($"{_changeProfileSettingsRequestModel.FirstName.Substring(0, 1).ToUpper()}{_changeProfileSettingsRequestModel.LastName.Substring(0, 1).ToUpper()}")
+                        </div>
+                    }
+                    <div class="profile-info-avatar-edit">
+                        <button type="button" @onclick=@ShowDropdownAction @onfocusout=@HideDropdownAction>
+                            <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                            <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                            <div class="profile-info-avatar-edit-dropdown" style="@_styleToShowDropdown">
+                                <div class="profile-info-avatar-edit-dropdown__item">Change photo</div>
+                                <div class="profile-info-avatar-edit-dropdown__item" @onclick=@DeleteAvarta>Delete photo</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-info-main">
+                    <p class="profile-info-main__title">If you need to change personal information, please send request to our support team, and we help you!</p>
+                    <div class="profile-info-main__row">
+                        <div class="profile-info-main__row-content">
+                            <div class="profile-info-main__column">
+                                <p class="profile-info-main__column-caption">First name</p>
+                                <p class="profile-info-main__column-text">@_changeProfileSettingsRequestModel.FirstName</p>
+                            </div>
+                            <div class="profile-info-main__column">
+                                <p class="profile-info-main__column-caption">Middle name</p>
+
+                                @if (!string.IsNullOrEmpty(@_changeProfileSettingsRequestModel.MiddleName))
+                                {
+                                    <p class="profile-info-main__column-text">
+                                        @_changeProfileSettingsRequestModel.MiddleName
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="profile-info-main__column-text">—</p>
+                                }
+
+                            </div>
+                            <div class="profile-info-main__column">
+                                <p class="profile-info-main__column-caption">Last name</p>
+                                <p class="profile-info-main__column-text">@_changeProfileSettingsRequestModel.LastName</p>
+                            </div>
+                            <div class="profile-info-main__column">
+                                <p class="profile-info-main__column-caption">Date of birth</p>
+                                <p class="profile-info-main__column-text">@_changeProfileSettingsRequestModel.DateOfBirth.ToString("dd/MM/yyyy")</p>
+                            </div>
+                        </div>
+                        <button type="button" class="profile-info-main__row-button">Request data changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="profile-main__hr" />
+
+            <div class="profile-main-formblock">
+                <p class="profile-main-formblock__title">Profile Settings</p>
+                <div class="profile-main-formrow formrow">
+                    <div class="profile-main-formgroup formgroup">
+                        <div>
+                            <label>Phone number</label>
+                            <div class="phone">
+                                <DropdownComponent TItem="CultureInfoModel"
+                                                   OnSelectedItem=@OnSelectedPhoneNumberIDD>
+                                    <InitialTip>@_changeProfileSettingsRequestModel.PhoneNumberIDD</InitialTip>
+                                    <DropdownChildContent>
+                                        @foreach (var cultureInfo in _listCulturesModel)
+                                        {
+                                            <DropdownItemComponent TItem="CultureInfoModel" Item="@cultureInfo" Context="_">
+                                                <DropdownItemChildContent>
+                                                    @cultureInfo.PhoneNumberIDD
+                                                </DropdownItemChildContent>
+                                            </DropdownItemComponent>
+                                        }
+                                    </DropdownChildContent>
+                                </DropdownComponent>
+                                <InputText placeholder="000 000 000" class="input" @bind-Value=@_changeProfileSettingsRequestModel.PhoneNumber />
+                            </div>
+                        </div>
+                        @*TODO*@
+                        @*<PhoneNumberComponent></PhoneNumberComponent>*@
+                    </div>
+                    <div class="profile-main-formgroup formgroup">
+                        <div>
+                            <label>Email</label>
+                            <div class="input-layout input-layout--email">
+                                <InputText placeholder="Email" class="input" @bind-Value=@_changeProfileSettingsRequestModel.Email />
+                            </div>
+                            <CustomValidationMessage For="@(() => _changeProfileSettingsRequestModel.Email)"></CustomValidationMessage>
+                        </div>
+                        @*TODO*@
+                        @*<EmailComponent></EmailComponent>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-main__footer">
+            @if (isSuccess)
+            {
+                <p class="profile-main__footer-message">
+                    <img src="/img/icons/check.svg" alt="check" />
+                    Updates were saved
+                </p>
+            }
+            <button type="submit" class="profile-main__footer-button">Save updates</button>
+        </div>
+    </EditForm>
+</div>

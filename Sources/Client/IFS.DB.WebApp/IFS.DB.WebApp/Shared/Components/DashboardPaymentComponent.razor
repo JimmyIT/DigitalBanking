@@ -1,0 +1,51 @@
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.PayeeTemplate
+
+<div class="home-payment">
+    <p class="home-payment__title">Payment</p>
+    <p class="home-payment__subtitle">Additional text</p>
+    <div class="home-payment__form select-layout">
+        <div class="home-payment__form-selector">
+            @*<PayeeSelectionComponent></PayeeSelectionComponent>*@
+            <div class="formgroup">
+                <label>Pay to</label>
+                <div class="select-layout">
+                    <select class="select" @onchange="@((args) => _payeeTemplateSelected = FakeData.PayeeTemplates.FirstOrDefault(x => x.HostReference == (string) args.Value))">
+                        <option selected disabled>Select Payee</option>
+                        @foreach (var item in FakeData.PayeeTemplates)
+                        {
+                            <option value="@item.HostReference">@item.HostReference</option>
+                        }
+                    </select>
+                </div>
+                @* @if (_payeeTemplateSelected is null) *@
+                @* { *@
+                @*     <div class="input-alert" id="inputAlert" style="display:block!important;"> *@
+                @*         <span class="input-alert__icon"></span> *@
+                @*         <p class="input-alert__text">Required</p> *@
+                @*     </div> *@
+                @* } *@
+            </div>
+        </div>
+        <button class="select-button home-payment__form-button" @onclick="GoToPaymentPage">
+            <img src="/img/icons/arrowRightWhite.svg"
+                 alt="arrow"/>
+        </button>
+    </div>
+</div>
+
+@code {
+
+    private PayeeTemplateModel? _payeeTemplateSelected;
+
+    private void GoToPaymentPage()
+    {
+        if (_payeeTemplateSelected is null)
+            return;
+
+        _appStore.PayeeTemplateStore = _payeeTemplateSelected;
+
+        _navigateManager.NavigateTo("/payments");
+    }
+
+}

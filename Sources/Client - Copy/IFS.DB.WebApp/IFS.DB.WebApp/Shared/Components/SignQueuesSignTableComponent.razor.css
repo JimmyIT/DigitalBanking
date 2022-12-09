@@ -1,0 +1,180 @@
+.signTable td {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 8px 6px;
+}
+.signTable td:first-child {
+  width: 100%;
+  padding-left: 12px;
+}
+.signTable td:last-child {
+  text-align: end;
+  padding-right: 12px;
+}
+.signTable td:nth-child(2), .signTable td:nth-child(3) {
+  min-width: 120px;
+  text-align: center;
+}
+.signTable thead td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  background: #f2f7fd;
+  color: #81afed;
+}
+.signTable thead td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.signTable thead td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.signTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+.signTable tbody tr:last-child {
+  border-bottom: 0;
+}
+.signTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+.signTable tbody td.signTable-date {
+  text-align: left;
+  padding-top: 12px;
+  padding-bottom: 4px;
+}
+.signTable tbody td img {
+  margin-right: 8px;
+}
+.signTable tbody td:first-child {
+  display: flex;
+  align-items: center;
+}
+.signTable tbody td:nth-child(2) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #6a6a6a;
+}
+.signTable tbody td:nth-child(3) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #fc4c16;
+}
+.signTable tbody td:last-child {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  color: #0360db;
+}
+.signTable-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.signTable-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.signTable-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.signTable-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.signTable-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.signTable-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.signTable-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.signTable-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.signTable-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.signTable-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.signTable-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.signTable-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.signTable-button .iconBlock .icon,
+.signTable-button .iconBlock .iconHover,
+.signTable-button .iconBlock .iconActive,
+.signTable-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.signTable-button .iconBlock .iconHover,
+.signTable-button .iconBlock .iconActive,
+.signTable-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.signTable-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.signTable-button .iconBlock,
+.signTable-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.signTable-button .iconBlock:first-child,
+.signTable-button > img:first-child {
+  margin-left: 0;
+}
+.signTable-button .iconBlock:last-child,
+.signTable-button > img:last-child {
+  margin-right: 0;
+}
+.signTable-button:hover {
+  color: #0248a4;
+}

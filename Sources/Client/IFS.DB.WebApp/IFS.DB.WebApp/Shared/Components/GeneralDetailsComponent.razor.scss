@@ -1,0 +1,32 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.general-details {
+    @include box;
+
+    &__title {
+        @include h2;
+        margin-bottom: $indent-4;
+    }
+
+    &__subtitle {
+        @include h5;
+        margin-bottom: $indent-16;
+    }
+
+    &-form {
+        &-radio {
+            @include radio;
+            margin-top: $indent-16;
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        &__button {
+            @include lightBlueButton;
+            min-width: 140px;
+            margin-top: $indent-12;
+        }
+    }
+}

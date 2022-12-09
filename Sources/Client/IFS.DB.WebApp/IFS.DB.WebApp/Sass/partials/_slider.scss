@@ -1,0 +1,31 @@
+body .WMBSC {
+	.slick-list {
+		padding-left: 64px !important;
+	}
+
+	.slick-arrow {
+		&.slick-prev,
+		&.slick-next {
+			width: 56px;
+			height: 56px;
+			background: no-repeat center / 24px, $color-white;
+			border-radius: 8px;
+			box-shadow: none;
+			top: calc(50% - 28px);
+			transform: none;
+			box-shadow: 2px 2px 8px rgb(78 78 92 / 8%);
+			&::before {
+				display: none;
+			}
+		}
+
+		&.slick-prev {
+			background-image: url(/img/icons/arrowLeftIcon.svg);
+			left: 0;
+		}
+		&.slick-next {
+			background-image: url(/img/icons/arrowRight.svg);
+			right: 0;
+		}
+	}
+}

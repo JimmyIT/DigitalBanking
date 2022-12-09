@@ -1,0 +1,11 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+@import "Sass/pages/auth";
+
+.auth-box-form__footer-next {
+	min-width: 212px;
+}
+
+.auth-box .auth-box-header .auth-box-header__item {
+	cursor: pointer;
+}

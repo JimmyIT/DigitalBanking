@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="creditamount_error_msg" xml:space="preserve">
+    <value>クレジット額は 0 より大きくなければなりません</value>
+  </data>
+  <data name="customer_id" xml:space="preserve">
+    <value>カスタマーID</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>ダッシュボード</value>
+  </data>
+  <data name="helloworld" xml:space="preserve">
+    <value>こんにちは世界</value>
+  </data>
+  <data name="history" xml:space="preserve">
+    <value>歴史</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>その他の機能</value>
+  </data>
+  <data name="paymentdate_error_msg" xml:space="preserve">
+    <value>支払日は今日より後である必要があります。</value>
+  </data>
+  <data name="payments" xml:space="preserve">
+    <value>支払い</value>
+  </data>
+  <data name="forgot_security_details" xml:space="preserve">
+    <value>セキュリティを忘れた？</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>必須</value>
+  </data>
+  <data name="sign_in" xml:space="preserve">
+    <value>サインイン</value>
+  </data>
+  <data name="signing_queues" xml:space="preserve">
+    <value>署名待ち行列</value>
+  </data>
+  <data name="step1_instruction" xml:space="preserve">
+    <value>アカウントにアクセスするには、お客様 ID とセキュリティの詳細を入力してください</value>
+  </data>
+  <data name="password_instruction" xml:space="preserve">
+    <value>パスワード コードから次の文字を入力します。</value>
+  </data>
+  <data name="security_code_instruction" xml:space="preserve">
+    <value>マウスを使用してキーパッドをクリックし、セキュリティ コードを入力します。</value>
+  </data>
+  <data name="customer_identification" xml:space="preserve">
+    <value>顧客の識別</value>
+  </data>
+  <data name="standing_orders" xml:space="preserve">
+    <value>スタンディングオーダー</value>
+  </data>
+  <data name="transfers" xml:space="preserve">
+    <value>転送</value>
+  </data>
+  <data name="3" xml:space="preserve">
+    <value>申し訳ありませんが、システムは現在メンテナンスのためにダウンしています。しばらくしてからお試しください。</value>
+  </data>
+  <data name="4" xml:space="preserve">
+    <value>セキュリティ対策として IP アドレスがブロックされているため、システムへのアクセスは許可されていません。 020 8477 1400 でカスタマー サービス チームにお問い合わせください。</value>
+  </data>
+  <data name="5" xml:space="preserve">
+    <value>無効なカスタマー ID を入力しました。</value>
+  </data>
+  <data name="6" xml:space="preserve">
+    <value>ログオン ID が必要です</value>
+  </data>
+  <data name="7" xml:space="preserve">
+    <value>残念ながら、現在アカウントにアクセスできません。できるだけ早くこの問題を解決するよう努めておりますので、今しばらくお待ちくださいますようお願い申し上げます。 &lt;br/&gt;&lt;br/&gt;アカウントに関する情報が必要な場合は、カスタマー サービス チーム (020 8477 1400) までお問い合わせください。</value>
+  </data>
+  <data name="8" xml:space="preserve">
+    <value>あなたのアカウントはロックされています。 020 8477 1400 でカスタマー サービス チームにお問い合わせください。</value>
+  </data>
+  <data name="404" xml:space="preserve">
+    <value>リソースが見つかりません</value>
+  </data>
+  <data name="500" xml:space="preserve">
+    <value>申し訳ありませんが、予期しないエラーが発生しました。後でもう一度やり直してください。問題が解決しない場合は、カスタマー サービス チーム (020 8477 1400) までご連絡ください。</value>
+  </data>
+  <data name="step" xml:space="preserve">
+    <value>ステップ</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>次</value>
+  </data>
+  <data name="groups" xml:space="preserve">
+    <value>グループ</value>
+  </data>
+  <data name="permissions" xml:space="preserve">
+    <value>パーミッション</value>
+  </data>
+  <data name="security" xml:space="preserve">
+    <value>安全</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>ユーザー</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>戻る</value>
+  </data>
+  <data name="enter_here" xml:space="preserve">
+    <value>ここに入力</value>
+  </data>
+  <data name="iBank_user" xml:space="preserve">
+    <value>iBankユーザー</value>
+  </data>
+  <data name="invalid_customer_id" xml:space="preserve">
+    <value>無効なカスタマー ID を入力しました。</value>
+  </data>
+  <data name="mse_authentication_code" xml:space="preserve">
+    <value>MSE 認証コード</value>
+  </data>
+  <data name="mse_authentication_code_instruction" xml:space="preserve">
+    <value>MSE 認証コードを入力してください。 コードが不明な場合は、カスタマー サービス チーム (020 8477 1400) までお問い合わせください。</value>
+  </data>
+  <data name="security_details" xml:space="preserve">
+    <value>セキュリティの詳細</value>
+  </data>
+  <data name="user_id" xml:space="preserve">
+    <value>ユーザーID</value>
+  </data>
+  <data name="user_id_instruction" xml:space="preserve">
+    <value>ログオンするユーザーIDを入力してください。</value>
+  </data>
+  <data name="user_name" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="customersmaintenance" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="mandatesmaintenance" xml:space="preserve">
+    <value>Mandates</value>
+  </data>
+</root>

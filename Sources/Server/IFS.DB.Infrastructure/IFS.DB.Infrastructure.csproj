@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="External\AMLtrac\Genders\**" />
+    <EmbeddedResource Remove="External\AMLtrac\Genders\**" />
+    <None Remove="External\AMLtrac\Genders\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="External\AMLtrac\Countries\GetAll\GetAllCountriesTemplate.txt" />
+    <None Remove="External\AMLtrac\Titles\GetAll\GetAllTitlesTemplate.txt" />
+    <None Remove="External\ShuftiPro\MappingSupportType.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="External\ShuftiPro\MappingSupportType.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IFS.DB.EF\IFS.DB.EF.csproj" />
+    <ProjectReference Include="..\IFS.DB.Application\IFS.DB.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="IFS.Common">
+      <HintPath>..\References\IFS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IFS.MLTrac.OpenAPI.ClientConfig">
+      <HintPath>..\References\IFS.MLTrac.OpenAPI.ClientConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="NVelocityTemplateEngine">
+      <HintPath>..\References\NVelocityTemplateEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\References\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <HintPath>..\References\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="TagTokenSales.OpenAPI.Client">
+      <HintPath>..\References\TagTokenSales.OpenAPI.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio">
+      <HintPath>..\References\Twilio.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="External\TokenSale\KYC\Reject\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.10" />
+    <PackageReference Include="StackExchange.Redis" Version="2.6.70" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY &quot;$(ProjectDir)bin\$(Configuration)\net6.0\$(TargetFileName)&quot; &quot;..\..\..\bin\$(Configuration)\&quot; /Y" />
+  </Target>
+
+</Project>

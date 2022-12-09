@@ -1,0 +1,52 @@
+[09:51:27 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'OuqcyU8MgjAs2QVb5wWFbNW-CktHHXFvfF0Q4De-eeM'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Features.Admin.Pages.CustomerDashboard.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\CustomerDashboard.razor:line 9
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[09:51:32 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'L_5uMiRnS313HVZbkPAsx87n2wS5nGGVaFfh1a1Dyyw'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Features.Admin.Pages.CustomerDashboard.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\CustomerDashboard.razor:line 9
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[09:51:55 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'M9xyXv8IjG_ZTRFeROe1kcr9H7SY8XRljR4Ma4ZO3eM'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Features.Admin.Pages.CustomerDashboard.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\CustomerDashboard.razor:line 9
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[09:52:27 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'OuqcyU8MgjAs2QVb5wWFbNW-CktHHXFvfF0Q4De-eeM'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[09:52:32 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'L_5uMiRnS313HVZbkPAsx87n2wS5nGGVaFfh1a1Dyyw'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[16:18:39 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'f6XEdWpAR7QqLjbY42VsaqSjcUahBWP0eVs5pwCHilk'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.ChangePasswordModalComponent.ChangePasswordAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\ChangePasswordModalComponent.razor:line 139
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[16:20:50 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'vdt1htBhlJ_QfzHIhCg7cXlxPD_g_xJv7MG12SHtbFo'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.ChangePasswordModalComponent.ChangePasswordAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\ChangePasswordModalComponent.razor:line 139
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[16:20:51 Error] Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher **** Failed to invoke hub method 'ConnectCircuit'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost.SetCircuitUser(ClaimsPrincipal user)
+   at Microsoft.AspNetCore.Components.Server.ComponentHub.ConnectCircuit(String circuitIdSecret)
+   at lambda_method11(Closure , Object )
+   at Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher`1.ExecuteMethod(ObjectMethodExecutor methodExecutor, Hub hub, Object[] arguments)
+   at Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher`1.<Invoke>g__ExecuteInvocation|16_0(DefaultHubDispatcher`1 dispatcher, ObjectMethodExecutor methodExecutor, THub hub, Object[] arguments, AsyncServiceScope scope, IHubActivator`1 hubActivator, HubConnectionContext connection, HubMethodInvocationMessage hubMethodInvocationMessage, Boolean isStreamCall)
+

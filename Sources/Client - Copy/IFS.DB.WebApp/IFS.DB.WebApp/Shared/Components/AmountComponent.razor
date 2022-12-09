@@ -1,0 +1,99 @@
+@inherits InputBase<TValue>
+@typeparam TValue
+
+<div class="formgroup">
+    @if (!string.IsNullOrEmpty(LabelText))
+    {
+        <label>@LabelText</label>
+    }
+    <div class="input-layout formgroup">
+        <input @attributes="AdditionalAttributes"
+               class="input @CssClass"
+               style="text-align: right"
+               @bind="@_stringValue"
+               @bind:event="oninput"
+               @oninput:preventDefault="true"
+               placeholder="0.00"
+               @onchange="OnValueChanged"/>
+    </div>
+    <CustomValidationMessage For="@ValidationFor"></CustomValidationMessage>
+</div>
+
+@code {
+
+    [Parameter]
+    public string LabelText { get; set; }
+
+    [Parameter, EditorRequired]
+    public Expression<Func<TValue>> ValidationFor { get; set; } = default!;
+
+    [Parameter]
+    public int NumberPrecision { get; set; } = 2;
+
+    private string? _stringValue = null;
+    private string? _currentValue = null;
+    private string? _format;
+
+    protected override void OnInitialized()
+    {
+        _format = $"N{NumberPrecision}";
+        _stringValue = FormatValueAsString(Value);
+    }
+
+    private async Task OnValueChanged(ChangeEventArgs e)
+    {
+        _currentValue = e.Value?.ToString();
+
+        await Task.Yield();
+
+        var numberValue = GetNumbers(_currentValue);
+        if (!BindConverter.TryConvertTo<TValue>(numberValue, CultureInfo.CurrentCulture, out TValue? value))
+        {
+            _stringValue = "";
+            CurrentValueAsString = _currentValue;
+        }
+        else
+        {
+            CurrentValueAsString = numberValue;
+            _stringValue = CurrentValueAsString;
+        }
+
+        StateHasChanged();
+    }
+
+    // Necessary override for InputBase
+    protected override bool TryParseValueFromString(string? value, out TValue result, out string validationErrorMessage)
+    {
+        var val = GetNumbers(value);
+
+        if (BindConverter.TryConvertTo<TValue?>(val, CultureInfo.CurrentCulture, out result))
+        {
+            validationErrorMessage = null;
+            return true;
+        }
+        CurrentValue = default;
+
+        validationErrorMessage = null;
+        return false;
+    }
+
+    private static string GetNumbers(string input)
+        => new(!string.IsNullOrEmpty(input) ? input.Where(c => (char.IsDigit(c)) || c.Equals('.') || c.Equals(',')).ToArray() : "");
+
+    protected override string? FormatValueAsString(TValue? value)
+    {
+        NumberFormatInfo numberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
+        return value switch
+        {
+            int @int => @int.ToString(_format, numberFormatInfo),
+            long @long => @long.ToString(_format, numberFormatInfo),
+            short @short => @short.ToString(_format, numberFormatInfo),
+            float @float => @float.ToString(_format, numberFormatInfo),
+            double @double =>  @double.ToString(_format, numberFormatInfo),
+            decimal @decimal => @decimal.ToString(_format, numberFormatInfo),
+            _ => null
+            };
+    }
+
+
+}

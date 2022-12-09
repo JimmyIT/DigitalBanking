@@ -1,0 +1,16 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.payee-card {
+    @include paymentCard;
+    width: calc(33.3% - 11px);
+    margin: $indent-16 $indent-16 0 0;
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+        margin-top: 0;
+    }
+    &:nth-child(3n + 3) {
+        margin-right: 0;
+    }
+}

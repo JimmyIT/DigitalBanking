@@ -1,0 +1,102 @@
+
+<div class="imail-sidebar">
+    <p class="imail-sidebar__title">Send mail</p>
+    <EditForm id="sendiMailContext" EditContext="@_sendiMailContext" OnInvalidSubmit="@InvalidSubmit" OnValidSubmit="@SendAniMail">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <div class="imail-sidebar-form">
+            <div class="formgroup imail-sidebar-formgroup">
+                <label>To</label>
+                <div class="select-layout">
+                    <InputSelect @bind-Value="_sendMailRequestModel.ReceiverID"
+                                 class="select">
+                        <option value="">Select account manager</option>
+                        @foreach (var item in _listUsers.Where(x => x.UserID != _AuthenticatedUserID).ToList())
+                        {
+                            <option value="@item.UserID">@item.UserName</option>
+                        }
+                    </InputSelect>
+                </div>
+                <CustomValidationMessage For="@(() => _sendMailRequestModel.ReceiverID)"></CustomValidationMessage>
+            </div>
+            <div class="formgroup imail-sidebar-formgroup">
+                <label>Priority</label>
+                <div class="select-layout">
+                    @*<DropdownComponent TItem="string">
+                    <InitialTip>Select account manager</InitialTip>
+                    <DropdownChildContent>
+                    @foreach (var value in Enum.GetValues(typeof(TransactionTypeEnum)))
+                    {
+                    <DropdownItemComponent Item="@value.ToString()">
+                    <DropdownItemChildContent Context="dropdownItemContent">
+                    @value.ToString()
+                    </DropdownItemChildContent>
+                    </DropdownItemComponent>
+                    }
+                    </DropdownChildContent>
+                    </DropdownComponent>*@
+                    @*<select class="select">
+                    <option disabled selected>Select</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    </select>*@
+
+                    <InputSelect @bind-Value="_sendMailRequestModel.Priority"
+                                 class="select">
+                        <option value="">Select</option>
+                        @foreach (var item in Enum.GetValues(typeof(IMailPriorityEnum)))
+                        {
+                            <option value="@item.ToString()">@GetPriorityEnumDescription(@item.ToString())</option>
+                        }
+                    </InputSelect>
+                </div>
+                
+                <CustomValidationMessage For="@(() => _sendMailRequestModel.Priority)"></CustomValidationMessage>
+            </div>
+            <div class="formgroup imail-sidebar-formgroup">
+                <label>Subject</label>
+                <div class="input-layout">
+                    <InputText placeholder="Enter here" class="input" @bind-Value="@_sendMailRequestModel.Subject"></InputText>
+                </div>
+                <CustomValidationMessage For="@(() => _sendMailRequestModel.Subject)"></CustomValidationMessage>
+            </div>
+            <div class="formgroup imail-sidebar-formgroup">
+                <label>Message</label>
+                <div class="input-layout">
+                    <InputTextArea placeholder="Enter here" class="input" rows="5" @bind-Value="@_sendMailRequestModel.Message"></InputTextArea>
+                </div>
+                
+                <CustomValidationMessage For="@(() => _sendMailRequestModel.Message)"></CustomValidationMessage>
+            </div>
+
+            <div class="imail-sidebar-attach">
+                @* <FileUploader></FileUploader> *@
+                <button type="button" class="imail-sidebar-attach__button">
+                <div class="iconBlock">
+                <img src="/img/icons/attach.svg" alt="attach" class="icon" />
+                <img src="/img/icons/attachHover.svg" alt="attach" class="iconHover" />
+                </div>
+
+                Attach a file
+                </button>
+                <div class="imail-sidebar-attach__file">
+                <p class="imail-sidebar-attach__file-text">file.pdf</p>
+                <div class="imail-sidebar-attach__file-remove">
+                <img src="/img/icons/closeIcon.svg" alt="remove" class="icon" />
+                <img src="/img/icons/closeIconHover.svg" alt="remove" class="iconHover" />
+                </div>
+                </div>
+                <div class="imail-sidebar-attach__file">
+                <p class="imail-sidebar-attach__file-text">file.pdf</p>
+                <div class="imail-sidebar-attach__file-remove">
+                <img src="/img/icons/closeIcon.svg" alt="remove" class="icon" />
+                <img src="/img/icons/closeIconHover.svg" alt="remove" class="iconHover" />
+                </div>
+                </div>
+            </div>
+
+            <button type="submit" class="imail-sidebar-form__submit">Send mail</button>
+        </div>
+
+    </EditForm>
+</div>

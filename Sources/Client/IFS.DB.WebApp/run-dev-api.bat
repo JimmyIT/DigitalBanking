@@ -1,0 +1,1 @@
+dotnet run --project ..\..\Server\IFS.DB.OpenAPI\IFS.DB.OpenAPI.csproj

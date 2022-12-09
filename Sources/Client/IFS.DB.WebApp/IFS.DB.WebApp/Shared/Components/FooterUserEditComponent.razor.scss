@@ -1,0 +1,26 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.edit-user-footer-layout {
+	background: $color-white;
+	padding: $indent-24 0;
+}
+
+.edit-user-footer-container {
+	@include container;
+}
+
+.edit-user-footer {
+	display: flex;
+	justify-content: flex-end;
+
+	&__archive {
+		@include lightBlueButton;
+		margin-right: $indent-16;
+	}
+
+	&__button {
+		@include blueButton;
+		min-width: 148px;
+	}
+}

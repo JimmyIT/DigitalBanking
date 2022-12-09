@@ -1,0 +1,33 @@
+@layout BasicLayout
+@page "/company-admin/dashboard"
+
+<div class="admin-company-layout">
+    <div class="admin-company-container">
+        <div class="admin-company">
+            <div class="admin-company-header">
+                <div class="admin-company-header-wrapper">
+                    <img src="/img/admin/dashboardIcon.svg" alt="logo" class="admin-company-header__logo" />
+                    <p class="admin-company-header__title">Dashboard</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="admin-company-header__tooltip-icon" />
+                </div>
+            </div>
+
+            <AdminDashboardNotificationComponent/>
+
+            <div class="admin-company-main">
+                <div class="admin-company-main-title">
+                    <p class="admin-company-main-title-text">Last users</p>
+                    <button class="admin-company-main-title-button">
+                        <span>All users</span>
+                        <span class="iconBlock">
+                            <img src="/img/icons/arrowRight.svg" alt="arrow" class="icon" />
+                            <img src="/img/icons/arrowRightHover.svg" alt="arrow" class="iconHover" />
+                        </span>
+                    </button>
+                </div>
+
+                <AdminCompanyTableComponent></AdminCompanyTableComponent>
+            </div>
+        </div>
+    </div>
+</div>

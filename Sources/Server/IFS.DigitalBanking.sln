@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CA46ED57-0E7E-4773-B9F8-A3C88D8CD6F6}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFS.DB.EF", "IFS.DB.EF\IFS.DB.EF.csproj", "{BB2EE1F2-776C-48DA-94F4-A059F12576D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFS.DB.Infrastructure", "IFS.DB.Infrastructure\IFS.DB.Infrastructure.csproj", "{3D48710F-7FD4-4ACF-B24A-198116E03D18}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFS.DB.Application", "IFS.DB.Application\IFS.DB.Application.csproj", "{0B821FB7-3C4B-4561-9E3C-089E63C78086}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFS.DB.OpenAPI", "IFS.DB.OpenAPI\IFS.DB.OpenAPI.csproj", "{6F4A9B70-14D9-48D1-B381-4898713B97AA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFS.DB.OpenAPI.Client", "IFS.DB.OpenAPI.Client\IFS.DB.OpenAPI.Client.csproj", "{49C22A64-514E-40FE-ABBE-CFF41ADEDDD4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IFS.DB.OpenAPI.Services", "IFS.DB.OpenAPI.Services\IFS.DB.OpenAPI.Services.csproj", "{2D4601A7-6CE3-495F-828B-AFE6D1FA2E5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB2EE1F2-776C-48DA-94F4-A059F12576D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB2EE1F2-776C-48DA-94F4-A059F12576D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB2EE1F2-776C-48DA-94F4-A059F12576D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB2EE1F2-776C-48DA-94F4-A059F12576D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D48710F-7FD4-4ACF-B24A-198116E03D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D48710F-7FD4-4ACF-B24A-198116E03D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D48710F-7FD4-4ACF-B24A-198116E03D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D48710F-7FD4-4ACF-B24A-198116E03D18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B821FB7-3C4B-4561-9E3C-089E63C78086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B821FB7-3C4B-4561-9E3C-089E63C78086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B821FB7-3C4B-4561-9E3C-089E63C78086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B821FB7-3C4B-4561-9E3C-089E63C78086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F4A9B70-14D9-48D1-B381-4898713B97AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F4A9B70-14D9-48D1-B381-4898713B97AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F4A9B70-14D9-48D1-B381-4898713B97AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F4A9B70-14D9-48D1-B381-4898713B97AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C22A64-514E-40FE-ABBE-CFF41ADEDDD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C22A64-514E-40FE-ABBE-CFF41ADEDDD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C22A64-514E-40FE-ABBE-CFF41ADEDDD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C22A64-514E-40FE-ABBE-CFF41ADEDDD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D4601A7-6CE3-495F-828B-AFE6D1FA2E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D4601A7-6CE3-495F-828B-AFE6D1FA2E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D4601A7-6CE3-495F-828B-AFE6D1FA2E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D4601A7-6CE3-495F-828B-AFE6D1FA2E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB2456A4-4FA8-46FE-80ED-C359E389F191}
+	EndGlobalSection
+EndGlobal

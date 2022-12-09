@@ -1,0 +1,241 @@
+@layout UserLayout
+@page "/history"
+@using IFS.DB.WebApp.Models.Transactions
+
+<div class="history-layout">
+    <div class="history-container">
+        <div class="history-header">
+            <div class="history-header-wrapper">
+                <img src="/img/transactionHistory/transactionHistoryIcon.svg" alt="logo" class="history-header__logo" />
+                <p class="history-header__title">Transaction history</p>
+                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="history-header__tooltip-icon" />
+            </div>
+        </div>
+
+        <div class="history">
+
+            <EditForm EditContext="_searchEditContext" OnValidSubmit="OnValidSubmit" OnInvalidSubmit="OnInValidSubmit">
+
+                <div class="history-search">
+                    <div class="history-search-body">
+                        <div class="history-search-body__input">
+                            @*<SearchComponent @bind-Value="_searchTransactionModel.SearchString"/>*@
+                            <div class="search">
+                                <InputText placeholder="Search Narrative" class="input search__input" @bind-Value="@_searchString"></InputText>
+                            </div>
+                        </div>
+
+                        <div class="formgroup">
+                            <AccountSelectionComponent TValue="string"
+                                                       DefaultOption="Select an account"
+                                                       ValidationFor="() => _searchTransactionModel.AccountNumber"
+                                                       @bind-Value="_searchTransactionModel.AccountNumber">
+                            </AccountSelectionComponent>
+                        </div>
+
+                        <div class="formgroup">
+                            <button type="button" class="search__button__icon" @onclick=@Search>
+                                <img src="/img/icons/searchIcon_Black.svg" alt="search" class="search__icon" />
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="history-search-icons">
+                        <button type="button" class="history-search-icons__icon" @onclick="OnClickFilterIcon">
+                            <img class="icon" src="/img/icons/filterIcon.svg" alt="filter" />
+                            <img class="iconHover" src="/img/icons/filterHoverIcon.svg" alt="filter" />
+                        </button>
+                        <div class="history-search-action">
+                            <button class="history-search-icons__icon" @onclick="OnClickActionIcon" @onfocusout="@OutfocusClickActionIcon">
+                                <img class="icon" src="/img/icons/dotsIcon.svg" alt="action" />
+                                <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action" />
+                            </button>
+                            <div class="history-search-action-dropdown" style="@_styleToDisplayAction">
+                                <div class="history-search-action-dropdown-item">Export CSV</div>
+                                <div class="history-search-action-dropdown-item">Print history</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-filters" id="filters" style="@_styleToDisplayFilter">
+                    <div style="display: flex">
+                        <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@ProductTypeEnum
+                                                                                        MultiSelect=@true
+                                                                                        ContainerInlineStyle="margin-right: 12px"
+                                                                                        DropdownButtonInlineStyle="width:100%;"
+                                                                                        SelectedListData=@_listSelectedProductSearchTypes
+                                                                                        SelectedItems_Onclick=@SelectedProductTypesValue>
+                            <InitialPlaceHolder>Product type</InitialPlaceHolder>
+                            <ChildContent>
+                                @*<IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem=@ProductTypeEnum
+                                TValue="null" Context="_">
+                                Product Type
+                                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>*@
+                                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=ProductTypeEnum
+                                                                                                    TValue="ProductTypeEnum.All"
+                                                                                                    Context="_"
+                                                                                                    SelectAll=@true
+                                                                                                    @onclick=@(() => SelectAllProductTypesValue())>
+                                    @ProductTypeEnum.All.ToDescription()
+                                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                                @foreach (var value in ((ProductTypeEnum[])Enum.GetValues(typeof(ProductTypeEnum))).Where(x => x != ProductTypeEnum.All).ToArray())
+                                {
+                                    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@ProductTypeEnum
+                                                                                                    TValue="value" Context="_">
+                                        @value.ToDescription()
+                                    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                                }
+                            </ChildContent>
+                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+                        <!-- -->
+                        <!-- -->
+                        <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@TransactionTypeEnum
+                                                                                        MultiSelect=@true
+                                                                                        ContainerInlineStyle="margin-right: 12px"
+                                                                                        DropdownButtonInlineStyle="width:100%;"
+                                                                                        SelectedListData=@_listSelectedTransactionSearchTypes
+                                                                                        SelectedItems_Onclick=@SelectedTransactionTypesValue>
+                            <InitialPlaceHolder>Transaction type</InitialPlaceHolder>
+                            <ChildContent>
+                                @*<IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem=@ProductTypeEnum
+                                TValue="null" Context="_">
+                                Product Type
+                                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>*@
+                                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=TransactionTypeEnum
+                                                                                                    TValue="TransactionTypeEnum.All"
+                                                                                                    Context="_"
+                                                                                                    SelectAll=@true
+                                                                                                    @onclick=@(() => SelectAllTransactionTypesValue())>
+                                    @TransactionTypeEnum.All.ToDescription()
+                                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                                @foreach (var value in ((TransactionTypeEnum[])Enum.GetValues(typeof(TransactionTypeEnum))).Where(x => x != TransactionTypeEnum.All).ToArray())
+                                {
+                                    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@TransactionTypeEnum
+                                                                                                    TValue="value" Context="_">
+                                        @value.ToDescription()
+                                    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                                }
+                            </ChildContent>
+                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+                        @if(_searchTransactionModel.FromAmount.HasValue && _searchTransactionModel.ToAmount.HasValue)
+                        {
+                            
+                        }
+
+                        <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@SearchTransactionModel
+                                                                                        ContainerInlineStyle="margin-right: 12px"
+                                                                                        DropdownButtonInlineStyle="width:100%;"
+                                                                                        SelectedValue=@_searchTransactionModel>
+                            <InitialPlaceHolder>Amount</InitialPlaceHolder>
+                            <ChildContent>
+                                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem=@SearchTransactionModel
+                                                                                                           TValue=@_searchTransactionModel
+                                                                                                           Context="_" 
+                                                                                                           InlineStyle="width:49%;display: inline-block;"
+                                                                                                           KeepState=true>
+                                    <AmountComponent LabelText="From"
+                                                     @bind-Value="@_searchTransactionModel.FromAmount"
+                                                     class="input"
+                                                     ValidationFor="@(() => _searchTransactionModel.FromAmount)" />
+                                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>
+                                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem=@SearchTransactionModel
+                                                                                                           TValue=@_searchTransactionModel 
+                                                                                                           Context="_" 
+                                                                                                           InlineStyle="width:49%;display: inline-block;"
+                                                                                                           KeepState=true>
+                                    <AmountComponent LabelText="To"
+                                                     @bind-Value="@_searchTransactionModel.ToAmount"
+                                                     class="input"
+                                                     ValidationFor="@(() => _searchTransactionModel.ToAmount)" />
+
+                                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>
+                            </ChildContent>
+                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+                        <div style="width: 100%;">
+                            <DateRangeComponent Label="false" />
+                        </div>
+                    </div>
+                </div>
+
+            </EditForm>
+
+            @if (_listSelectedProductSearchTypes.Count > 0 || _listSelectedTransactionSearchTypes.Count > 0)
+            {
+                <div class="history-filter">
+                    @if (_listSelectedProductSearchTypes.Count > 0)
+                    {
+                        @foreach (var item in _listSelectedProductSearchTypes)
+                        {
+                            <div class="history-filter-type">
+                                <p class="history-filter-type-text">@item.ToDescription()</p>
+                                <img src="/img/icons/closeIcon.svg" alt="close" class="history-filter-type__close" @onclick=@(() => RemoveSelectedProductTypes(item)) />
+                            </div>
+                        }
+                    }
+
+                    @if (_listSelectedTransactionSearchTypes.Count > 0)
+                    {
+                        @foreach (var item in _listSelectedTransactionSearchTypes)
+                        {
+                            <div class="history-filter-type">
+                                <p class="history-filter-type-text">@item.ToDescription()</p>
+                                <img src="/img/icons/closeIcon.svg" alt="close" class="history-filter-type__close" @onclick=@(() => RemoveSelectedTransactionType(item)) />
+                            </div>
+                        }
+                    }
+
+                    <div class="history-filter-clear" @onclick=@ClearFilters>
+                        <p>Clear filters</p>
+                    </div>
+                </div>
+            }
+            <div class="history-info-cards">
+                <div>
+                    <p class="history-info-cards-title">Statement summary for:</p>
+
+                    <div class="history-info-cards-description">
+                        <p class="history-info-cards-description__text">Account No.: @_selectedAccount.AccountNumber</p>
+                        @if (!string.IsNullOrEmpty(_selectedAccount.AccountNumber))
+                        {
+                            <img src="/img/icons/dotIcon.svg" alt="dot" class="history-info-cards-description__icon" />
+                        }
+                        <p class="history-info-cards-description__text">@_selectedAccount.AccountDescription</p>
+                    </div>
+
+                </div>
+
+                <div class="history-info-cards-right">
+                    <div class="history-info-cards-right-content">
+                        <p class="history-info-cards-title">Currency</p>
+                        <p class="history-info-cards__text">@_selectedAccount.CurrencyCode</p>
+                    </div>
+
+                    <div class="history-info-cards-right-content">
+                        <p class="history-info-cards-title">Statement Period</p>
+                        <p class="history-info-cards__text">Last 3 months</p>
+                    </div>
+
+                    <div class="history-info-cards-right-content">
+                        <p class="history-info-cards-title">Current balance:</p>
+                        <p class="history-info-cards__text">@_selectedAccount.CurrentBalance.ToNumberFormat()</p>
+                    </div>
+
+                    <div>
+                        <p class="history-info-cards-title">Available balance:</p>
+                        <p class="history-info-cards__text">@_selectedAccount.AvailableBalance.ToNumberFormat()</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-table">
+                <RecentTransactionsComponent @ref="_recentTransactionsComponent"
+                                             AccountNumber="@_selectedAccountNumber"
+                                             ChangablePageSize=@true
+                                             IsPagination="true">
+                </RecentTransactionsComponent>
+            </div>
+        </div>
+    </div>
+</div>

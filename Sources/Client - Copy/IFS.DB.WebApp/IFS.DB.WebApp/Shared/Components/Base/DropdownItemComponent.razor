@@ -1,0 +1,93 @@
+﻿@typeparam TItem
+
+
+
+@if (CustomAction)
+{
+    @if (CustomDropdownItemContent != null)
+    {
+        <div class="customSelector-dropdown-item" style="display: flex;" @onmousedown=@(() => KeepStateOfCustomDropdownItemContent())>
+            <p>@CustomDropdownItemContent</p>
+        </div>
+    }
+    else if (CustomDropdownItemButtonContent != null) {
+        <div class="customSelector-dropdown-item-button" style="display: flex;" @onmousedown=@(() => KeepStateOfCustomDropdownItemContent())>
+            <p style="width: 100%;">@CustomDropdownItemButtonContent</p>
+        </div>
+    }
+    else
+    {
+        <div class="customSelector-dropdown-item" style="display: flex; justify-content: space-between;" @onmousedown="@(() => ShowSelectedIcon(Item))">
+            <p style="white-space: normal;">@DropdownItemChildContent(Item)</p>
+
+            @if (_isSelectedItem)
+            {
+                <img src="/img/icons/checkIcon.svg" alt="checked" class="icon" />
+            }
+        </div>
+    }
+}
+else
+{
+    @if (Dropdown.MultiSelect)
+    {
+        <div class="customSelector-dropdown-item" style="display: flex;" @onmousedown="@(() => ChangeCheckboxState(Item, !_isActive))">
+            <input style="margin-right: 8px;" type="checkbox" @onclick:preventDefault checked=@_isActive />
+            <p>@DropdownItemChildContent(Item)</p>
+        </div>
+    }
+    else
+    {
+        <div class="customSelector-dropdown-item" @onclick="@(() => Dropdown.HandleSelect(Item, DropdownItemChildContent))">
+            <p>@DropdownItemChildContent(Item)</p>
+        </div>
+
+    }
+}
+
+
+@code {
+    [CascadingParameter(Name = "DropdownComponent")] public DropdownComponent<TItem> Dropdown { get; set; }
+    [Parameter] public TItem Item { get; set; }
+    [Parameter] public bool CustomAction { get; set; } = false;
+    [Parameter] public int DropdownItemIndex { get; set; }
+    [Parameter] public RenderFragment<TItem> DropdownItemChildContent { get; set; }
+    [Parameter] public RenderFragment CustomDropdownItemContent { get; set; }
+    [Parameter] public RenderFragment CustomDropdownItemButtonContent { get; set; }
+
+    private bool _isActive = false;
+    private bool _isSelectedItem => _dropdownItemIndex == Dropdown._selectedItem;
+    List<TItem> SelectedItems = new List<TItem>();
+    int _dropdownItemIndex = 0;
+
+    protected override Task OnInitializedAsync()
+    {
+        _dropdownItemIndex = DropdownItemIndex;
+        return base.OnInitializedAsync();
+    }
+
+    private async Task ToggleItem(ChangeEventArgs args, TItem item)
+    {
+        bool IsSelected = (bool)args.Value;
+        await ChangeCheckboxState(item, IsSelected);
+    }
+
+    private async Task ChangeCheckboxState(TItem item, bool isActive)
+    {
+        _isActive = isActive;
+        if (isActive) SelectedItems.Add(item);
+        else SelectedItems.Remove(item);
+
+        await Dropdown.HandleMultiSelect(Item, DropdownItemChildContent, isActive);
+    }
+
+    private async Task ShowSelectedIcon(TItem item)
+    {
+        await Dropdown.HandCustomDropdownItemSelect(item, DropdownItemChildContent, _dropdownItemIndex);
+    }
+
+    private async Task KeepStateOfCustomDropdownItemContent()
+    {
+        await Dropdown.KeepOpenDropdownForCustomSelectorContent(_dropdownItemIndex);
+    }
+}

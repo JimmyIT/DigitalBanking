@@ -1,0 +1,28 @@
+[10:41:10 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'G6F9SLlyj0A1GWwXgLS-197u2iK7DlMRTn3VHTu2lok'. **** System.InvalidOperationException: Authorization requires a cascading parameter of type Task<AuthenticationState>. Consider using CascadingAuthenticationState to supply this.
+   at Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.OnParametersSetAsync()
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[10:41:10 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'G6F9SLlyj0A1GWwXgLS-197u2iK7DlMRTn3VHTu2lok'. **** System.InvalidOperationException: Authorization requires a cascading parameter of type Task<AuthenticationState>. Consider using CascadingAuthenticationState to supply this.
+   at Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.OnParametersSetAsync()
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[10:41:10 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'G6F9SLlyj0A1GWwXgLS-197u2iK7DlMRTn3VHTu2lok'. **** System.InvalidOperationException: Authorization requires a cascading parameter of type Task<AuthenticationState>. Consider using CascadingAuthenticationState to supply this.
+   at Microsoft.AspNetCore.Components.Authorization.AuthorizeViewCore.OnParametersSetAsync()
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[14:04:57 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'Bt75vTmdTjRUnAg4ko9JiTf1UMKCMiM5itEWTc6_Fjo'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 4
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[14:04:57 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'Bt75vTmdTjRUnAg4ko9JiTf1UMKCMiM5itEWTc6_Fjo'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+

@@ -1,0 +1,56 @@
+@using IFS.DB.WebApp.Models.Transactions
+@using IFS.DB.WebApp.Models.PayeeTemplate
+@using IFS.DB.WebApp.Helpers.Enums
+
+<div class="payee-card">
+    <div class="payee-card-description">
+        <p class="payee-card__title">
+            @PayeeTemplateModel.HostReference
+        </p>
+        <div class="payee-card-description__text">
+            <div class="payee-card-description__icon" @onclick="@(() => PayeeTemplateModel.Pinned = !PayeeTemplateModel.Pinned)">
+                @if (PayeeTemplateModel.Pinned)
+                {
+                    <img class="icon" src="/img/icons/favorite.svg" alt="star"/>
+                    <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="star"/>
+                }
+                else
+                {
+                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                }
+            </div>
+            <img class="payee-card-description__icon" src="/img/icons/menuIcon.svg" alt="menu" />
+        </div>
+    </div>
+    <div class="payee-card-description">
+        <p class="payee-card-description__text">
+            Debit Account No.: @PayeeTemplateModel.DebitAccount
+        </p>
+        <span class="payee-card-description__type payee-card-description__type@(PayeeTemplateModel.PaymentTemplateType switch{
+                                                                                  PaymentTypeEnum.International => "--2",
+                                                                                  _ => ""
+                                                                                  })">@PayeeTemplateModel.PaymentTemplateType.ToString().ToUpper()</span>
+    </div>
+    <div class="payee-card-description">
+        <div class="payee-card-description__text">
+            <p>@PayeeTemplateModel.BeneficiaryName</p>
+            <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+            <p>@PayeeTemplateModel.BeneficiaryAccountNumber</p>
+        </div>
+    </div>
+    <button class="payee-card__button" @onclick="GoToPaymentPage">Make payment</button>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public PayeeTemplateModel PayeeTemplateModel { get; set; } = default!;
+    
+    private void GoToPaymentPage()
+    {
+        _appStore.PayeeTemplateStore = PayeeTemplateModel;
+        _navigateManager.NavigateTo("/payments");
+    }
+    
+}

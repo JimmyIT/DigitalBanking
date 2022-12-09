@@ -1,0 +1,106 @@
+﻿@import "../common/variables";
+
+@mixin h1 {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 36px;
+}
+
+@mixin h2 {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 32px;
+}
+
+@mixin h3 {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+@mixin h4 {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 24px;
+}
+
+@mixin h5 {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+@mixin button1 {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+@mixin body {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+@mixin label {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+}
+
+@mixin label2 {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+@mixin caption1 {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+}
+
+@mixin caption1Additional {
+    @include caption1;
+    color: $color-sky-blue-500;
+    text-decoration-line: underline;
+}
+
+@mixin field {
+    font-family: "Overpass", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.005em;
+}
+
+@mixin textWithDots {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

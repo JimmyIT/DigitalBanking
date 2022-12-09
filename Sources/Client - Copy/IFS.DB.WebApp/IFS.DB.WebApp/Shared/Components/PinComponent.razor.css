@@ -1,0 +1,305 @@
+.auth-box-numbers {
+  margin-top: 16px;
+}
+.auth-box-numbers__label {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+}
+.auth-box-numbers-row {
+  display: flex;
+  margin-top: 8px;
+}
+.auth-box-numbers-row .auth-box-number,
+.auth-box-numbers-row .auth-box-number-input,
+.auth-box-numbers-row .auth-box-number-star {
+  margin-right: 8px;
+}
+.auth-box-numbers-row .auth-box-number:last-child,
+.auth-box-numbers-row .auth-box-number-input:last-child,
+.auth-box-numbers-row .auth-box-number-star:last-child {
+  margin-right: 0;
+}
+.auth-box-numbers-col {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
+}
+.auth-box-numbers-col .single-auth-box {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  margin: 4px 0;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box__label {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  min-width: 180px;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #CDDFF8;
+  background-color: #ffffff;
+  color: #212121;
+  padding: calc(16px - 1px);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  transition: 0.4s;
+  padding: 4px;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input::placeholder {
+  color: #9d9d9d;
+  transition: 0.4s;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input:focus, .auth-box-numbers-col .single-auth-box .single-auth-box-input:active {
+  background-color: #f2f7fd;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input:focus::placeholder, .auth-box-numbers-col .single-auth-box .single-auth-box-input:active::placeholder {
+  color: #212121;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input:hover.input {
+  color: #212121;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input:hover::placeholder {
+  color: #212121;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input.error {
+  border-color: #fc4c16;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.auth-box-numbers-col .single-auth-box .single-auth-box-input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.auth-box-numbers-loader {
+  display: flex;
+}
+
+.auth-box-number {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  text-align: center;
+  line-height: 24px;
+  padding: 16px;
+}
+.auth-box-number:hover:not(.auth-box-number--error) {
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  background: #4288e4;
+  color: #ffffff;
+}
+.auth-box-number.auth-box-number--error {
+  background: #fd693b;
+  color: #ffffff;
+  cursor: default;
+}
+
+.auth-box-number-input {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #CDDFF8;
+  background-color: #ffffff;
+  color: #212121;
+  padding: calc(16px - 1px);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  transition: 0.4s;
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  text-align: center;
+  line-height: 24px;
+  padding: 16px;
+  background: #ffffff;
+}
+.auth-box-number-input::placeholder {
+  color: #9d9d9d;
+  transition: 0.4s;
+}
+.auth-box-number-input:focus, .auth-box-number-input:active {
+  background-color: #f2f7fd;
+}
+.auth-box-number-input:focus::placeholder, .auth-box-number-input:active::placeholder {
+  color: #212121;
+}
+.auth-box-number-input:hover.input {
+  color: #212121;
+}
+.auth-box-number-input:hover::placeholder {
+  color: #212121;
+}
+.auth-box-number-input.error {
+  border-color: #fc4c16;
+}
+.auth-box-number-input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.auth-box-number-input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.auth-box-number-input.disabled {
+  border: 1px solid #ededed;
+  background: #f7f7f7;
+}
+.auth-box-number-input__image {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.auth-box-number-star {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.auth-box-number-invisible,
+.auth-box-number-icon {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: #f7f7f7;
+  text-align: center;
+  line-height: 24px;
+  padding: 16px;
+  margin-right: 8px;
+  background-color: transparent;
+}
+.auth-box-number-invisible-reset,
+.auth-box-number-icon-reset {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.auth-box-number-invisible-reset:hover .icon,
+.auth-box-number-icon-reset:hover .icon {
+  opacity: 0;
+}
+.auth-box-number-invisible-reset:hover .iconHover,
+.auth-box-number-icon-reset:hover .iconHover {
+  opacity: 1;
+}
+.auth-box-number-invisible-reset:hover.active .iconActive,
+.auth-box-number-icon-reset:hover.active .iconActive {
+  opacity: 0;
+}
+.auth-box-number-invisible-reset:hover.active .iconActiveHover,
+.auth-box-number-icon-reset:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-number-invisible-reset.active .icon,
+.auth-box-number-icon-reset.active .icon {
+  opacity: 0;
+}
+.auth-box-number-invisible-reset.active .iconActive,
+.auth-box-number-icon-reset.active .iconActive {
+  opacity: 1;
+}
+.auth-box-number-invisible-reset .icon,
+.auth-box-number-invisible-reset .iconHover,
+.auth-box-number-invisible-reset .iconActive,
+.auth-box-number-invisible-reset .iconActiveHover,
+.auth-box-number-icon-reset .icon,
+.auth-box-number-icon-reset .iconHover,
+.auth-box-number-icon-reset .iconActive,
+.auth-box-number-icon-reset .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.auth-box-number-invisible-reset .iconHover,
+.auth-box-number-invisible-reset .iconActive,
+.auth-box-number-invisible-reset .iconActiveHover,
+.auth-box-number-icon-reset .iconHover,
+.auth-box-number-icon-reset .iconActive,
+.auth-box-number-icon-reset .iconActiveHover {
+  opacity: 0;
+}
+
+.auth-box-number-invisible {
+  cursor: default;
+}
+
+.pin-loader {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  margin-left: 8px;
+  border: 1px solid #ededed;
+  border-radius: 8px;
+}
+.pin-loader.pin-loader--success {
+  background: #f2f7fd;
+  border-color: #CDDFF8;
+}
+.pin-loader.pin-loader--error {
+  background: #fff1ed;
+  border-color: #febeab;
+}
+.pin-loader-icon {
+  margin-right: 8px;
+}
+.pin-loader-icon:last-child {
+  margin-right: 0;
+}

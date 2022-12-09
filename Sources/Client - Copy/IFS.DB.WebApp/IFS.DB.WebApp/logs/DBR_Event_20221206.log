@@ -1,0 +1,13 @@
+[09:51:27 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[09:51:27 Error] **** Unhandled exception in circuit 'OuqcyU8MgjAs2QVb5wWFbNW-CktHHXFvfF0Q4De-eeM'. 
+[09:51:32 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[09:51:32 Error] **** Unhandled exception in circuit 'L_5uMiRnS313HVZbkPAsx87n2wS5nGGVaFfh1a1Dyyw'. 
+[09:51:55 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[09:51:55 Error] **** Unhandled exception in circuit 'M9xyXv8IjG_ZTRFeROe1kcr9H7SY8XRljR4Ma4ZO3eM'. 
+[09:52:27 Error] **** Unhandled exception in circuit 'OuqcyU8MgjAs2QVb5wWFbNW-CktHHXFvfF0Q4De-eeM'. 
+[09:52:32 Error] **** Unhandled exception in circuit 'L_5uMiRnS313HVZbkPAsx87n2wS5nGGVaFfh1a1Dyyw'. 
+[16:18:39 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:18:39 Error] **** Unhandled exception in circuit 'f6XEdWpAR7QqLjbY42VsaqSjcUahBWP0eVs5pwCHilk'. 
+[16:20:50 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:20:50 Error] **** Unhandled exception in circuit 'vdt1htBhlJ_QfzHIhCg7cXlxPD_g_xJv7MG12SHtbFo'. 
+[16:20:51 Error] **** Failed to invoke hub method 'ConnectCircuit'. 

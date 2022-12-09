@@ -1,0 +1,44 @@
+<div class="home-imail">
+    <div class="home-imail__header">
+        <p class="home-imail__title">iMail</p>
+        <button class="home-imail__add" @onclick="@GotoCreateMail">
+            Create iMail
+            <div class="iconBlock">
+                <img class="icon" src="/img/icons/add.svg" alt="plus" />
+                <img class="iconHover" src="/img/icons/addHoverIcon.svg" alt="plus" />
+            </div>
+        </button>
+    </div>
+    <div class="home-imail-boxes">
+        <div class="home-imail-boxes__item" @onclick="@GotoCreateMail">
+            <p class="home-imail-boxes__item-caption">New</p>
+            <p class="home-imail-boxes__item-number">150</p>
+        </div>
+        <div class="home-imail-boxes__item" @onclick="@GotoInboxMails">
+            <p class="home-imail-boxes__item-caption">Inbox</p>
+            <p class="home-imail-boxes__item-number">150</p>
+        </div>
+        <div class="home-imail-boxes__item" @onclick="@GotoSentMails">
+            <p class="home-imail-boxes__item-caption">Sent</p>
+            <p class="home-imail-boxes__item-number">0</p>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private void GotoCreateMail()
+    {
+        _navigateManager.NavigateTo("/imail");
+    }
+
+    private void GotoInboxMails()
+    {
+        _navigateManager.NavigateTo($"/imail/?selectedTabPage={IMailTabPageEnum.InboxMails.ToString()}");
+    }
+
+    private void GotoSentMails()
+    {
+        _navigateManager.NavigateTo($"/imail/?selectedTabPage={IMailTabPageEnum.SentMails.ToString()}");
+    }
+}

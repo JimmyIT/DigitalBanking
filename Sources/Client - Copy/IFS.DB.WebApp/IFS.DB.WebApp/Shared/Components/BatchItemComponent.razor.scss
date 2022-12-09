@@ -1,0 +1,183 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+@keyframes test {
+  0% {
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.batch {
+  
+  &-items-readonly {
+    
+    &-card {
+      padding: $indent-16;
+      border: 2px solid $color-gray-100;
+      border-radius: 12px;
+      margin-bottom: $indent-12;
+
+      display: none;
+
+      transition: $transitionDuration;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &-header {
+        display: flex;
+        justify-content: space-between;
+
+        &__title {
+          @include h5;
+          flex: 1;
+          cursor: pointer;
+        }
+
+        &__content {
+          display: flex;
+        }
+
+        &__sum,
+        &__typeTransfer,
+        &__typePayment,
+        &__label {
+          @include h5;
+          padding-top: 6px;
+          margin-right: $indent-24;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        &__typeTransfer,
+        &__typePayment {
+          padding: 6px 26px 2px;
+          color: $color-sky-blue-500;
+          background-color: $color-sky-blue-100;
+          border-radius: 4px;
+        }
+
+        &__typePayment {
+          color: $color-violet-400;
+          background-color: $color-violet-100;
+        }
+
+        &__label {
+          color: $color-gray-500;
+        }
+
+
+      }
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+  
+  &-items {
+    //display: flex;
+    //flex-direction: column;
+    
+    &-card {
+      padding: $indent-16;
+      border: 2px solid $color-gray-100;
+      border-radius: 12px;
+      margin-bottom: $indent-12;
+
+      display: none;
+      
+      transition: $transitionDuration;
+
+      &-header {
+        display: flex;
+        justify-content: space-between;
+
+        &__title {
+          @include h5;
+          flex: 1;
+          cursor: pointer;
+        }
+
+        &__sum,
+        &__type,
+        &__label {
+          @include h5;
+          padding-top: 6px;
+          margin-right: $indent-24;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        &__sum {
+          &.batch-items-card-header__sum--inactive {
+            color: $color-gray-600;
+          }
+        }
+
+        &__type {
+          padding: 6px 26px 2px;
+          color: $color-sky-blue-500;
+          background-color: $color-sky-blue-100;
+          border-radius: 4px;
+
+          &.batch-items-card-header__type--inactive {
+            color: $color-gray-600;
+            background-color: $color-gray-200;
+          }
+        }
+
+        &__label {
+          color: $color-gray-500;
+
+          &.batch-items-card-header__label--inactive {
+            color: $color-gray-400;
+          }
+        }
+      }
+
+      &-form {
+        margin-top: $indent-16;
+
+        &-row {
+          @include formHorizontal;
+          
+          align-items: flex-start;
+
+          .formgroup {
+            width: 100%;
+          }
+
+          &__amount {
+            text-align: end;
+          }
+
+          &__label {
+            @include caption1;
+            margin-top: $indent-4;
+            color: $color-gray-600;
+          }
+        }
+
+        &-textarea {
+          margin-top: $indent-16;
+        }
+      }
+      
+      &.active {
+        display: block;
+      }
+    }
+  }
+
+
+}

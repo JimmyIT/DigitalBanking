@@ -1,0 +1,83 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.paymentTable {
+    td {
+        @include textWithDots;
+        vertical-align: middle;
+        padding: $indent-12 $indent-16;
+
+        &:nth-child(4),
+        &:nth-child(5) {
+            text-align: center;
+        }
+
+        &:last-child {
+            text-align: end;
+        }
+    }
+
+    thead {
+        td {
+            @include label2;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-sky-blue-100;
+        }
+
+        td {
+            &.paymentTable-date {
+                text-align: left;
+                padding-top: $indent-12;
+                padding-bottom: $indent-4;
+            }
+
+            img {
+                margin-right: $indent-8;
+            }
+
+            &:nth-child(1),
+            &:nth-child(3) {
+                @include body;
+                color: $color-gray-600;
+            }
+
+            &:nth-child(2),
+            &:nth-child(4) {
+                @include h5;
+                color: $color-gray-600;
+            }
+
+            &:nth-child(3) {
+                display: flex;
+                align-items: center;
+            }
+
+            &:nth-child(5) {
+                @include h5;
+                color: $color-red-500;
+            }
+        }
+    }
+
+    &__image {
+        @include buttonIconSmall;
+    }
+
+    &-button {
+        @include transparentButton;
+    }
+}

@@ -1,0 +1,211 @@
+<table class="maintenanceTable">
+    <thead>
+        <tr>
+            <td>User Reference</td>
+            <td>Debit Account</td>
+            <td>Amount</td>
+            <td>Submitted Date</td> 
+            <td>Status</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>37297476920123</td>
+            <td>Account No. 45672289</td>
+            <td>$100 000.00</td>
+            <td>12 November, 2021</td>
+            <td><span class="maintenanceTable-status">Draft</span></td>
+            <td><button class="maintenanceTable-button">Submit</button></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon" onclick="onClickSubmitDropdown()">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                    <div class="maintenanceTable-action-dropdown" id="SubmitDropdown">
+                        <div class="maintenanceTable-action-dropdown-item">Batch details</div>
+                        <div class="maintenanceTable-action-dropdown-item">Edit</div>
+                        <div class="maintenanceTable-action-dropdown-item" onclick="onTriggerModalDelete()">Delete</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476920128</td>
+            <td>Account No. 45672299</td>
+            <td>$200 000 000.00</td>
+            <td>13 November, 2021</td>
+            <td><span class="maintenanceTable-status">Draft</span></td>
+            <td><button class="maintenanceTable-button">Submit</button></td> 
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476920678</td>
+            <td>Account No. 32672230</td>
+            <td>$3 000.00</td>
+            <td>16 November, 2021</td>
+            <td><span class="maintenanceTable-status">Draft</span></td>
+            <td><button class="maintenanceTable-button">Submit</button></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476920432</td>
+            <td>Account No. 15672001</td>
+            <td>$150 000.00</td>
+            <td>16 November, 2021</td>
+            <td><span class="maintenanceTable-status maintenanceTable-status--error">Waiting</span></td>
+            <td><button class="maintenanceTable-button">Sign</button></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon" onclick="onClickSignDropdown()">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                    <div class="maintenanceTable-action-dropdown" id="SignDropdown">
+                        <div class="maintenanceTable-action-dropdown-item">Batch details</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476924229</td>
+            <td>Account No. 44677682</td>
+            <td>$9 000 000.00</td>
+            <td>17 November, 2021</td>
+            <td><span class="maintenanceTable-status maintenanceTable-status--error">Waiting</span></td>
+            <td><button class="maintenanceTable-button maintenanceTable-button--disabled" disabled>2/3 signs</button></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476922284</td>
+            <td>Account No. 45672280</td>
+            <td>$100 000 000.00</td>
+            <td>19 November, 2021</td>
+            <td><span class="maintenanceTable-status maintenanceTable-status--success">Submitted</span></td>
+            <td></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon" onclick="onClickSubmittedDropdown()">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                    <div class="maintenanceTable-action-dropdown" id="SubmittedDropdown">
+                        <div class="maintenanceTable-action-dropdown-item">Batch details</div>
+                        <div class="maintenanceTable-action-dropdown-item">Export CSV</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476922802</td>
+            <td>Account No. 45672285</td>
+            <td>$70 000.00</td>
+            <td>19 November, 2021</td>
+            <td><span class="maintenanceTable-status maintenanceTable-status--success">Submitted</span></td>
+            <td></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476925532</td>
+            <td>Account No. 45672293</td>
+            <td>$120 000.00</td>
+            <td>19 November, 2021</td>
+            <td><span class="maintenanceTable-status maintenanceTable-status--success">Submitted</span></td>
+            <td></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476925901</td>
+            <td>Account No. 45672296</td>
+            <td>$150 000.00</td>
+            <td>02 December, 2021</td>
+            <td><span class="maintenanceTable-status maintenanceTable-status--success">Submitted</span></td>
+            <td></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>37297476925907</td>
+            <td>Account No. 45634274</td>
+            <td>$180 000.00</td>
+            <td>03 December, 2021</td>
+            <td><span class="maintenanceTable-status maintenanceTable-status--success">Submitted</span></td>
+            <td></td>
+            <td>
+                <div class="maintenanceTable-action">
+                    <div class="maintenanceTable-action-icon">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal-layout" id="ModalSuccess">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalDelete()"></div>
+        <div class="batch-modal-layout">
+            <div class="batch-modal">
+                <div class="batch-modal-header-wrapper">
+                    <div class="batch-modal-header">
+                        <p class="batch-modal-header__title">Are you sure you want to delete [Name] Batch?</p>
+                        <img class="batch-modal-header__icon" src="/img/icons/closeIcon.svg" alt="close" onclick="onTriggerModalDelete()"/>
+                    </div>
+                    <p class="batch-modal-header__subtitle">
+                        Click [Delete] if you want to delete this Batch from the list
+                    </p>
+                </div>
+
+                <div class="batch-modal-footer">
+                    <button class="batch-modal-footer__buttonCancel" onclick="onTriggerModalDelete()">Cancel</button>
+                    <button class="batch-modal-footer__buttonSuccess" onclick="onTriggerModalDelete()">Delete Batch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

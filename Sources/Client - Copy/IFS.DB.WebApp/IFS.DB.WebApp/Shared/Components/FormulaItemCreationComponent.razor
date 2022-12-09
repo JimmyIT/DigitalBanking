@@ -1,0 +1,116 @@
+﻿@using IFS.DB.WebApp.Models.Mandates
+
+@if (FormulaItem != null)
+{
+    <!---->
+    <!---->
+    <div class="mandates-value-item-first-formula mandates-value-item-first-point" id="Template">
+        <div class="mandates-value-item-first-formula-content">
+            <p class="mandates-value-item-first-formula-content-name">
+                Items up to a value of (@(FormulaItem.CurrencyCode))
+            </p>
+            <input placeholder="0,00" class="mandates-value-item-first-formula-content-input" />
+        </div>
+        <!---->
+        <!---->
+        @if (FormulaItem.FormulaValues != null)
+        {
+            @for (int formulaValueIndex = 0; formulaValueIndex < FormulaItem.FormulaValues.Count; formulaValueIndex++)
+            {
+                FormulaValuesModel tempFormulaValue = FormulaItem.FormulaValues[formulaValueIndex];
+
+                <div class="mandates-value-item-first-formula-cards">
+                    <!---->
+                    <!---->
+                    <div class="mandates-value-item-first-formula-cards-title">
+                        <p class="mandates-value-item-first-formula-cards-title-text">Formula @(tempFormulaValue.ValueId)</p>
+                        <div class="mandates-value-item-first-head__icon" @onclick=@(() => RemoveFormulaValueItemAsync(tempFormulaValue))>
+                            <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                            <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                        </div>
+                    </div>
+                    <!---->
+                    <!---->
+                    <div class="mandates-value-item-first-formula-cards-info">
+                        @for (int pairOfValueIndex = 0; pairOfValueIndex < tempFormulaValue.PairOfValues.Count; pairOfValueIndex++)
+                        {
+                            PairValueOfFormula tempPairValueOfFormula = tempFormulaValue.PairOfValues[pairOfValueIndex];
+
+                            <div class="mandates-value-item-first-formula-cards-info-number">
+                                <p class="mandates-value-item-first-formula-cards-info-number-name">
+                                    Number of signatures
+                                </p>
+                                <input placeholder="0,00" class="mandates-value-item-first-formula-cards-info-number-input" />
+                            </div>
+                            <!---->
+                            <!---->
+                            <div class="mandates-value-item-first-formula-cards-info-selector">
+                                <p class="mandates-value-item-first-formula-cards-info-selector-name">
+                                    Level of User
+                                </p>
+                                <div class="customSelector">
+                                    <div class="customSelector-input" onclick="onClickFilterIcon()" id="filtersSelector">
+                                        <p class="customSelector-input__placeholder admin-box-selections-customer-name">
+                                            Select level
+                                        </p>
+                                        <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+                                    </div>
+
+                                    <div class="customSelector-dropdown" id="filters">
+                                        <div class="customSelector-dropdown-item">
+                                            <p>A</p>
+                                        </div>
+                                        <div class="customSelector-dropdown-item">
+                                            <p>B</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!---->
+                            <!---->
+                            @if (pairOfValueIndex < tempFormulaValue.PairOfValues.Count - 1)
+                            {
+                                <p class="mandates-value-item-first-formula-cards-info-and">and</p>
+                            }
+                        }
+
+                        <!---->
+                        <!---->
+                        <button class="mandates-value-item-first-formula-cards-info-add" @onclick=@(() => AddNewPairOfFormulaValueItemAsync(tempFormulaValue))>
+                            <img src="/img/icons/add.svg" alt="add" class="icon" />
+                            <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+                        </button>
+                    </div>
+
+                    <!---->
+                    <!---->
+
+                </div>
+
+                @if (formulaValueIndex < FormulaItem.FormulaValues.Count - 1)
+                {
+                    <div class="mandates-value-item-first-formula-or">
+                        <p class="mandates-value-item-first-formula-or-text">or</p>
+                        <hr class="mandates-value-item-first-line" />
+                    </div>
+                }
+                <!---->
+                <!---->
+            }
+        }
+
+        <!---->
+        <!---->
+        <div class="mandates-value-item-first-formula-new">
+            <button class="mandates-value-item-first-formula-new-button" @onclick=@AddNewFormulaValueItemAsync>
+                <span class="iconBlock">
+                    <img src="/img/icons/add.svg" alt="add" class="icon" />
+                    <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+                </span>
+                <span>Add formula</span>
+            </button>
+        </div>
+    </div>
+    <!---->
+    <!---->
+}

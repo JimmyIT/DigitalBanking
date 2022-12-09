@@ -1,0 +1,128 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.standingOrdersTable {
+    td {
+        @include textWithDots;
+        vertical-align: middle;
+        padding: $indent-8 6px;
+
+        &:first-child {
+            text-align: center;
+            padding-left: $indent-12;
+        }
+
+        &:last-child {
+            text-align: end;
+            overflow: visible;
+        }
+
+        &:nth-child(4) {
+            text-align: center;
+        }
+
+        &:nth-child(5) {
+            width: 80px;
+        }
+
+        &:nth-child(6) {
+            width: 40px;
+        }
+    }
+
+    thead {
+        td {
+            @include label;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-sky-blue-100;
+
+            &:last-child {
+                border-bottom: 0;
+
+                td {
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        td {
+            &.standingOrdersTable-date {
+                @include label;
+                color: $color-gray-600;
+                text-align: left;
+                padding-top: $indent-12;
+                padding-bottom: $indent-4;
+            }
+
+            &:nth-child(4) {
+                @include h5;
+                text-align: center;
+            }
+        }
+    }
+
+    &-button {
+        @include label;
+        @include grayTextBox;
+        display: flex;
+        justify-content: center;
+
+        &.standingOrdersTable-button--error {
+            @include redTextBox;
+        }
+
+        &.standingOrdersTable-button--success {
+            @include greenTextBox;
+        }
+    }
+
+    &-action {
+        position: relative;
+        box-sizing: border-box;
+
+        &-icon {
+            @include buttonIcon;
+        }
+
+        &-dropdown {
+            position: absolute;
+            top: 45px;
+            right: 10px;
+            width: 156px;
+            display: none;
+            padding: 8px 0;
+            border: 1px solid $color-sky-blue-200;
+            border-radius: 8px;
+            background-color: $color-white;
+            box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+            z-index: 2;
+
+            &-item {
+                @include field;
+                padding: 14px 16px;
+                text-align: left;
+                color: $color-gray-600;
+                cursor: pointer;
+
+                &:hover {
+                    color: $color-gray-900;
+                    background-color: $color-sky-blue-100;
+                }
+            }
+        }
+    }
+}

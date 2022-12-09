@@ -1,0 +1,87 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.admin-layout {
+	padding: $indent-24 0 $indent-36;
+}
+
+.admin-container {
+	@include container;
+}
+
+.admin-header {
+	@include pageTitle;
+}
+
+.admin-box {
+	@include box;
+
+	&-selections {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: $indent-16;
+
+		&__name {
+			@include h2;
+			color: $color-wireframes-900;
+		}
+
+		&-input-group {
+			max-width: 816px;
+
+			&-input {
+				max-width: 264px;
+				margin-right: $indent-12;
+
+				&:last-child {
+					margin: 0;
+				}
+
+				&__checkbox {
+					width: 16px;
+					height: 16px;
+					border: 1.25px solid $color-sky-blue-500;
+					border-radius: 2px;
+				}
+			}
+
+			&-selector {
+				max-width: 264px;
+			}
+		}
+	}
+
+	&-filter {
+		display: flex;
+		align-items: center;
+		margin-bottom: $indent-16;
+
+		&-type {
+			@include body;
+			display: flex;
+			align-items: center;
+			padding: $indent-8 $indent-12;
+			margin-right: $indent-8;
+			background: $color-sky-blue-100;
+			color: $color-sky-blue-300;
+			border-radius: 8px;
+
+			&:nth-child(4) {
+				margin-right: $indent-16;
+			}
+
+			&-text {
+				margin-right: $indent-8;
+			}
+		}
+
+		&-clear {
+			@include transparentButton;
+		}
+
+		&__close {
+			margin-left: $indent-8;
+		}
+	}
+}

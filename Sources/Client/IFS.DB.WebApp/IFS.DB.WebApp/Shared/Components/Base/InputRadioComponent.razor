@@ -1,0 +1,49 @@
+﻿@using System.Globalization
+@typeparam TValue
+@inherits InputBase<TValue>
+
+<div class="profile-notifications-block__item">
+    <div class="profile-notifications-block__item-radio">
+        <input @attributes="AdditionalAttributes" type="radio" value="@SelectedValue"
+               checked="@(SelectedValue.Equals(Value))" @onchange="OnChange" />
+        @if (!string.IsNullOrEmpty(Description))
+        {
+            <label>@Description</label>
+        }
+    </div>
+    <p class="profile-notifications-block__item-caption">
+        @Caption
+    </p>
+
+</div>
+@code {
+    [Parameter] public string Caption { get; set; }
+    [Parameter] public string Description { get; set; }
+    [Parameter] public TValue SelectedValue { get; set; }
+
+    private void OnChange(ChangeEventArgs args)
+    {
+        CurrentValueAsString = args.Value.ToString();
+    }
+
+    protected override bool TryParseValueFromString(string value,
+        out TValue result, out string errorMessage)
+    {
+        var success = BindConverter.TryConvertTo<TValue>(
+            value, CultureInfo.CurrentCulture, out var parsedValue);
+        if (success)
+        {
+            result = parsedValue;
+            errorMessage = null;
+
+            return true;
+        }
+        else
+        {
+            result = default;
+            errorMessage = $"{FieldIdentifier.FieldName} field isn't valid.";
+
+            return false;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\bin\Debug\net6.0\IFS.DB.Resources.Services.deps.json
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\bin\Debug\net6.0\IFS.DB.Resources.Services.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\bin\Debug\net6.0\IFS.DB.Resources.Services.pdb
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\IFS.DB.Resources.Services.csproj.AssemblyReference.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\IFS.DB.Resources.Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\IFS.DB.Resources.Services.AssemblyInfoInputs.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\IFS.DB.Resources.Services.AssemblyInfo.cs
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\IFS.DB.Resources.Services.csproj.CoreCompileInputs.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\IFS.DB.Resources.Services.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\refint\IFS.DB.Resources.Services.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\IFS.DB.Resources.Services.pdb
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.Resources.Services\obj\Debug\net6.0\ref\IFS.DB.Resources.Services.dll

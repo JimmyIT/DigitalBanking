@@ -1,0 +1,281 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.security-layout {
+	padding: $indent-24 0 $indent-12;
+}
+
+.security-container {
+	@include container;
+}
+
+.security-header {
+	@include pageTitle;
+}
+
+.security {
+	&-main {
+		display: flex;
+		align-items: flex-start;
+
+		&-menu {
+			@include menu;
+			width: 208px;
+			margin-right: $indent-24;
+		}
+
+		&-content,
+		&-authority {
+			@include box;
+			flex: 1;
+
+			&-title {
+				@include h2;
+				margin-bottom: $indent-16;
+				color: $color-wireframes-900;
+			}
+		}
+
+		&-content {
+			@include box;
+			flex: 1;
+
+			&-title {
+				@include h2;
+				margin-bottom: $indent-16;
+				color: $color-wireframes-900;
+			}
+
+			&-subtitle {
+				display: flex;
+				align-items: flex-start;
+				margin-bottom: $indent-16;
+
+				&__tooltip-icon {
+					margin-right: $indent-4;
+				}
+			}
+
+			&-code {
+				display: flex;
+				margin-bottom: 44px;
+
+				&__col {
+					flex: 1;
+					margin-right: $indent-16;
+					&:last-child {
+						margin-right: 0;
+					}
+
+					&-text {
+						@include label;
+						margin-bottom: $indent-4;
+						color: $color-gray-600;
+					}
+				}
+			}
+
+			&-info {
+				display: flex;
+				margin-top: $indent-16;
+
+				&-item {
+					width: 100%;
+					max-width: 240px;
+					margin-right: $indent-12;
+
+					&:last-child {
+						margin-right: 0;
+					}
+
+					&-label {
+						color: $color-gray-600;
+					}
+
+					&-body {
+						@include body;
+						display: flex;
+						align-items: center;
+						color: $color-gray-900;
+
+						&.security-main-content-info-item-body--locked,
+						&.security-main-content-info-item-body--success {
+							max-width: 80px;
+							border-radius: $indent-4;
+							color: $color-red-500;
+							background-color: $color-red-100;
+						}
+
+						&.security-main-content-info-item-body--success {
+							color: $color-green-500;
+							background-color: $color-green-100;
+						}
+					}
+				}
+			}
+
+			&-line {
+				@include line;
+				width: calc(100% + $indent-24 * 2);
+				margin-top: 28px;
+				position: relative;
+				left: -$indent-24;
+			}
+
+			&-footer {
+				display: flex;
+				justify-content: flex-end;
+				margin-top: $indent-24;
+
+				&-saved {
+					display: flex;
+					align-items: center;
+					margin-right: $indent-16;
+
+					&-name {
+						@include h5;
+						color: $color-gray-800;
+					}
+				}
+
+				&-update {
+					display: flex;
+					width: 100%;
+					justify-content: space-between;
+
+					&-reject {
+						@include redButton;
+						min-width: 132px;
+					}
+
+					&-confirm {
+						@include blueButton;
+						min-width: 148px;
+					}
+				}
+
+				&-send {
+					@include blueButton;
+					min-width: 312px;
+				}
+
+				&-button {
+					@include blueButton;
+					min-width: 148px;
+
+					&.security-main-content-footer-button--inactive {
+						background: $color-blue-200;
+					}
+				}
+			}
+
+			&-update {
+				flex-direction: column;
+
+				&-title {
+					display: flex;
+					align-items: center;
+					margin-bottom: $indent-16;
+
+					&-name {
+						@include caption1;
+						color: $color-gray-800;
+					}
+				}
+
+				&-main {
+					display: flex;
+
+					&-item {
+						min-width: 160px;
+						margin-right: $indent-12;
+
+						&__name {
+							@include label;
+							color: $color-gray-600;
+						}
+
+						&__text {
+							@include h5;
+							color: $color-gray-900;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.unlock-modal,
+.submit-modal,
+.reject-modal,
+.confirm-modal {
+	@include modalDefault;
+
+	&-layout {
+		@include modalDefaultContainer;
+	}
+
+	&-header-wrapper {
+		margin-bottom: $indent-16;
+	}
+
+	&-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&__title {
+			@include h2;
+			color: $color-wireframes-900;
+		}
+
+		&__subtitle {
+			@include h5;
+			margin-top: $indent-4;
+			color: $color-gray-900;
+		}
+
+		&__icon {
+			cursor: pointer;
+		}
+	}
+
+	&-main {
+		margin-bottom: $indent-16;
+
+		&-input {
+			margin-right: 0;
+			margin-bottom: $indent-16;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&-footer {
+		display: flex;
+		justify-content: space-between;
+
+		&__buttonCancel,
+		&__buttonUnlock,
+		&__buttonConfirm,
+		&__buttonReject {
+			min-width: 144px;
+		}
+
+		&__buttonCancel {
+			@include lightBlueButton;
+		}
+
+		&__buttonUnlock,
+		&__buttonConfirm {
+			@include blueButton;
+		}
+
+		&__buttonReject {
+			@include redButton2;
+		}
+	}
+}

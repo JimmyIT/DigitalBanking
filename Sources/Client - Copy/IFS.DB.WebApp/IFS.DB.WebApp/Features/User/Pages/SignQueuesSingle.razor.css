@@ -1,0 +1,551 @@
+.sign-queues-single-layout {
+  padding: 24px 0 36px;
+}
+
+.sign-queues-single-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.sign-queues-single-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.sign-queues-single-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.sign-queues-single-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.sign-queues-single-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.sign-queues-single-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.sign-queues-single-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.sign-queues-single-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.sign-queues-single-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.sign-queues-single-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.sign-queues-single-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.sign-queues-single-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.sign-queues-single-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.sign-queues-single-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.sign-queues-single-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.sign-queues-single-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.sign-queues-single-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.sign-queues-single-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.sign-queues-single-header__button .iconBlock .icon,
+.sign-queues-single-header__button .iconBlock .iconHover,
+.sign-queues-single-header__button .iconBlock .iconActive,
+.sign-queues-single-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.sign-queues-single-header__button .iconBlock .iconHover,
+.sign-queues-single-header__button .iconBlock .iconActive,
+.sign-queues-single-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.sign-queues-single-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.sign-queues-single-header__button .iconBlock,
+.sign-queues-single-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.sign-queues-single-header__button .iconBlock:first-child,
+.sign-queues-single-header__button > img:first-child {
+  margin-left: 0;
+}
+.sign-queues-single-header__button .iconBlock:last-child,
+.sign-queues-single-header__button > img:last-child {
+  margin-right: 0;
+}
+.sign-queues-single-header__button:hover {
+  color: #0248a4;
+}
+.sign-queues-single-header-breadcrumbs {
+  display: flex;
+}
+.sign-queues-single-header-breadcrumbs__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  padding: 4px 0;
+  margin-right: 8px;
+}
+.sign-queues-single-header-breadcrumbs__item::after {
+  content: "/";
+  margin-left: 8px;
+}
+.sign-queues-single-header-breadcrumbs__item:last-child {
+  margin-right: 0;
+}
+.sign-queues-single-header-breadcrumbs__item:last-child::after {
+  display: none;
+}
+.sign-queues-single-header-breadcrumbs__item.active {
+  color: #212121;
+}
+.sign-queues-single-header-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;
+}
+.sign-queues-single-header-title-line {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+.sign-queues-single-header-title-line__return-icon {
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  margin-right: 12px;
+}
+.sign-queues-single-header-title-line-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+  margin-right: 12px;
+}
+.sign-queues-single-card {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.sign-queues-single-card:last-child {
+  margin-bottom: 0;
+}
+.sign-queues-single-card-info {
+  display: flex;
+  margin-bottom: 16px;
+}
+.sign-queues-single-card-info:last-child {
+  margin-bottom: 0;
+}
+.sign-queues-single-card-info-item {
+  margin-right: 32px;
+  width: 100%;
+  max-width: 260px;
+}
+.sign-queues-single-card-info-item:last-child {
+  max-width: unset;
+  margin-right: 0;
+}
+.sign-queues-single-card-info-item--fullwidth {
+  max-width: 552px;
+}
+.sign-queues-single-card-info-item-title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+}
+.sign-queues-single-card-info-item-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+.sign-queues-single-card-info-item-text__image {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 4px;
+}
+.sign-queues-single-card-dash {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #dcdcdc 0.34%, #d2d2d2 49.35%, rgba(227, 227, 227, 0) 100%);
+  margin-bottom: 16px;
+  background: #f2f7fd;
+}
+.sign-queues-single-card-title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  margin-bottom: 8px;
+  color: #393939;
+}
+
+.sign-queues-footer-layout {
+  background: #ffffff;
+  padding: 24px 0;
+}
+
+.sign-queues-footer-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.sign-queues-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.sign-queues-footer-left {
+  display: flex;
+  align-items: center;
+}
+.sign-queues-footer-left-total {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.sign-queues-footer-left-total-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.sign-queues-footer-left-total-text:first-child {
+  margin-right: 8px;
+  color: #6a6a6a;
+}
+.sign-queues-footer-left-total-text:last-child {
+  color: #393939;
+}
+.sign-queues-footer-left-awaiting {
+  display: flex;
+  align-items: center;
+}
+.sign-queues-footer-left-awaiting-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.sign-queues-footer-left-awaiting-text:first-child {
+  margin-right: 8px;
+  color: #6a6a6a;
+}
+.sign-queues-footer-left-awaiting-text:last-child {
+  color: #fc4c16;
+}
+.sign-queues-footer-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.sign-queues-footer-right-batch {
+  display: flex;
+  align-items: center;
+}
+.sign-queues-footer-right-batch-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.sign-queues-footer-right-batch-text:nth-child(1) {
+  margin-right: 8px;
+  color: #6a6a6a;
+}
+.sign-queues-footer-right-batch-text:nth-child(2) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  margin-right: 44px;
+  color: #393939;
+}
+.sign-queues-footer-right-act {
+  display: flex;
+  align-items: center;
+}
+.sign-queues-footer-right-act-reject, .sign-queues-footer-right-act-sign {
+  min-width: 148px;
+}
+.sign-queues-footer-right-act-reject {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #fc4c16;
+  background-color: #fff1ed;
+  margin-right: 16px;
+}
+.sign-queues-footer-right-act-reject:hover .iconBlock .icon {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-reject:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-reject:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-reject:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-reject .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.sign-queues-footer-right-act-reject .iconBlock:hover .icon {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-reject .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-reject .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-reject .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-reject .iconBlock.active .icon {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-reject .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-reject .iconBlock .icon,
+.sign-queues-footer-right-act-reject .iconBlock .iconHover,
+.sign-queues-footer-right-act-reject .iconBlock .iconActive,
+.sign-queues-footer-right-act-reject .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.sign-queues-footer-right-act-reject .iconBlock .iconHover,
+.sign-queues-footer-right-act-reject .iconBlock .iconActive,
+.sign-queues-footer-right-act-reject .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-reject > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.sign-queues-footer-right-act-reject .iconBlock,
+.sign-queues-footer-right-act-reject > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.sign-queues-footer-right-act-reject .iconBlock:first-child,
+.sign-queues-footer-right-act-reject > img:first-child {
+  margin-left: 0;
+}
+.sign-queues-footer-right-act-reject .iconBlock:last-child,
+.sign-queues-footer-right-act-reject > img:last-child {
+  margin-right: 0;
+}
+.sign-queues-footer-right-act-reject:hover {
+  color: #cf3405;
+}
+.sign-queues-footer-right-act-reject--inactive {
+  background: #febeab;
+}
+.sign-queues-footer-right-act-sign {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+}
+.sign-queues-footer-right-act-sign:hover .iconBlock .icon {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-sign:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-sign:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-sign:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-sign .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.sign-queues-footer-right-act-sign .iconBlock:hover .icon {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-sign .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-sign .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-sign .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-sign .iconBlock.active .icon {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-sign .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.sign-queues-footer-right-act-sign .iconBlock .icon,
+.sign-queues-footer-right-act-sign .iconBlock .iconHover,
+.sign-queues-footer-right-act-sign .iconBlock .iconActive,
+.sign-queues-footer-right-act-sign .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.sign-queues-footer-right-act-sign .iconBlock .iconHover,
+.sign-queues-footer-right-act-sign .iconBlock .iconActive,
+.sign-queues-footer-right-act-sign .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.sign-queues-footer-right-act-sign > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.sign-queues-footer-right-act-sign .iconBlock,
+.sign-queues-footer-right-act-sign > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.sign-queues-footer-right-act-sign .iconBlock:first-child,
+.sign-queues-footer-right-act-sign > img:first-child {
+  margin-left: 0;
+}
+.sign-queues-footer-right-act-sign .iconBlock:last-child,
+.sign-queues-footer-right-act-sign > img:last-child {
+  margin-right: 0;
+}
+.sign-queues-footer-right-act-sign:hover {
+  background-color: #0248a4;
+}
+.sign-queues-footer-right-act-sign--inactive {
+  background: #a1e1ff;
+}

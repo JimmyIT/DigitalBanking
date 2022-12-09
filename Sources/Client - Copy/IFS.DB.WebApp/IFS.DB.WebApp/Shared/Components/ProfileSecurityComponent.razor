@@ -1,0 +1,66 @@
+<div class="profile-main">
+    <EditForm id="_profileLoginAndPasswordEditContextId"
+              style="min-height: 100vh;display: contents;"
+              EditContext="@_profileSecurityConfigEditContext"
+              OnValidSubmit=@OnValidSubmit_Click
+              OnInvalidSubmit=@OnInvalidSubmit_Click>
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <div class="profile-main__content">
+            <p class="profile-main__title">Security settings</p>
+
+            <div class="profile-notifications-block">
+                <div class="profile-notifications-block__title">Informing about transactions</div>
+                <div class="profile-notifications-block__item">
+                    <div class="profile-notifications-block__item-radio">
+                        <input id="radio@(SecurityFactorEnum.OneFactor.ToString())"
+                               name="radio-auth"
+                               type="radio" 
+                               value="@SecurityFactorEnum.OneFactor.ToString()"
+                               checked="@(SecurityFactorEnum.OneFactor.Equals(@_changeSecutityConfigurationsRequestModel.SecuritySetting))" 
+                               @onclick="@(() => _changeSecutityConfigurationsRequestModel.SecuritySetting = SecurityFactorEnum.OneFactor)" />
+                        <label for="radio@(SecurityFactorEnum.OneFactor.ToString())">One factor authorization (only login and password)</label>
+                    </div>
+                    <p class="profile-notifications-block__item-caption">If the iFinancial session will be secure enough Bank will not send the entry confirmation to the financial number</p>
+                </div>
+                <div class="profile-notifications-block__item">
+                    <div class="profile-notifications-block__item-radio">
+                        <input id="radio@(SecurityFactorEnum.TwoFactor.ToString())"
+                               name="radio-auth"
+                               type="radio" 
+                               value="@SecurityFactorEnum.TwoFactor.ToString()"
+                               checked="@(SecurityFactorEnum.TwoFactor.Equals(@_changeSecutityConfigurationsRequestModel.SecuritySetting))" 
+                               @onclick="@(() => _changeSecutityConfigurationsRequestModel.SecuritySetting = SecurityFactorEnum.TwoFactor)" />
+                        <label for="radio@(SecurityFactorEnum.TwoFactor.ToString())">Two factor authorization in any case</label>
+                    </div>
+                    <p class="profile-notifications-block__item-caption">Bank will send the confirmation of entry on the financial phone number regardless of the security level of the session</p>
+                </div>
+            </div>
+
+            <div class="profile-security-sessions">
+                <p class="profile-security-sessions__title">Devices with active session</p>
+                <div class="profile-security-sessions-list">
+                    @foreach (var deviceSession in _changeSecutityConfigurationsRequestModel.DevicesActiveSessions)
+                    {
+                        <div class="profile-security-session">
+                            <p class="profile-security-session__title">@deviceSession.DeviceName, @deviceSession.OperationSystem</p>
+                            <p class="profile-security-session__caption">@deviceSession.IPAddress</p>
+                            <p class="profile-security-session__text">@deviceSession.Note</p>
+                            <button type="button" class="profile-security-session__button" @onclick=@(() => DeleteSessionDevice(deviceSession))>Close session</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-main__footer">
+            @if (isSuccess)
+            {
+                <p class="profile-main__footer-message">
+                    <img src="/img/icons/check.svg" alt="check" />
+                    Security settings were saved
+                </p>
+            }
+            <button type="submit" class="profile-main__footer-button">Save updates</button>
+        </div>
+    </EditForm>
+</div>

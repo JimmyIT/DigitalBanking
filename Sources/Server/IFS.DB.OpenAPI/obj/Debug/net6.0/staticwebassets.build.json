@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Dkin05NaSdnO9M+nv0LctO7gXTlzEsoEih1iUtrw+NY=",
+  "Source": "IFS.DB.OpenAPI",
+  "BasePath": "_content/IFS.DB.OpenAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,145 @@
+@layout BasicLayout
+@page "/customer/mandates/filled"
+
+<div class="mandates-layout">
+    <div class="mandates-container">
+        <div class="mandates-header">
+            <div class="mandates-header-wrapper">
+                <img src="/img/icons/mandatesIcon.svg" alt="logo" class="mandates-header__logo" />
+                <p class="mandates-header__title">Mandates</p>
+                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="mandates-header__tooltip-icon" />
+            </div>
+
+            <div>
+                <button class="mandates-header__button" oncanplay="onclickEdit" id="amount">Edit</button>
+            </div>
+        </div>
+            
+        <div class="mandates">
+            <p class="mandates-subtitle">Default settings for all customers and products</p>
+
+            <div class="mandates-amount">
+                <p class="mandates-amount-name">Maximum amount</p>
+                <p class="mandates-amount-subtitle">Maximum amount for a single item</p>
+                <p class="mandates-amount-item">$100 000 000.00</p>
+            </div>
+
+            <div class="mandates-value">
+                <p class="mandates-value-name">Value items</p>
+                <p class="mandates-value-subtitle">This section will reflect the conditions under which mandates can be implemented</p>
+                
+                <div class="mandates-value-item">
+                    
+                    <div class="mandates-value-item-first">
+                        <div class="mandates-value-item-first-head">
+                            <p class="mandates-value-item-first-head-name">Value item No.1</p>
+                        </div>
+
+                        <hr class="mandates-value-item-first-line" />
+
+                        <div class="mandates-value-item-first-point">
+                            <div class="mandates-value-item-first-point-content">
+                                <p class="mandates-value-item-first-point-content-name">Items up to a value of (GBR)</p>
+                                <p class="mandates-value-item-first-point-content-text">$100 000.00</p>
+                            </div>
+
+                            <div class="mandates-value-item-first-point-content">
+                                <p class="mandates-value-item-first-point-content-name">Number of signatures</p>
+                                <p class="mandates-value-item-first-point-content-text">20</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mandates-value-item-first">
+                        <div class="mandates-value-item-first-head">
+                            <p class="mandates-value-item-first-head-name">Value item No.2</p>
+                        </div>
+
+                        <hr class="mandates-value-item-first-line" />
+
+                        <div class="mandates-value-item-first-point">
+                            <div class="mandates-value-item-first-point-content">
+                                <p class="mandates-value-item-first-point-content-name">Items up to a value of (GBR)</p>
+                                <p class="mandates-value-item-first-point-content-text">$50 000.00</p>
+                            </div>
+                        </div>
+
+                        <div class="mandates-value-item-first-formula-cards">
+                            <div class="mandates-value-item-first-formula-cards-title">
+                                <p class="mandates-value-item-first-formula-cards-title-text">Formula 1</p>
+                            </div>
+
+                            <div class="mandates-value-item-first-formula-cards-info">
+                                <div class="mandates-value-item-first-formula-cards-info-number">
+                                    <p class="mandates-value-item-first-formula-cards-info-number-name">Number of signatures</p>
+                                    <p class="mandates-value-item-first-formula-cards-info-number-text">1</p>
+                                </div>
+
+                                <div class="mandates-value-item-first-formula-cards-info-number">
+                                    <p class="mandates-value-item-first-formula-cards-info-number-name">Level of User</p>
+                                    <p class="mandates-value-item-first-formula-cards-info-number-text">A</p>
+                                </div>
+
+                                <p class="mandates-value-item-first-formula-cards-info-and">and</p>
+
+                                <div class="mandates-value-item-first-formula-cards-info-number">
+                                    <p class="mandates-value-item-first-formula-cards-info-number-name">Number of signatures</p>
+                                    <p class="mandates-value-item-first-formula-cards-info-number-text">3</p>
+                                </div>
+
+                                <div class="mandates-value-item-first-formula-cards-info-number">
+                                    <p class="mandates-value-item-first-formula-cards-info-number-name">Level of User</p>
+                                    <p class="mandates-value-item-first-formula-cards-info-number-text">B</p>
+                                </div>
+                            </div> 
+                        </div>
+
+                        <div class="mandates-value-item-first-or">
+                            <p class="mandates-value-item-first-or-text">or</p> 
+                            <hr class="mandates-value-item-first-line" />
+                        </div>
+
+                        <div class="mandates-value-item-first-formula-cards">
+                            <div class="mandates-value-item-first-formula-cards-title">
+                                <p class="mandates-value-item-first-formula-cards-title-text">Formula 2</p>
+                            </div>
+
+                            <div class="mandates-value-item-first-formula-cards-info">
+                                <div class="mandates-value-item-first-formula-cards-info-number">
+                                    <p class="mandates-value-item-first-formula-cards-info-number-name">Number of signatures</p>
+                                    <p class="mandates-value-item-first-formula-cards-info-number-text">3</p>
+                                </div>
+
+                                <div class="mandates-value-item-first-formula-cards-info-number">
+                                    <p class="mandates-value-item-first-formula-cards-info-number-name">Level of User</p>
+                                    <p class="mandates-value-item-first-formula-cards-info-number-text">C</p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="mandates-value-item-first">
+                        <div class="mandates-value-item-first-head">
+                            <p class="mandates-value-item-first-head-name">Value item No.3</p>
+                        </div>
+
+                        <hr class="mandates-value-item-first-line" />
+
+                        <div class="mandates-value-item-first-point">
+                            <div class="mandates-value-item-first-point-content">
+                                <p class="mandates-value-item-first-point-content-name">Items up to a value of (GBR)</p>
+                                <p class="mandates-value-item-first-point-content-text">$25 000.00</p>
+                            </div>
+
+                            <div class="mandates-value-item-first-point-content">
+                                <p class="mandates-value-item-first-point-content-name">Number of signatures</p>
+                                <p class="mandates-value-item-first-point-content-text">5</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

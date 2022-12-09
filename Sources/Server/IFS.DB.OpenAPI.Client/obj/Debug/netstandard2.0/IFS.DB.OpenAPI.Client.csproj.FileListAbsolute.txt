@@ -1,0 +1,10 @@
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\bin\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.deps.json
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\bin\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\bin\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.pdb
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\obj\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.csproj.AssemblyReference.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\obj\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\obj\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.AssemblyInfoInputs.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\obj\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.AssemblyInfo.cs
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\obj\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.csproj.CoreCompileInputs.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\obj\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Client\obj\Debug\netstandard2.0\IFS.DB.OpenAPI.Client.pdb

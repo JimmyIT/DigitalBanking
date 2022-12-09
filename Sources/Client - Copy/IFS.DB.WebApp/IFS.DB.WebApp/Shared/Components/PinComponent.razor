@@ -1,0 +1,53 @@
+@using Newtonsoft.Json
+
+<div class="auth-box-numbers">
+    <p class="auth-box-numbers__label">@L["security_code_instruction"]</p>
+    <div class="auth-box-numbers-loader">
+        <div>
+            @for (var row = 0; row < 4; row++)
+            {
+                <div class="auth-box-numbers-row">
+                    @for (var col = 0; col < 3; col++)
+                    {
+                        if (row == 3 && col == 0)
+                        {
+                            <button type="button" class="auth-box-number-invisible"></button>
+                        }
+                        else if (row == 3 && col == 2)
+                        {
+                            <button type="button" class="auth-box-number-icon"
+                                    @onclick="@RemoveLast">
+                                <img src="/img/icons/resetIcon.svg" alt="reset"/>
+                            </button>
+                        }
+                        else if (row == 3 && col == 1)
+                        {
+                            <button
+                                type="button"
+                                @onclick="@(() => Add(_numbers[9].ToString()))"
+                                class="auth-box-number">
+                                @_numbers[9]
+                            </button>
+                        }
+                        else
+                        {
+                            var index = row * 3 + col;
+                            <button
+                                type="button"
+                                @onclick="@(() => Add(_numbers[index].ToString()))"
+                                class="auth-box-number">
+                                @_numbers[index]
+                            </button>
+                        }
+                    }
+                </div>
+            }
+        </div>
+        <PinLoaderComponent 
+            NumberFilled="@_passwordCode.Count" 
+            Nums="4" 
+            IsSubmitting="@IsSubmitting" 
+            ShowInvalid="ShowInvalid"
+        ></PinLoaderComponent>
+    </div>
+</div>

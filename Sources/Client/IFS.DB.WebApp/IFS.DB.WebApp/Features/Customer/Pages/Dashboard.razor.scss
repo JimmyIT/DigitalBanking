@@ -1,0 +1,32 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.dashboard-layout {
+	padding: $indent-24 0 $indent-36;
+}
+
+.dashboard-container {
+	@include container;
+}
+
+.dashboard {
+	&-breadcrumbs {
+		@include breadcrumbs;
+		margin-bottom: $indent-8;
+	}
+
+	&-header {
+		@include pageTitle;
+	}
+
+	.dashboard-table {
+		&-back {
+			@include box;
+		}
+
+		&-name {
+			@include h3;
+			margin-bottom: $indent-16;
+		}
+	}
+}

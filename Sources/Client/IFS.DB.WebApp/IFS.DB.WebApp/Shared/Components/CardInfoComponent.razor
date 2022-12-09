@@ -1,0 +1,30 @@
+@if (_listAccounts.Count > 0)
+{
+    <BlazorSlickCarousel @ref="theCarousel"
+                     Configurations="configurations"
+                     ContainerCustomClass="card-info-list"
+                     CustomClass="childscontainer">
+        <BlazorSlickCarouselContent>
+            @for (int i = 0; i < _listAccounts.Count; i++)
+            {
+                int tempIndex = i;
+                bool _isSelectedActive = false;
+                if (_selectedItemIndex == tempIndex)
+                {
+                    _isSelectedActive = true;
+                }
+
+                <div style="margin-left:24px;position:relative;">
+                    <CardInfoItemComponent isActive=@_isSelectedActive
+                                   AccountItem="@_listAccounts[tempIndex]"
+                                   CarouselItemIndex="tempIndex"
+                                   OnActiveItem=@SetActiveCarouselItem
+                                   OnFavouriteItem=@SetFavouriteItem></CardInfoItemComponent>
+                </div>
+            }
+        </BlazorSlickCarouselContent>
+        <BlazorSlickCarouselLoading>
+            your loading element here
+        </BlazorSlickCarouselLoading>
+    </BlazorSlickCarousel>
+}

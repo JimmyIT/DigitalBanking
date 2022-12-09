@@ -1,0 +1,42 @@
+﻿@using IFS.DB.WebApp.Features.Identity.Pages
+
+<EditForm id="individualSigninForm"
+          EditContext="@_editContext"
+          OnSubmit="@ProcessStep">
+    <DataAnnotationsValidator/>
+    <div class="auth-layout">
+        <div class="auth-container">
+            <div class="auth">
+                <p class="auth__title">@L["signin"]</p>
+                <div class="auth-box">
+                    <div class="auth-box-header">
+                        <div class="auth-box-header__item active" >@L["step"] 1</div>
+                        <div class="auth-box-header__item disabled" >@L["step"] 2</div>
+                    </div>
+                    <div class="auth-box-main">
+                        <p class="auth-box-main__title">@L["customer_identification"]</p>
+                        <div class="auth-box-main__subtitle">
+                            <p class="auth-box-main__subtitle-text">@L["step1_instruction"]</p>
+                            <div class="auth-box-main__subtitle-info">
+                                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payments-header__tooltip-icon"/>
+                            </div>
+                        </div>
+                        <div class="auth-box-form">
+                            <div class="formgroup">
+                                <label>@L["customer_id"]</label>
+                                <div class="input-layout">
+                                    <InputText @ref="_txtCustomerIdRef" id="txtCustomerID" class="input" @bind-Value="@_userSignInModel.CustomerID"/>
+                                </div>
+                                <CustomValidationMessage For="@(() => _userSignInModel.CustomerID)"/>
+                            </div>
+                            <div class="auth-box-form__footer">
+                                <div></div>
+                                <button type="submit" class="auth-box-form__footer-next">@L["next"]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>

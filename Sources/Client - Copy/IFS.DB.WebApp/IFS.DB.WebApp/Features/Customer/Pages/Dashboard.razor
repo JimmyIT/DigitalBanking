@@ -1,0 +1,52 @@
+﻿@layout CustomerLayout
+@page "/customer/dashboard"
+
+<div class="dashboard-layout">
+    <div class="dashboard-container">
+        <div class="dashboard">
+            <div class="dashboard-breadcrumbs">
+                <p class="dashboard-breadcrumbs__item">Customers</p>
+                <p class="dashboard-breadcrumbs__item active">The Walt Disney Company</p>
+            </div>
+
+            <div class="dashboard-header">
+                <div class="dashboard-header-wrapper">
+                    <img src="/img/icons/return.svg" alt="return" class="dashboard-header__logo" />
+                    <p class="dashboard-header__title">The Walt Disney Company Dashboard</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip"
+                         class="dashboard-header__tooltip-icon" />
+                </div>
+
+                <button class="dashboard-header__button">
+                    <span>All accounts</span> 
+                    <span class="iconBlock">
+                        <img src="/img/icons/arrowRight.svg" alt="arrow" class="icon" />
+                        <img src="/img/icons/arrowRightHover.svg" alt="arrow" class="iconHover" />
+                    </span>
+                </button>
+            </div>
+
+            <div>
+                <CardInfoComponent/>
+            </div>
+
+            <div class="dashboard-table">
+                <div class="dashboard-table-back">
+                    <p class="dashboard-table-name">Upcoming Transactions (Standing orders)</p>
+                    <TransactionTableComponent/>
+                </div>
+
+                <div class="dashboard-table-back">
+                    <p class="dashboard-table-name">Recent Transations</p>
+                    <TransactionTableComponent/>
+                </div>
+
+                <div class="dashboard-table-back">
+                    <p class="dashboard-table-name">Confirmed Transactions</p>
+                    <TransactionTableComponent/>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

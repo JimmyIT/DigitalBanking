@@ -1,0 +1,72 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.confirm-modal {
+    @include modalDefault;
+
+    &-layout {
+        @include modalDefaultContainer;
+    }
+
+    &-header-wrapper {
+        margin-bottom: $indent-16;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__title {
+            @include h2;
+            color: $color-wireframes-900;
+        }
+
+        &__subtitle {
+            @include h5;
+            margin-top: $indent-4;
+            color: $color-gray-900;
+        }
+
+        &__icon {
+            cursor: pointer;
+        }
+    }
+
+    &-main {
+        display: flex;
+        margin-bottom: $indent-16;
+
+        &-item {
+            min-width: 140px;
+
+            &-title {
+                @include label;
+                color: $color-gray-600;
+            }
+
+            &-subtitle {
+                @include h5;
+                color: $color-gray-900;
+            }
+        }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+
+        &__buttonCancel,
+        &__buttonConfirm {
+            min-width: 144px;
+        }
+
+        &__buttonCancel {
+            @include lightBlueButton;
+        }
+
+        &__buttonConfirm {
+            @include blueButton;
+        }
+    }
+}

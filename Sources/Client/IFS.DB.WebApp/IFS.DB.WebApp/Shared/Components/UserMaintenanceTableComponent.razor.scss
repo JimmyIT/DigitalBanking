@@ -1,0 +1,108 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.user-main {
+	@include box;
+
+	&-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: $indent-16;
+
+		&-name {
+			@include h2;
+			color: $color-wireframes-900;
+		}
+
+		&-right {
+			display: flex;
+
+			&__input {
+				min-width: 260px;
+				margin-right: $indent-12;
+				position: relative;
+			}
+
+			&__selector {
+				min-width: 260px;
+			}
+		}
+	}
+}
+
+
+.userTable {
+	td {
+		@include textWithDots;
+		vertical-align: middle;
+		padding: $indent-12 $indent-16;
+	}
+
+	thead {
+		td {
+			@include label2;
+			background: $color-sky-blue-100;
+			color: $color-sky-blue-300;
+
+			&:first-child {
+				border-radius: 8px 0 0 8px;
+			}
+
+			&:last-child {
+				border-radius: 0 8px 8px 0;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid $color-sky-blue-100;
+		}
+
+		td {
+			.userTable-user {
+				display: flex;
+				align-items: center;
+
+				&__name {
+					@include body;
+					color: $color-gray-900;
+				}
+
+				&__image {
+					margin-right: $indent-8;
+				}
+			}
+
+			&:first-child {
+				@include body;
+				color: $color-gray-900;
+			}
+
+			&:nth-child(2),
+			&:nth-child(3),
+			&:nth-child(4),
+			&:nth-child(5) {
+				@include body;
+				color: $color-gray-600;
+			}
+
+			&:last-child {
+				display: flex;
+			}
+
+			.userTable-button {
+				@include buttonIcon;
+			}
+		}
+	}
+
+	&-status {
+		@include redTextBox;
+	}
+
+	&__image {
+		cursor: pointer;
+	}
+}

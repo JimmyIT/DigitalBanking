@@ -1,0 +1,155 @@
+.members {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+.members:last-child {
+  margin-bottom: 0;
+}
+.members .customSelector {
+  margin-bottom: 16px;
+}
+.members-head {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  margin-bottom: 16px;
+  color: #212121;
+}
+.members-formgroup {
+  margin-bottom: 16px;
+}
+.members-formgroup:last-child {
+  margin-bottom: 0;
+}
+.members-formgroup-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+  color: #6a6a6a;
+}
+.members-formgroup-area {
+  min-height: 480px;
+}
+.members-dropdown {
+  width: 100%;
+}
+.members-item {
+  display: flex;
+  align-items: center;
+}
+.members-item-icon {
+  margin-right: 8px;
+}
+.members-container {
+  overflow-y: auto;
+  height: 494px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.members-container::-webkit-scrollbar {
+  width: 4px;
+  cursor: pointer;
+}
+.members-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.members-container::-webkit-scrollbar-thumb {
+  background-color: #ededed;
+  border-radius: 4px;
+}
+.members-container::-webkit-scrollbar-thumb:window-inactive {
+  background-color: #d2d2d2;
+}
+.members-container.new-group-main-right-container {
+  padding-right: 14px;
+}
+.members-container-item {
+  width: calc(50% - 6px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  margin-right: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  background: #fafafb;
+  height: max-content;
+}
+.members-container-item:nth-child(-n+2) {
+  margin-top: 0;
+}
+.members-container-item:nth-child(even) {
+  margin-right: 0;
+}
+.members-container-item-profile {
+  display: flex;
+  align-items: center;
+}
+.members-container-item-profile-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  margin: 6px 8px;
+  color: #393939;
+}
+.members-container-item-delete {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.members-container-item-delete:hover .icon {
+  opacity: 0;
+}
+.members-container-item-delete:hover .iconHover {
+  opacity: 1;
+}
+.members-container-item-delete:hover.active .iconActive {
+  opacity: 0;
+}
+.members-container-item-delete:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.members-container-item-delete.active .icon {
+  opacity: 0;
+}
+.members-container-item-delete.active .iconActive {
+  opacity: 1;
+}
+.members-container-item-delete .icon,
+.members-container-item-delete .iconHover,
+.members-container-item-delete .iconActive,
+.members-container-item-delete .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.members-container-item-delete .iconHover,
+.members-container-item-delete .iconActive,
+.members-container-item-delete .iconActiveHover {
+  opacity: 0;
+}

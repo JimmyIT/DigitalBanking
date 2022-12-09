@@ -1,0 +1,16 @@
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\bin\Debug\net6.0\IFS.DB.OpenAPI.Resources.deps.json
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\bin\Debug\net6.0\IFS.DB.OpenAPI.Resources.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\bin\Debug\net6.0\IFS.DB.OpenAPI.Resources.pdb
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\bin\Debug\net6.0\en-GB\IFS.DB.OpenAPI.Resources.resources.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.csproj.AssemblyReference.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.MessageResouce.en-GB.resources
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.csproj.GenerateResource.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.AssemblyInfoInputs.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.AssemblyInfo.cs
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.csproj.CoreCompileInputs.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\en-GB\IFS.DB.OpenAPI.Resources.resources.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\refint\IFS.DB.OpenAPI.Resources.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\IFS.DB.OpenAPI.Resources.pdb
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.OpenAPI.Resources\obj\Debug\net6.0\ref\IFS.DB.OpenAPI.Resources.dll

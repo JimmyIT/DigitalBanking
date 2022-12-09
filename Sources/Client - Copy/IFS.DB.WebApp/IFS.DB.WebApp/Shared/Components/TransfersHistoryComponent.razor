@@ -1,0 +1,58 @@
+@using IFS.DB.WebApp.Models.Transfer
+@using IFS.DB.WebApp.Models
+<div class="transfers-history">
+    <p class="transfers-history__title">Last transfers</p>
+    <DropdownComponent TItem="SpecificPeriodType"
+                       OnSelectedItem="@OnSelectedValue"
+                       InlineStyle="margin-right: 12px; margin-bottom: 12px"
+                       ButtonSelectInlineStyle="width:100%;">
+        <InitialTip>@_periodSelected.ToDescription()</InitialTip>
+        <DropdownChildContent>
+            @foreach (var value in (SpecificPeriodType[])Enum.GetValues(typeof(SpecificPeriodType)))
+            {
+                <DropdownItemComponent Item="@value" Context="_">
+                    <DropdownItemChildContent>@value.ToDescription()</DropdownItemChildContent>
+                </DropdownItemComponent>
+            }
+        </DropdownChildContent>
+    </DropdownComponent>
+
+    @foreach (var transfer in _filterTransfer ?? Enumerable.Empty<CreateTransferRequestModel>())
+    {
+        <TransfersHistoryCardComponent Transfer="transfer" SetTransfer="SetTransfer"/>
+    }
+</div>
+
+@code {
+    
+    [Parameter]
+    public EventCallback<CreateTransferRequestModel> SetTransfer { get; set; }
+
+    private SpecificPeriodType _periodSelected = SpecificPeriodType.ThisWeek;
+    private List<CreateTransferRequestModel>? _filterTransfer;
+
+    protected override void OnInitialized()
+    {
+        (DateTime from, DateTime to) = _periodSelected.GetDateTimeRange();
+        _filterTransfer = FakeData.TransferHistory?
+            .Where(x => x.TransferDate >= from && x.TransferDate <= to)
+            .OrderByDescending(x => x.TransferDate)
+            .Take(5)
+            .ToList();
+    }
+
+
+    private Task OnSelectedValue(SpecificPeriodType selectedValue)
+    {
+        _periodSelected = selectedValue;
+        (DateTime from, DateTime to) = selectedValue.GetDateTimeRange();
+        _filterTransfer = FakeData.TransferHistory?
+            .Where(x => x.TransferDate >= from && x.TransferDate <= to)
+            .OrderByDescending(x => x.TransferDate)
+            .Take(5)
+            .ToList();
+        
+        return Task.CompletedTask;
+    }
+
+}

@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0",
+    "name": "ifinancial",
+    "private": true,
+    "scripts": {
+        "start": "dotnet watch run"
+    },
+    "dependencies": {
+        "gulp": "^4.0.2",
+        "gulp-sass": "^5.1.0",
+        "rimraf": "^3.0.2"
+    },
+    "devDependencies": {
+        "sass": "^1.54.0"
+    }
+}

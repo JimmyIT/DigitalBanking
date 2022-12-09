@@ -1,0 +1,287 @@
+.batch-footer-layout {
+  background: #ffffff;
+  padding: 24px 0;
+}
+
+.batch-footer-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.batch-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.batch-footer-left {
+  display: flex;
+  align-items: center;
+}
+.batch-footer-left-total {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.batch-footer-left-total-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.batch-footer-left-total-text:first-child {
+  margin-right: 8px;
+  color: #6a6a6a;
+}
+.batch-footer-left-total-text:last-child {
+  color: #393939;
+}
+.batch-footer-left-awaiting {
+  display: flex;
+  align-items: center;
+}
+.batch-footer-left-awaiting-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.batch-footer-left-awaiting-text:first-child {
+  margin-right: 8px;
+  color: #6a6a6a;
+}
+.batch-footer-left-awaiting-text:last-child {
+  color: #fc4c16;
+}
+.batch-footer-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.batch-footer-right-batch {
+  display: flex;
+  align-items: center;
+}
+.batch-footer-right-batch-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.batch-footer-right-batch-text:nth-child(1) {
+  margin-right: 8px;
+  color: #6a6a6a;
+}
+.batch-footer-right-batch-text:nth-child(2) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  margin-right: 44px;
+  color: #393939;
+}
+.batch-footer-right-act {
+  display: flex;
+  align-items: center;
+}
+.batch-footer-right-act-reject, .batch-footer-right-act-sign {
+  min-width: 148px;
+}
+.batch-footer-right-act-reject {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  margin-right: 16px;
+}
+.batch-footer-right-act-reject:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-footer-right-act-reject:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-footer-right-act-reject:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-footer-right-act-reject:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-footer-right-act-reject .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-footer-right-act-reject .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-footer-right-act-reject .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-footer-right-act-reject .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-footer-right-act-reject .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-footer-right-act-reject .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-footer-right-act-reject .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-footer-right-act-reject .iconBlock .icon,
+.batch-footer-right-act-reject .iconBlock .iconHover,
+.batch-footer-right-act-reject .iconBlock .iconActive,
+.batch-footer-right-act-reject .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-footer-right-act-reject .iconBlock .iconHover,
+.batch-footer-right-act-reject .iconBlock .iconActive,
+.batch-footer-right-act-reject .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-footer-right-act-reject > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-footer-right-act-reject .iconBlock,
+.batch-footer-right-act-reject > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-footer-right-act-reject .iconBlock:first-child,
+.batch-footer-right-act-reject > img:first-child {
+  margin-left: 0;
+}
+.batch-footer-right-act-reject .iconBlock:last-child,
+.batch-footer-right-act-reject > img:last-child {
+  margin-right: 0;
+}
+.batch-footer-right-act-reject:hover {
+  color: #0248a4;
+}
+.batch-footer-right-act-sign {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+}
+.batch-footer-right-act-sign:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-footer-right-act-sign:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-footer-right-act-sign:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-footer-right-act-sign:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-footer-right-act-sign .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-footer-right-act-sign .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-footer-right-act-sign .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-footer-right-act-sign .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-footer-right-act-sign .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-footer-right-act-sign .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-footer-right-act-sign .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-footer-right-act-sign .iconBlock .icon,
+.batch-footer-right-act-sign .iconBlock .iconHover,
+.batch-footer-right-act-sign .iconBlock .iconActive,
+.batch-footer-right-act-sign .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-footer-right-act-sign .iconBlock .iconHover,
+.batch-footer-right-act-sign .iconBlock .iconActive,
+.batch-footer-right-act-sign .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-footer-right-act-sign > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-footer-right-act-sign .iconBlock,
+.batch-footer-right-act-sign > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-footer-right-act-sign .iconBlock:first-child,
+.batch-footer-right-act-sign > img:first-child {
+  margin-left: 0;
+}
+.batch-footer-right-act-sign .iconBlock:last-child,
+.batch-footer-right-act-sign > img:last-child {
+  margin-right: 0;
+}
+.batch-footer-right-act-sign:hover {
+  background-color: #0248a4;
+}

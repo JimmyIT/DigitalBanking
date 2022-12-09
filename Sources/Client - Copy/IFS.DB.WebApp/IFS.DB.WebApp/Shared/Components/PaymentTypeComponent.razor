@@ -1,0 +1,58 @@
+@typeparam TValue
+@inherits InputSelect<TValue>
+
+@*TODO*@
+@*<label>Payment type</label>
+
+<div class="customSelector">
+    <div class="customSelector-input" onclick="onClickFilterIcon()"
+        id="filtersSelector">
+        <p
+            class="customSelector-input__placeholder admin-box-selections-customer-name">
+            Select a type</p>
+        <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+    </div>
+
+    <div class="customSelector-dropdown" id="filters">
+        <div class="customSelector-dropdown-item">
+            <p>Domestic</p>
+        </div>
+        <div class="customSelector-dropdown-item">
+            <p>SWIFT</p>
+        </div>
+    </div>
+</div>*@
+@if (!string.IsNullOrEmpty(Label))
+{
+    <label>Payment type</label>
+}
+
+<div class="select-layout">
+    <InputSelectEnum Value="Value"
+                     ValueChanged="async (TValue value) => await OnValueChangedInternal(value)"
+                     ValueExpression="ValidationFor"
+                     DefaultOption="Select a type"
+                     class="select payments-details-item__selector" id="detailsSelector">
+    </InputSelectEnum>
+</div>
+
+<CustomValidationMessage For="ValidationFor"></CustomValidationMessage>
+
+@code {
+    [Parameter] public string Label { get; set; }
+    [Parameter, EditorRequired] public Expression<Func<TValue>> ValidationFor { get; set; } = default!;
+    [Parameter] public EventCallback<TValue>? OnValueChanged { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    private async Task OnValueChangedInternal(TValue value)
+    {
+        Value = value;
+        if (OnValueChanged is not null)
+            await OnValueChanged?.InvokeAsync(value)!;
+    }
+
+}

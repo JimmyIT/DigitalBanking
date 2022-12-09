@@ -1,0 +1,382 @@
+@using IFS.DB.WebApp.Helpers.Constants
+@using Microsoft.AspNetCore.Components.Authorization
+<div class="main-header-layout">
+    <div class="main-header-container">
+        <div class="main-header">
+            <div class="main-header__left">
+                <a href="/" class="main-header__logo"></a>
+
+                <img src="/img/header/burgerMenuIcon.svg" alt="Burger Menu" class="main-header__left-burger" />
+                @* !!! For using close icon, u need change "style="display: none;"" to style="display: block;" for "closeIcon"
+                and u need use "style="display: none;"" for burgerMenuIcon when menu opened *@
+                <img src="/img/header/closeIcon.svg" alt="Close" class="main-header__left-burger" style="display: none;" />
+            </div>
+
+            @* !!! To open menu for tablet layout u need go to "_header.scss" file and change style for line 45, from "display: none" to "display: block" *@
+            <div class="main-header__right">
+                <AuthorizeView Roles="@($"{UserRoles.MSECustomer}, {UserRoles.SSECustomer}")">
+                    <Authorized>
+                        <nav class="main-header-menu">
+                            <div class="main-header-menu__item @GetActive("/user/dashboard", NavLinkMatch.All)">
+                                <a href="/user/dashboard" class="main-header-menu__item-link">@L["dashboard"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/maintenance", NavLinkMatch.All) @GetActive("/payments", NavLinkMatch.All)"
+                                 onmouseover=@(() => OnPaymentSubmenuStateChange(true))
+                                 onmouseout=@(() => OnPaymentSubmenuStateChange(false))
+                                 @onclick="OnPaymentSubmenu_Click">
+
+                                <div class="main-header-menu__item-link">
+                                    @L["payments"]
+                                    <img src="/img/icons/dropdown.svg" alt="dropdown"
+                                         class="main-header-menu__item-link-dropdown" />
+                                </div>
+
+                                @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+                                <div class="main-header-menu__item-link-submenu-payment-wrapper" style="@_styleDisplayPaymentSubmenu">
+                                    <div class="main-header-menu__item-link-submenu-payment">
+                                        <a href="/payments" class="main-header-menu__item-link-submenu-payment__item">
+                                            <img src="/img/header/makePaymentIcon.svg" alt="Make Payment" class="main-header-menu__item-link-submenu-payment__item__icon" />
+                                            <p>
+                                                Make a payment
+                                            </p>
+                                        </a>
+
+                                        <a href="/maintenance" class="main-header-menu__item-link-submenu-payment__item">
+                                            <img src="/img/header/batchMaintenanceIcon.svg" alt="Batch Maintenance" class="main-header-menu__item-link-submenu-payment__item__icon" />
+                                            <p>
+                                                Batch Maintenance
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/transfers", NavLinkMatch.All)">
+                                <a href="/transfers" class="main-header-menu__item-link">@L["transfers"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/standings-orders", NavLinkMatch.All)">
+                                <a href="/standings-orders" class="main-header-menu__item-link">@L["standing_orders"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/history", NavLinkMatch.All)">
+                                <a href="/history" class="main-header-menu__item-link">@L["history"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/sign-queues", NavLinkMatch.All)">
+                                <a href="/sign-queues" class="main-header-menu__item-link">
+                                    @L["signing_queues"]
+                                    <span class="main-header-menu__item-link-counter">4</span>
+                                </a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/payee", NavLinkMatch.All)"
+                                 onmouseover=@(() => OnOtherSubmenuStateChange(true))
+                                 onmouseout=@(() => OnOtherSubmenuStateChange(false))
+                                 @onclick="OnOtherSubmenu_Click">
+
+                                <div class="main-header-menu__item-link">
+                                    @L["other"]
+                                    <img src="/img/icons/dropdown.svg" alt="dropdown"
+                                         class="main-header-menu__item-link-dropdown" />
+                                </div>
+
+                                @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+                                <div class="main-header-menu__item-link-submenu-payment-wrapper" style="@_styleDisplayOtherSubmenu">
+                                    <div class="main-header-menu__item-link-submenu-payment">
+                                        <a href="/payee" class="main-header-menu__item-link-submenu-payment__item">
+                                            <img src="/img/payee/payeeMenuIcon.svg" alt="payee templates" class="main-header-menu__item-link-submenu-payment__item__icon" />
+                                            <p>
+                                                Payee's templates
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="main-header-wrapper">
+                            <nav class="main-header-nav">
+                                <div class="main-header-nav__item"
+                                     @onclick="@(() => OnNotification_Click())"
+                                     onmouseover="@(() => OnNotificationStateChange(true))"
+                                     onmouseout="@(() => OnNotificationStateChange(false))">
+                                    <img src="/img/icons/bell.svg" alt="bell" class="main-header-nav__item-icon" />
+
+                                    @* U need go inside in this component and change "style="display: none;"" to "style="display: block;"" for open Notification *@
+                                    <NotificationComponent @ref="@_notificationComponent" />
+                                </div>
+
+                                <div class="main-header-nav__item"
+                                     @onclick="@(() => OnLiveChatSubmenu_Click())"
+                                     onmouseover="@(() => OnLiveChatSubmenuStateChange(true))"
+                                     onmouseout="@(() => OnLiveChatSubmenuStateChange(false))">
+                                    <img src="/img/icons/notification.svg" alt="notification" class="main-header-nav__item-icon" />
+
+                                    @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+                                    <div class="main-header-menu__item-link-submenu-wrapper" style="@_styleDisplayLiveChatSubmenu">
+                                        <div class="main-header-menu__item-link-submenu">
+                                            <a class="main-header-menu__item-link-submenu__item" href="/imail">
+                                                <img src="/img/header/emailIcon.svg" alt="email" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    iMail
+                                                </p>
+                                            </a>
+
+                                            <a class="main-header-menu__item-link-submenu__item" style="cursor:pointer;" @onclick=@OpenLiveChatBox>
+                                                <img src="/img/header/chatIcon.svg" alt="chat" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Live Chat
+                                                </p>
+
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    @* U need go inside in this component and change "style="display: none;"" to "style="display: flex;"" for open Chat *@
+                                    <LiveChatComponent @ref="@_liveChatComponent" />
+                                </div>
+                            </nav>
+
+                            <div class="main-header-profile">
+                                <div class="main-header-profile-avatar-wrapper"
+                                     @onclick="@(() => OnProfileSubmenu_Click())"
+                                     onmouseover="@(() => OnProfileSubmenuStateChange(true))"
+                                     onmouseout="@(() => OnProfileSubmenuStateChange(false))">
+                                    <div class="main-header-profile-avatar">
+                                        @if (!string.IsNullOrEmpty(_AuthorisedUser.AvartaUrl))
+                                        {
+                                            <img src="@_AuthorisedUser.AvartaUrl" alt="avatar" class="main-header-profile-avatar__image" />
+                                        }
+                                        else
+                                        {
+                                            @($"{_AuthorisedUser.FirstName.Substring(0, 1).ToUpper()}{_AuthorisedUser.LastName.Substring(0, 1).ToUpper()}")
+                                        }
+                                    </div>
+
+                                    @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+                                    <div class="main-header-menu__item-link-submenu-wrapper" style="@_styleDisplayProfileSubmenu">
+                                        <div class="main-header-menu__item-link-submenu">
+                                            <a href="/profile" class="main-header-menu__item-link-submenu__item">
+                                                <img src="/img/header/profileIcon.svg" alt="Profile" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Profile
+                                                </p>
+                                            </a>
+
+                                            <a class="main-header-menu__item-link-submenu__item" @onclick=@SignOut>
+                                                <img src="/img/header/logoutIcon.svg" alt="Logout" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Log out
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Authorized>
+                </AuthorizeView>
+                <!---->
+                <!---->
+                <!-- Administrator menu -->
+                <!---->
+                <!---->
+                <AuthorizeView Roles="@($"{UserRoles.Admin}")">
+                    <Authorized>
+                        <nav class="main-header-menu">
+                            <div class="main-header-menu__item @GetActive("/admin/dashboard", NavLinkMatch.All)">
+                                <a href="/admin/dashboard" class="main-header-menu__item-link">@L["dashboard"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/company-admin/user-maintenance", NavLinkMatch.All)">
+                                <a href="/company-admin/user-maintenance" class="main-header-menu__item-link">@L["users"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/admin/group-maintenance", NavLinkMatch.All)">
+                                <a href="/admin/group-maintenance" class="main-header-menu__item-link">@L["groups"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/admin/permission", NavLinkMatch.All)">
+                                <a href="/admin/permission" class="main-header-menu__item-link">@L["permissions"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/admin/security", NavLinkMatch.All)">
+                                <a href="/admin/security" class="main-header-menu__item-link">@L["security"]</a>
+                            </div>
+                        </nav>
+                        <div class="main-header-wrapper">
+                            <nav class="main-header-nav">
+                                <div class="main-header-nav__item"
+                                     @onclick="@(() => OnNotification_Click())"
+                                     onmouseover="@(() => OnNotificationStateChange(true))"
+                                     onmouseout="@(() => OnNotificationStateChange(false))">
+                                    <img src="/img/icons/bell.svg" alt="bell" class="main-header-nav__item-icon" />
+
+                                    @* U need go inside in this component and change "style="display: none;"" to "style="display: block;"" for open Notification *@
+                                    <NotificationComponent @ref="@_notificationComponent" />
+                                </div>
+
+                                <div class="main-header-nav__item"
+                                     @onclick="@(() => OnLiveChatSubmenu_Click())"
+                                     onmouseover="@(() => OnLiveChatSubmenuStateChange(true))"
+                                     onmouseout="@(() => OnLiveChatSubmenuStateChange(false))">
+                                    <img src="/img/icons/notification.svg" alt="notification" class="main-header-nav__item-icon" />
+
+                                    @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+                                    <div class="main-header-menu__item-link-submenu-wrapper" style="@_styleDisplayLiveChatSubmenu">
+                                        <div class="main-header-menu__item-link-submenu">
+                                            <a class="main-header-menu__item-link-submenu__item" href="/imail">
+                                                <img src="/img/header/emailIcon.svg" alt="email" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    iMail
+                                                </p>
+                                            </a>
+
+                                            <a class="main-header-menu__item-link-submenu__item" style="cursor:pointer;" @onclick=@OpenLiveChatBox>
+                                                <img src="/img/header/chatIcon.svg" alt="chat" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Live Chat
+                                                </p>
+
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    @* U need go inside in this component and change "style="display: none;"" to "style="display: flex;"" for open Chat *@
+                                    <LiveChatComponent @ref="@_liveChatComponent" />
+                                </div>
+                            </nav>
+
+                            <div class="main-header-profile">
+                                <div class="main-header-profile-avatar-wrapper"
+                                     @onclick="@(() => OnProfileSubmenu_Click())"
+                                     onmouseover="@(() => OnProfileSubmenuStateChange(true))"
+                                     onmouseout="@(() => OnProfileSubmenuStateChange(false))">
+                                    <div class="main-header-profile-avatar">
+                                        @if (!string.IsNullOrEmpty(_AuthorisedUser.AvartaUrl))
+                                        {
+                                            <img src="@_AuthorisedUser.AvartaUrl" alt="avatar" class="main-header-profile-avatar__image" />
+                                        }
+                                        else
+                                        {
+                                            @($"{_AuthorisedUser.FirstName.Substring(0, 1).ToUpper()}{_AuthorisedUser.LastName.Substring(0, 1).ToUpper()}")
+                                        }
+                                    </div>
+
+                                    @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+                                    <div class="main-header-menu__item-link-submenu-wrapper" style="@_styleDisplayProfileSubmenu">
+                                        <div class="main-header-menu__item-link-submenu">
+                                            <a href="/profile" class="main-header-menu__item-link-submenu__item">
+                                                <img src="/img/header/profileIcon.svg" alt="Profile" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Profile
+                                                </p>
+                                            </a>
+
+                                            <a class="main-header-menu__item-link-submenu__item" @onclick=@SignOut>
+                                                <img src="/img/header/logoutIcon.svg" alt="Logout" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Log out
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Authorized>
+                </AuthorizeView>
+
+                <AuthorizeView Roles="@($"{UserRoles.Host}")">
+                    <Authorized>
+                        <nav class="main-header-menu">
+                            <div class="main-header-menu__item @GetActive("/customer-maintenance", NavLinkMatch.All)">
+                                <a href="/customer-maintenance" class="main-header-menu__item-link">@L["customersmaintenance"]</a>
+                            </div>
+                            <div class="main-header-menu__item @GetActive("/mandates-maintenance", NavLinkMatch.All)">
+                                <a href="/mandates-maintenance" class="main-header-menu__item-link">@L["mandatesmaintenance"]</a>
+                            </div>
+                        </nav>
+                        <div class="main-header-wrapper">
+                            <nav class="main-header-nav">
+                                <div class="main-header-nav__item"
+                                     @onclick="@(() => OnNotification_Click())"
+                                     onmouseover="@(() => OnNotificationStateChange(true))"
+                                     onmouseout="@(() => OnNotificationStateChange(false))">
+                                    <img src="/img/icons/bell.svg" alt="bell" class="main-header-nav__item-icon" />
+
+                                    @* U need go inside in this component and change "style="display: none;"" to "style="display: block;"" for open Notification *@
+                                    <NotificationComponent @ref="@_notificationComponent" />
+                                </div>
+
+                                <div class="main-header-nav__item"
+                                     @onclick="@(() => OnLiveChatSubmenu_Click())"
+                                     onmouseover="@(() => OnLiveChatSubmenuStateChange(true))"
+                                     onmouseout="@(() => OnLiveChatSubmenuStateChange(false))">
+                                    <img src="/img/icons/notification.svg" alt="notification" class="main-header-nav__item-icon" />
+
+                                    @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+                                    <div class="main-header-menu__item-link-submenu-wrapper" style="@_styleDisplayLiveChatSubmenu">
+                                        <div class="main-header-menu__item-link-submenu">
+                                            <a class="main-header-menu__item-link-submenu__item" href="/imail">
+                                                <img src="/img/header/emailIcon.svg" alt="email" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    iMail
+                                                </p>
+                                            </a>
+
+                                            <a class="main-header-menu__item-link-submenu__item" style="cursor:pointer;" @onclick=@OpenLiveChatBox>
+                                                <img src="/img/header/chatIcon.svg" alt="chat" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Live Chat
+                                                </p>
+
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    @* U need go inside in this component and change "style="display: none;"" to "style="display: flex;"" for open Chat *@
+                                    <LiveChatComponent @ref="@_liveChatComponent" />
+                                </div>
+                            </nav>
+
+                            <div class="main-header-profile">
+                                <div class="main-header-profile-avatar-wrapper"
+                                     @onclick="@(() => OnProfileSubmenu_Click())"
+                                     onmouseover="@(() => OnProfileSubmenuStateChange(true))"
+                                     onmouseout="@(() => OnProfileSubmenuStateChange(false))">
+                                    <div class="main-header-profile-avatar">
+                                        @if (!string.IsNullOrEmpty(_AuthorisedUser.AvartaUrl))
+                                        {
+                                            <img src="@_AuthorisedUser.AvartaUrl" alt="avatar" class="main-header-profile-avatar__image" />
+                                        }
+                                        else
+                                        {
+                                            @($"{_AuthorisedUser.FirstName.Substring(0, 1).ToUpper()}{_AuthorisedUser.LastName.Substring(0, 1).ToUpper()}")
+                                        }
+                                    </div>
+
+                                    @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+                                    <div class="main-header-menu__item-link-submenu-wrapper" style="@_styleDisplayProfileSubmenu">
+                                        <div class="main-header-menu__item-link-submenu">
+                                            <a href="/profile" class="main-header-menu__item-link-submenu__item">
+                                                <img src="/img/header/profileIcon.svg" alt="Profile" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Profile
+                                                </p>
+                                            </a>
+
+                                            <a class="main-header-menu__item-link-submenu__item" @onclick=@SignOut>
+                                                <img src="/img/header/logoutIcon.svg" alt="Logout" class="main-header-menu__item-link-submenu__item__icon" />
+                                                <p>
+                                                    Log out
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Authorized>
+                </AuthorizeView>
+
+                 <AuthorizeView>
+                    <NotAuthorized >
+                        <CultureSelectorComponent></CultureSelectorComponent>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </div>
+        </div>
+    </div>
+</div>

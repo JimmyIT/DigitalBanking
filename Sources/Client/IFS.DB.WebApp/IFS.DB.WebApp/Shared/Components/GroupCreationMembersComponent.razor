@@ -1,0 +1,245 @@
+<div class="members">
+    <EditForm EditContext=@_groupMembersContext>
+        <p class="members-head">Group members list</p>
+        <div class="customSelector">
+            <div @ref=@_dropdownSelector class="members-selector" @onfocusout=@OutFocusDropdownAsync>
+                <p class="members-formgroup-name">Select user</p>
+                <button class="customSelector-input" @onclick=@(() => DropdownStateChangeAsync(!_dropDownOpen)) id="filtersSelector">
+                    <p class="customSelector-input__placeholder">Select customer</p>
+                    <img src="/img/icons/dropdown.svg" alt="dropdown"
+                         class="admin-box-selections-customer-icon" />
+                </button>
+            </div>
+
+            <div @ref=@_dropdownSearchOption class="customSelector-dropdown members-dropdown" id="filters"
+                 style="@(_dropDownOpen ? "display:block;z-index:9999;" : "display:none;")"
+                 @onclick:stopPropagation @onclick:preventDefault>
+                <div class="customSelector-dropdown-item-input"
+                     @onmousedown=@(() => KeepStateWhenClickSearchOptionAsync(true))
+                     @onfocusout=@(() => KeepStateWhenClickSearchOptionAsync(false))>
+                    <img src="/img/icons/searchIcon.svg" alt="search"
+                         class="search__icon customSelector-dropdown-item-input__icon" />
+                    <input placeholder="Search"
+                           class="input search__input customSelector-dropdown-item-input__input" @oninput=@((e) => SearchStringOnChange(e))>
+                </div>
+                @foreach (var user in _listUsers)
+                {
+                    <div class="customSelector-dropdown-item members-item" @onclick=@(() => SelectedUser(user))>
+                        <img src="@user.AvartaUrl" alt="avatar" class="members-item-icon" />
+                        <p>@user.UserName</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="members-container">
+            @if (_selectedGroupMembers != null)
+            {
+                @foreach (var selectedUser in _selectedGroupMembers)
+                {
+                    <div class="members-container-item">
+                        <div class="members-container-item-profile">
+                            <img src="@selectedUser.AvartaUrl" alt="avatar" />
+                            <p class="members-container-item-profile-name">@selectedUser.UserName</p>
+                        </div>
+                        <button type="button" class="members-container-item-delete" @onclick=@(() => DeleteSelectedUser(selectedUser))>
+                            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+                            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+                        </button>
+                    </div>
+                }
+            }
+
+            @*<div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>
+            <div class="members-container-item">
+            <div class="members-container-item-profile">
+            <img src="/img/sign/avatar1.svg" alt="avatar" />
+            <p class="members-container-item-profile-name">Cheyenne Korsgaard</p>
+            </div>
+            <button type="button" class="members-container-item-delete">
+            <img src="/img/icons/closeIcon.svg" alt="close" class="icon" />
+            <img src="/img/icons/closeIconHover.svg" alt="close" class="iconHover" />
+            </button>
+            </div>*@
+        </div>
+    </EditForm>
+</div>

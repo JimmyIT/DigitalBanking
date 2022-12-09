@@ -1,0 +1,88 @@
+[09:21:19 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[09:21:19 Error] **** Unhandled exception in circuit 'XnDFm01ourjGcMtX4A4SeYz06u9KnAHEdbAlXtv2asA'. 
+[09:21:19 Warning] **** Unhandled exception rendering component: DataAnnotationsValidator requires a cascading parameter of type EditContext. For example, you can use DataAnnotationsValidator inside an EditForm. 
+[09:21:19 Error] **** Unhandled exception in circuit 'XnDFm01ourjGcMtX4A4SeYz06u9KnAHEdbAlXtv2asA'. 
+[09:21:19 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[09:21:19 Error] **** Unhandled exception in circuit 'XnDFm01ourjGcMtX4A4SeYz06u9KnAHEdbAlXtv2asA'. 
+[10:23:07 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[10:23:07 Error] **** Unhandled exception in circuit 'ttu4u4q6ngI1PZC3fzkI_YbdEruCi6bzgM9_t-b5hx0'. 
+[10:23:07 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[10:23:07 Error] **** Unhandled exception in circuit 'ttu4u4q6ngI1PZC3fzkI_YbdEruCi6bzgM9_t-b5hx0'. 
+[10:23:07 Warning] **** Unhandled exception rendering component: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed. 
+[10:23:07 Error] **** Unhandled exception in circuit 'ttu4u4q6ngI1PZC3fzkI_YbdEruCi6bzgM9_t-b5hx0'. 
+[10:59:10 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[10:59:10 Error] **** Unhandled exception in circuit 'isGUXJZ4erBgDEgz4-YBWF2HG6IM11UUM4qFtoJ094s'. 
+[10:59:10 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[10:59:10 Error] **** Unhandled exception in circuit 'isGUXJZ4erBgDEgz4-YBWF2HG6IM11UUM4qFtoJ094s'. 
+[11:42:33 Warning] **** Unhandled exception rendering component: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index') 
+[11:42:33 Error] **** Unhandled exception in circuit 'a7KOLc_DUWmwVgV0tw83U0OVd8YdJWolibLZrw-JPvs'. 
+[11:45:18 Warning] **** Unhandled exception rendering component: Cannot read properties of null (reading 'tHead')
+TypeError: Cannot read properties of null (reading 'tHead')
+    at enableColumnResizing (https://localhost:7295/Shared/BaseComponents/QuickGrid/QuickGrid.razor.js:55:18)
+    at Module.init (https://localhost:7295/Shared/BaseComponents/QuickGrid/QuickGrid.razor.js:2:5)
+    at https://localhost:7295/_framework/blazor.server.js:1:3501
+    at new Promise (<anonymous>)
+    at kt.beginInvokeJSFromDotNet (https://localhost:7295/_framework/blazor.server.js:1:3475)
+    at https://localhost:7295/_framework/blazor.server.js:1:72054
+    at Array.forEach (<anonymous>)
+    at kt._invokeClientMethod (https://localhost:7295/_framework/blazor.server.js:1:72040)
+    at kt._processIncomingData (https://localhost:7295/_framework/blazor.server.js:1:70082)
+    at connection.onreceive (https://localhost:7295/_framework/blazor.server.js:1:64485) 
+[11:45:18 Error] **** Unhandled exception in circuit 'Nc6EKrBGjayha-m38cxAIXh3ruwrKZqii2-bseNaR0Y'. 
+[14:36:44 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[14:36:44 Error] **** Unhandled exception in circuit '7fAvSDttZsostxIOvmfGYt51WdnVCXpXhw6dUEOMBFQ'. 
+[15:03:15 Warning] **** Unhandled exception rendering component: Value cannot be null. (Parameter 'source') 
+[15:03:15 Error] **** Unhandled exception in circuit 'BFxfOPMtPb8YICLSt74ZedEEZSnQHeobjCGQtTixAS4'. 
+[15:03:16 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[15:03:16 Error] **** Unhandled exception in circuit 'BFxfOPMtPb8YICLSt74ZedEEZSnQHeobjCGQtTixAS4'. 
+[15:04:15 Error] **** Unhandled exception in circuit 'BFxfOPMtPb8YICLSt74ZedEEZSnQHeobjCGQtTixAS4'. 
+[16:37:48 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:37:48 Error] **** Unhandled exception in circuit 'enpExABWmWjgvPelyXLkH5A4Ih0kJWMfRQXaSATLthI'. 
+[16:37:58 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:37:58 Error] **** Unhandled exception in circuit 'FAt8aXpjw2rt90aLV_Syy3MMQjThJ0iyXUaXIEqQK7M'. 
+[16:37:58 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:37:58 Error] **** Unhandled exception in circuit 'FAt8aXpjw2rt90aLV_Syy3MMQjThJ0iyXUaXIEqQK7M'. 
+[16:37:58 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:37:58 Error] **** Unhandled exception in circuit 'FAt8aXpjw2rt90aLV_Syy3MMQjThJ0iyXUaXIEqQK7M'. 
+[16:37:58 Warning] **** Unhandled exception rendering component: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed. 
+[16:37:58 Error] **** Unhandled exception in circuit 'FAt8aXpjw2rt90aLV_Syy3MMQjThJ0iyXUaXIEqQK7M'. 
+[16:47:22 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:47:22 Error] **** Unhandled exception in circuit 'WlSSVHY-OaQHWwZNiTItutHhM8rakYSVRBJRziqZm7k'. 
+[16:47:22 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:47:22 Error] **** Unhandled exception in circuit 'WlSSVHY-OaQHWwZNiTItutHhM8rakYSVRBJRziqZm7k'. 
+[16:47:22 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:47:22 Error] **** Unhandled exception in circuit 'WlSSVHY-OaQHWwZNiTItutHhM8rakYSVRBJRziqZm7k'. 
+[16:47:22 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:47:22 Error] **** Unhandled exception in circuit 'WlSSVHY-OaQHWwZNiTItutHhM8rakYSVRBJRziqZm7k'. 
+[16:52:47 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:52:47 Error] **** Unhandled exception in circuit 'ZKt90LFwpMq0-XeFituqRHp9nkIPnjuawQf5tGeXaKU'. 
+[16:52:48 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:52:48 Error] **** Unhandled exception in circuit 'ZKt90LFwpMq0-XeFituqRHp9nkIPnjuawQf5tGeXaKU'. 
+[16:52:48 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:52:48 Error] **** Unhandled exception in circuit 'ZKt90LFwpMq0-XeFituqRHp9nkIPnjuawQf5tGeXaKU'. 
+[16:52:48 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:52:48 Error] **** Unhandled exception in circuit 'ZKt90LFwpMq0-XeFituqRHp9nkIPnjuawQf5tGeXaKU'. 
+[17:15:02 Warning] **** Unhandled exception rendering component: Value cannot be null. (Parameter 'model') 
+[17:15:02 Error] **** Unhandled exception in circuit 'QAsi_CVx8_2JyqB0YNnkpXYF-C6VrEx5IjYzK5gKv4E'. 
+[17:15:03 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[17:15:03 Error] **** Unhandled exception in circuit 'QAsi_CVx8_2JyqB0YNnkpXYF-C6VrEx5IjYzK5gKv4E'. 
+[17:15:05 Warning] **** Unhandled exception rendering component: Value cannot be null. (Parameter 'model') 
+[17:15:05 Error] **** Unhandled exception in circuit 'TUsne_K159RZFk-nJfXXvGRPgYI3BjnIkIWLR5aoeA4'. 
+[17:15:05 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[17:15:05 Error] **** Unhandled exception in circuit 'TUsne_K159RZFk-nJfXXvGRPgYI3BjnIkIWLR5aoeA4'. 
+[17:15:05 Warning] **** Unhandled exception rendering component: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed. 
+[17:15:05 Error] **** Unhandled exception in circuit 'TUsne_K159RZFk-nJfXXvGRPgYI3BjnIkIWLR5aoeA4'. 
+[17:17:33 Warning] **** Unhandled exception rendering component: Value cannot be null. (Parameter 'model') 
+[17:17:33 Error] **** Unhandled exception in circuit 'qpwsnpL5y3BmoEF9gLwG-dKhpoh8KSOL1q832J7I_T0'. 
+[17:17:33 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[17:17:33 Error] **** Unhandled exception in circuit 'qpwsnpL5y3BmoEF9gLwG-dKhpoh8KSOL1q832J7I_T0'. 
+[17:17:35 Warning] **** Unhandled exception rendering component: Value cannot be null. (Parameter 'model') 
+[17:17:35 Error] **** Unhandled exception in circuit '5xx0KXm_XFse_IxeyfzVqhW9iKfQ9aKpVpNHL0MOni4'. 
+[17:17:35 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[17:17:35 Error] **** Unhandled exception in circuit '5xx0KXm_XFse_IxeyfzVqhW9iKfQ9aKpVpNHL0MOni4'. 
+[17:17:36 Warning] **** Unhandled exception rendering component: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed. 
+[17:17:36 Error] **** Unhandled exception in circuit '5xx0KXm_XFse_IxeyfzVqhW9iKfQ9aKpVpNHL0MOni4'. 
+[17:20:34 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[17:20:34 Error] **** Unhandled exception in circuit 'DrIqSHMJqqGgjh649KG0ILGbtjb8Wv7vnopnJmsSXY0'. 
+[17:20:34 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[17:20:34 Error] **** Unhandled exception in circuit 'DrIqSHMJqqGgjh649KG0ILGbtjb8Wv7vnopnJmsSXY0'. 

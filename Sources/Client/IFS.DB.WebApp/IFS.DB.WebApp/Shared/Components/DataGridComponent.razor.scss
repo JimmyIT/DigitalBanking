@@ -1,0 +1,484 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.adminTable {
+    td {
+        @include textWithDots;
+        vertical-align: middle;
+        padding: $indent-12 $indent-16;
+
+        &:last-child {
+            text-align: left;
+        }
+    }
+
+    thead {
+        td {
+            @include label2;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-sky-blue-100;
+        }
+
+        td {
+            .adminTable-user {
+                display: flex;
+                align-items: center;
+
+                &__name {
+                    @include body;
+                    color: $color-gray-900;
+                }
+
+                &__image {
+                    margin-right: $indent-8;
+                }
+            }
+
+            &:nth-child(2) {
+                @include body;
+                color: $color-gray-600;
+            }
+        }
+    }
+
+    &-status {
+        @include redTextBox;
+    }
+}
+
+.transactionTable {
+    td {
+        @include textWithDots;
+        vertical-align: middle;
+        padding: $indent-8 6px;
+
+        &:first-child {
+            text-align: center;
+            padding-left: $indent-12;
+        }
+
+        &:last-child {
+            padding-right: $indent-12;
+        }
+
+        &:nth-child(5),
+        &:nth-child(6),
+        &:nth-child(7) {
+            text-align: right;
+        }
+    }
+
+    thead {
+        td {
+            @include label2;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-sky-blue-100;
+
+            &:last-child {
+                border-bottom: 0;
+
+                td {
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        td {
+            &.transactionTable-date {
+                text-align: left;
+                padding-top: $indent-12;
+                padding-bottom: $indent-4;
+            }
+
+            &:nth-child(3) {
+                @include h5;
+            }
+
+            &:nth-child(4) {
+                color: $color-gray-600;
+            }
+
+            &:nth-child(5),
+            &:nth-child(6),
+            &:nth-child(7) {
+                @include h5;
+            }
+
+            &:nth-child(5) {
+                color: $color-green-500;
+            }
+
+            &:nth-child(6) {
+                color: $color-red-500;
+            }
+        }
+    }
+}
+
+.paginator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $indent-24;
+
+    &-pagination {
+        display: flex;
+
+        &-button {
+            @include label;
+            padding: $indent-12 $indent-16;
+            color: $color-gray-500;
+
+            &.paginator-pagination-button--active {
+                border-radius: 4px;
+                background: $color-sky-blue-100;
+                color: $color-sky-blue-300;
+            }
+
+            &.paginator-pagination-select__pagesize {
+                border-radius: 4px;
+                color: $color-sky-blue-300;
+            }
+        }
+
+        &-left,
+        &-right {
+            @include buttonIcon;
+        }
+
+        &-right {
+            padding-right: $indent-8;
+            transform: scale(-1);
+        }
+    }
+
+    &-button {
+        @include transparentButton;
+    }
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.sort {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    cursor: pointer !important;
+}
+
+.no-sort {
+    display: none;
+    cursor: default !important;
+}
+
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.asc {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    margin: 8px;
+}
+
+.desc {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    margin: 5px;
+}
+
+.sort {
+    &-asc {
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        margin: 1px;
+    }
+
+    &-desc {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        margin: 1px;
+    }
+
+    &-unset {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        opacity: 30%;
+        margin: 1px;
+        transition: 0.4s;
+    }
+
+    &-unset:hover {
+        opacity: 100%;
+    }
+}
+
+.align {
+    &-right {
+        text-align: right;
+    }
+
+    &-left {
+        text-align: left;
+    }
+
+    &-center {
+        text-align: center;
+    }
+}
+
+.userTable {
+    td {
+        @include textWithDots;
+        vertical-align: middle;
+        padding: $indent-12 $indent-16;
+    }
+
+    thead {
+        td {
+            @include label2;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-sky-blue-100;
+        }
+
+        td {
+            .userTable-user {
+                display: flex;
+                align-items: center;
+
+                &__name {
+                    @include body;
+                    color: $color-gray-900;
+                }
+
+                &__image {
+                    margin-right: $indent-8;
+                }
+            }
+
+            &:first-child {
+                @include body;
+                color: $color-gray-900;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(4) {
+                @include body;
+                color: $color-gray-600;
+            }
+
+            &:nth-child(5) {
+                @include body;
+                overflow: inherit;
+                color: $color-gray-600;
+            }
+
+            &:last-child {
+                display: flex;
+            }
+
+            .userTable-button {
+                @include buttonIcon;
+            }
+        }
+    }
+
+    &-status {
+        @include redTextBox;
+    }
+
+    &__image {
+        cursor: pointer;
+    }
+}
+
+.groupTable {
+    td {
+        @include textWithDots;
+        vertical-align: middle;
+        padding: $indent-12 $indent-16;
+
+        &:nth-child(3) {
+            text-align: center;
+        }
+    }
+
+    thead {
+        td {
+            @include label2;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-sky-blue-100;
+        }
+
+        td {
+            &:nth-child(1) {
+                @include h5;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3) {
+                @include body;
+            }
+
+            &:nth-child(2) {
+                color: $color-gray-600;
+            }
+
+            &:nth-child(1),
+            &:nth-child(3) {
+                color: $color-gray-900;
+            }
+
+            &:last-child {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    &-button {
+        @include buttonIcon;
+    }
+}
+
+.customerTable {
+    td {
+        &:nth-child(2),
+        &:nth-child(4) {
+            text-align: center;
+        }
+
+        &:nth-child(5) {
+            text-align: right;
+        }
+    }
+
+    thead {
+        td {
+            @include label2;
+            padding: $indent-8 20px;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-sky-blue-100;
+
+            &:last-child {
+                border-bottom: 0;
+
+                td {
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        td {
+            @include h5;
+            padding: 20px;
+            color: $color-gray-600;
+
+            &:first-child {
+                color: $color-gray-900;
+            }
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+
+    &-button {
+        @include transparentButton2;
+    }
+}

@@ -1,0 +1,65 @@
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.PayeeTemplate
+@typeparam TValue
+@inherits InputSelect<TValue>
+
+<div class="formgroup">
+
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label>@Label</label>
+    }
+    <div class="select-layout">
+        <InputSelect Value="Value" class="select" ValueChanged="async (TValue value) => await OnValueChangedInternal(value)" ValueExpression="@ValidationFor">
+            <option value="">Select an account</option>
+            @foreach (var item in _listPayees ?? Enumerable.Empty<PayeeTemplateModel>())
+            {
+                <option value="@item.HostReference">@item.HostReference</option>
+            }
+        </InputSelect>
+
+        @*<div class="customSelector">
+            <div class="customSelector-input" onclick="onClickFilterIcon()"
+                 id="filtersSelector">
+                <p class="customSelector-input__placeholder admin-box-selections-customer-name">
+                    Select Payee
+                </p>
+                <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+            </div>
+
+            <div class="customSelector-dropdown" id="filters">
+                <div class="customSelector-dropdown-item">
+                    <p>Payee 1</p>
+                </div>
+                <div class="customSelector-dropdown-item">
+                    <p>Payee 2</p>
+                </div>
+            </div>
+        </div>*@
+    </div>
+
+    <p class="underline-text">Please select an account to credit.</p>
+    
+    <CustomValidationMessage For="ValidationFor"></CustomValidationMessage>
+</div>
+
+@code {    
+    [Parameter] public string? Label { get; set; }    
+    [Parameter, EditorRequired] public Expression<Func<TValue>> ValidationFor { get; set; } = default!;
+    [Parameter] public EventCallback<TValue>? OnValueChanged { get; set; }
+
+    
+    private IReadOnlyCollection<PayeeTemplateModel>? _listPayees;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _listPayees =  FakeData.PayeeTemplates;
+    }
+
+    private async Task OnValueChangedInternal(TValue value)
+    {
+        Value = value;
+        if (OnValueChanged is not null)
+            await OnValueChanged?.InvokeAsync(value)!;
+    }
+}

@@ -1,0 +1,512 @@
+[09:38:48 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'pV5g2UDXcQ5Hl4xqfVYgHsS1HCeb9kK9aGe6caxA-m8'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Features.Admin.Pages.GroupCreation.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\GroupCreation.razor:line 58
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[09:38:48 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'pV5g2UDXcQ5Hl4xqfVYgHsS1HCeb9kK9aGe6caxA-m8'. **** Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+   at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync[TValue](IJSRuntime jsRuntime, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Blazored.LocalStorage.BrowserStorageProvider.GetItemAsync(String key, Nullable`1 cancellationToken)
+   at Blazored.LocalStorage.LocalStorageService.GetItemAsync[T](String key, Nullable`1 cancellationToken)
+   at IFS.DB.WebApp.Helpers.AuthProviders.ApplicationAuthStateProvider.GetAuthenticationStateAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Helpers\AuthProviders\ApplicationAuthStateProvider.cs:line 24
+   at IFS.DB.WebApp.Features.Admin.AdminLayout.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\AdminLayout.razor.cs:line 13
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[09:39:03 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'Ykn8BXQvG-BwZLoSB-W2m-gDiRPZeKyLPi9km--b21w'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at IFS.DB.WebApp.Features.Admin.Pages.GroupCreation.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\Pages\GroupCreation.razor:line 58
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[09:39:03 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'Ykn8BXQvG-BwZLoSB-W2m-gDiRPZeKyLPi9km--b21w'. **** Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+   at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync[TValue](IJSRuntime jsRuntime, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Blazored.LocalStorage.BrowserStorageProvider.GetItemAsync(String key, Nullable`1 cancellationToken)
+   at Blazored.LocalStorage.LocalStorageService.GetItemAsync[T](String key, Nullable`1 cancellationToken)
+   at IFS.DB.WebApp.Helpers.AuthProviders.ApplicationAuthStateProvider.GetAuthenticationStateAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Helpers\AuthProviders\ApplicationAuthStateProvider.cs:line 24
+   at IFS.DB.WebApp.Features.Admin.AdminLayout.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\AdminLayout.razor.cs:line 13
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[10:13:21 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'chKMqIFSq3TiBOVhrYSmkKh6Ad7Jk9B-uM743un4EUc'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.GroupCreationMembersComponent.<BuildRenderTree>b__25_1(RenderTreeBuilder __builder2) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationMembersComponent.razor:line 36
+   at Microsoft.AspNetCore.Components.CascadingValue`1.Render(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[10:13:21 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'chKMqIFSq3TiBOVhrYSmkKh6Ad7Jk9B-uM743un4EUc'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[10:14:21 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'chKMqIFSq3TiBOVhrYSmkKh6Ad7Jk9B-uM743un4EUc'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.<>c.<.cctor>b__23_0(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[10:19:02 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'aWPMa62SpZcw5-H6SCebitlhaCQ3rgAggmOgQFgTYKM'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.GroupCreationMembersComponent.<BuildRenderTree>b__26_1(RenderTreeBuilder __builder2) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationMembersComponent.razor:line 36
+   at Microsoft.AspNetCore.Components.CascadingValue`1.Render(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[10:19:02 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'aWPMa62SpZcw5-H6SCebitlhaCQ3rgAggmOgQFgTYKM'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[10:19:02 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'aWPMa62SpZcw5-H6SCebitlhaCQ3rgAggmOgQFgTYKM'. **** Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+   at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync[TValue](IJSRuntime jsRuntime, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Blazored.LocalStorage.BrowserStorageProvider.GetItemAsync(String key, Nullable`1 cancellationToken)
+   at Blazored.LocalStorage.LocalStorageService.GetItemAsync[T](String key, Nullable`1 cancellationToken)
+   at IFS.DB.WebApp.Helpers.AuthProviders.ApplicationAuthStateProvider.GetAuthenticationStateAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Helpers\AuthProviders\ApplicationAuthStateProvider.cs:line 24
+   at IFS.DB.WebApp.Features.Admin.AdminLayout.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\AdminLayout.razor.cs:line 13
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[10:20:55 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'AinyGKC95WexWBUZ4h6rR8Jze2963cMJb4eBc6uNx10'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.GroupCreationMembersComponent.<BuildRenderTree>b__26_1(RenderTreeBuilder __builder2) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationMembersComponent.razor:line 36
+   at Microsoft.AspNetCore.Components.CascadingValue`1.Render(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[10:20:55 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'AinyGKC95WexWBUZ4h6rR8Jze2963cMJb4eBc6uNx10'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[10:20:55 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'AinyGKC95WexWBUZ4h6rR8Jze2963cMJb4eBc6uNx10'. **** Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+   at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync[TValue](IJSRuntime jsRuntime, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Blazored.LocalStorage.BrowserStorageProvider.GetItemAsync(String key, Nullable`1 cancellationToken)
+   at Blazored.LocalStorage.LocalStorageService.GetItemAsync[T](String key, Nullable`1 cancellationToken)
+   at IFS.DB.WebApp.Helpers.AuthProviders.ApplicationAuthStateProvider.GetAuthenticationStateAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Helpers\AuthProviders\ApplicationAuthStateProvider.cs:line 24
+   at IFS.DB.WebApp.Features.Admin.AdminLayout.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\AdminLayout.razor.cs:line 13
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[11:41:20 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '4NbOu_TNqAi-oykIZc0qfCF03ITIAdZdQ_zzt9gcD6g'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'model')
+   at Microsoft.AspNetCore.Components.Forms.EditContext..ctor(Object model)
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.PrepareEditContextAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 38
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 22
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[11:41:20 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '4NbOu_TNqAi-oykIZc0qfCF03ITIAdZdQ_zzt9gcD6g'. **** System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'IServiceProvider'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ThrowHelper.ThrowObjectDisposedException()
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.AspNetCore.Components.ComponentFactory.<>c__DisplayClass7_0.<CreateInitializer>g__Initialize|1(IServiceProvider serviceProvider, IComponent component)
+   at Microsoft.AspNetCore.Components.ComponentFactory.PerformPropertyInjection(IServiceProvider serviceProvider, IComponent instance)
+   at Microsoft.AspNetCore.Components.ComponentFactory.InstantiateComponent(IServiceProvider serviceProvider, Type componentType)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.InstantiateChildComponentOnFrame(RenderTreeFrame& frame, Int32 parentComponentId)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InitializeNewComponentFrame(DiffContext& diffContext, Int32 frameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InitializeNewSubtree(DiffContext& diffContext, Int32 frameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[11:42:20 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '4NbOu_TNqAi-oykIZc0qfCF03ITIAdZdQ_zzt9gcD6g'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[11:57:15 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'heCcPjP_0K92bNOtBEffchH4yrHlY6bSV5MURit0GZI'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'model')
+   at Microsoft.AspNetCore.Components.Forms.EditContext..ctor(Object model)
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.PrepareEditContextAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 37
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 22
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[11:57:15 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'heCcPjP_0K92bNOtBEffchH4yrHlY6bSV5MURit0GZI'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[11:58:13 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'J5afA-81EI-9oyDvlo8tZNW2fUIJlLPwrdVwIKvWb5s'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'model')
+   at Microsoft.AspNetCore.Components.Forms.EditContext..ctor(Object model)
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.PrepareEditContextAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 37
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 22
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[11:58:13 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'J5afA-81EI-9oyDvlo8tZNW2fUIJlLPwrdVwIKvWb5s'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[12:01:17 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'qgrdCW7DFMRwZ9kLIqakmeOhYl3rBMj0T7Hk83HypQM'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.<>c.<.cctor>b__23_0(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[13:42:31 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'A6ZfEqDt-hM5-sBbwryV6VdvEm361Nr1JfxOv488ui4'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'model')
+   at Microsoft.AspNetCore.Components.Forms.EditContext..ctor(Object model)
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.PrepareEditContextAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 38
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 22
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[13:42:31 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'A6ZfEqDt-hM5-sBbwryV6VdvEm361Nr1JfxOv488ui4'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[13:43:05 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '1QdBvGk85xVeHejvK4DFx8R5hKDuY0rpLo7_Hlmo9QE'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'model')
+   at Microsoft.AspNetCore.Components.Forms.EditContext..ctor(Object model)
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.PrepareEditContextAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 38
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 22
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[13:43:05 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '1QdBvGk85xVeHejvK4DFx8R5hKDuY0rpLo7_Hlmo9QE'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[13:43:06 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '1QdBvGk85xVeHejvK4DFx8R5hKDuY0rpLo7_Hlmo9QE'. **** Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+   at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync[TValue](IJSRuntime jsRuntime, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Blazored.LocalStorage.BrowserStorageProvider.GetItemAsync(String key, Nullable`1 cancellationToken)
+   at Blazored.LocalStorage.LocalStorageService.GetItemAsync[T](String key, Nullable`1 cancellationToken)
+   at IFS.DB.WebApp.Helpers.AuthProviders.ApplicationAuthStateProvider.GetAuthenticationStateAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Helpers\AuthProviders\ApplicationAuthStateProvider.cs:line 24
+   at IFS.DB.WebApp.Features.Admin.AdminLayout.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\AdminLayout.razor.cs:line 13
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[13:43:10 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'wZtLha-xsrzqg68gjRzzEl8JtkcVdplBORSvYGiJ6hk'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'model')
+   at Microsoft.AspNetCore.Components.Forms.EditContext..ctor(Object model)
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.PrepareEditContextAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 38
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 22
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[13:43:10 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'wZtLha-xsrzqg68gjRzzEl8JtkcVdplBORSvYGiJ6hk'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[13:43:10 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'wZtLha-xsrzqg68gjRzzEl8JtkcVdplBORSvYGiJ6hk'. **** Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+   at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync[TValue](IJSRuntime jsRuntime, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Blazored.LocalStorage.BrowserStorageProvider.GetItemAsync(String key, Nullable`1 cancellationToken)
+   at Blazored.LocalStorage.LocalStorageService.GetItemAsync[T](String key, Nullable`1 cancellationToken)
+   at IFS.DB.WebApp.Helpers.AuthProviders.ApplicationAuthStateProvider.GetAuthenticationStateAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Helpers\AuthProviders\ApplicationAuthStateProvider.cs:line 24
+   at IFS.DB.WebApp.Features.Admin.AdminLayout.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\AdminLayout.razor.cs:line 13
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[13:43:30 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'A6ZfEqDt-hM5-sBbwryV6VdvEm361Nr1JfxOv488ui4'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.<>c.<.cctor>b__23_0(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[13:45:09 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'W36AjhW9-_nZXVQzsHjrrmCkVeoAXUw7hOIjcV4EKZo'. **** System.ArgumentNullException: Value cannot be null. (Parameter 'model')
+   at Microsoft.AspNetCore.Components.Forms.EditContext..ctor(Object model)
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.PrepareEditContextAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 38
+   at IFS.DB.WebApp.Shared.Components.GroupCreationDetailsComponent.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationDetailsComponent.razor.cs:line 22
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+
+[13:45:09 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'W36AjhW9-_nZXVQzsHjrrmCkVeoAXUw7hOIjcV4EKZo'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.Append(T[] source, Int32 startIndex, Int32 length)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[15:06:11 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'oCQ_KxIS-CRZh2a_dbYpS_FmxrDcVrt-7TZ4bRWlEtY'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.<>c.<.cctor>b__23_0(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[15:19:06 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '-6qIq3qiMP-vCJ0KPuMfyms_GCxXXBU9n2i-FAfL2OA'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.GroupCreationMembersComponent.<BuildRenderTree>b__29_1(RenderTreeBuilder __builder2) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationMembersComponent.razor:line 38
+   at Microsoft.AspNetCore.Components.CascadingValue`1.Render(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[15:19:06 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '-6qIq3qiMP-vCJ0KPuMfyms_GCxXXBU9n2i-FAfL2OA'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[15:21:03 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'xtjGs20YoagXOpvkw6arfQv6uZ8Nhll1f9iWmaONKvM'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.GroupCreationMembersComponent.<BuildRenderTree>b__29_1(RenderTreeBuilder __builder2) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationMembersComponent.razor:line 38
+   at Microsoft.AspNetCore.Components.CascadingValue`1.Render(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[15:21:03 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'xtjGs20YoagXOpvkw6arfQv6uZ8Nhll1f9iWmaONKvM'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[15:21:07 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'bXwUjxsSMnCd0jyoRUSIP-c5THfI_L_aSrNSWqoabsk'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.GroupCreationMembersComponent.<BuildRenderTree>b__29_1(RenderTreeBuilder __builder2) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationMembersComponent.razor:line 38
+   at Microsoft.AspNetCore.Components.CascadingValue`1.Render(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[15:21:07 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'bXwUjxsSMnCd0jyoRUSIP-c5THfI_L_aSrNSWqoabsk'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[15:21:08 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'bXwUjxsSMnCd0jyoRUSIP-c5THfI_L_aSrNSWqoabsk'. **** Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+   at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync[TValue](IJSRuntime jsRuntime, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Blazored.LocalStorage.BrowserStorageProvider.GetItemAsync(String key, Nullable`1 cancellationToken)
+   at Blazored.LocalStorage.LocalStorageService.GetItemAsync[T](String key, Nullable`1 cancellationToken)
+   at IFS.DB.WebApp.Helpers.AuthProviders.ApplicationAuthStateProvider.GetAuthenticationStateAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Helpers\AuthProviders\ApplicationAuthStateProvider.cs:line 24
+   at IFS.DB.WebApp.Features.Admin.AdminLayout.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\AdminLayout.razor.cs:line 13
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[15:21:49 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '91OmwtO4TPqMdZFcTh1n-Fa3EWXe55Sg_Q6jHjMzTnQ'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.GroupCreationMembersComponent.<BuildRenderTree>b__29_1(RenderTreeBuilder __builder2) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\GroupCreationMembersComponent.razor:line 38
+   at Microsoft.AspNetCore.Components.CascadingValue`1.Render(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[15:21:49 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '91OmwtO4TPqMdZFcTh1n-Fa3EWXe55Sg_Q6jHjMzTnQ'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[15:21:50 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'xtjGs20YoagXOpvkw6arfQv6uZ8Nhll1f9iWmaONKvM'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.<>c.<.cctor>b__23_0(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[17:09:20 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'IF_EgtikGMpekxGVN3ZUEbhfGb1yI55Sd4B8AXPJtII'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 90
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[17:09:20 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'IF_EgtikGMpekxGVN3ZUEbhfGb1yI55Sd4B8AXPJtII'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[17:39:19 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '3GyZLizWRLcloD17xCsPUEUIZfrnxulK8pjsa1AHSK0'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 90
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[17:39:19 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '3GyZLizWRLcloD17xCsPUEUIZfrnxulK8pjsa1AHSK0'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[17:39:19 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit '3GyZLizWRLcloD17xCsPUEUIZfrnxulK8pjsa1AHSK0'. **** System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+   at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+   at Blazored.Modal.BlazoredModal.ClearBodyStyles()
+   at Blazored.Modal.BlazoredModal.CancelModals(Object sender, LocationChangedEventArgs e)
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__128_0(Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteSynchronously(TaskCompletionSource`1 completion, SendOrPostCallback d, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.<>c.<.cctor>b__23_0(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at Microsoft.AspNetCore.Components.Rendering.RendererSynchronizationContext.ExecuteBackground(WorkItem item)
+
+[17:57:35 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'HiYvsu8lVtd6uXoTOY9crydRgtwXfDBdCTePwwS_AgE'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 90
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[17:57:36 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'HiYvsu8lVtd6uXoTOY9crydRgtwXfDBdCTePwwS_AgE'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[17:57:58 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'dejlUoCH3SRJt3QETQXBiHEh0HzI9TlnSPP9U8_XaGM'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 90
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[17:57:58 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'dejlUoCH3SRJt3QETQXBiHEh0HzI9TlnSPP9U8_XaGM'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[17:57:59 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'dejlUoCH3SRJt3QETQXBiHEh0HzI9TlnSPP9U8_XaGM'. **** Microsoft.JSInterop.JSDisconnectedException: JavaScript interop calls cannot be issued at this time. This is because the circuit has disconnected and is being disposed.
+   at Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSRuntime.BeginInvokeJS(Int64 asyncHandle, String identifier, String argsJson, JSCallResultType resultType, Int64 targetInstanceId)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](String identifier, CancellationToken cancellationToken, Object[] args)
+   at Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync[TValue](IJSRuntime jsRuntime, String identifier, CancellationToken cancellationToken, Object[] args)
+   at Blazored.LocalStorage.BrowserStorageProvider.GetItemAsync(String key, Nullable`1 cancellationToken)
+   at Blazored.LocalStorage.LocalStorageService.GetItemAsync[T](String key, Nullable`1 cancellationToken)
+   at IFS.DB.WebApp.Helpers.AuthProviders.ApplicationAuthStateProvider.GetAuthenticationStateAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Helpers\AuthProviders\ApplicationAuthStateProvider.cs:line 24
+   at IFS.DB.WebApp.Features.Admin.AdminLayout.OnInitializedAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Features\Admin\AdminLayout.razor.cs:line 13
+   at Microsoft.AspNetCore.Components.ComponentBase.RunInitAndSetParametersAsync()
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[18:02:29 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'yL1jtbQTmYl29K4hkrTYJtMnzQ-fQmukaneK0_Q9qrk'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 90
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[18:02:29 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'yL1jtbQTmYl29K4hkrTYJtMnzQ-fQmukaneK0_Q9qrk'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[18:03:04 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'syRfPS0clmGgLX4T88lsFnGymEt4kovYbQzZ9uVS70Q'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 90
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[18:03:04 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'syRfPS0clmGgLX4T88lsFnGymEt4kovYbQzZ9uVS70Q'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[18:05:40 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'MwL4PzX7y-v6bsujTDguSd0UCJBYm9fpAQ6kDp2e0ZI'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 90
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[18:05:40 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'MwL4PzX7y-v6bsujTDguSd0UCJBYm9fpAQ6kDp2e0ZI'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+
+[18:06:53 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'GRsNOSfoIeGmBUkD78Ribszs7qJ3ZwFLkUW4ga2_e6o'. **** System.NullReferenceException: Object reference not set to an instance of an object.
+   at IFS.DB.WebApp.Shared.Components.DataGridComponent`1.BuildRenderTree(RenderTreeBuilder __builder) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\DataGridComponent.razor:line 90
+   at Microsoft.AspNetCore.Components.ComponentBase.<.ctor>b__6_0(RenderTreeBuilder builder)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+
+[18:06:53 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'GRsNOSfoIeGmBUkD78Ribszs7qJ3ZwFLkUW4ga2_e6o'. **** System.ObjectDisposedException: Cannot access a disposed object.
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.ThrowObjectDisposedException()
+   at Microsoft.AspNetCore.Components.RenderTree.ArrayBuilder`1.GrowBuffer(Int32 desiredCapacity)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForFramesWithSameSequence(DiffContext& diffContext, Int32 oldFrameIndex, Int32 newFrameIndex)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+   at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+   at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()
+

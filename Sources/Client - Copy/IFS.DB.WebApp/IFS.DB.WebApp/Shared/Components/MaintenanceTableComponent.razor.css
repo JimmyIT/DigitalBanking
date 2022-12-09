@@ -1,0 +1,607 @@
+.maintenanceTable td {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 12px 16px;
+}
+.maintenanceTable td:nth-child(6) {
+  text-align: center;
+}
+.maintenanceTable td:last-child {
+  text-align: end;
+  overflow: visible;
+}
+.maintenanceTable thead td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  background: #f2f7fd;
+  color: #81afed;
+}
+.maintenanceTable thead td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.maintenanceTable thead td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.maintenanceTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+.maintenanceTable tbody td:nth-child(1), .maintenanceTable tbody td:nth-child(3) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.maintenanceTable tbody td:nth-child(2), .maintenanceTable tbody td:nth-child(4) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.maintenanceTable tbody td:nth-child(5) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+}
+.maintenanceTable-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.maintenanceTable-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.maintenanceTable-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.maintenanceTable-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.maintenanceTable-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenanceTable-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.maintenanceTable-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.maintenanceTable-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.maintenanceTable-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.maintenanceTable-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenanceTable-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.maintenanceTable-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.maintenanceTable-button .iconBlock .icon,
+.maintenanceTable-button .iconBlock .iconHover,
+.maintenanceTable-button .iconBlock .iconActive,
+.maintenanceTable-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.maintenanceTable-button .iconBlock .iconHover,
+.maintenanceTable-button .iconBlock .iconActive,
+.maintenanceTable-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.maintenanceTable-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.maintenanceTable-button .iconBlock,
+.maintenanceTable-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.maintenanceTable-button .iconBlock:first-child,
+.maintenanceTable-button > img:first-child {
+  margin-left: 0;
+}
+.maintenanceTable-button .iconBlock:last-child,
+.maintenanceTable-button > img:last-child {
+  margin-right: 0;
+}
+.maintenanceTable-button:hover {
+  color: #0248a4;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  color: #525252;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled:hover .iconBlock .icon {
+  opacity: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:hover .icon {
+  opacity: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock.active .icon {
+  opacity: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .icon,
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconHover,
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconActive,
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconHover,
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconActive,
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock,
+.maintenanceTable-button.maintenanceTable-button--disabled > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:first-child,
+.maintenanceTable-button.maintenanceTable-button--disabled > img:first-child {
+  margin-left: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:last-child,
+.maintenanceTable-button.maintenanceTable-button--disabled > img:last-child {
+  margin-right: 0;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled:hover {
+  color: #0248a4;
+}
+.maintenanceTable-button.maintenanceTable-button--disabled:hover {
+  color: #525252;
+}
+.maintenanceTable-status {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #6a6a6a;
+  background-color: #ededed;
+}
+.maintenanceTable-status.maintenanceTable-status--error {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #fc4c16;
+  background-color: #fff1ed;
+}
+.maintenanceTable-status.maintenanceTable-status--success {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #0a9a0c;
+  background-color: #edffed;
+}
+.maintenanceTable-action {
+  position: relative;
+  box-sizing: border-box;
+}
+.maintenanceTable-action-icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  margin-left: auto;
+}
+.maintenanceTable-action-icon:hover .icon {
+  opacity: 0;
+}
+.maintenanceTable-action-icon:hover .iconHover {
+  opacity: 1;
+}
+.maintenanceTable-action-icon:hover.active .iconActive {
+  opacity: 0;
+}
+.maintenanceTable-action-icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenanceTable-action-icon.active .icon {
+  opacity: 0;
+}
+.maintenanceTable-action-icon.active .iconActive {
+  opacity: 1;
+}
+.maintenanceTable-action-icon .icon,
+.maintenanceTable-action-icon .iconHover,
+.maintenanceTable-action-icon .iconActive,
+.maintenanceTable-action-icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.maintenanceTable-action-icon .iconHover,
+.maintenanceTable-action-icon .iconActive,
+.maintenanceTable-action-icon .iconActiveHover {
+  opacity: 0;
+}
+.maintenanceTable-action-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  width: 156px;
+  display: none;
+  padding: 8px 1px;
+  border: 1px solid #CDDFF8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+  z-index: 2;
+}
+.maintenanceTable-action-dropdown-item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  padding: 14px 16px;
+  text-align: left;
+  color: #6a6a6a;
+  cursor: pointer;
+}
+
+.batch-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+}
+.batch-modal-layout {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+  max-width: 744px;
+}
+.batch-modal-header-wrapper {
+  margin-bottom: 16px;
+}
+.batch-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.batch-modal-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #121217;
+}
+.batch-modal-header__subtitle {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 4px;
+  color: #212121;
+}
+.batch-modal-header__icon {
+  cursor: pointer;
+}
+.batch-modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.batch-modal-footer__buttonCancel {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  min-width: 144px;
+}
+.batch-modal-footer__buttonCancel:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel .iconBlock .icon,
+.batch-modal-footer__buttonCancel .iconBlock .iconHover,
+.batch-modal-footer__buttonCancel .iconBlock .iconActive,
+.batch-modal-footer__buttonCancel .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-modal-footer__buttonCancel .iconBlock .iconHover,
+.batch-modal-footer__buttonCancel .iconBlock .iconActive,
+.batch-modal-footer__buttonCancel .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-modal-footer__buttonCancel .iconBlock,
+.batch-modal-footer__buttonCancel > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-modal-footer__buttonCancel .iconBlock:first-child,
+.batch-modal-footer__buttonCancel > img:first-child {
+  margin-left: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock:last-child,
+.batch-modal-footer__buttonCancel > img:last-child {
+  margin-right: 0;
+}
+.batch-modal-footer__buttonCancel:hover {
+  color: #0248a4;
+}
+.batch-modal-footer__buttonSuccess {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  min-width: 144px;
+}
+.batch-modal-footer__buttonSuccess:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess .iconBlock .icon,
+.batch-modal-footer__buttonSuccess .iconBlock .iconHover,
+.batch-modal-footer__buttonSuccess .iconBlock .iconActive,
+.batch-modal-footer__buttonSuccess .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-modal-footer__buttonSuccess .iconBlock .iconHover,
+.batch-modal-footer__buttonSuccess .iconBlock .iconActive,
+.batch-modal-footer__buttonSuccess .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-modal-footer__buttonSuccess .iconBlock,
+.batch-modal-footer__buttonSuccess > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:first-child,
+.batch-modal-footer__buttonSuccess > img:first-child {
+  margin-left: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:last-child,
+.batch-modal-footer__buttonSuccess > img:last-child {
+  margin-right: 0;
+}
+.batch-modal-footer__buttonSuccess:hover {
+  background-color: #0248a4;
+}

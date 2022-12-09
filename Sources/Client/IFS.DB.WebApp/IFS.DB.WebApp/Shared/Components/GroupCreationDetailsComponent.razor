@@ -1,0 +1,18 @@
+
+<div class="details">
+    <EditForm EditContext=@_groupCreationDetailsContext>
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+
+        <p class="details-head">General details</p>
+        <div class="details-formgroup">
+            <p class="details-formgroup-name">Group name</p>
+            <InputText placeholder="Enter here" class="input" @bind-Value=@_groupInfoModel.Name></InputText>
+            <CustomValidationMessage For="@(() => _groupInfoModel.Name)" />
+        </div>
+        <div class="details-formgroup">
+            <p class="details-formgroup-name">Group description</p>
+            <InputTextArea placeholder="Enter here" class="input details-formgroup-area" @bind-Value=@_groupInfoModel.Description></InputTextArea>
+            <CustomValidationMessage For="@(() => _groupInfoModel.Description)" />
+        </div>
+    </EditForm>
+</div>

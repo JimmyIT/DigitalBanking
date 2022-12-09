@@ -1,0 +1,44 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.admin-permission-layout {
+	padding: $indent-24 0 $indent-36;
+}
+
+.admin-permission-container {
+	@include container;
+}
+
+.admin-permission-header {
+	@include pageTitle;
+}
+
+.admin-permission-box {
+	@include box;
+
+	&-selections {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: $indent-16;
+
+		&-radio {
+			@include boxTabs;
+
+			&__item {
+				min-width: 116px;
+			}
+		}
+
+		&-input-group {
+			&-input {
+				max-width: 260px;
+				margin-right: $indent-12;
+
+				&:last-child {
+					margin: 0;
+				}
+			}
+		}
+	}
+}

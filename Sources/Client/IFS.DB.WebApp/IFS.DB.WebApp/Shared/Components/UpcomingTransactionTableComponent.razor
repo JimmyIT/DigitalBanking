@@ -1,0 +1,13 @@
+@using IFS.DB.WebApp.Helpers.CompnentConfiguration.DataGrid
+@using IFS.DB.WebApp.Models.Transactions
+
+<DataGridComponent @ref="_dataSourceGrid" TItem="TransactionModel"
+                   Columns="_columnsDefinition"
+                   DataItems="@_upcomingTransactionModel.UpcomingTransactions"
+                   TotalItems="_upcomingTransactionModel.TotalRecords"
+                   CurrentPageNumber="@_pageIndex"
+                   OnPageSizeChangedCallback=@OnPageSizeChanged
+                   OnSortDataChangedCallback=@OnSortDataChanged
+                   CustomPageSize=@CustomPageSize
+                   PagingConfig=@_pagingConfig>    
+</DataGridComponent>

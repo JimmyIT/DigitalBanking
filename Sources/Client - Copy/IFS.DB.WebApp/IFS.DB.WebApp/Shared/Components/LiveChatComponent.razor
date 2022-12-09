@@ -1,0 +1,86 @@
+﻿<div class="liveChat" id="liveChat" style="@_activeInlineStyleCss">
+    <div class="liveChat-header">
+        <p class="liveChat-header__title">Live chat</p>
+        <button class="liveChat-header__close" type="button" @onclick=@OnCloseLiveChat>
+            <img src="/img/icons/closeIcon.svg" alt="close" class="liveChat-header__close-img" />
+        </button>
+    </div>
+
+    <div class="liveChat-main">
+        <div class="liveChat-messages">
+            <p class="liveChat-message-author">
+                <span class="liveChat-message-author__name">Anna Smith</span>
+                <span class="liveChat-message-author__position">Relationship Manager</span>
+            </p>
+            <div class="liveChat-message">
+                <p class="liveChat-message-text">Hello! How can I help you?</p>
+            </div>
+            <p class="liveChat-message-author liveChat-message-author--right">
+                <span class="liveChat-message-author__name">You</span>
+            </p>
+            <div class="liveChat-message liveChat-message--right">
+                <p class="liveChat-message-text">How I can transfer money not to my account?</p>
+            </div>
+            <div class="liveChat-message liveChat-message--right">
+                <p class="liveChat-message-text">I would like to know do my doc suit to the required one</p>
+                <div class="liveChat-message-file">
+                    <img src="/img/icons/file.svg" class="liveChat-message-file__icon" alt="file" />
+                    <p class="liveChat-message-file__name">Screenshot.pdf</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="liveChat-footer">
+        <div class="liveChat-file">
+            <img src="/img/icons/load.svg" class="liveChat-file__icon liveChat-file__icon--load" alt="load" />
+            <p class="liveChat-file__name">Screenshot.pdf</p>
+        </div>
+
+        <div class="liveChat-file">
+            <img src="/img/icons/file.svg" class="liveChat-file__icon" alt="file" />
+            <p class="liveChat-file__name">Screenshot.pdf</p>
+            <button class="liveChat-file__delete">
+                <img src="/img/icons/delete.svg" class="liveChat-file__delete-icon" alt="delete" />
+            </button>
+        </div>
+
+        <div class="liveChat-file liveChat-file--error">
+            <img src="/img/icons/error.svg" class="liveChat-file__icon" alt="error" />
+            <p class="liveChat-file__name">Screenshot.pdf</p>
+            <button class="liveChat-file__delete">
+                <img src="/img/icons/delete.svg" class="liveChat-file__delete-icon" alt="delete" />
+            </button>
+            <p class="liveChat-file__text">File wasn’t uploaded. Error occurred</p>
+        </div>
+
+        <textarea placeholder="Enter here" class="input" rows="1"></textarea>
+
+        <div class="liveChat-footer-buttons">
+            <button type="submit" class="liveChat-footer-button liveChat-footer-button--attach">
+                <img src="/img/icons/attach.svg" alt="attach" class="liveChat-header__close-img" />
+                Attach file
+            </button>
+            <button type="submit" class="liveChat-footer-button liveChat-footer-button--send">
+                Send Message
+                <img src="/img/icons/send.svg" alt="send" class="liveChat-header__close-img" />
+            </button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string _activeInlineStyleCss = "display: none";
+
+    public async Task SetActiveLiveChat(bool isActive)
+    {
+        _activeInlineStyleCss = isActive ? "display: flex" : "display: none";
+        StateHasChanged();
+    }
+
+    public async Task OnCloseLiveChat()
+    {
+        _activeInlineStyleCss = "display: none";
+        StateHasChanged();
+    }
+}

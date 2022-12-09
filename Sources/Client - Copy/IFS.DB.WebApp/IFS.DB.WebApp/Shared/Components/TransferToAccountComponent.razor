@@ -1,0 +1,106 @@
+@using IFS.DB.WebApp.Models.Transfer
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Models
+@using Microsoft.AspNetCore.Components
+
+<div class="home-transfer">
+    <p class="home-transfer__title">Transfer to account</p>
+    <p class="home-transfer__subtitle">Additional text</p>
+    <div class="home-transfer__form">
+        <EditForm EditContext="@_transferContext" OnValidSubmit="@ShowTransfersModalConfirmComponent">
+            <DataAnnotationsValidator />
+            <div class="formgroup">
+                <AccountSelectionComponent 
+                    Label="From"
+                    TValue="string"
+                    ValidationFor="@(() => _transferModel.DebitAccount)" Value="_transferModel.DebitAccount"
+                    ValueExpression="@(() => _transferModel.DebitAccount)"
+                    OnValueChanged="EventCallback.Factory.Create(this, (string value) => _transferModel.DebitAccount = value)"></AccountSelectionComponent>
+            </div>
+            <div class="br-12">
+            </div>
+            <div class="formgroup">
+                <AccountSelectionComponent 
+                    Label="To"
+                    TValue="string"
+                    ValidationFor="() => _transferModel.CreditAccount" Value="_transferModel.CreditAccount"
+                    ValueExpression="() => _transferModel.CreditAccount"
+                    OnValueChanged="EventCallback.Factory.Create(this, (string value) => _transferModel.CreditAccount = value)"></AccountSelectionComponent>
+            </div>
+            <div class="br-12"></div>
+            <div class="select-layout">
+                <div class="home-transfer__form-amount">
+                    <div class="formgroup">
+                        <AmountComponent 
+                            LabelText="Enter amount"
+                            @bind-Value="@_transferModel.Amount"
+                            class="input payments-information-form__amount"
+                            ValidationFor="@(() => _transferModel.Amount)"></AmountComponent>
+                    </div>
+                </div>
+                <button type="submit" class="input-button home-transfer__form-button">
+                    <img src="/img/icons/arrowRightWhite.svg"
+                         alt="arrow" />
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    IModalService PaymentModalSvc { get; set; } = default!;
+
+    private List<AccountModel>? _fromAccounts;
+    private List<AccountModel>? _toAccounts;
+
+    private CreateTransferRequestModel _transferModel;
+    private EditContext _transferContext;
+    private ValidationMessageStore _transferValidateMsgStore;
+
+    protected override void OnInitialized()
+    {
+        SetTransferModelForm(NewFastTransferModel());
+        
+        _fromAccounts = FakeData.Accounts;
+        _toAccounts = FakeData.Accounts;
+
+        _transferContext.OnFieldChanged += (_, args) => 
+        { 
+            _transferValidateMsgStore.Clear(args.FieldIdentifier); 
+        };
+    }
+
+    private void ShowTransfersModalConfirmComponent()
+    {
+        ModalParameters parameters = new ModalParameters().Add(nameof(TransfersModalConfirmComponent.TransferRequestModel), _transferModel);
+
+        var options = new ModalOptions
+            {
+                UseCustomLayout = true
+            };
+
+        PaymentModalSvc.Show<TransfersModalConfirmComponent>("Confirm Transfer", parameters, options);
+
+        //reset
+        SetTransferModelForm(NewFastTransferModel());
+    }
+
+    private CreateTransferRequestModel NewFastTransferModel() => new CreateTransferRequestModel
+        {
+            CreditNarrative = "fast",
+            DebitNarrative = "fast",
+            TransferDate = DateTime.UtcNow
+        };
+    
+    private void SetTransferModelForm(CreateTransferRequestModel value)
+    {
+        _transferModel = value;
+        _transferContext = new EditContext(value);
+        _transferContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _transferValidateMsgStore = new ValidationMessageStore(_transferContext);
+    }
+
+}

@@ -1,0 +1,1 @@
+dotnet watch run --project .\IFS.DB.WebApp\IFS.DB.WebApp.csproj

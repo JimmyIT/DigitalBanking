@@ -1,0 +1,13 @@
+    <div>
+        @if (Label) 
+        {
+            <label>Payment date</label>
+        }
+        <div class="input-layout">
+            <input placeholder="_ /_ /__" class="input daterangepicker-input" />
+        </div>
+    </div>
+
+    @code {
+        [Parameter] public bool Label { get; set; } = true;
+    }

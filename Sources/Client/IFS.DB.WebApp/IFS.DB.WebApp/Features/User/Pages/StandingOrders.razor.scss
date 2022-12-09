@@ -1,0 +1,126 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.standing-orders-layout {
+  padding: $indent-24 0;
+}
+
+.standing-orders-container {
+  @include container;
+}
+
+.standing-orders {
+  &-header {
+    @include pageTitle;
+    margin-bottom: $indent-24;
+  }
+
+  &-box {
+    @include box;
+  }
+
+  &-filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $indent-16;
+
+    &__left {
+      flex: 1;
+    }
+  }
+
+  &-search {
+    max-width: 508px;
+  }
+
+  &-soring-button {
+    @include buttonIconMedium;
+  }
+}
+
+::deep .standingOrdersTable {
+
+  td {
+    @include textWithDots;
+
+    &:first-child {
+      padding-left: $indent-12;
+    }
+
+    &:last-child {
+      overflow: visible;
+    }
+
+    &:nth-child(2) {
+      width: 400px;
+    }
+
+    &:nth-child(5) {
+      width: 80px;
+    }
+
+    &:nth-child(6) {
+      width: 40px;
+    }
+
+  }
+
+  tbody {
+    td {
+      &:nth-child(4) {
+        @include h5;
+      }
+    }
+  }
+
+  &-button {
+    @include label;
+    @include grayTextBox;
+    display: flex;
+    justify-content: center;
+
+    &.standingOrdersTable-button--error {
+      @include redTextBox;
+    }
+
+    &.standingOrdersTable-button--success {
+      @include greenTextBox;
+    }
+  }
+
+  &-action {
+    position: relative;
+    box-sizing: border-box;
+
+    &-icon {
+      @include buttonIcon;
+    }
+
+    &-dropdown {
+      position: absolute;
+      top: 45px;
+      right: 10px;
+      width: 156px;
+      display: none;
+      padding: 8px 0;
+      border: 1px solid $color-sky-blue-200;
+      border-radius: 8px;
+      background-color: $color-white;
+      box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+      z-index: 2;
+
+      &-item {
+        @include field;
+        padding: 14px 16px;
+        text-align: left;
+        color: $color-gray-600;
+        cursor: pointer;
+
+        &:hover {
+          color: $color-gray-900;
+          background-color: $color-sky-blue-100;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.accountTable {
+	td {
+		vertical-align: middle;
+		width: 100%;
+
+		&:last-child {
+			min-width: 176px;
+		}
+	}
+
+	thead {
+		td {
+			@include label2;
+			padding: $indent-8 20px;
+			background: $color-sky-blue-100;
+			color: $color-sky-blue-300;
+
+			&:first-child {
+				border-radius: 8px 0 0 8px;
+			}
+
+			&:last-child {
+				border-radius: 0 8px 8px 0;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid $color-sky-blue-100;
+
+			&:last-child {
+				border-bottom: 0;
+
+				td {
+					padding-bottom: 0;
+				}
+			}
+		}
+
+		td {
+			@include body;
+			padding: 20px;
+			color: $color-gray-900;
+		}
+	}
+
+	&-item {
+		display: flex;
+		align-items: center;
+
+		&__input {
+			margin-right: $indent-8;
+		}
+
+		&__img {
+			margin-right: $indent-8;
+		}
+	}
+
+	&-button {
+		@include button1;
+		color: $color-sky-blue-500;
+
+		&.accountTable-button--inactive {
+			color: $color-gray-300;
+		}
+	}
+}

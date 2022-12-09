@@ -1,0 +1,16 @@
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\bin\Debug\net6.0\IFS.DB.Application.deps.json
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\bin\Debug\net6.0\IFS.DB.Application.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\bin\Debug\net6.0\IFS.DB.Application.pdb
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\bin\Debug\net6.0\IFS.Common.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\bin\Debug\net6.0\IFS.DB.EF.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\bin\Debug\net6.0\IFS.DB.EF.pdb
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\IFS.DB.Application.csproj.AssemblyReference.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\IFS.DB.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\IFS.DB.Application.AssemblyInfoInputs.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\IFS.DB.Application.AssemblyInfo.cs
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\IFS.DB.Application.csproj.CoreCompileInputs.cache
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\IFS.DB.Application.csproj.CopyComplete
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\IFS.DB.Application.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\refint\IFS.DB.Application.dll
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\IFS.DB.Application.pdb
+D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Server\IFS.DB.Application\obj\Debug\net6.0\ref\IFS.DB.Application.dll

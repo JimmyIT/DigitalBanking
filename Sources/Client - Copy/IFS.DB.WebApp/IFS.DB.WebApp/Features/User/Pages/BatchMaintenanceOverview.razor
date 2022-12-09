@@ -1,0 +1,311 @@
+@layout BatchOverviewLayout
+@page "/maintenance/overview"
+@using IFS.DB.WebApp.Models.Batch
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Models
+
+<div class="batch-layout">
+    <div class="batch-container">
+        <div class="batch-breadcrumbs">
+            <p class="batch-breadcrumbs__item">Home</p>
+            <p class="batch-breadcrumbs__item active">Batch Maintenance</p>
+        </div>
+
+        <div class="batch-header">
+            <div class="batch-header-wrapper">
+                <img src="/img/icons/return.svg" alt="logo" class="batch-header__logo" style="cursor: pointer" @onclick="@(() => _navigateManager.NavigateTo("/maintenance"))"/>
+                <p class="batch-header__title">Details @_batchModel.UserReference</p>
+                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="batch-header__tooltip-icon"/>
+            </div>
+
+            <div>
+                @if (_batchModel.Status is BatchStatus.Draft)
+                {
+                    <button class="batch-header__button" onclick="@EditBatch">Edit Batch</button>
+                }
+            </div>
+        </div>
+
+        <div class="batch">
+            <div class="batch-main">
+                <div class="batch-main__left">
+                    <div class="batch-details">
+                        <div class="batch-details-header">
+                            <p class="batch-details-header__title">
+                                General details
+                            </p>
+                        </div>
+
+                        <div class="batch-details-wrapper">
+                            <div class="batch-details-form">
+                                <div class="formgroup">
+                                    <label>User Reference</label>
+                                    <p class="batch-details-form__text">@_batchModel.UserReference</p>
+                                </div>
+
+                                <div class="formgroup">
+                                    <label>Debit Account</label>
+                                    <p class="batch-details-form__text">Account No. @_batchModel.DebitAccount</p>
+                                </div>
+
+                                <div class="formgroup batch-details-form-row">
+                                    <div class="formgroup">
+                                        <label>Batch Amount</label>
+                                        <p class="batch-details-form__text">@_batchModel.Amount.ToNumberFormat()</p>
+                                    </div>
+                                    <div>
+                                        <label>Payment Date</label>
+                                        <p class="batch-details-form__text">@_batchModel.PaymentDate!.Value.ToString("MMMM dd, yyyy")</p>
+                                    </div>
+                                </div>
+
+                                <div class="formgroup">
+                                    <label>Debit Narrative</label>
+                                    <p class="batch-details-form__text">@_batchModel.DebitNarrative</p>
+                                </div>
+
+                                <div class="formgroup">
+                                    <label>Default Credit Narrative</label>
+                                    <p class="batch-details-form__text">@_batchModel.DefaultCreditNarrative</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="batch-main__right">
+                    <div class="batch-items">
+                        <div class="batch-items-header">
+                            <div class="batch-items-header-wrapper">
+                                <div>
+                                    <p class="batch-items-header__title">
+                                        Batch items
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        @for (var i = 0; i < _batchItems?.Count; i++)
+                        {
+                            <div class="batch-items-card">
+                                <div class="batch-items-card-header">
+                                    <p class="batch-items-card-header__title">Item No. @(i + 1)</p>
+                                    <div class="batch-items-card-header__content">
+                                        <p class="batch-items-card-header__sum">@_batchItems[i].Amount.ToNumberFormat()</p>
+                                        <p class="batch-items-card-header__@(_batchItems[i].TransactionType switch{
+                                                                               TransactionType.Transfer => "typeTransfer",
+                                                                               TransactionType.Payment => "typePayment",
+                                                                               _ => "typePayment"
+                                                                               })">
+                                            @_batchItems[i].TransactionType.ToString()
+                                        </p>
+                                        <p class="batch-items-card-header__label">Account No. @_batchItems[i].CreditAccount</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="batch-footer-layout">
+    <div class="batch-footer-container">
+        <div class="batch-footer">
+            <div class="batch-footer-left">
+                @if (_batchModel?.Status is BatchStatus.Waiting)
+                {
+                    <div class="batch-footer-left-info" @onclick="@(ToggleShowSignatory)">
+                        <p class="batch-footer-left-info-text">Sign by:</p>
+                        <p class="batch-footer-left-info-text">@_batchModel.CurrentSignatures signatories</p>
+
+                        <div class="batch-footer-left-info-tooltip @(_showSignatory ? "batch-footer-left-info-tooltip--show" : "")" id="tooltip">
+                            <div class="batch-footer-left-info-tooltip-item">
+                                <p class="batch-footer-left-info-tooltip-item__title">
+                                    Signatories
+                                </p>
+                            </div>
+
+                            <div class="batch-footer-left-info-tooltip-item">
+                                <img class="batch-footer-left-info-tooltip-item__image" src="/img/header/avatarDummy.png" alt="avatar"/>
+                                <p class="batch-footer-left-info-tooltip-item__title">
+                                    Marilyn Kenter
+                                </p>
+                            </div>
+
+                            <div class="batch-footer-left-info-tooltip-item">
+                                <img class="batch-footer-left-info-tooltip-item__image" src="/img/header/avatarDummy.png" alt="avatar"/>
+                                <p class="batch-footer-left-info-tooltip-item__title">
+                                    Simon Jhones
+                                </p>
+                            </div>
+
+                            <div class="batch-footer-left-info-tooltip-item">
+                                <img class="batch-footer-left-info-tooltip-item__image" src="/img/header/avatarDummy.png" alt="avatar"/>
+                                <p class="batch-footer-left-info-tooltip-item__title">
+                                    Marilyn Herwitz
+                                </p>
+                            </div>
+                        </div>
+
+                        <img class="batch-footer-left-info-tooltip-icon" src="/img/icons/tailIcon.svg" alt="tail" id="tooltipIcon"/>
+                    </div>
+
+                    <div class="batch-footer-left-info">
+                        <p class="batch-footer-left-info-text">Waiting for the sign:</p>
+                        <p class="batch-footer-left-info-text">@(_batchModel.RequiredSignatures - _batchModel.CurrentSignatures) signatories</p>
+                    </div>
+                }
+
+            </div>
+
+            <div class="batch-footer-right">
+                <div class="batch-footer-right-batch">
+                    <p class="batch-footer-right-batch-text">Total allocated amount:</p>
+                    <p class="batch-footer-right-batch-text">@TotalAmount.ToNumberFormat()</p>
+                </div>
+
+                <div class="batch-footer-right-buttons">
+                    @if (_batchModel?.Status is BatchStatus.Waiting && _batchModel.CanSign)
+                    {
+                        <button class="batch-footer-right-buttons-confirm" onclick="@SignOffBatch">Sign Batch</button>
+                    }
+                    @if (_batchModel?.Status is BatchStatus.Draft)
+                    {
+                        <button class="batch-footer-right-buttons-confirm" onclick="@SubmitBatch">Submit Batch</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+@code {
+
+    [CascadingParameter]
+    IModalService ModalSvc { get; set; } = default!;
+
+    private BatchModel _batchModel = new BatchModel();
+
+    private bool _showSignatory = false;
+
+    private List<BatchItemModel>? _batchItems = new();
+
+    private decimal TotalAmount => _batchItems?.Sum(x => x.Amount) ?? 0;
+
+    protected override void OnInitialized()
+    {
+        if (_appStore.BatchStore is {})
+        {
+            _batchModel = _appStore.BatchStore!;
+            _batchItems = _batchModel.BatchItems?.ToList();
+        }
+        else
+        {
+            _navigateManager.NavigateTo("/maintenance");
+        }
+    }
+
+    private async Task SubmitBatch()
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(BatchSubmitConfirmationComponent.BatchModel), _batchModel);
+
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+
+        IModalReference confirmModal = ModalSvc
+            .Show<BatchSubmitConfirmationComponent>(
+                title: $"Submit {_batchModel.UserReference} Batch",
+                parameters: parameters,
+                options: options);
+
+        ModalResult confirmModalResult = await confirmModal.Result;
+
+        if (confirmModalResult.Confirmed)
+        {
+            var index = FakeData.Batches.FindIndex(x => x.Id == _batchModel.Id);
+            if (index == -1) throw new InvalidOperationException();
+
+            FakeData.Batches[index] = _batchModel 
+                with 
+            {
+                Status = BatchStatus.Waiting,   
+                CurrentSignatures = 0,
+                RequiredSignatures = 3,
+                CanSign = true
+                };
+
+            ModalSvc
+                .Show<BatchSubmitSuccessAnnoucementComponent>(
+                    title: $"{_batchModel.UserReference} Batch was submitted",
+                    parameters: new ModalParameters { { "BatchName", _batchModel.UserReference } },
+                    options: options);
+        }
+    }
+
+    private async Task SignOffBatch()
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(BatchSubmitConfirmationComponent.BatchModel), _batchModel);
+
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+
+        IModalReference confirmModal = ModalSvc
+            .Show<BatchSignOffConfirmationComponent>(
+                title: $"Submit {_batchModel.UserReference} Batch",
+                parameters: parameters,
+                options: options);
+
+        ModalResult confirmModalResult = await confirmModal.Result;
+
+        if (confirmModalResult.Confirmed is false)
+            return;
+
+        var index = FakeData.Batches.FindIndex(x => x.Id == _batchModel.Id);
+
+        if (index == -1) throw new InvalidOperationException("");
+
+        _batchModel.CurrentSignatures += 1;
+
+        FakeData.Batches[index] = _batchModel 
+            with {
+            CurrentSignatures = _batchModel.CurrentSignatures,
+            CanSign = false
+            };
+
+    // update sign-off list
+
+        if (_batchModel.CurrentSignatures == _batchModel.RequiredSignatures)
+        {
+            FakeData.Batches[index] = _batchModel 
+                with {
+                Status = BatchStatus.Submitted
+                };
+        }
+
+        ModalSvc
+            .Show<BatchSignOffSuccessAnnoucementComponent>(
+                title: $"{_batchModel.UserReference} Batch was submitted",
+                parameters: new ModalParameters { { "BatchName", _batchModel.UserReference } },
+                options: options);
+    }
+
+    private void EditBatch()
+    {
+        _navigateManager.NavigateTo("/maintenance/new");
+    }
+
+    private void ToggleShowSignatory() => _showSignatory = !_showSignatory;
+
+}

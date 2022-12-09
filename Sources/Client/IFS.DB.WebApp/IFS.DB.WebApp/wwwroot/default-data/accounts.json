@@ -1,0 +1,14 @@
+﻿[
+  {
+    "AccountNumber": "12345678",
+    "AccountDetails": "ABC - 12345678"
+  },
+  {
+    "AccountNumber": "00068701",
+    "AccountDetails": "BCD - 00068701"
+  },
+  {
+    "AccountNumber": "00068702",
+    "AccountDetails": "EFD - 00068702"
+  }
+]

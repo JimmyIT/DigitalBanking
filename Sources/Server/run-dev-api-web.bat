@@ -1,0 +1,1 @@
+dotnet watch run --project .\TagTokenSales.Web\TagTokenSales.Web.csproj

@@ -1,0 +1,1453 @@
+.payments-layout {
+  padding: 24px 0 12px;
+}
+
+.payments-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.payments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.payments-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.payments-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.payments-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.payments-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.payments-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.payments-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-header__button .iconBlock .icon,
+.payments-header__button .iconBlock .iconHover,
+.payments-header__button .iconBlock .iconActive,
+.payments-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-header__button .iconBlock .iconHover,
+.payments-header__button .iconBlock .iconActive,
+.payments-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-header__button .iconBlock,
+.payments-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-header__button .iconBlock:first-child,
+.payments-header__button > img:first-child {
+  margin-left: 0;
+}
+.payments-header__button .iconBlock:last-child,
+.payments-header__button > img:last-child {
+  margin-right: 0;
+}
+.payments-header__button:hover {
+  color: #0248a4;
+}
+
+.payments-title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+  margin-bottom: 24px;
+}
+.payments-main {
+  display: flex;
+}
+.payments-main__left {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+.payments-main__left:last-child {
+  margin-bottom: 0;
+}
+.payments-main__right {
+  width: 440px;
+  margin-left: 24px;
+  display: flex;
+}
+.payments-main__right:first-child {
+  margin-left: 0;
+}
+.payments-new {
+  margin-bottom: 16px;
+}
+.payments-new__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #121217;
+  margin-bottom: 16px;
+}
+.payments-new-payee {
+  display: flex;
+  align-items: center;
+  align-items: flex-start;
+}
+.payments-new-payee .formgroup {
+  margin-right: 16px;
+}
+.payments-new-payee .formgroup:last-child {
+  margin-right: 0;
+}
+.payments-new-payee-selector {
+  flex: 1;
+}
+.payments-new-payee-selector__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  margin-top: 4px;
+}
+.payments-new-payee-create {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.payments-new-payee-create__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.payments-new-payee-create__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  max-height: 56px;
+}
+.payments-new-payee-create__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-new-payee-create__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-new-payee-create__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-new-payee-create__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-new-payee-create__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-new-payee-create__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-new-payee-create__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-new-payee-create__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-new-payee-create__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-new-payee-create__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-new-payee-create__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-new-payee-create__button .iconBlock .icon,
+.payments-new-payee-create__button .iconBlock .iconHover,
+.payments-new-payee-create__button .iconBlock .iconActive,
+.payments-new-payee-create__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-new-payee-create__button .iconBlock .iconHover,
+.payments-new-payee-create__button .iconBlock .iconActive,
+.payments-new-payee-create__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-new-payee-create__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-new-payee-create__button .iconBlock,
+.payments-new-payee-create__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-new-payee-create__button .iconBlock:first-child,
+.payments-new-payee-create__button > img:first-child {
+  margin-left: 0;
+}
+.payments-new-payee-create__button .iconBlock:last-child,
+.payments-new-payee-create__button > img:last-child {
+  margin-right: 0;
+}
+.payments-new-payee-create__button:hover {
+  color: #0248a4;
+}
+.payments-details {
+  padding: 16px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+}
+.payments-details__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  color: #393939;
+}
+.payments-details-item-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.payments-details-item {
+  margin-right: 12px;
+  width: 100%;
+}
+.payments-details-item:last-child {
+  margin-right: 0;
+}
+.payments-details-item__label {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+}
+.payments-details-item__body {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+.payments-details-item__body.payments-details-item__body--additional {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #0360db;
+  text-decoration-line: underline;
+  margin-top: 4px;
+}
+.payments-details-item__selector {
+  min-width: 308px;
+  margin-top: 4px;
+}
+.payments-information {
+  margin-top: 16px;
+}
+.payments-information__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.payments-information-form {
+  display: flex;
+  align-items: center;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+.payments-information-form .formgroup {
+  margin-right: 16px;
+}
+.payments-information-form .formgroup:last-child {
+  margin-right: 0;
+}
+.payments-information-form__selector {
+  width: 100%;
+}
+.payments-information-form__amount {
+  text-align: end;
+}
+.payments-information-form__textarea {
+  margin-top: 16px;
+}
+.payments-information-form__document-selector {
+  margin-right: 10px;
+}
+.payments-information-form__upload {
+  border: 1.5px dashed #81afed;
+}
+.payments-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.payments-footer__buttonCancel {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  min-width: 160px;
+}
+.payments-footer__buttonCancel:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-footer__buttonCancel:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-footer__buttonCancel:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-footer__buttonCancel:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-footer__buttonCancel .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-footer__buttonCancel .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-footer__buttonCancel .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-footer__buttonCancel .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-footer__buttonCancel .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-footer__buttonCancel .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-footer__buttonCancel .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-footer__buttonCancel .iconBlock .icon,
+.payments-footer__buttonCancel .iconBlock .iconHover,
+.payments-footer__buttonCancel .iconBlock .iconActive,
+.payments-footer__buttonCancel .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-footer__buttonCancel .iconBlock .iconHover,
+.payments-footer__buttonCancel .iconBlock .iconActive,
+.payments-footer__buttonCancel .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-footer__buttonCancel > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-footer__buttonCancel .iconBlock,
+.payments-footer__buttonCancel > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-footer__buttonCancel .iconBlock:first-child,
+.payments-footer__buttonCancel > img:first-child {
+  margin-left: 0;
+}
+.payments-footer__buttonCancel .iconBlock:last-child,
+.payments-footer__buttonCancel > img:last-child {
+  margin-right: 0;
+}
+.payments-footer__buttonCancel:hover {
+  color: #0248a4;
+}
+.payments-footer__buttonSuccess {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  min-width: 160px;
+}
+.payments-footer__buttonSuccess:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-footer__buttonSuccess:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-footer__buttonSuccess:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-footer__buttonSuccess:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-footer__buttonSuccess .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-footer__buttonSuccess .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-footer__buttonSuccess .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-footer__buttonSuccess .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-footer__buttonSuccess .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-footer__buttonSuccess .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-footer__buttonSuccess .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-footer__buttonSuccess .iconBlock .icon,
+.payments-footer__buttonSuccess .iconBlock .iconHover,
+.payments-footer__buttonSuccess .iconBlock .iconActive,
+.payments-footer__buttonSuccess .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-footer__buttonSuccess .iconBlock .iconHover,
+.payments-footer__buttonSuccess .iconBlock .iconActive,
+.payments-footer__buttonSuccess .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-footer__buttonSuccess > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-footer__buttonSuccess .iconBlock,
+.payments-footer__buttonSuccess > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-footer__buttonSuccess .iconBlock:first-child,
+.payments-footer__buttonSuccess > img:first-child {
+  margin-left: 0;
+}
+.payments-footer__buttonSuccess .iconBlock:last-child,
+.payments-footer__buttonSuccess > img:last-child {
+  margin-right: 0;
+}
+.payments-footer__buttonSuccess:hover {
+  background-color: #0248a4;
+}
+.payments-history {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.payments-history:last-child {
+  margin-bottom: 0;
+}
+.payments-history-header {
+  display: flex;
+  background: #f2f7fd;
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+.payments-history-header__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  flex: 1;
+  text-align: center;
+  padding: 7px 12px 5px;
+  margin-right: 8px;
+  transition: 0.4s;
+}
+.payments-history-header__item:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-history-header__item:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-history-header__item:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-history-header__item:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-history-header__item .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-history-header__item .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-history-header__item .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-history-header__item .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-history-header__item .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-history-header__item .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-history-header__item .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-history-header__item .iconBlock .icon,
+.payments-history-header__item .iconBlock .iconHover,
+.payments-history-header__item .iconBlock .iconActive,
+.payments-history-header__item .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-history-header__item .iconBlock .iconHover,
+.payments-history-header__item .iconBlock .iconActive,
+.payments-history-header__item .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-history-header__item > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-history-header__item .iconBlock,
+.payments-history-header__item > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-history-header__item .iconBlock:first-child,
+.payments-history-header__item > img:first-child {
+  margin-left: 0;
+}
+.payments-history-header__item .iconBlock:last-child,
+.payments-history-header__item > img:last-child {
+  margin-right: 0;
+}
+.payments-history-header__item:hover {
+  color: #0248a4;
+}
+.payments-history-header__item:hover:not(.active):not(.disabled) {
+  background-color: #CDDFF8;
+}
+.payments-history-header__item:last-child {
+  margin-right: 0;
+}
+.payments-history-header__item-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin: 0 4px;
+}
+.payments-history-header__item-icon:first-child {
+  margin-left: 0;
+}
+.payments-history-header__item-icon:last-child {
+  margin-right: 0;
+}
+.payments-history-header__item.active {
+  background-color: #ffffff;
+}
+.payments-history-header__item.disabled {
+  cursor: default;
+}
+.payments-history-selector {
+  margin-bottom: 16px;
+}
+.payments-history-info-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+.payments-history-info {
+  background: #ffffff;
+  border: 2px solid #f4f0ff;
+  border-radius: 12px;
+  padding: 16px;
+  transition: 0.4s;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.payments-history-info__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+.payments-history-info-description {
+  display: flex;
+  justify-content: space-between;
+}
+.payments-history-info-description__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  display: flex;
+  color: #6a6a6a;
+}
+.payments-history-info-description__sum {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.payments-history-info-description__icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin-right: 12px;
+  cursor: pointer;
+}
+.payments-history-info-description__icon:hover .icon {
+  opacity: 0;
+}
+.payments-history-info-description__icon:hover .iconHover {
+  opacity: 1;
+}
+.payments-history-info-description__icon:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-history-info-description__icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-history-info-description__icon.active .icon {
+  opacity: 0;
+}
+.payments-history-info-description__icon.active .iconActive {
+  opacity: 1;
+}
+.payments-history-info-description__icon .icon,
+.payments-history-info-description__icon .iconHover,
+.payments-history-info-description__icon .iconActive,
+.payments-history-info-description__icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-history-info-description__icon .iconHover,
+.payments-history-info-description__icon .iconActive,
+.payments-history-info-description__icon .iconActiveHover {
+  opacity: 0;
+}
+.payments-history-info-description__icon:last-child {
+  margin-right: 0;
+}
+.payments-history-info-description__type {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #9882fe;
+  background-color: #f4f0ff;
+}
+.payments-history-info-description__type--2 {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #1199d6;
+  background-color: #f2f7fd;
+}
+.payments-history-info__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  padding: 8px 16px;
+  width: 100%;
+}
+.payments-history-info__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-history-info__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-history-info__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-history-info__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-history-info__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-history-info__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-history-info__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-history-info__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-history-info__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-history-info__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-history-info__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-history-info__button .iconBlock .icon,
+.payments-history-info__button .iconBlock .iconHover,
+.payments-history-info__button .iconBlock .iconActive,
+.payments-history-info__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-history-info__button .iconBlock .iconHover,
+.payments-history-info__button .iconBlock .iconActive,
+.payments-history-info__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-history-info__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-history-info__button .iconBlock,
+.payments-history-info__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-history-info__button .iconBlock:first-child,
+.payments-history-info__button > img:first-child {
+  margin-left: 0;
+}
+.payments-history-info__button .iconBlock:last-child,
+.payments-history-info__button > img:last-child {
+  margin-right: 0;
+}
+.payments-history-info__button:hover {
+  color: #0248a4;
+}
+.payments-history-info:last-child {
+  margin-bottom: 0;
+}
+.payments-history-info:hover:not(:disabled) {
+  border-color: #dfd7fe;
+}
+.payments-history-info-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  width: 100%;
+  margin-top: 16px;
+}
+.payments-history-info-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-history-info-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-history-info-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-history-info-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-history-info-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-history-info-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-history-info-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-history-info-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-history-info-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-history-info-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-history-info-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-history-info-button .iconBlock .icon,
+.payments-history-info-button .iconBlock .iconHover,
+.payments-history-info-button .iconBlock .iconActive,
+.payments-history-info-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-history-info-button .iconBlock .iconHover,
+.payments-history-info-button .iconBlock .iconActive,
+.payments-history-info-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-history-info-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-history-info-button .iconBlock,
+.payments-history-info-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-history-info-button .iconBlock:first-child,
+.payments-history-info-button > img:first-child {
+  margin-left: 0;
+}
+.payments-history-info-button .iconBlock:last-child,
+.payments-history-info-button > img:last-child {
+  margin-right: 0;
+}
+.payments-history-info-button:hover {
+  color: #0248a4;
+}
+
+.check {
+  flex-direction: column;
+}
+
+.payments-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+}
+.payments-modal-layout {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+  max-width: 744px;
+}
+.payments-modal-header-wrapper {
+  margin-bottom: 16px;
+}
+.payments-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.payments-modal-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #121217;
+}
+.payments-modal-header__subtitle {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 4px;
+  color: #212121;
+}
+.payments-modal-header__icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 56px;
+  height: 56px;
+  padding: 16px;
+}
+.payments-modal-header__icon:hover .icon {
+  opacity: 0;
+}
+.payments-modal-header__icon:hover .iconHover {
+  opacity: 1;
+}
+.payments-modal-header__icon:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-modal-header__icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-modal-header__icon.active .icon {
+  opacity: 0;
+}
+.payments-modal-header__icon.active .iconActive {
+  opacity: 1;
+}
+.payments-modal-header__icon .icon,
+.payments-modal-header__icon .iconHover,
+.payments-modal-header__icon .iconActive,
+.payments-modal-header__icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-modal-header__icon .iconHover,
+.payments-modal-header__icon .iconActive,
+.payments-modal-header__icon .iconActiveHover {
+  opacity: 0;
+}
+.payments-modal-main {
+  margin-bottom: 16px;
+}
+.payments-modal-main__subtitle {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 8px;
+  color: #212121;
+}
+.payments-modal-main-input {
+  margin-right: 0;
+  margin-bottom: 16px;
+}
+.payments-modal-main-input:last-child {
+  margin-bottom: 0;
+}
+.payments-modal-main-form {
+  display: flex;
+  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.payments-modal-main-form .formgroup {
+  margin-right: 16px;
+}
+.payments-modal-main-form .formgroup:last-child {
+  margin-right: 0;
+}
+.payments-modal-main-form .formgroup {
+  width: 100%;
+}
+.payments-modal-main-form__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.payments-modal-main-info-card {
+  background: #ffffff;
+  border: 2px solid #f4f0ff;
+  border-radius: 12px;
+  padding: 16px;
+  transition: 0.4s;
+  margin-bottom: 16px;
+}
+.payments-modal-main-info-card-content {
+  display: flex;
+  margin-bottom: 12px;
+}
+.payments-modal-main-info-card-content:last-child {
+  margin-bottom: 0;
+}
+.payments-modal-main-info-card-content-item {
+  width: 200px;
+  margin-right: 12px;
+}
+.payments-modal-main-info-card-content-item:last-child {
+  width: unset;
+  margin-right: 0;
+}
+.payments-modal-main-info-card-content-item__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  font-weight: 600;
+}
+.payments-modal-main-info-card-content-item__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+.payments-modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.payments-modal-footer__buttonCancel {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  min-width: 144px;
+}
+.payments-modal-footer__buttonCancel:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-modal-footer__buttonCancel:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-modal-footer__buttonCancel:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-modal-footer__buttonCancel:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-modal-footer__buttonCancel .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-modal-footer__buttonCancel .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-modal-footer__buttonCancel .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-modal-footer__buttonCancel .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-modal-footer__buttonCancel .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-modal-footer__buttonCancel .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-modal-footer__buttonCancel .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-modal-footer__buttonCancel .iconBlock .icon,
+.payments-modal-footer__buttonCancel .iconBlock .iconHover,
+.payments-modal-footer__buttonCancel .iconBlock .iconActive,
+.payments-modal-footer__buttonCancel .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-modal-footer__buttonCancel .iconBlock .iconHover,
+.payments-modal-footer__buttonCancel .iconBlock .iconActive,
+.payments-modal-footer__buttonCancel .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-modal-footer__buttonCancel > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-modal-footer__buttonCancel .iconBlock,
+.payments-modal-footer__buttonCancel > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-modal-footer__buttonCancel .iconBlock:first-child,
+.payments-modal-footer__buttonCancel > img:first-child {
+  margin-left: 0;
+}
+.payments-modal-footer__buttonCancel .iconBlock:last-child,
+.payments-modal-footer__buttonCancel > img:last-child {
+  margin-right: 0;
+}
+.payments-modal-footer__buttonCancel:hover {
+  color: #0248a4;
+}
+.payments-modal-footer__buttonSuccess {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  min-width: 144px;
+}
+.payments-modal-footer__buttonSuccess:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payments-modal-footer__buttonSuccess:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payments-modal-footer__buttonSuccess:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payments-modal-footer__buttonSuccess:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-modal-footer__buttonSuccess .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payments-modal-footer__buttonSuccess .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payments-modal-footer__buttonSuccess .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payments-modal-footer__buttonSuccess .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payments-modal-footer__buttonSuccess .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payments-modal-footer__buttonSuccess .iconBlock.active .icon {
+  opacity: 0;
+}
+.payments-modal-footer__buttonSuccess .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payments-modal-footer__buttonSuccess .iconBlock .icon,
+.payments-modal-footer__buttonSuccess .iconBlock .iconHover,
+.payments-modal-footer__buttonSuccess .iconBlock .iconActive,
+.payments-modal-footer__buttonSuccess .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payments-modal-footer__buttonSuccess .iconBlock .iconHover,
+.payments-modal-footer__buttonSuccess .iconBlock .iconActive,
+.payments-modal-footer__buttonSuccess .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payments-modal-footer__buttonSuccess > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payments-modal-footer__buttonSuccess .iconBlock,
+.payments-modal-footer__buttonSuccess > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payments-modal-footer__buttonSuccess .iconBlock:first-child,
+.payments-modal-footer__buttonSuccess > img:first-child {
+  margin-left: 0;
+}
+.payments-modal-footer__buttonSuccess .iconBlock:last-child,
+.payments-modal-footer__buttonSuccess > img:last-child {
+  margin-right: 0;
+}
+.payments-modal-footer__buttonSuccess:hover {
+  background-color: #0248a4;
+}

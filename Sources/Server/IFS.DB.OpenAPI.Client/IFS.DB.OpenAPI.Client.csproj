@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="SourcesOfIncome\GetAMLOccupation\**" />
+    <EmbeddedResource Remove="SourcesOfIncome\GetAMLOccupation\**" />
+    <None Remove="SourcesOfIncome\GetAMLOccupation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY &quot;$(ProjectDir)bin\$(Configuration)\netstandard2.0\$(TargetFileName)&quot; &quot;..\..\..\bin\$(Configuration)\&quot; /Y" />
+  </Target>
+
+</Project>

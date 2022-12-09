@@ -1,0 +1,158 @@
+@layout UserLayout
+@page "/standings-orders"
+@using IFS.DB.WebApp.Models.StandingOrder
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Models.Batch
+@using IFS.DB.WebApp.Models
+
+<div class="standing-orders-layout">
+    <div class="standing-orders-container">
+        <div class="standing-orders">
+            <div class="standing-orders-header">
+                <div class="standing-orders-header-wrapper">
+                    <img src="/img/standingOrders/standingOrdersIcon.svg" alt="logo"
+                         class="standing-orders-header__logo"/>
+                    <p class="standing-orders-header__title">Standing Orders</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="standing-orders-header__tooltip-icon"/>
+                </div>
+                <button
+                    class="standing-orders-header__button" @onclick="@(() => _navigateManager.NavigateTo("/standings-orders/new"))">
+                    <img src="/img/icons/add.svg" alt="arrow"/> Add Standing Order
+                </button>
+            </div>
+
+            <div class="standing-orders-box">
+                <div class="standing-orders-filters">
+                    <div class="standing-orders-filters__left">
+                        <div class="search standing-orders-search">
+                            @* <SearchComponent/> *@
+                            <div class="search">
+                                <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon"/>
+                                <input placeholder="Search here" class="input search__input" value="@_searchString" @onchange="@OnSearchChange">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="standing-orders-filters__right">
+                        <button class="standing-orders-soring-button">
+                            <img src="/img/icons/filterIcon.svg" alt="filter" class="icon"/>
+                            <img src="/img/icons/filterHoverIcon.svg" alt="filter" class="iconHover"/>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="standing-orders-table">
+                    @* <StandingOrderTableComponent ></StandingOrderTableComponent> *@
+
+                    <QuickGrid TGridItem="StandingOrderModel" Items="_standingOrders.AsQueryable()" Class="standingOrdersTable" Pagination="_pagination" @ref="_gridRef" OnRowClicked="@OnRowClicked">
+                        <TemplateColumn TGridItem="StandingOrderModel" Title="Type" Align="Align.Center">
+                            @type(context)
+                        </TemplateColumn>
+                        <TemplateColumn TGridItem="StandingOrderModel" Title="Debit Narrative">
+                            Account No. @context.DebitNarrative
+                        </TemplateColumn>
+                        <TemplateColumn TGridItem="StandingOrderModel" Title="Debit Account">
+                            Account No. @context.DebitAccount
+                        </TemplateColumn>
+                        <TemplateColumn TGridItem="StandingOrderModel" Align="Align.Center" SortBy="_sortByAmount" Title="Regular Amount">
+                            @context.RegularAmount.ToNumberFormat()
+                        </TemplateColumn>
+
+                        <TemplateColumn TGridItem="StandingOrderModel" Title="Status">
+                            <span class="standingOrdersTable-button  @(context.Status switch 
+                                                                     {
+                                                                         StandingOrderStatus.Executing => "standingOrdersTable-button--success",
+                                                                         StandingOrderStatus.Paused => "standingOrdersTable-button--error",
+                                                                         _ => ""
+                                                                         })">
+                                @context.Status
+                            </span>
+                        </TemplateColumn>
+                        <TemplateColumn TGridItem="StandingOrderModel" Title="" Align="Align.Right">
+                            <div class="standingOrdersTable-action">
+                                <div class="standingOrdersTable-action-icon">
+                                    <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+                                    <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                                </div>
+                                <div class="standingOrdersTable-action-dropdown" id="SubmitDropdown">
+                                    <div class="standingOrdersTable-action-dropdown-item">Batch details</div>
+                                    <div class="standingOrdersTable-action-dropdown-item">Edit</div>
+                                    <div class="standingOrdersTable-action-dropdown-item" onclick="onTriggerModalDelete()">Delete</div>
+                                </div>
+                            </div>
+                        </TemplateColumn>
+                    </QuickGrid>
+                    <Paginator Value="@_pagination"/>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private RenderFragment<StandingOrderModel> type = item => item.TransactionType switch { 
+        TransactionType.Payment => @<img src="/img/transactionTable/payment.svg" alt="payment"/>,
+        TransactionType.Transfer => @<img src="/img/transactionTable/transfer.svg" alt="payment"/>,
+        _ => @<text></text>
+        };
+
+}
+
+@code {
+
+    private QuickGrid<StandingOrderModel> _gridRef;
+    private string? _searchString;
+
+    private readonly GridSort<StandingOrderModel> _sortByAmount = GridSort<StandingOrderModel>
+        .ByAscending(x => x.RegularAmount)
+        .ThenDescending(x => x.RegularAmount);
+
+    private IList<StandingOrderModel> _standingOrders = new List<StandingOrderModel>();
+
+    private GridItemsProvider<StandingOrderModel>? _gridItemsProvider;
+
+    private readonly PaginationState _pagination = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized()
+    {
+        _standingOrders = FakeData.StandingOrders;
+
+        _gridItemsProvider = async req =>
+        {
+            var sortBy = req.GetSortByProperties().SingleOrDefault();
+    // return await DataService.GetCountriesAsync(req.StartIndex, req.Count, sortBy.PropertyName, sortBy.Direction == SortDirection.Ascending, req.CancellationToken);
+            return GridItemsProviderResult.From(
+                FakeData.StandingOrders.OrderByDescending(x => x.CreatedOn)
+                    .ToList(),
+                FakeData.StandingOrders.Count);
+        };
+    }
+
+
+    private Task OnRowClicked((MouseEventArgs _, StandingOrderModel item) param)
+    {
+        return Task.CompletedTask;
+    }
+
+    private async Task LoadStandingOrders()
+    {
+        _standingOrders = FakeData.StandingOrders;
+
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            _standingOrders = _standingOrders
+                .Where(x => x.DebitNarrative?.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase) ?? false)
+                .ToList();
+        }
+
+        await _gridRef.RefreshDataAsync();
+    }
+
+    private async Task OnSearchChange(ChangeEventArgs args)
+    {
+        _searchString = args.Value?.ToString();
+        await LoadStandingOrders();
+    }
+
+}

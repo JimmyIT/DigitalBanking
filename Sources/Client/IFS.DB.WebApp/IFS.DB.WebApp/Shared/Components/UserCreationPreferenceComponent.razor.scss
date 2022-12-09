@@ -1,0 +1,60 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.preference {
+    @include box;
+    width: 100%;
+
+    &-head {
+        @include h2;
+        color: $color-gray-900;
+        margin-bottom: $indent-16;
+    }
+
+    &-formgroup {
+        margin-bottom: $indent-16;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &-name {
+            @include label;
+            margin-bottom: $indent-4;
+            color: $color-gray-600;
+        }
+    }
+
+    &-list {
+        margin-bottom: $indent-16;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &-title {
+            @include h4;
+            color: $color-wireframes-900;
+            margin-bottom: $indent-12;
+        }
+
+        &-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: $indent-8;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &-box {
+                margin-right: $indent-4;
+            }
+
+            &-name {
+                @include label;
+                color: $color-gray-900;
+            }
+        }
+    }
+}

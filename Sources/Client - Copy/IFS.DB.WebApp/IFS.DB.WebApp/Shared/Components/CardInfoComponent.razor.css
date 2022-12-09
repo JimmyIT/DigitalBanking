@@ -1,0 +1,16 @@
+.card-info-list {
+  width: 100vw;
+  display: flex;
+  padding-left: calc(50vw - 1368px / 2);
+  padding-right: calc(50vw - 1368px / 2);
+  position: relative;
+  left: calc(50% - 50vw);
+  overflow-x: hidden;
+  margin-bottom: 24px;
+}
+@media (max-width: 1440px) and (min-width: 1260px) {
+  .card-info-list {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+}

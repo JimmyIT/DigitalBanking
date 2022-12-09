@@ -1,0 +1,177 @@
+﻿@using IFS.DB.WebApp.Models.Batch
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Helpers.FluentValidator
+@using IFS.DB.WebApp.Features.User.Pages
+
+<div class="batch-items-readonly-card @(EditMode is false ? "active" : "")" @onclick="@(OnSelect)">
+    <div class="batch-items-readonly-card-header">
+        <p class="batch-items-readonly-card-header__title">Item No. @(ItemNo + 1)</p>
+        <div class="batch-items-readonly-card-header__content">
+            <p class="batch-items-readonly-card-header__sum">@Item.Amount.ToNumberFormat()</p>
+            <p class="batch-items-readonly-card-header__@(Item.TransactionType switch{
+                                                            TransactionType.Transfer => "typeTransfer",
+                                                            TransactionType.Payment => "typePayment",
+                                                            _ => "typePayment"
+                                                            })">
+                @Item.TransactionType.ToString()
+            </p>
+            <p class="batch-items-readonly-card-header__label">Account No. @Item.CreditAccount</p>
+        </div>
+    </div>
+</div>
+
+<div class="batch-items-card @(EditMode ? "active" : "")" id="card">
+    <div class="batch-items-card-header" @onclick="@CloseForm">
+        <p class="batch-items-card-header__title">Item No. @(ItemNo + 1)</p>
+        <div id="cardHeaderInfo" style="display: none;">
+            <p class="batch-items-card-header__sum" id="cardSum">@Item.Amount</p>
+            <p class="batch-items-card-header__type" id="cardType">@Item.TransactionType.ToString()</p>
+            <p class="batch-items-card-header__label" id="cardLabel">Account No. @Item.CreditAccount</p>
+        </div>
+        <img src="/img/icons/delete.svg" alt="delete" id="cardHeaderIcon" style="cursor: pointer" @onclick:stopPropagation onclick="@DeleteSelf"/>
+    </div>
+
+    <div class="batch-items-card-form" id="cardContent">
+        <EditForm EditContext="_editCtx">
+            <EnableFluentValidator TValidator="BatchItemModelValidator"/>
+            <div class="formgroup batch-items-card-form-row">
+                <div class="formgroup">
+                    <label>Transaction type</label>
+                    <InputSelectEnum @bind-Value="@Item.TransactionType"
+                                     DefaultOption="Select type"
+                                     class="select">
+                    </InputSelectEnum>
+                    <CustomValidationMessage For="@(() => Item.TransactionType)"/>
+                    <p class="batch-items-card-form-row__label">You can select betwen Payment and Transfer types</p>
+                </div>
+                <div class="formgroup">
+                    <label>Credit Account</label>
+                    <InputSelect
+                        Value="Item.CreditAccount"
+                        ValueExpression="@(() => Item.CreditAccount)"
+                        ValueChanged="@(value => Item.CreditAccount = string.IsNullOrEmpty(value) ? null : value)"
+                        TValue="string"
+                        class="select">
+                        <option value="">Select an account</option>
+                        @foreach (AccountModel item in Accounts)
+                        {
+                            <option value="@item.AccountNumber">@item.AccountDescription</option>
+                        }
+                    </InputSelect>
+                    <CustomValidationMessage For="@(() => Item.CreditAccount)"></CustomValidationMessage>
+                    <p class="batch-items-card-form-row__label">Select an acount to which you want make transfers</p>
+                </div>
+                <div class="formgroup">
+                    <label>Amount</label>
+                    <AmountComponent
+                        @bind-Value="@Item.Amount"
+                        class="input payments-information-form__amount"
+                        ValidationFor="@(() => Item.Amount)">
+                    </AmountComponent>
+                    <p class="batch-items-card-form-row__label">Batch Amount can not be higher than General Amount</p>
+                </div>
+            </div>
+
+            <div class="batch-items-card-form-textarea">
+                <div class="formgroup">
+                    <label>Debit Narrative</label>
+                    <div class="input-layout">
+                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="Item.CreditNarrative"></InputTextArea>
+                    </div>
+                    <CustomValidationMessage For="@(() => Item.CreditNarrative)"></CustomValidationMessage>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public BatchMaintenanceNew Owner { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public BatchItemModel Item { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public List<AccountModel> Accounts { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public EventCallback<BatchItemModel> OnDelete { get; set; }
+    
+    [Parameter]
+    public bool IsExceedTotal { get; set; }
+
+    [Parameter]
+    public int ItemNo { get; set; }
+
+    [Parameter]
+    public bool EditMode { get; set; }
+
+    [Parameter]
+    public EventCallback<(int?, BatchItemModel?)> OnSelected { get; set; }
+    
+    [Parameter]
+    public EventCallback TriggerCalculateTotalAmount { get; set; }
+
+    private EditContext _editCtx = default!;
+    private ValidationMessageStore _validationMessageStore = default!;
+
+    protected override void OnInitialized()
+    {
+        _editCtx = new EditContext(Item);
+        _editCtx.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _validationMessageStore = new ValidationMessageStore(_editCtx);
+
+        _editCtx.OnFieldChanged += (_, args) =>
+        {
+            _validationMessageStore.Clear(args.FieldIdentifier);
+
+            if (args.FieldIdentifier.FieldName.Equals(nameof(BatchItemModel.Amount)))
+            {
+                TriggerCalculateTotalAmount.InvokeAsync();
+                if (IsExceedTotal)
+                {
+                    _validationMessageStore.Add(args.FieldIdentifier, "Total Exceeded!");
+                }
+            }
+            
+        };
+
+        Owner.AddChildContext(ItemNo, _editCtx);
+    }
+
+    private Task DeleteSelf()
+        => OnDelete.InvokeAsync(Item);
+
+    private void ValidateAmountWithTotalAmount(FieldChangedEventArgs args)
+    {
+        if (args.FieldIdentifier.Model is BatchItemModel model)
+        {
+            
+        }
+    }
+    
+
+    private void Submit()
+    {
+        if (!_editCtx.Validate())
+            return;
+    }
+
+    private void CloseForm()
+    {
+        if (!_editCtx.Validate())
+            return;
+
+        OnSelected.InvokeAsync((null, null));
+    }
+
+    private void OnSelect()
+    {
+        OnSelected.InvokeAsync((ItemNo, Item));
+    }
+
+}

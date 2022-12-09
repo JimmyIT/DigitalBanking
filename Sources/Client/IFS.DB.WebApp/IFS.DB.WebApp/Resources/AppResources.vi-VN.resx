@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="creditamount_error_msg" xml:space="preserve">
+    <value>Số tiền phải lớn hơn 0</value>
+  </data>
+  <data name="customer_id" xml:space="preserve">
+    <value>Mã khách hàng</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="helloworld" xml:space="preserve">
+    <value>xin chào thế giới</value>
+  </data>
+  <data name="history" xml:space="preserve">
+    <value>Lịch sử</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="other" xml:space="preserve">
+    <value>Chức năng khác</value>
+  </data>
+  <data name="paymentdate_error_msg" xml:space="preserve">
+    <value>Thời gian thanh toán phải lớn hơn thời gian hiện tại</value>
+  </data>
+  <data name="payments" xml:space="preserve">
+    <value>Thanh toán</value>
+  </data>
+  <data name="forgot_security_details" xml:space="preserve">
+    <value>Quên chi tiết bảo mật?</value>
+  </data>
+  <data name="required" xml:space="preserve">
+    <value>Bắt buộc phải nhập</value>
+  </data>
+  <data name="sign_in" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="signing_queues" xml:space="preserve">
+    <value>Hàng đợi ký tên</value>
+  </data>
+  <data name="step1_instruction" xml:space="preserve">
+    <value>Để truy cập tài khoản của bạn, vui lòng nhập ID khách hàng</value>
+  </data>
+  <data name="password_instruction" xml:space="preserve">
+    <value>Nhập các ký tự sau từ mã Mật khẩu của bạn.</value>
+  </data>
+  <data name="security_code_instruction" xml:space="preserve">
+    <value>Sử dụng chuột để nhấp vào bàn phím để nhập mã bảo mật của bạn.</value>
+  </data>
+  <data name="customer_identification" xml:space="preserve">
+    <value>Nhận diện khách hàng</value>
+  </data>
+  <data name="standing_orders" xml:space="preserve">
+    <value>Đơn hàng thường trực</value>
+  </data>
+  <data name="transfers" xml:space="preserve">
+    <value>Chuyển khoản</value>
+  </data>
+  <data name="3" xml:space="preserve">
+    <value>Chúng tôi xin lỗi bởi hệ thống hiện đang ngừng hoạt động để bảo trì, vui lòng thử lại sau.</value>
+  </data>
+  <data name="4" xml:space="preserve">
+    <value>Bạn không được phép truy cập vào hệ thống vì địa chỉ IP của bạn đã bị chặn như một biện pháp bảo mật. Vui lòng liên hệ với nhóm Dịch vụ Khách hàng của chúng tôi theo số 020 8477 1400.</value>
+  </data>
+  <data name="5" xml:space="preserve">
+    <value>Bạn đã nhập ID khách hàng không hợp lệ.</value>
+  </data>
+  <data name="6" xml:space="preserve">
+    <value>Id đăng nhập là bắt buộc</value>
+  </data>
+  <data name="7" xml:space="preserve">
+    <value>Rất tiếc, hiện tại bạn không thể truy cập vào tài khoản của mình. Chúng tôi đang cố gắng giải quyết vấn đề này sớm nhất có thể và chúng tôi đánh giá cao sự kiên nhẫn của bạn. &lt;br/&gt; &lt;br/&gt; Nếu bạn cần bất kỳ thông tin nào về tài khoản của mình, vui lòng liên hệ với nhóm dịch vụ khách hàng của chúng tôi theo số 020 8477 1400.</value>
+  </data>
+  <data name="8" xml:space="preserve">
+    <value>Tài khoản của bạn đã bị khóa. Vui lòng liên hệ với nhóm Dịch vụ Khách hàng của chúng tôi theo số 020 8477 1400.</value>
+  </data>
+  <data name="404" xml:space="preserve">
+    <value>Không tìm thấy tài nguyên</value>
+  </data>
+  <data name="500" xml:space="preserve">
+    <value>Chúng tôi xin lỗi nhưng đã xảy ra lỗi không mong muốn. Vui lòng thử lại sau. Nếu sự cố vẫn tiếp diễn, vui lòng liên hệ với nhóm Dịch vụ khách hàng của chúng tôi theo số 020 8477 1400.</value>
+  </data>
+  <data name="step" xml:space="preserve">
+    <value>Bước</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Tiếp theo</value>
+  </data>
+  <data name="groups" xml:space="preserve">
+    <value>Nhóm</value>
+  </data>
+  <data name="permissions" xml:space="preserve">
+    <value>Sự cho phép</value>
+  </data>
+  <data name="security" xml:space="preserve">
+    <value>Bảo mật</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Người sử dụng</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Quay Lại</value>
+  </data>
+  <data name="enter_here" xml:space="preserve">
+    <value>Nhập vào đây</value>
+  </data>
+  <data name="iBank_user" xml:space="preserve">
+    <value>Tài khoản iBank</value>
+  </data>
+  <data name="invalid_customer_id" xml:space="preserve">
+    <value>Sai mã khách hàng</value>
+  </data>
+  <data name="mse_authentication_code" xml:space="preserve">
+    <value>Mã xác thực MSE</value>
+  </data>
+  <data name="mse_authentication_code_instruction" xml:space="preserve">
+    <value>Vui lòng nhập mã xác thực MSE của bạn. Nếu bạn không chắc chắn về mã của mình, vui lòng liên hệ với dịch vụ khách hàng của chúng tôi theo số 020 8477 1400.</value>
+  </data>
+  <data name="security_details" xml:space="preserve">
+    <value>Thông tin bảo mật</value>
+  </data>
+  <data name="user_id" xml:space="preserve">
+    <value>Mã đăng nhập</value>
+  </data>
+  <data name="user_id_instruction" xml:space="preserve">
+    <value>Vui lòng nhập ID người dùng mà bạn muốn đăng nhập.</value>
+  </data>
+  <data name="user_name" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="customersmaintenance" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="mandatesmaintenance" xml:space="preserve">
+    <value>Mandates</value>
+  </data>
+</root>

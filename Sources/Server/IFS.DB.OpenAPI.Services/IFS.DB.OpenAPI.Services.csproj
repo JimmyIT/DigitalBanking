@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="'$(Configuration)'=='Debug'">
+      <ItemGroup>
+        <Reference Include="IFS.DB.OpenAPI.Client">
+          <SpecificVersion>False</SpecificVersion>
+          <HintPath>..\..\..\Bin\Debug\IFS.DB.OpenAPI.Client.dll</HintPath>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <When Condition="'$(Configuration)'=='Release'">
+      <ItemGroup>
+        <Reference Include="IFS.DB.OpenAPI.Client">
+          <SpecificVersion>False</SpecificVersion>
+          <HintPath>..\..\..\Bin\Release\IFS.DB.OpenAPI.Client.dll</HintPath>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY &quot;$(ProjectDir)bin\$(Configuration)\netstandard2.0\$(TargetFileName)&quot; &quot;..\..\..\bin\$(Configuration)\&quot; /Y" />
+  </Target>
+
+</Project>

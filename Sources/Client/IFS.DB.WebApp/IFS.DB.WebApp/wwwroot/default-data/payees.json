@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Name": "Payee reference 1",
+    "Type": "Domestic",
+    "PaymentMethod": "BACS",
+    "DebitAccount": "00256001"
+  },
+  {
+    "Name": "Payee reference 2",
+    "Type": "Domestic",
+    "PaymentMethod": "BACS",
+    "DebitAccount": "00256002"
+  },
+  {
+    "Name": "Payee reference 3",
+    "Type": "Domestic",
+    "PaymentMethod": "BACS",
+    "DebitAccount": "00256003"
+  },
+  {
+    "Name": "Payee reference 4",
+    "Type": "Domestic",
+    "PaymentMethod": "BACS",
+    "DebitAccount": "00256004"
+  },
+  {
+    "Name": "Payee reference 5",
+    "Type": "Domestic",
+    "PaymentMethod": "BACS",
+    "DebitAccount": "00256005"
+  }
+]

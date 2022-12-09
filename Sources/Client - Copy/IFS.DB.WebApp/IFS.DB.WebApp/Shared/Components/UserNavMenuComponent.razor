@@ -1,0 +1,94 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">IFS.DB.WebApp</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Dashboard
+            </NavLink>
+        </div>      
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Payment
+            </NavLink>
+        </div>        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Payees Template
+            </NavLink>
+        </div>             
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Batch Payment
+            </NavLink>
+        </div>             
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Transfer
+            </NavLink>
+        </div>                
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Standing Orders
+            </NavLink>
+        </div>                    
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> History
+            </NavLink>
+        </div>                      
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Sign Queues
+            </NavLink>
+        </div>                
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> iMail
+            </NavLink>
+        </div>                   
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Profile
+            </NavLink>
+        </div>        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Live chat
+            </NavLink>
+        </div>        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Notification
+            </NavLink>
+        </div>         
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Customer Selection
+            </NavLink>
+        </div>        
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Customer Dashboard
+            </NavLink>
+        </div>        
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

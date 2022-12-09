@@ -1,0 +1,71 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.home-imail {
+    @include box;
+
+    &__header {
+        display: flex;
+        align-items: center;
+    }
+
+    &__title {
+        @include h3;
+        flex: 1;
+    }
+
+    &__add {
+        @include transparentButton;
+    }
+
+    &-boxes {
+        display: flex;
+        margin-top: $indent-12;
+
+        &__item {
+            flex: 1;
+            border-radius: 8px;
+            background: $color-green-100;
+            padding: $indent-12;
+            margin-right: $indent-16;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:nth-child(3n + 2) {
+                background: $color-sky-blue-100;
+
+                .home-imail-boxes__item-caption {
+                    color: $color-sky-blue-400;
+                }
+
+                .home-imail-boxes__item-number {
+                    color: $color-sky-blue-500;
+                }
+            }
+
+            &:nth-child(3n + 3) {
+                background: $color-violet-100;
+
+                .home-imail-boxes__item-caption {
+                    color: $color-violet-400;
+                }
+
+                .home-imail-boxes__item-number {
+                    color: $color-violet-500;
+                }
+            }
+
+            &-caption {
+                @include label;
+                color: $color-green-400;
+            }
+
+            &-number {
+                @include h2;
+                color: $color-green-500;
+            }
+        }
+    }
+}

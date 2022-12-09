@@ -1,0 +1,35 @@
+﻿<label>@L["language"]</label>
+<select class="form-control" @bind="Culture" style="width:100px; margin-left:10px;">
+    @foreach (var culture in _listCultures)
+    {
+        <option value="@culture">@GetCountryEnglishName(culture.Name)</option>
+        @*<option value="@culture">@culture.NativeName</option>*@
+    }
+</select>
+
+@* !!! For using selector as on design please use commited code below !!! *@
+
+@* <div class="customSelector" style="width: 212px">
+    <div class="customSelector-input" onclick="onClickFilterIcon()"
+        id="filtersSelector">
+        <p
+            class="customSelector-input__placeholder admin-box-selections-customer-name">
+            Select a language</p>
+        <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+    </div>
+
+    <div class="customSelector-dropdown" id="filters">
+        <div class="customSelector-dropdown-item">
+            <p>United States</p>
+        </div>
+        <div class="customSelector-dropdown-item">
+            <p>United Kingdom</p>
+        </div>
+        <div class="customSelector-dropdown-item">
+            <p>Japan</p>
+        </div>
+        <div class="customSelector-dropdown-item">
+            <p>Vietnam</p>
+        </div>
+    </div>
+</div> *@

@@ -1,0 +1,28 @@
+[19:09:56 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'EwcV8uvkRRGEOJWn5qqj1H47c4aplY82UxDAM0HjN0k'. **** System.InvalidOperationException: Nullable object must have a value.
+   at System.Nullable`1.get_Value()
+   at IFS.DB.WebApp.Shared.Components.UserMaintenanceTableComponent.<>c__DisplayClass21_0.<SearchAsync>b__3(UserInfoModel user) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\UserMaintenanceTableComponent.razor.cs:line 127
+   at System.Linq.Enumerable.WhereListIterator`1.ToList()
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at IFS.DB.WebApp.Shared.Components.UserMaintenanceTableComponent.<SearchAsync>b__21_0(GroupMaintenanceModel x) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\UserMaintenanceTableComponent.razor.cs:line 127
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at IFS.DB.WebApp.Shared.Components.UserMaintenanceTableComponent.SearchAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\UserMaintenanceTableComponent.razor.cs:line 125
+   at IFS.DB.WebApp.Shared.Components.UserMaintenanceTableComponent.SelectedSearchGroupValue(List`1 selectedGroups) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\UserMaintenanceTableComponent.razor.cs:line 112
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent`1.ToggleSelectItemOfMultiSelectionDropdownAsync(DropdownItemComponent`1 selectedElem, TItem item, Boolean isChecked) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\BaseComponents\Dropdown\DropdownComponent.razor.cs:line 168
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+
+[19:11:00 Error] Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost **** Unhandled exception in circuit 'Z33s00DgoDRL-_LV6x-9v6Sj6d85yEzNHnuTOw0hW00'. **** System.InvalidOperationException: Nullable object must have a value.
+   at System.Nullable`1.get_Value()
+   at IFS.DB.WebApp.Shared.Components.UserMaintenanceTableComponent.<>c__DisplayClass21_0.<SearchAsync>b__3(UserInfoModel user) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\UserMaintenanceTableComponent.razor.cs:line 127
+   at System.Linq.Enumerable.WhereListIterator`1.ToList()
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at IFS.DB.WebApp.Shared.Components.UserMaintenanceTableComponent.<SearchAsync>b__21_0(GroupMaintenanceModel x) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\UserMaintenanceTableComponent.razor.cs:line 127
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at IFS.DB.WebApp.Shared.Components.UserMaintenanceTableComponent.SearchAsync() in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\UserMaintenanceTableComponent.razor.cs:line 125
+   at IFS.DB.WebApp.Shared.Components.UserMaintenanceTableComponent.SelectedSearchGroupValue(List`1 selectedGroups) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\Components\UserMaintenanceTableComponent.razor.cs:line 112
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent`1.ToggleSelectItemOfMultiSelectionDropdownAsync(DropdownItemComponent`1 selectedElem, TItem item, Boolean isChecked) in D:\Projects\Sources\iBank\DigitalBanking\trunk\Sources\Client\IFS.DB.WebApp\IFS.DB.WebApp\Shared\BaseComponents\Dropdown\DropdownComponent.razor.cs:line 168
+   at Microsoft.AspNetCore.Components.ComponentBase.CallStateHasChangedOnAsyncCompletion(Task task)
+   at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+

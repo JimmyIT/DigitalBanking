@@ -1,0 +1,126 @@
+@layout UserLayout
+@page "/sign-queues/payment"
+
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Models.SigningQueue
+@using IFS.DB.WebApp.Models.StandingOrder
+@using IFS.DB.WebApp.Models
+
+<div class="payment-layout">
+    <div class="payment-container">
+        <div class="payment">
+            <div class="payment-header">
+                <div class="payment-header-breadcrumbs">
+                    <p class="payment-header-breadcrumbs__item">Sign Queues</p>
+                    <p class="payment-header-breadcrumbs__item active">Payment</p>
+                </div>
+
+                <div class="payment-header-wrapper">
+                    <img src="/img/icons/return.svg" alt="logo" class="payment-header__logo"/>
+                    <p class="payment-header__title">Payment</p>
+                </div>
+            </div>
+
+            <div class="payment-table">
+                <div class="payment-table-back">
+                    <p class="payment-table-name">Queue list</p>
+                    <QuickGrid TGridItem="PaymentQueueModel" Items="_paymentQueues.AsQueryable()" Class="paymentTable" Pagination="_pagination" @ref="_gridRef">
+                        <PropertyColumn TGridItem="PaymentQueueModel" TProp="string" Property="x => x.DebitAccount" Title="Debit Account">
+                        </PropertyColumn>
+                        <PropertyColumn TGridItem="PaymentQueueModel" TProp="string" Property="x => x.UserReference" Title="Reference">
+                        </PropertyColumn>
+                        <TemplateColumn TGridItem="PaymentQueueModel" Title="Created By">
+                            <img src="@context.CreatedBy?.AvatarUrl" alt="avatar"/>@context.CreatedBy?.Name
+                        </TemplateColumn>
+                        <PropertyColumn TGridItem="PaymentQueueModel" TProp="int" Property="x => x.TotalSignOff" Title="Total Sign-off" Align="Align.Center">
+                        </PropertyColumn>
+                        <PropertyColumn TGridItem="PaymentQueueModel" TProp="int" Property="x => x.AwaitingSignOff" Title="Awaiting Sign-off" Align="Align.Center">
+                        </PropertyColumn>
+                        <TemplateColumn TGridItem="PaymentQueueModel" Title="" Align="Align.Center">
+                            <button class="paymentTable__image" onclick="@(() => ViewSignatoryDetail(context))">
+                                <img src="/img/icons/eyeIcon.svg" alt="eye" class="icon"/>
+                                <img src="/img/icons/eyeIconHover.svg" alt="eye" class="iconHover"/>
+                            </button>
+                        </TemplateColumn>
+                        <TemplateColumn TGridItem="PaymentQueueModel" Title="" Align="Align.Center">
+                            <button class="paymentTable-button @(context.CanSign ? "" : "paymentTable-button--inactive")" onclick="@(() => ViewDetail(context))">Sign</button>
+                        </TemplateColumn>
+                    </QuickGrid>
+                    <Paginator Value="@_pagination"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    [CascadingParameter]
+    public IModalService ModalSvc { get; set; } = default!;
+
+    private QuickGrid<PaymentQueueModel> _gridRef = null!;
+    private string? _searchString;
+    
+    private IList<PaymentQueueModel> _paymentQueues = new List<PaymentQueueModel>();
+
+    private GridItemsProvider<PaymentQueueModel>? _gridItemsProvider;
+
+    private readonly PaginationState _pagination = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized()
+    {
+        _paymentQueues = FakeData.PaymentQueues;
+
+        _gridItemsProvider = async req =>
+        {
+            var sortBy = req.GetSortByProperties().SingleOrDefault();
+            // return await DataService.GetCountriesAsync(req.StartIndex, req.Count, sortBy.PropertyName, sortBy.Direction == SortDirection.Ascending, req.CancellationToken);
+            return GridItemsProviderResult.From(
+                FakeData.PaymentQueues.OrderByDescending(x => x.CreatedOn)
+                    .ToList(),
+                FakeData.PaymentQueues.Count);
+        };
+    }
+
+    private async Task LoadPaymentQueue()
+    {
+        _paymentQueues = FakeData.PaymentQueues;
+
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            _paymentQueues = _paymentQueues
+                .Where(x => x.DebitNarrative?.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase) ?? false)
+                .ToList();
+        }
+
+        await _gridRef.RefreshDataAsync();
+    }
+
+    private void ViewDetail(PaymentQueueModel item)
+    {
+        if (item.CanSign is false) 
+            return;
+        
+        _appStore.PaymentQueueStore = item;
+        _navigateManager.NavigateTo("/sign-queues/payment/single");
+    }
+    
+    private void ViewSignatoryDetail(PaymentQueueModel item)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(SignatoriesModalComponent.Model), item);
+        
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+        
+        _ = ModalSvc
+            .Show<SignatoriesModalComponent>(
+                title: "",
+                parameters: parameters,
+                options: options);
+    }
+
+}

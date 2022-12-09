@@ -1,0 +1,32 @@
+[14:59:45 Warning] **** Unhandled exception rendering component: Object of type 'System.String' does not have a property matching the name 'Item'. 
+[14:59:45 Error] **** Unhandled exception in circuit 'LoB4c0wifK_7QTHXNC7JKEPKxbMNNqLkldsouF0oFyw'. 
+[14:59:45 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[14:59:45 Error] **** Unhandled exception in circuit 'LoB4c0wifK_7QTHXNC7JKEPKxbMNNqLkldsouF0oFyw'. 
+[15:59:46 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[15:59:46 Error] **** Unhandled exception in circuit '_LrtFDR5MZsEBcn7oayUyc14rUIt-jumFU0TcR0DXmk'. 
+[16:04:35 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:04:35 Error] **** Unhandled exception in circuit 'VGG8NikjCl6Z38nDdWKYXU5NTQDi3wohcAmZ3s_248I'. 
+[16:05:26 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:05:26 Error] **** Unhandled exception in circuit 'LsGcxrSMnIZHlbR-wI8eploYdS_wbj4zNUbliOf_c0c'. 
+[16:05:26 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:05:26 Error] **** Unhandled exception in circuit 'LsGcxrSMnIZHlbR-wI8eploYdS_wbj4zNUbliOf_c0c'. 
+[16:11:20 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[16:11:20 Error] **** Unhandled exception in circuit 'bgbMynN5qpPUmhUG8P1egOKl-wsetL7wU4-m_proiyE'. 
+[16:11:21 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[16:11:21 Error] **** Unhandled exception in circuit 'bgbMynN5qpPUmhUG8P1egOKl-wsetL7wU4-m_proiyE'. 
+[17:03:25 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[17:03:25 Error] **** Unhandled exception in circuit 'Rf-v9TZA-ZuQWHDjqUU5L2rcOIt5VoemhO8jM_uNTWM'. 
+[17:03:25 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[17:03:25 Error] **** Unhandled exception in circuit 'Rf-v9TZA-ZuQWHDjqUU5L2rcOIt5VoemhO8jM_uNTWM'. 
+[17:15:50 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[17:15:50 Error] **** Unhandled exception in circuit 'GZtba8WOenugYDS0C0y-y9y8K4nKGezi80TcrAWaElY'. 
+[17:15:50 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[17:15:50 Error] **** Unhandled exception in circuit 'GZtba8WOenugYDS0C0y-y9y8K4nKGezi80TcrAWaElY'. 
+[17:16:49 Warning] **** Unhandled exception rendering component: Object reference not set to an instance of an object. 
+[17:16:49 Error] **** Unhandled exception in circuit 'dVTg0aBP6bM_CMcsGXxePqYDYEKfcnjWe_m177zS_18'. 
+[17:16:49 Warning] **** Unhandled exception rendering component: Cannot access a disposed object. 
+[17:16:49 Error] **** Unhandled exception in circuit 'dVTg0aBP6bM_CMcsGXxePqYDYEKfcnjWe_m177zS_18'. 
+[17:23:04 Warning] **** Unhandled exception rendering component: Value cannot be null. (Parameter 'model') 
+[17:23:04 Error] **** Unhandled exception in circuit 'Sh2ubELdRH5AQhGtvKvImT6bAuHuHmQRNLPYHXT0FnU'. 
+[17:29:15 Warning] **** Unhandled exception rendering component: The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state. 
+[17:29:15 Error] **** Unhandled exception in circuit 'oKSxNdXvkmJOa39L0R475JE3FT9oxnQrWKV4_dCEoNI'. 

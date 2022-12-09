@@ -1,0 +1,51 @@
+@namespace IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+
+<div class="paginator">
+    @if (Value.TotalItemCount.HasValue)
+    {
+        <div class="paginator-pagination">
+            @if (CanGoBack)
+            {
+                <div class="paginator-pagination-left" @onclick="GoPreviousAsync">
+                    <img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowleft"/>
+                    <img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowleft"/>
+                </div>
+            }
+            else
+            {
+                <div class="paginator-pagination-left">
+                    <img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowleft"/>
+                    <img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowleft"/>
+                </div>
+            }
+            @for (var index = 0; index <= Value.LastPageIndex.Value; index++)
+            {
+                var temp = index;
+                <button
+                    class="paginator-pagination-button @(temp == Value.CurrentPageIndex ? "paginator-pagination-button--active" : string.Empty)"
+                    @onclick="async () => await GoToPageAsync(temp)">
+                    @(index + 1)
+                </button>
+            }
+            @if (CanGoForwards)
+            {
+                <div class="paginator-pagination-right" @onclick="GoNextAsync">
+                    <img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowRight"/>
+                    <img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowRight"/>
+                </div>
+            }
+            else
+            {
+                <div class="paginator-pagination-right">
+                    <img class="icon" src="/img/icons/arrowLeftIcon.svg" alt="arrowRight"/>
+                    <img class="iconHover" src="/img/icons/arrowLeftHoverIcon.svg" alt="arrowRight"/>
+                </div>
+            }
+        </div>
+
+        <div>
+            <button class="paginator-button">Load more</button>
+        </div>
+    }
+
+</div>

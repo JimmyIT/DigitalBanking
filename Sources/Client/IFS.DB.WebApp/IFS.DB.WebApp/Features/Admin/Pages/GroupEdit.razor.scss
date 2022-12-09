@@ -1,0 +1,62 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.edit-group-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.edit-group-container {
+    @include container;
+}
+
+.edit-group {
+    &-breadcrumbs {
+        @include breadcrumbs;
+        margin-bottom: $indent-8;
+    }
+
+    &-header {
+        @include pageTitle;
+    }
+
+    &-main {
+        display: flex;
+        height: 688px;
+    }
+}
+
+.edit-group-footer-layout {
+    background: $color-white;
+    padding: $indent-24 0;
+}
+
+.edit-group-footer-container {
+    @include container;
+}
+
+.edit-group-footer {
+    display: flex;
+    justify-content: end;
+
+    &-item {
+        display: flex;
+        align-items: center;
+        margin-right: 44px;
+
+        &-name {
+            @include h4;
+            margin-right: $indent-4;
+            color: $color-gray-600;
+        }
+
+        &-text {
+            @include h2;
+            color: $color-gray-800;
+        }
+    }
+
+    &-button {
+        @include blueButton;
+        min-width: 148px;
+    }
+}

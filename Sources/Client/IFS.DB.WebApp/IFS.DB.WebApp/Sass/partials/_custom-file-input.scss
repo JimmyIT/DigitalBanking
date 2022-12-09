@@ -1,0 +1,62 @@
+.custom-file-input {
+    border-radius: $indent-8;
+    position: relative;
+
+    &__dummy {
+        @include button1;
+        border-radius: inherit;
+        border: 1px dashed $color-sky-blue-300;
+        background: url(/img/icons/attach.svg) no-repeat center left $indent-24, $color-sky-blue-100;
+        color: $color-sky-blue-500;
+        line-height: 24px;
+        padding: 15px 15px 15px 55px;
+    }
+
+    &__upload,
+    &__file {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &__upload {
+        opacity: 0;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    &__file {
+        display: flex;
+        align-items: center;
+        border: 1px solid $color-gray-300;
+        border-radius: inherit;
+        background: $color-gray-100;
+        padding: 15px 15px 15px 23px;
+        z-index: -1;
+        opacity: 0;
+        transition: 0.2s;
+
+        &-name {
+            @include button1;
+            @include textWithDots;
+            line-height: 24px;
+            flex: 1;
+        }
+
+        &-delete {
+            @include square-icon(24px);
+            background: url(/img/icons/delete.svg) no-repeat center / contain;
+            margin-left: $indent-8;
+        }
+    }
+
+    &.custom-file-input--active {
+
+        .custom-file-input__file {
+            opacity: 1;
+            z-index: 3;
+        }
+    }
+}

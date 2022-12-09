@@ -1,0 +1,163 @@
+﻿@using IFS.DB.WebApp.Helpers.CompnentConfiguration.DataGrid
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.Transactions
+@using IFS.DB.WebApp.Helpers.CompnentConfiguration
+@using System.Text.Json
+@using IFS.DB.WebApp.Features.User.Pages
+@using IFS.DB.WebApp.Models.StandingOrder
+@using Z.Reflection.Extensions
+
+<DataGridComponent 
+    @ref="_dataSourceGridRef"
+    TItem="StandingOrderModel"
+    Columns="_columnsDefinition"
+    DataItems="_paginatedItems.Items"
+    TotalItems="_paginatedItems.TotalRecord"
+    CurrentPageNumber="_pageIndex"
+    OnPageSizeChangedCallback="OnPageSizeChanged"
+    OnSortDataChangedCallback="OnSortDataChanged"
+    CustomPageSize="CustomPageSize"
+    PagingConfig="_pagingConfig"
+    OnPrevPageClickCallback="OnPrevPageChanged"
+    OnNextPageClickCallback="OnNextPageChanged"
+    OnPageIndexClickCallback="OnPageIndexChanged"     
+    TableClass="transactionTable"
+    >
+</DataGridComponent>
+
+@code {
+    private DataGridComponent<StandingOrderModel> _dataSourceGridRef;
+    private List<ColumnDefinition<StandingOrderModel>> _columnsDefinition;
+    private PagingConfig _pagingConfig;
+
+    private PaginatedModel<StandingOrderModel>? _paginatedItems;
+    private int _pageIndex = 1;
+    private int _pageSize = 5;
+    private string _searchString = string.Empty;
+    private List<string> CustomPageSize { get; set; } = new() { "5", "10" };
+
+    protected override async Task OnInitializedAsync()
+    {
+        ConfigGrid();
+        await GetTransactions();
+    }
+
+    private void ConfigGrid()
+    {
+        _columnsDefinition = new List<ColumnDefinition<StandingOrderModel>>();
+        _columnsDefinition.AddRange(
+            new ColumnDefinition<StandingOrderModel>[]
+            {
+                new()
+                {
+                    DataField = "Type", Caption = "Type", Sortable = false,
+                    ShowValueFunc = model => model.Type.GetCustomAttributeDescription()
+                },
+                new() { DataField = "DebitAccount", Caption = "DEBIT ACCOUNT", Sortable = true, SortDirection = SortDirection.NotSet},
+                new() { DataField = "RegularAmount", Caption = "REGULAR AMOUNT", BodyAlignment = Alignment.Right, HeaderAlignment = Alignment.Right,Sortable = true, SortDirection = SortDirection.NotSet},
+                new()
+                {
+                    DataField = "Status", Caption = "STATUS", SortDirection = SortDirection.NotSet, Sortable = true,
+                    HeaderAlignment = Alignment.Right, BodyAlignment = Alignment.Right,
+                    ShowValueFunc = (model) => model.Status.ToString()
+                },
+            });
+
+        _pagingConfig = new PagingConfig
+        {
+            Enabled = true,
+            PageSize = _pageSize,
+            CustomPager = false
+        };
+    }
+
+    private async Task GetTransactions()
+    {
+        // string jsonSize5Page1 = File.ReadAllText("wwwroot/default-data/txns.json");
+        // var result = JsonSerializer.Deserialize<PaginatedModel<StandingOrderModel>>(jsonSize5Page1);
+
+        var result = new PaginatedModel<StandingOrderModel>();
+
+        result.Items = FakeData.StandingOrders;
+        result.TotalRecord = result.Items.Count;
+        
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            result.Items = result.Items
+                .Where(x => x.DebitNarrative!.ToLower().Contains(_searchString.ToLower()) ||
+                            x.DebitAccount!.ToLower().Contains(_searchString.ToLower())).ToList();
+        }
+
+        result.Items = result.Items.Skip((_pageIndex-1) * _pageSize).Take(_pageSize).ToList();
+
+        _paginatedItems = result;
+    }
+
+    private async Task GotoTransactionPage()
+    {
+        //_navigateManager.NavigateTo("/");
+    }
+
+    #region Invoke Pagination CallBack
+
+    private async Task OnPrevPageChanged()
+    {
+        _pageIndex = _dataSourceGridRef.GotoPrevPage();
+        await GetTransactions();
+    }
+
+    private async Task OnNextPageChanged()
+    {
+        _pageIndex = _dataSourceGridRef.GotoNextPage();
+        await GetTransactions();
+    }
+
+    private async Task OnPageSizeChanged(int pageSize)
+    {
+        _pageSize = pageSize;
+        await GetTransactions();
+    }
+
+    private async Task OnPageIndexChanged(int pageIndex)
+    {
+        _pageIndex = pageIndex;
+        await GetTransactions();
+    }
+
+    private async void OnSortDataChanged(ColumnDefinition<StandingOrderModel> columnDefinition)
+    {
+        await GetTransactions();
+
+        if (columnDefinition.SortDirection == SortDirection.Desc)
+        {
+            _paginatedItems.Items = _paginatedItems.Items
+                .OrderByDescending(x => x.GetType().GetProperty(columnDefinition.DataField).GetValue(x, null)).ToList();
+        }
+
+        if (columnDefinition.SortDirection == SortDirection.Asc)
+        {
+            _paginatedItems.Items = _paginatedItems.Items
+                .OrderBy(x => x.GetType().GetProperty(columnDefinition.DataField).GetValue(x, null)).ToList();
+        }
+
+        // _dataSourceGridRef.OnStateHasChanged(columnDefinition.SortDirection);
+        StateHasChanged();
+    }
+
+    private async void OnSearchDataChanged(ChangeEventArgs e)
+    {
+        // _searchString = e.Value.ToString();
+        // await GetTransactions();
+        //
+        // if (!string.IsNullOrEmpty(_searchString))
+        // {
+        //     _paginatedTrans.Items = _paginatedTrans.Items
+        //         .Where(x => x.Reference.ToLower().Contains(_searchString.ToLower()) ||
+        //                     x.Narrative.ToLower().Contains(_searchString.ToLower())).ToList();
+        // }
+        //
+        // StateHasChanged();
+    }
+
+    #endregion
+}

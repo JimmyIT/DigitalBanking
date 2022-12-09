@@ -1,0 +1,54 @@
+
+<div class="preference">
+    <EditForm EditContext=@_userPreferenceCreationDetailsContext>
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+
+        <p class="preference-head">User preference</p>
+        <div class="preference-formgroup">
+            <p class="preference-formgroup-name">User Access Level</p>
+
+            <InputSelect class="select " @bind-Value=@_userPreference.AccessLevel>
+                <option disabled selected>Select</option>
+                @foreach (var value in (UserAccessLevelEnum[])Enum.GetValues(typeof(UserAccessLevelEnum)))
+                {
+                    <option value="@value">@value.ToDescription()</option>
+                }
+            </InputSelect>
+            <CustomValidationMessage For="@(() => _userPreference.AccessLevel)" />
+        </div>
+
+        <div class="preference-list">
+            <p class="preference-list-title">Payment</p>
+            @foreach (var value in (UsePaymentPreferenceEnum[])Enum.GetValues(typeof(UsePaymentPreferenceEnum)))
+            {
+                <div class="preference-list-item">
+                    <input type="checkbox" class="preference-list-item-box" @onchange=@((eventArgs ) => PaymentPreferencesCheckboxes_Clicked(value, eventArgs.Value)) />
+                    <p class="preference-list-item-name">@value.ToDescription()</p>
+                </div>
+            }
+        </div>
+
+        <div class="preference-list">
+            <p class="preference-list-title">Transfer</p>
+            @foreach (var value in (UseTransferPreferenceEnum[])Enum.GetValues(typeof(UseTransferPreferenceEnum)))
+            {
+                <div class="preference-list-item">
+                    <input type="checkbox" class="preference-list-item-box" @onchange=@((eventArgs ) => TransferPreferencesCheckboxes_Clicked(value, eventArgs.Value)) />
+                    <p class="preference-list-item-name">@value.ToDescription()</p>
+                </div>
+            }
+        </div>
+
+        <div class="preference-list">
+            <p class="preference-list-title">Customer access</p>
+
+            @foreach (var value in (CustomerAccessEnum[])Enum.GetValues(typeof(CustomerAccessEnum)))
+            {
+                <div class="preference-list-item">
+                    <input type="checkbox" class="preference-list-item-box" @onchange=@((eventArgs ) => CustomerAccessPreferencesCheckboxes_Clicked(value, eventArgs.Value)) />
+                    <p class="preference-list-item-name">@value.ToDescription()</p>
+                </div>
+            }
+        </div>
+    </EditForm>
+</div>

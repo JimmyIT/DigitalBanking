@@ -1,0 +1,71 @@
+.preference {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+.preference:last-child {
+  margin-bottom: 0;
+}
+.preference-head {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #212121;
+  margin-bottom: 16px;
+}
+.preference-formgroup {
+  margin-bottom: 16px;
+}
+.preference-formgroup:last-child {
+  margin-bottom: 0;
+}
+.preference-formgroup-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+  color: #6a6a6a;
+}
+.preference-list {
+  margin-bottom: 16px;
+}
+.preference-list:last-child {
+  margin-bottom: 0;
+}
+.preference-list-title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  color: #121217;
+  margin-bottom: 12px;
+}
+.preference-list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.preference-list-item:last-child {
+  margin-bottom: 0;
+}
+.preference-list-item-box {
+  margin-right: 4px;
+}
+.preference-list-item-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #212121;
+}

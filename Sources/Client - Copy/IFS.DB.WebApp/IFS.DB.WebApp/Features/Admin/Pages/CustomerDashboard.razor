@@ -1,0 +1,49 @@
+﻿@layout HostAdminLayout
+@page "/customer-maintenance/dashboard"
+
+<div class="dashboard-layout">
+    <div class="dashboard-container">
+        @if (_selectedCustomer != null)
+        {
+            <div class="dashboard">
+                <div class="dashboard-breadcrumbs">
+                    <p class="dashboard-breadcrumbs__item" @onclick=@NavigateTo>Customers</p>
+                    <p class="dashboard-breadcrumbs__item active">@_selectedCustomer.CustomerName</p>
+                </div>
+
+                <div class="dashboard-header">
+                    <div class="dashboard-header-wrapper">
+                        <img src="/img/icons/return.svg" alt="return" class="dashboard-header__logo" @onclick=@NavigateTo />
+                        <p class="dashboard-header__title">@_selectedCustomer.CustomerName</p>
+                        <img src="/img/icons/tooltipIcon.svg" alt="tooltip"
+                         class="dashboard-header__tooltip-icon" />
+                    </div>
+
+                    <button class="dashboard-header__button">
+                        <span>All accounts</span>
+                        <span class="iconBlock">
+                            <img src="/img/icons/arrowRight.svg" alt="arrow" class="icon" />
+                            <img src="/img/icons/arrowRightHover.svg" alt="arrow" class="iconHover" />
+                        </span>
+                    </button>
+                </div>
+
+                <div>
+                    <CardInfoComponent OnSelectedCardChange=@SelectedCardChange
+                                   OnSetFavouriteAccountChange=@SetFavouriteAccountChange />
+                    <br />
+                </div>
+
+                <div class="dashboard-table">
+                    <UpcomingTransactionsComponent Title="Upcoming Transactions (Standing orders)" AccountNumber="@_accountModel.AccountNumber"></UpcomingTransactionsComponent>
+                    <!---->
+                    <!---->
+                    <RecentTransactionsComponent AccountNumber="@_accountModel.AccountNumber"></RecentTransactionsComponent>
+                    <!---->
+                    <!---->
+                    <RecentTransactionsComponent Title="Confirmed Transactions" AccountNumber="@_accountModel.AccountNumber"></RecentTransactionsComponent>
+                </div>
+            </div>
+        }
+    </div>
+</div>

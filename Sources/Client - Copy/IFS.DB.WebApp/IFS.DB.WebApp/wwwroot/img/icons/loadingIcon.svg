@@ -1,0 +1,16 @@
+<svg width="84" height="84" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_5178_90213" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="84" height="84">
+<path d="M42.9102 4.85718H41.0894C31.48 4.85718 22.2641 8.67451 15.4692 15.4694C8.67427 22.2643 4.85693 31.4802 4.85693 41.0897V42.9104C4.85693 52.5199 8.67427 61.7357 15.4692 68.5306C22.2641 75.3256 31.48 79.1429 41.0894 79.1429H42.9102C52.5196 79.1429 61.7355 75.3256 68.5304 68.5306C75.3253 61.7357 79.1426 52.5199 79.1426 42.9104V41.0897C79.1426 31.4802 75.3253 22.2643 68.5304 15.4694C61.7355 8.67451 52.5196 4.85718 42.9102 4.85718Z" stroke="black" stroke-width="8"/>
+</mask>
+<g mask="url(#mask0_5178_90213)">
+<circle cx="41.9999" cy="42.0001" r="45.7143" fill="#EDF5FF"/>
+<circle cx="41.9999" cy="42.0001" r="45.7143" fill="url(#paint0_angular_5178_90213)"/>
+</g>
+<defs>
+<radialGradient id="paint0_angular_5178_90213" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(41.9999 42.0001) scale(45.7143)">
+<stop stop-color="#3F86E4" stop-opacity="0"/>
+<stop offset="0.500022" stop-color="#3F86E4" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#3F86E4"/>
+</radialGradient>
+</defs>
+</svg>

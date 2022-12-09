@@ -1,0 +1,26 @@
+﻿[
+    {
+      "DocumentCode": "DCTX17",
+      "SupportType": "tax_bill"
+    },
+    {
+      "DocumentCode": "DCUB19",
+      "SupportType": "utility_bill"
+    },
+    {
+      "DocumentCode": "DCPP15",
+      "SupportType": "passport"
+    },
+    {
+      "DocumentCode": "DCDL16",
+      "SupportType": "driving_license"
+    },
+    {
+      "DocumentCode": "DCBS04",
+      "SupportType": "bank_statement"
+    },
+    {
+      "DocumentCode": "DCID12",
+      "SupportType": "id_card"
+    }
+]

@@ -1,0 +1,74 @@
+.transfersTable td {
+  vertical-align: middle;
+  width: 100%;
+}
+.transfersTable td:nth-child(2), .transfersTable td:nth-child(3) {
+  min-width: 268px;
+}
+.transfersTable td:last-child {
+  min-width: 120px;
+}
+.transfersTable thead td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: #f2f7fd;
+  color: #81afed;
+}
+.transfersTable thead td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.transfersTable thead td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.transfersTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+.transfersTable tbody tr:last-child {
+  border-bottom: 0;
+}
+.transfersTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+.transfersTable tbody td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 20px;
+  color: #212121;
+}
+.transfersTable-item {
+  display: flex;
+  align-items: center;
+}
+.transfersTable-item-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 12px;
+}
+.transfersTable-item__input {
+  margin-right: 8px;
+}
+.transfersTable-item__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #6a6a6a;
+  word-break: normal;
+}
+.transfersTable-item__amount {
+  max-width: 140px;
+  text-align: right;
+}

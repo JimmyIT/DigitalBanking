@@ -1,0 +1,119 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.sign-layout {
+	padding: $indent-24 0 $indent-36;
+}
+
+.sign-container {
+	@include container;
+}
+
+.sign-header {
+	@include pageTitle;
+}
+
+.sign-table {
+	&-back {
+		@include box;
+	}
+
+	&-name {
+		@include h2;
+		padding: $indent-12 0;
+		margin-bottom: $indent-16;
+	}
+
+	& .signTable {
+		td {
+			@include textWithDots;
+			vertical-align: middle;
+			padding: $indent-8 6px;
+
+			&:first-child {
+				width: 100%;
+				padding-left: $indent-12;
+			}
+
+			&:last-child {
+				text-align: end;
+				padding-right: $indent-12;
+			}
+
+			&:nth-child(2),
+			&:nth-child(3) {
+				min-width: 120px;
+				text-align: center;
+			}
+		}
+
+		thead {
+			td {
+				@include label2;
+				background: $color-sky-blue-100;
+				color: $color-sky-blue-300;
+
+				&:first-child {
+					border-radius: 8px 0 0 8px;
+				}
+
+				&:last-child {
+					border-radius: 0 8px 8px 0;
+				}
+			}
+		}
+
+		tbody {
+			tr {
+				border-bottom: 1px solid $color-sky-blue-100;
+
+				&:last-child {
+					border-bottom: 0;
+
+					td {
+						padding-bottom: 0;
+					}
+				}
+			}
+
+			td {
+				&.signTable-date {
+					text-align: left;
+					padding-top: $indent-12;
+					padding-bottom: $indent-4;
+				}
+
+				img {
+					margin-right: $indent-8;
+				}
+
+				&:first-child {
+					display: flex;
+					align-items: center;
+				}
+
+				&:nth-child(2) {
+					@include h5;
+					text-align: center;
+					color: $color-gray-600;
+				}
+
+				&:nth-child(3) {
+					@include h5;
+					text-align: center;
+					color: $color-red-500;
+				}
+
+				&:last-child {
+					@include button1;
+					color: $color-sky-blue-500;
+				}
+			}
+		}
+
+		&-button {
+			@include transparentButton;
+		}
+	}
+
+}

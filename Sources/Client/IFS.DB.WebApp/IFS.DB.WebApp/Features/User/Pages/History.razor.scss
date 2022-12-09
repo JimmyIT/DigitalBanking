@@ -1,0 +1,148 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.history-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.history-container {
+    @include container;
+}
+
+.history-header {
+    @include pageTitle;
+}
+
+.history {
+    @include box;
+
+    &-search {
+        display: flex;
+        align-items: center;
+
+        &-body {
+            display: flex;
+            flex: 1;
+            &__input {
+                max-width: 508px;
+                margin-right: $indent-12;
+            }
+        }
+
+        &-icons {
+            display: flex;
+
+            &__icon {
+                @include buttonIconMedium;
+            }
+        }
+
+        &-action {
+            position: relative;
+            box-sizing: border-box;
+
+            &-dropdown {
+                position: absolute;
+                top: 45px;
+                right: 10px;
+                width: 156px;
+                display: none;
+                padding: 8px 1px;
+                border: 1px solid $color-sky-blue-200;
+                border-radius: 8px;
+                background-color: $color-white;
+                box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+                z-index: 2;
+
+                &-item {
+                    @include field;
+                    padding: 14px 16px;
+                    text-align: left;
+                    color: $color-gray-600;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $color-gray-900;
+                        background-color: $color-sky-blue-100;
+                    }
+                }
+            }
+        }
+    }
+
+    &-filter {
+        display: flex;
+        align-items: center;
+        margin-top: $indent-16;
+
+        &-type {
+            @include body;
+            display: flex;
+            align-items: center;
+            padding: $indent-8 $indent-12;
+            margin-right: $indent-8;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+            border-radius: 8px;
+
+            &:nth-child(4) {
+                margin-right: $indent-16;
+            }
+
+            &-text {
+                margin-right: $indent-8;
+            }
+        }
+
+        &-clear {
+            @include transparentButton;
+        }
+
+        &__close {
+            margin-left: $indent-8;
+        }
+    }
+
+    &-filters {
+        margin-top: $indent-16;
+    }
+
+    &-info-cards {
+        display: flex;
+        justify-content: space-between;
+        padding: $indent-12;
+        margin-top: $indent-16;
+        border-radius: $indent-12;
+        background-color: $color-gray-100;
+
+        &-title {
+            @include label;
+            color: $color-gray-600;
+        }
+
+        &-description {
+            display: flex;
+            &__text {
+                @include h5;
+                color: $color-gray-900;
+            }
+
+            &__icon {
+                height: 20px;
+            }
+        }
+
+        &-right {
+            display: flex;
+            justify-content: flex-end;
+
+            &-content {
+                margin-right: 44px;
+            }
+        }
+    }
+
+    &-table {
+        margin-top: $indent-16;
+    }
+}

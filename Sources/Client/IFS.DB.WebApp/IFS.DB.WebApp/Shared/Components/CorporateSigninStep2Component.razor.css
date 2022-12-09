@@ -1,0 +1,504 @@
+.auth-layout {
+  padding: 80px 0;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.auth__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+  text-align: center;
+  margin-bottom: 44px;
+}
+.auth-box {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  max-width: 632px;
+  margin: 0 auto;
+}
+.auth-box:last-child {
+  margin-bottom: 0;
+}
+.auth-box-header {
+  display: flex;
+  background: #f2f7fd;
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 20px;
+}
+.auth-box-header__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  flex: 1;
+  text-align: center;
+  padding: 7px 12px 5px;
+  margin-right: 8px;
+  transition: 0.4s;
+}
+.auth-box-header__item:hover .iconBlock .icon {
+  opacity: 0;
+}
+.auth-box-header__item:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.auth-box-header__item:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.auth-box-header__item:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-header__item .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.auth-box-header__item .iconBlock:hover .icon {
+  opacity: 0;
+}
+.auth-box-header__item .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.auth-box-header__item .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.auth-box-header__item .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-header__item .iconBlock.active .icon {
+  opacity: 0;
+}
+.auth-box-header__item .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.auth-box-header__item .iconBlock .icon,
+.auth-box-header__item .iconBlock .iconHover,
+.auth-box-header__item .iconBlock .iconActive,
+.auth-box-header__item .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.auth-box-header__item .iconBlock .iconHover,
+.auth-box-header__item .iconBlock .iconActive,
+.auth-box-header__item .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.auth-box-header__item > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.auth-box-header__item .iconBlock,
+.auth-box-header__item > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.auth-box-header__item .iconBlock:first-child,
+.auth-box-header__item > img:first-child {
+  margin-left: 0;
+}
+.auth-box-header__item .iconBlock:last-child,
+.auth-box-header__item > img:last-child {
+  margin-right: 0;
+}
+.auth-box-header__item:hover {
+  color: #0248a4;
+}
+.auth-box-header__item:hover:not(.active):not(.disabled) {
+  background-color: #CDDFF8;
+}
+.auth-box-header__item:last-child {
+  margin-right: 0;
+}
+.auth-box-header__item-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin: 0 4px;
+}
+.auth-box-header__item-icon:first-child {
+  margin-left: 0;
+}
+.auth-box-header__item-icon:last-child {
+  margin-right: 0;
+}
+.auth-box-header__item.active {
+  background-color: #ffffff;
+}
+.auth-box-header__item.disabled {
+  cursor: default;
+}
+.auth-box-main__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  margin-bottom: 4px;
+}
+.auth-box-main__subtitle {
+  display: flex;
+  align-items: flex-start;
+}
+.auth-box-main__subtitle-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  flex: 1;
+}
+.auth-box-main__subtitle-text b {
+  font-weight: 600;
+}
+.auth-box-main__subtitle-info img {
+  width: 24px;
+  height: 24px;
+}
+.auth-box-form {
+  margin-top: 16px;
+}
+.auth-box-form__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.auth-box-form__footer-back, .auth-box-form__footer-next {
+  min-width: 100px;
+}
+.auth-box-form__footer-back, .auth-box-form__footer-next, .auth-box-form__footer-forgot {
+  margin-right: 16px;
+}
+.auth-box-form__footer-back:last-child, .auth-box-form__footer-next:last-child, .auth-box-form__footer-forgot:last-child {
+  margin-right: 0;
+}
+.auth-box-form__footer-back {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #ffffff;
+  color: #0360db;
+  box-shadow: none;
+}
+.auth-box-form__footer-back:hover .iconBlock .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-back:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.auth-box-form__footer-back:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.auth-box-form__footer-back:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-form__footer-back .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.auth-box-form__footer-back .iconBlock:hover .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-back .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.auth-box-form__footer-back .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.auth-box-form__footer-back .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-form__footer-back .iconBlock.active .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-back .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.auth-box-form__footer-back .iconBlock .icon,
+.auth-box-form__footer-back .iconBlock .iconHover,
+.auth-box-form__footer-back .iconBlock .iconActive,
+.auth-box-form__footer-back .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.auth-box-form__footer-back .iconBlock .iconHover,
+.auth-box-form__footer-back .iconBlock .iconActive,
+.auth-box-form__footer-back .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.auth-box-form__footer-back > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.auth-box-form__footer-back .iconBlock,
+.auth-box-form__footer-back > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.auth-box-form__footer-back .iconBlock:first-child,
+.auth-box-form__footer-back > img:first-child {
+  margin-left: 0;
+}
+.auth-box-form__footer-back .iconBlock:last-child,
+.auth-box-form__footer-back > img:last-child {
+  margin-right: 0;
+}
+.auth-box-form__footer-back:hover {
+  color: #0248a4;
+}
+.auth-box-form__footer-next {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+}
+.auth-box-form__footer-next:hover .iconBlock .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-next:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.auth-box-form__footer-next:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.auth-box-form__footer-next:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-form__footer-next .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.auth-box-form__footer-next .iconBlock:hover .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-next .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.auth-box-form__footer-next .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.auth-box-form__footer-next .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-form__footer-next .iconBlock.active .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-next .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.auth-box-form__footer-next .iconBlock .icon,
+.auth-box-form__footer-next .iconBlock .iconHover,
+.auth-box-form__footer-next .iconBlock .iconActive,
+.auth-box-form__footer-next .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.auth-box-form__footer-next .iconBlock .iconHover,
+.auth-box-form__footer-next .iconBlock .iconActive,
+.auth-box-form__footer-next .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.auth-box-form__footer-next > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.auth-box-form__footer-next .iconBlock,
+.auth-box-form__footer-next > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.auth-box-form__footer-next .iconBlock:first-child,
+.auth-box-form__footer-next > img:first-child {
+  margin-left: 0;
+}
+.auth-box-form__footer-next .iconBlock:last-child,
+.auth-box-form__footer-next > img:last-child {
+  margin-right: 0;
+}
+.auth-box-form__footer-next:hover {
+  background-color: #0248a4;
+}
+.auth-box-form__footer-forgot {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+}
+.auth-box-form__footer-forgot:hover .iconBlock .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-forgot:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.auth-box-form__footer-forgot:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.auth-box-form__footer-forgot:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-form__footer-forgot .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.auth-box-form__footer-forgot .iconBlock:hover .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-forgot .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.auth-box-form__footer-forgot .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.auth-box-form__footer-forgot .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.auth-box-form__footer-forgot .iconBlock.active .icon {
+  opacity: 0;
+}
+.auth-box-form__footer-forgot .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.auth-box-form__footer-forgot .iconBlock .icon,
+.auth-box-form__footer-forgot .iconBlock .iconHover,
+.auth-box-form__footer-forgot .iconBlock .iconActive,
+.auth-box-form__footer-forgot .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.auth-box-form__footer-forgot .iconBlock .iconHover,
+.auth-box-form__footer-forgot .iconBlock .iconActive,
+.auth-box-form__footer-forgot .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.auth-box-form__footer-forgot > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.auth-box-form__footer-forgot .iconBlock,
+.auth-box-form__footer-forgot > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.auth-box-form__footer-forgot .iconBlock:first-child,
+.auth-box-form__footer-forgot > img:first-child {
+  margin-left: 0;
+}
+.auth-box-form__footer-forgot .iconBlock:last-child,
+.auth-box-form__footer-forgot > img:last-child {
+  margin-right: 0;
+}
+.auth-box-form__footer-forgot:hover {
+  color: #0248a4;
+}
+
+.auth-box .auth-box-header .auth-box-header__item {
+  cursor: pointer;
+}

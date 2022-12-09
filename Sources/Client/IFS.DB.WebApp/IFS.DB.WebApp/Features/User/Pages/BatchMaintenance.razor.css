@@ -1,0 +1,537 @@
+.maintenance-layout {
+  padding: 24px 0 36px;
+}
+
+.maintenance-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.maintenance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.maintenance-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.maintenance-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.maintenance-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.maintenance-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.maintenance-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.maintenance-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.maintenance-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.maintenance-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.maintenance-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenance-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.maintenance-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.maintenance-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.maintenance-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.maintenance-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenance-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.maintenance-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.maintenance-header__button .iconBlock .icon,
+.maintenance-header__button .iconBlock .iconHover,
+.maintenance-header__button .iconBlock .iconActive,
+.maintenance-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.maintenance-header__button .iconBlock .iconHover,
+.maintenance-header__button .iconBlock .iconActive,
+.maintenance-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.maintenance-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.maintenance-header__button .iconBlock,
+.maintenance-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.maintenance-header__button .iconBlock:first-child,
+.maintenance-header__button > img:first-child {
+  margin-left: 0;
+}
+.maintenance-header__button .iconBlock:last-child,
+.maintenance-header__button > img:last-child {
+  margin-right: 0;
+}
+.maintenance-header__button:hover {
+  color: #0248a4;
+}
+
+.maintenance {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.maintenance:last-child {
+  margin-bottom: 0;
+}
+.maintenance-search {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+.maintenance-search-body {
+  display: flex;
+  flex: 1;
+}
+.maintenance-search-body__input {
+  max-width: 508px;
+  margin-right: 12px;
+}
+.maintenance-search-icons {
+  display: flex;
+}
+.maintenance-search-icons__filterIcon, .maintenance-search-icons__icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 56px;
+  height: 56px;
+  padding: 16px;
+}
+.maintenance-search-icons__filterIcon:hover .icon, .maintenance-search-icons__icon:hover .icon {
+  opacity: 0;
+}
+.maintenance-search-icons__filterIcon:hover .iconHover, .maintenance-search-icons__icon:hover .iconHover {
+  opacity: 1;
+}
+.maintenance-search-icons__filterIcon:hover.active .iconActive, .maintenance-search-icons__icon:hover.active .iconActive {
+  opacity: 0;
+}
+.maintenance-search-icons__filterIcon:hover.active .iconActiveHover, .maintenance-search-icons__icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenance-search-icons__filterIcon.active .icon, .maintenance-search-icons__icon.active .icon {
+  opacity: 0;
+}
+.maintenance-search-icons__filterIcon.active .iconActive, .maintenance-search-icons__icon.active .iconActive {
+  opacity: 1;
+}
+.maintenance-search-icons__filterIcon .icon,
+.maintenance-search-icons__filterIcon .iconHover,
+.maintenance-search-icons__filterIcon .iconActive,
+.maintenance-search-icons__filterIcon .iconActiveHover, .maintenance-search-icons__icon .icon,
+.maintenance-search-icons__icon .iconHover,
+.maintenance-search-icons__icon .iconActive,
+.maintenance-search-icons__icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.maintenance-search-icons__filterIcon .iconHover,
+.maintenance-search-icons__filterIcon .iconActive,
+.maintenance-search-icons__filterIcon .iconActiveHover, .maintenance-search-icons__icon .iconHover,
+.maintenance-search-icons__icon .iconActive,
+.maintenance-search-icons__icon .iconActiveHover {
+  opacity: 0;
+}
+.maintenance-search-icons__filterIcon.activeFilter {
+  background: #f2f7fd;
+  border-radius: 4px;
+}
+.maintenance-filters {
+  display: none;
+  margin-top: 16px;
+}
+.maintenance-table {
+  margin-top: 16px;
+}
+.maintenance-table .maintenanceTable-status {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #6a6a6a;
+  background-color: #ededed;
+}
+.maintenance-table .maintenanceTable-status--error {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #fc4c16;
+  background-color: #fff1ed;
+}
+.maintenance-table .maintenanceTable-status--success {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #0a9a0c;
+  background-color: #edffed;
+}
+.maintenance-table .maintenanceTable-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.maintenance-table .maintenanceTable-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.maintenance-table .maintenanceTable-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button .iconBlock .icon,
+.maintenance-table .maintenanceTable-button .iconBlock .iconHover,
+.maintenance-table .maintenanceTable-button .iconBlock .iconActive,
+.maintenance-table .maintenanceTable-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.maintenance-table .maintenanceTable-button .iconBlock .iconHover,
+.maintenance-table .maintenanceTable-button .iconBlock .iconActive,
+.maintenance-table .maintenanceTable-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.maintenance-table .maintenanceTable-button .iconBlock,
+.maintenance-table .maintenanceTable-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.maintenance-table .maintenanceTable-button .iconBlock:first-child,
+.maintenance-table .maintenanceTable-button > img:first-child {
+  margin-left: 0;
+}
+.maintenance-table .maintenanceTable-button .iconBlock:last-child,
+.maintenance-table .maintenanceTable-button > img:last-child {
+  margin-right: 0;
+}
+.maintenance-table .maintenanceTable-button:hover {
+  color: #0248a4;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  color: #525252;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled:hover .iconBlock .icon {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:hover .icon {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock.active .icon {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .icon,
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconHover,
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconActive,
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconHover,
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconActive,
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock,
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:first-child,
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled > img:first-child {
+  margin-left: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled .iconBlock:last-child,
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled > img:last-child {
+  margin-right: 0;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled:hover {
+  color: #0248a4;
+}
+.maintenance-table .maintenanceTable-button.maintenanceTable-button--disabled:hover {
+  color: #525252;
+}
+.maintenance-table .maintenanceTable-action {
+  position: relative;
+  box-sizing: border-box;
+}
+.maintenance-table .maintenanceTable-action-icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  margin-left: auto;
+}
+.maintenance-table .maintenanceTable-action-icon:hover .icon {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-action-icon:hover .iconHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-action-icon:hover.active .iconActive {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-action-icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-action-icon.active .icon {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-action-icon.active .iconActive {
+  opacity: 1;
+}
+.maintenance-table .maintenanceTable-action-icon .icon,
+.maintenance-table .maintenanceTable-action-icon .iconHover,
+.maintenance-table .maintenanceTable-action-icon .iconActive,
+.maintenance-table .maintenanceTable-action-icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.maintenance-table .maintenanceTable-action-icon .iconHover,
+.maintenance-table .maintenanceTable-action-icon .iconActive,
+.maintenance-table .maintenanceTable-action-icon .iconActiveHover {
+  opacity: 0;
+}
+.maintenance-table .maintenanceTable-action-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  width: 156px;
+  display: none;
+  padding: 8px 1px;
+  border: 1px solid #CDDFF8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+  z-index: 2;
+}
+.maintenance-table .maintenanceTable-action-dropdown-item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  padding: 14px 16px;
+  text-align: left;
+  color: #6a6a6a;
+  cursor: pointer;
+}

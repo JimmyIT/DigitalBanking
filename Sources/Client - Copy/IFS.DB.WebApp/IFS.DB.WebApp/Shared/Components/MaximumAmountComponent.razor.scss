@@ -1,0 +1,39 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.maximum-amount {
+    @include box;
+    padding: $indent-24 $indent-24 20px $indent-24;
+
+    &-name {
+        @include h2;
+        margin-bottom: $indent-16;
+    }
+
+    &-subtitle {
+        @include label;
+        color: $color-gray-600;
+    }
+
+    &-item {
+        @include h2;
+    }
+
+    &-requir {
+        @include caption1;
+        color: $color-gray-500;
+    }
+
+    &-edit {
+        max-width: 428px;
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__input {
+            text-align: right;
+        }
+    }
+}

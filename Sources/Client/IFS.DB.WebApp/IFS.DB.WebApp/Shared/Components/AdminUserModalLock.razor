@@ -1,0 +1,47 @@
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.Users
+<div class="modal-layout" id="ModalLock">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalLock()"></div>
+        <div class="lock-modal-layout">
+            <div class="lock-modal">
+                <div class="lock-modal-header-wrapper">
+                    <div class="lock-modal-header">
+                        <p class="lock-modal-header__title">Would you like to lock @UserInfoModel.UserName?</p>
+                        <img class="lock-modal-header__icon" src="/img/icons/closeIcon.svg" alt="close" @onclick=@Cancel />
+                    </div>
+                    <p class="lock-modal-header__subtitle">Please select a reason of this action</p>
+                </div>
+
+                <div class="lock-modal-main">
+                    <p class="lock-modal-main-title">Reason for the Profile Lock</p>
+                    <select class="select" id="lockSelector" @bind=@UserInfoModel.LockReason>
+                        <option selected>Select</option>
+                        <option value="The user moved to another account">The user moved to another account</option>
+                        <option value="Fired from the company">Fired from the company</option>
+                        <option value="payeeReference3">[User reference 3]</option>
+                        <option value="payeeReference4">[User reference 4]</option>
+                    </select>                    
+                </div>
+
+                <div class="lock-modal-footer">
+                    <button class="lock-modal-footer__buttonCancel" @onclick=@Cancel>Cancel</button>
+                    <button class="lock-modal-footer__buttonLock" @onclick=@OnLockUser>Lock account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
+    [Parameter] public UserCreationRequestModel UserInfoModel { get; set; }
+
+    private async Task Cancel() => await BlazoredModal.CancelAsync();
+    private async Task OnLockUser()
+    {
+        UserInfoModel.ActionStatus = UserActionStatusEnum.Locked;
+        await BlazoredModal.CloseAsync(ModalResult.Ok(UserInfoModel));
+    }
+}

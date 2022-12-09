@@ -1,0 +1,35 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.mandates-footer-layout {
+	padding: $indent-24 0;
+	background-color: $color-white;
+}
+
+.mandates-footer-container {
+	@include container;
+}
+
+.mandates-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&-cancel {
+		@include transparentButton;
+		padding: $indent-16;
+	}
+
+	&-button {
+		&__start {
+			@include lightBlueButton;
+			height: 56px;
+			margin-right: $indent-16;
+		}
+
+		&__save {
+			@include blueButton;
+			height: 56px;
+		}
+	}
+}

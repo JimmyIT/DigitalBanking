@@ -1,0 +1,43 @@
+﻿@using System.Net.Http
+@using System.Linq.Expressions
+@using System.Globalization
+@using System.Text.RegularExpressions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.Extensions.Localization
+@using Microsoft.JSInterop
+
+@using Blazored.Modal
+@using Blazored.Modal.Services
+@using Blazored.LocalStorage
+
+@using IFS.DB.WebApp
+@using IFS.DB.WebApp.Resources
+@using IFS.DB.WebApp.Shared
+@using IFS.DB.WebApp.Shared.Components
+@using IFS.DB.WebApp.Shared.Components.Base
+@using IFS.DB.WebApp.Shared.Layouts
+@using static IFS.DB.WebApp.Helpers.Enums.NumberFormattingEnum
+@using IFS.DB.WebApp.Helpers.CompnentConfiguration.InputSelect
+@using IFS.DB.WebApp.Helpers.AppHttpClient
+@using IFS.DB.WebApp.Helpers.Extensions
+@using IFS.DB.WebApp.Helpers.Enums
+@using IFS.DB.WebApp.Services
+@using MediatR
+
+@using WMBlazorSlickCarousel.WMBSC
+
+@inject IJSRuntime _jsRuntime 
+@inject ILocalStorageService _localStorageSvc
+@inject NavigationManager _navigateManager
+@inject IModalService _blazoredModal  
+@inject AuthenticationStateProvider _authStateProvider
+@inject IStringLocalizer<AppResources> L
+@inject AppHttpClientService _appHttpClient
+@inject IMediator _mediator
+@inject IGetUiTextService _text 
+@inject AppStore _appStore 

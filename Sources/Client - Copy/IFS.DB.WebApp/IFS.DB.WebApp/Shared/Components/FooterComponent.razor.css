@@ -1,0 +1,16 @@
+.main-footer-layout {
+  border-top: 1px solid #d2d2d2;
+  padding: 16px 0;
+}
+
+.main-footer-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.main-footer__copy {
+  color: #6a6a6a;
+  text-align: right;
+}

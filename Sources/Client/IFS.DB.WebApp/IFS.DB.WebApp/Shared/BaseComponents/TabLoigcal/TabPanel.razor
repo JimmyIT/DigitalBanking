@@ -1,0 +1,31 @@
+﻿@using IFS.DB.WebApp.Helpers.Constants
+@using System.Data
+@using Z.Core.Extensions
+
+@if ( Owner.State.CurrentActive == _index)
+{
+    @ChildContent
+}
+
+@code {
+
+    [CascadingParameter]
+    public Tab Owner { get; set; } = default!;
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    [Parameter]
+    public int? Index { get; set; }
+
+    private int _index = 0;
+
+    protected override void OnInitialized()
+    {
+        _ = Owner ?? throw new ArgumentNullException($"TabPanel required wrapped by Tab Component");
+        
+        _index = Index ?? Owner.ChildCount;
+        Owner.AddChild(this);
+    }
+
+}

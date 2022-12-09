@@ -1,0 +1,384 @@
+.payment-layout {
+  padding: 24px 0 36px;
+}
+
+.payment-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.payment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.payment-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.payment-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.payment-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.payment-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.payment-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.payment-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payment-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payment-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payment-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payment-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payment-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payment-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payment-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payment-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payment-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.payment-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payment-header__button .iconBlock .icon,
+.payment-header__button .iconBlock .iconHover,
+.payment-header__button .iconBlock .iconActive,
+.payment-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payment-header__button .iconBlock .iconHover,
+.payment-header__button .iconBlock .iconActive,
+.payment-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payment-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payment-header__button .iconBlock,
+.payment-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payment-header__button .iconBlock:first-child,
+.payment-header__button > img:first-child {
+  margin-left: 0;
+}
+.payment-header__button .iconBlock:last-child,
+.payment-header__button > img:last-child {
+  margin-right: 0;
+}
+.payment-header__button:hover {
+  color: #0248a4;
+}
+.payment-header-breadcrumbs {
+  display: flex;
+}
+.payment-header-breadcrumbs__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  padding: 4px 0;
+  margin-right: 8px;
+}
+.payment-header-breadcrumbs__item::after {
+  content: "/";
+  margin-left: 8px;
+}
+.payment-header-breadcrumbs__item:last-child {
+  margin-right: 0;
+}
+.payment-header-breadcrumbs__item:last-child::after {
+  display: none;
+}
+.payment-header-breadcrumbs__item.active {
+  color: #212121;
+}
+
+.payment-table-back {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.payment-table-back:last-child {
+  margin-bottom: 0;
+}
+.payment-table-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  padding: 12px 0;
+  margin-bottom: 16px;
+}
+.payment-table ::deep .paymentTable th .col-header-content {
+  padding: 12px 16px;
+}
+.payment-table ::deep .paymentTable td {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 12px 16px;
+}
+.payment-table ::deep .paymentTable td:nth-child(4), .payment-table ::deep .paymentTable td:nth-child(5) {
+  text-align: center;
+}
+.payment-table ::deep .paymentTable td:last-child {
+  text-align: end;
+}
+.payment-table ::deep .paymentTable tbody td img {
+  margin-right: 8px;
+}
+.payment-table ::deep .paymentTable tbody td:nth-child(1), .payment-table ::deep .paymentTable tbody td:nth-child(3) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.payment-table ::deep .paymentTable tbody td:nth-child(2), .payment-table ::deep .paymentTable tbody td:nth-child(4) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.payment-table ::deep .paymentTable tbody td:nth-child(3) {
+  display: flex;
+  align-items: center;
+}
+.payment-table ::deep .paymentTable tbody td:nth-child(5) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #fc4c16;
+}
+.payment-table ::deep .paymentTable__image {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payment-table ::deep .paymentTable__image:hover .icon {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable__image:hover .iconHover {
+  opacity: 1;
+}
+.payment-table ::deep .paymentTable__image:hover.active .iconActive {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable__image:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payment-table ::deep .paymentTable__image.active .icon {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable__image.active .iconActive {
+  opacity: 1;
+}
+.payment-table ::deep .paymentTable__image .icon,
+.payment-table ::deep .paymentTable__image .iconHover,
+.payment-table ::deep .paymentTable__image .iconActive,
+.payment-table ::deep .paymentTable__image .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payment-table ::deep .paymentTable__image .iconHover,
+.payment-table ::deep .paymentTable__image .iconActive,
+.payment-table ::deep .paymentTable__image .iconActiveHover {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.payment-table ::deep .paymentTable-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.payment-table ::deep .paymentTable-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.payment-table ::deep .paymentTable-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.payment-table ::deep .paymentTable-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.payment-table ::deep .paymentTable-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.payment-table ::deep .paymentTable-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.payment-table ::deep .paymentTable-button .iconBlock .icon,
+.payment-table ::deep .paymentTable-button .iconBlock .iconHover,
+.payment-table ::deep .paymentTable-button .iconBlock .iconActive,
+.payment-table ::deep .paymentTable-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.payment-table ::deep .paymentTable-button .iconBlock .iconHover,
+.payment-table ::deep .paymentTable-button .iconBlock .iconActive,
+.payment-table ::deep .paymentTable-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.payment-table ::deep .paymentTable-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.payment-table ::deep .paymentTable-button .iconBlock,
+.payment-table ::deep .paymentTable-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.payment-table ::deep .paymentTable-button .iconBlock:first-child,
+.payment-table ::deep .paymentTable-button > img:first-child {
+  margin-left: 0;
+}
+.payment-table ::deep .paymentTable-button .iconBlock:last-child,
+.payment-table ::deep .paymentTable-button > img:last-child {
+  margin-right: 0;
+}
+.payment-table ::deep .paymentTable-button:hover {
+  color: #0248a4;
+}
+.payment-table ::deep .paymentTable-button--inactive {
+  color: #CDDFF8;
+}
+.payment-table ::deep .paymentTable-button--inactive:hover {
+  color: #CDDFF8;
+}

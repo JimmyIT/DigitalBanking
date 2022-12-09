@@ -1,0 +1,232 @@
+@using IFS.DB.WebApp.Models.Security
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Helpers.FluentValidator
+@using IFS.DB.WebApp.Models
+@using Z.Core.Extensions
+
+<div class="security-main-content check" id="Code">
+    <p class="security-main-content-title">MSE Authority Code</p>
+    <div class="security-main-content-subtitle">
+        <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="security-main-content-subtitle__tooltip-icon"/>
+        <p>
+            @(_authorityCodeModel.Status switch {
+                MseAuthorityCodeStatus.WaitingReview => "The new code will become active once Administrator 2 has signed the change request.",
+                MseAuthorityCodeStatus.WaitingNotify => "The Authority Code has been changed, please inform all of your users.",
+                _ => "Please enter the value of the new MSE Authority Code (this is the password used by all of your users when they sign into the Internet Banking Service"
+                })).
+        </p>
+    </div>
+
+    @if (_authorityCodeModel.Status is null)
+    {
+        <EditForm EditContext="_authorityCodeCtx">
+            <EnableFluentValidator TValidator="MseAuthorityCodeModelValidator"/>
+            <div class="security-main-content-code" id="input">
+                <div class="security-main-content-code__col">
+                    <p class="security-main-content-code__col-text">New authority code</p>
+                    <div class="input-layout">
+                        <InputText placeholder="Enter here" class="input" @bind-Value="_authorityCodeModel.AuthorityCode"/>
+                    </div>
+                    <CustomValidationMessage For="@(() => _authorityCodeModel.AuthorityCode)"></CustomValidationMessage>
+                </div>
+
+                <div class="security-main-content-code__col">
+                    <p class="security-main-content-code__col-text">Confirm New authority code</p>
+                    <div class="input-layout">
+                        <InputText placeholder="Enter here" class="input" @bind-Value="_authorityCodeModel.AuthorityCodeConfirm"/>
+                    </div>
+                    <CustomValidationMessage For="@(() => _authorityCodeModel.AuthorityCodeConfirm)"></CustomValidationMessage>
+                </div>
+            </div>
+        </EditForm>
+    }
+
+    @if (_authorityCodeModel.Status is not null)
+    {
+        <div class="security-main-content-update" id="update">
+            @if (_authorityCodeModel.Status is MseAuthorityCodeStatus.WaitingReview)
+            {
+                <div class="security-main-content-update-title" id="compled">
+                    <img src="/img/icons/checkIcon.svg" alt="check"/>
+                    <p class="security-main-content-update-title-name">Stage 1 of the Authority Code change process has been completed succesfully.</p>
+                </div>
+            }
+            <div class="security-main-content-update-main">
+                <div class="security-main-content-update-main-item">
+                    <p class="security-main-content-update-main-item__name">New authority code</p>
+                    <p class="security-main-content-update-main-item__text">@_authorityCodeModel.AuthorityCode</p>
+                </div>
+
+                <div class="security-main-content-update-main-item">
+                    <p class="security-main-content-update-main-item__name">Last Access by</p>
+                    <p class="security-main-content-update-main-item__text">@_authorityCodeModel.LastAccessOn.ToFullDateTimeFormat()</p>
+                </div>
+
+                @if (_authorityCodeModel.Status is MseAuthorityCodeStatus.WaitingNotify)
+                {
+                    <div class="security-main-content-update-main-item" id="confirmdata">
+                        <p class="security-main-content-update-main-item__name">Confirmed</p>
+                        <p class="security-main-content-update-main-item__text">@_authorityCodeModel.ConfirmOn.ToFullDateTimeFormat()</p>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <hr class="security-main-content-line"/>
+
+    <div class="security-main-content-footer">
+        @{
+            RenderFragment footerAction = _authorityCodeModel.Status switch  {
+                MseAuthorityCodeStatus.WaitingReview => 
+                    @<div class="security-main-content-footer-update" id="buttons">
+                        <button class="security-main-content-footer-update-reject" @onclick="Reject">Reject</button>
+                        <button class="security-main-content-footer-update-confirm" @onclick="Confirm">Confirm</button>
+                    </div>
+                ,
+                MseAuthorityCodeStatus.WaitingNotify => 
+                    @<button class="security-main-content-footer-send" @onclick="SendNotifyToUser">Send notification to users</button>,                           
+                _ => 
+                    @<button class="security-main-content-footer-button" @onclick="Submit">Submit</button>
+                };
+        }
+        @footerAction
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public IModalService ModalSvc { get; set; } = default!;
+
+    private MseAuthorityCodeModel _authorityCodeModel;
+    private EditContext _authorityCodeCtx;
+    private ValidationMessageStore _validationMessageStore;
+
+    public SecurityCodeComponent()
+    {
+        _authorityCodeModel = new MseAuthorityCodeModel();
+        _authorityCodeCtx = new EditContext(_authorityCodeModel);
+        _authorityCodeCtx.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _validationMessageStore = new ValidationMessageStore(_authorityCodeCtx);
+    }
+
+    protected override void OnInitialized()
+    {
+        _authorityCodeCtx.OnFieldChanged += (_, args) => { _validationMessageStore.Clear(args.FieldIdentifier); };
+
+        if (FakeData.MseAuthorityCode is not null)
+        {
+            _authorityCodeModel = FakeData.MseAuthorityCode with {};
+            SetModelForm(_authorityCodeModel);
+        }
+        
+    }
+
+    private void SetModelForm(MseAuthorityCodeModel value)
+    {
+        _authorityCodeModel = value with { };
+        _authorityCodeCtx = new EditContext(_authorityCodeModel);
+        _authorityCodeCtx.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _validationMessageStore = new ValidationMessageStore(_authorityCodeCtx);
+    }
+
+    private async Task Submit()
+    {
+        if (_authorityCodeCtx.Validate() is false)
+            return;
+
+        IModalReference confirmModal = ModalSvc.Show<SimplePasswordConfirmModalComponent>(
+            string.Empty,
+            new ModalParameters
+            {
+                { nameof(SimplePasswordConfirmModalComponent.HeaderTitle), $"Submit MSE Authority Code" },
+                { nameof(SimplePasswordConfirmModalComponent.HeaderSubtitle), "Please enter your password to submit MSE Authority Code" },
+                { nameof(SimplePasswordConfirmModalComponent.ConfirmText), "Submit" }
+            },
+            new ModalOptions
+            {
+                UseCustomLayout = true
+            });
+
+        ModalResult modalResult = await confirmModal.Result;
+
+        if (modalResult.Confirmed is false)
+            return;
+
+        _authorityCodeModel.Status = MseAuthorityCodeStatus.WaitingReview;
+        _authorityCodeModel.LastAccessOn = DateTime.Now;
+
+        FakeData.MseAuthorityCode = _authorityCodeModel with {};
+    }
+
+    private async Task Confirm()
+    {
+        if (_authorityCodeCtx.Validate() is false)
+            return;
+
+        IModalReference confirmModal = ModalSvc.Show<SimplePasswordConfirmModalComponent>(
+            string.Empty,
+            new ModalParameters
+            {
+                { nameof(SimplePasswordConfirmModalComponent.HeaderTitle), $"Confirm MSE Authority Code" },
+                { nameof(SimplePasswordConfirmModalComponent.HeaderSubtitle), "Please enter your password to confirm MSE Authority Code" },
+                { nameof(SimplePasswordConfirmModalComponent.ConfirmText), "Confirm" }
+            },
+            new ModalOptions
+            {
+                UseCustomLayout = true
+            });
+
+        ModalResult modalResult = await confirmModal.Result;
+
+        if (modalResult.Confirmed is false)
+            return;
+
+        _authorityCodeModel.Status = MseAuthorityCodeStatus.WaitingNotify;
+        _authorityCodeModel.LastAccessOn = DateTime.Now;
+        _authorityCodeModel.ConfirmOn = DateTime.Now;
+
+        FakeData.MseAuthorityCode = _authorityCodeModel with {};
+    }
+
+
+    private async Task Reject()
+    {
+        if (_authorityCodeCtx.Validate() is false)
+            return;
+
+        IModalReference confirmModal = ModalSvc.Show<SimplePasswordConfirmModalComponent>(
+            string.Empty,
+            new ModalParameters
+            {
+                { nameof(SimplePasswordConfirmModalComponent.HeaderTitle), "Reject MSE Authority Code" },
+                { nameof(SimplePasswordConfirmModalComponent.HeaderSubtitle), "Please enter your password to reject MSE Authority Code" },
+                { nameof(SimplePasswordConfirmModalComponent.IsNegative), true },
+                { nameof(SimplePasswordConfirmModalComponent.ConfirmText), "Reject" }
+            },
+            new ModalOptions
+            {
+                UseCustomLayout = true
+            });
+
+        ModalResult modalResult = await confirmModal.Result;
+
+        if (modalResult.Confirmed is false)
+            return;
+
+        _authorityCodeModel.AuthorityCode = null;
+        _authorityCodeModel.AuthorityCodeConfirm = null;
+        _authorityCodeModel.Status = null;
+
+        FakeData.MseAuthorityCode = null;
+    }
+
+    private void SendNotifyToUser()
+    {
+        _authorityCodeModel = new MseAuthorityCodeModel();
+        SetModelForm(_authorityCodeModel);
+        FakeData.MseAuthorityCode = null;
+    }
+
+}

@@ -1,0 +1,365 @@
+.liveChat {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 400px;
+  height: 528px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 32px rgba(40, 49, 61, 0.18);
+  margin: 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+.liveChat:last-child {
+  margin-bottom: 0;
+}
+.liveChat-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ededed;
+  padding-bottom: 12px;
+}
+.liveChat-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  flex: 1;
+}
+.liveChat-header__close-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.liveChat-main {
+  flex: 1;
+  min-height: 140px;
+  padding: 12px 0;
+  overflow-y: auto;
+}
+.liveChat-message-author {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  display: block;
+  margin-bottom: 4px;
+}
+.liveChat-message-author:last-child {
+  margin-bottom: 0;
+}
+.liveChat-message-author__position {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #525252;
+  margin-left: 4px;
+}
+.liveChat-message-author.liveChat-message-author--right {
+  text-align: right;
+  align-self: flex-end;
+}
+.liveChat-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.liveChat-message {
+  max-width: 244px;
+  border-radius: 8px;
+  background: #4288e4;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+.liveChat-message:last-child {
+  margin-bottom: 0;
+}
+.liveChat-message-text {
+  color: #ffffff;
+}
+.liveChat-message-file {
+  display: flex;
+  margin-top: 4px;
+}
+.liveChat-message-file__icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 4px;
+}
+.liveChat-message-file__name {
+  flex: 1;
+}
+.liveChat-message.liveChat-message--right {
+  align-self: flex-end;
+  background: #ededed;
+}
+.liveChat-message.liveChat-message--right .liveChat-message-text {
+  color: #393939;
+}
+.liveChat-footer {
+  border-top: 1px solid #ededed;
+  padding-top: 12px;
+  overflow-y: auto;
+}
+.liveChat-footer-buttons {
+  display: flex;
+  margin-top: 12px;
+}
+.liveChat-footer-button {
+  flex: 1;
+  margin-right: 12px;
+}
+.liveChat-footer-button:last-child {
+  margin-right: 0;
+}
+.liveChat-footer-button--attach {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+}
+.liveChat-footer-button--attach:hover .iconBlock .icon {
+  opacity: 0;
+}
+.liveChat-footer-button--attach:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.liveChat-footer-button--attach:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.liveChat-footer-button--attach:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.liveChat-footer-button--attach .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.liveChat-footer-button--attach .iconBlock:hover .icon {
+  opacity: 0;
+}
+.liveChat-footer-button--attach .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.liveChat-footer-button--attach .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.liveChat-footer-button--attach .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.liveChat-footer-button--attach .iconBlock.active .icon {
+  opacity: 0;
+}
+.liveChat-footer-button--attach .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.liveChat-footer-button--attach .iconBlock .icon,
+.liveChat-footer-button--attach .iconBlock .iconHover,
+.liveChat-footer-button--attach .iconBlock .iconActive,
+.liveChat-footer-button--attach .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.liveChat-footer-button--attach .iconBlock .iconHover,
+.liveChat-footer-button--attach .iconBlock .iconActive,
+.liveChat-footer-button--attach .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.liveChat-footer-button--attach > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.liveChat-footer-button--attach .iconBlock,
+.liveChat-footer-button--attach > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.liveChat-footer-button--attach .iconBlock:first-child,
+.liveChat-footer-button--attach > img:first-child {
+  margin-left: 0;
+}
+.liveChat-footer-button--attach .iconBlock:last-child,
+.liveChat-footer-button--attach > img:last-child {
+  margin-right: 0;
+}
+.liveChat-footer-button--attach:hover {
+  color: #0248a4;
+}
+.liveChat-footer-button--send {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+}
+.liveChat-footer-button--send:hover .iconBlock .icon {
+  opacity: 0;
+}
+.liveChat-footer-button--send:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.liveChat-footer-button--send:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.liveChat-footer-button--send:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.liveChat-footer-button--send .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.liveChat-footer-button--send .iconBlock:hover .icon {
+  opacity: 0;
+}
+.liveChat-footer-button--send .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.liveChat-footer-button--send .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.liveChat-footer-button--send .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.liveChat-footer-button--send .iconBlock.active .icon {
+  opacity: 0;
+}
+.liveChat-footer-button--send .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.liveChat-footer-button--send .iconBlock .icon,
+.liveChat-footer-button--send .iconBlock .iconHover,
+.liveChat-footer-button--send .iconBlock .iconActive,
+.liveChat-footer-button--send .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.liveChat-footer-button--send .iconBlock .iconHover,
+.liveChat-footer-button--send .iconBlock .iconActive,
+.liveChat-footer-button--send .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.liveChat-footer-button--send > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.liveChat-footer-button--send .iconBlock,
+.liveChat-footer-button--send > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.liveChat-footer-button--send .iconBlock:first-child,
+.liveChat-footer-button--send > img:first-child {
+  margin-left: 0;
+}
+.liveChat-footer-button--send .iconBlock:last-child,
+.liveChat-footer-button--send > img:last-child {
+  margin-right: 0;
+}
+.liveChat-footer-button--send:hover {
+  background-color: #0248a4;
+}
+.liveChat-file {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.liveChat-file__icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 4px;
+}
+.liveChat-file__icon.liveChat-file__icon--load {
+  animation: rotating 1s linear infinite;
+}
+.liveChat-file__name {
+  flex: 1;
+}
+.liveChat-file__delete {
+  margin-left: 4px;
+}
+.liveChat-file__delete-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.liveChat-file__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  width: 100%;
+}
+.liveChat-file.liveChat-file--error .liveChat-file__name,
+.liveChat-file.liveChat-file--error .liveChat-file__text {
+  color: #fc4c16;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

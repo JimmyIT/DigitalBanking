@@ -1,0 +1,30 @@
+@using IFS.DB.WebApp.Models.Users
+
+@if (LastUsers != null)
+{
+    <DataGridComponent @ref="_dataSourceGrid" TItem="UserInfoModel"
+                   Columns="_columnsDefinition"
+                   DataItems="@UserActions.LastUsers"
+                   TotalItems="@UserActions.TotalRecords"
+                   PagingConfig=@_pagingConfig 
+                   TableClass="adminTable">
+    </DataGridComponent>
+}
+
+@code {
+    private RenderFragment UserNameWithAvartaTemplate(UserInfoModel userInfo)
+    => @<text>
+         <div class="adminTable-user">
+            <img src="@userInfo.AvartaUrl" alt="avatar" class="adminTable-user__image" />     
+            <p class="adminTable-user__name">@($"{userInfo.FirstName} {userInfo.MiddleName} {userInfo.LastName}")</p>
+         </div>
+        </text>;
+
+    private RenderFragment StatusTemplate(UserInfoModel userInfo)
+    => @<text>
+        @if (userInfo.ActionStatus != UserActionStatusEnum.Confirmed)
+        {
+                <span class="adminTable-status">@userInfo.ActionStatus.ToDescription()</span>
+        }
+        </text>;
+}

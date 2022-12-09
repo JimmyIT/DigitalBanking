@@ -1,0 +1,128 @@
+﻿@typeparam TItem
+
+<div class="customSelector @CssClass" style="@InlineStyle" @onfocusout="OutFocus">
+    @if (MultiSelect)
+    {
+        <button class="customSelector-input @ButtonSelectCssClass"
+            id="filtersSelector"
+            @ref=_buttonDropdown
+            @onclick="e => this._show=!this._show"
+             style="@ButtonSelectInlineStyle; @(_show? "border-radius: 8px 8px 0px 0px":"")">
+            <p class="customSelector-input__placeholder admin-box-selections-customer-name">
+                @if (ShowSelectedItems)
+                {
+                    @if (_listItems.Count > 0)
+                    {
+                        @String.Join(", ", _listItems)
+                    }
+                }
+                else
+                {
+                    @Tip
+                }
+            </p>
+            <img src="@(!_show? "/img/icons/dropdown.svg":"/img/icons/revertDropdown.svg")" alt="dropdown" class="admin-box-selections-customer-icon"/>
+        </button>
+    }
+    else
+    {
+        <button type="button" 
+            @ref=_buttonDropdown 
+            class="customSelector-input @ButtonSelectCssClass"
+            id="filtersSelector"
+            @onclick="e => this._show=!this._show"
+             style="@ButtonSelectInlineStyle @(_show? "border-radius: 8px 8px 0px 0px":"")">
+            <p class="customSelector-input__placeholder admin-box-selections-customer-name">
+                @Tip
+            </p>
+            <img src="@(!_show? "/img/icons/dropdown.svg":"/img/icons/revertDropdown.svg")" alt="dropdown" class="admin-box-selections-customer-icon" />
+        </button>
+    }
+
+    <CascadingValue Name="DropdownComponent" Value="@this">
+        <div class="customSelector-dropdown" id="filters" style="@(AmountSelect&&_show? "display:flex": _show?"display:block":"")" @onclick:stopPropagation @onclick:preventDefault>
+            @DropdownChildContent
+        </div>
+    </CascadingValue>
+</div>
+
+@code {
+    [Parameter] public RenderFragment InitialTip { get; set; }
+    [Parameter] public RenderFragment DropdownChildContent { get; set; }   
+    [Parameter] public EventCallback<TItem> OnSelectedItem { get; set; }
+    [Parameter] public EventCallback<List<TItem>> OnSelectedItems { get; set; }
+    [Parameter] public bool MultiSelect { get; set; } = false;
+    [Parameter] public bool ShowSelectedItems { get; set; } = false;
+    [Parameter] public bool AmountSelect { get; set; } = false;
+    [Parameter] public string CssClass { get; set; }
+    [Parameter] public string ButtonSelectCssClass { get; set; }
+    [Parameter] public string InlineStyle { get; set; }
+    [Parameter] public string ButtonSelectInlineStyle { get; set; }
+
+    private ElementReference _buttonDropdown;
+    private RenderFragment Tip;
+    private List<RenderFragment> Tips = new();
+    private bool _show = false;
+    private List<TItem> _listItems = new();
+    private bool _keepShow;
+
+    internal int? _selectedItem;
+
+    protected override void OnInitialized() { Tip = InitialTip; }
+
+    public async Task HandleSelect(TItem item, RenderFragment<TItem> contentFragment)
+    {
+        Tip = contentFragment.Invoke(item);
+        _show = false;
+        StateHasChanged();
+        await OnSelectedItem.InvokeAsync(item);
+    }
+
+    public async Task HandCustomDropdownItemSelect(TItem item, RenderFragment<TItem> contentFragment, int dropdownItemIndex)
+    {
+        _keepShow = true;
+
+        _selectedItem = dropdownItemIndex;
+        await _buttonDropdown.FocusAsync(true);
+        StateHasChanged();
+        await OnSelectedItem.InvokeAsync(item);
+
+        _keepShow = false;
+    }
+
+    public async Task HandleMultiSelect(TItem item, RenderFragment<TItem> contentFragment, bool isActive)
+    {
+        _keepShow = true;
+        await _buttonDropdown.FocusAsync(true);
+        StateHasChanged();
+
+        Tips.Add(contentFragment.Invoke(item));
+        if (isActive)
+        {
+            _listItems.Add(item);
+        }
+        else
+        {
+            _listItems.Remove(item);
+        }
+        await OnSelectedItems.InvokeAsync(_listItems);
+        //await _buttonDropdown.FocusAsync();
+        _keepShow = false;
+    }
+
+    private async Task OutFocus()
+    {
+        if (_keepShow)
+            return;
+        await Task.Delay(200);
+        _show = false;
+        _selectedItem = null;
+    }
+
+    public async Task KeepOpenDropdownForCustomSelectorContent(int dropdownItemIndex)
+    {
+        _keepShow = true;
+
+        _selectedItem = dropdownItemIndex;
+    }
+}

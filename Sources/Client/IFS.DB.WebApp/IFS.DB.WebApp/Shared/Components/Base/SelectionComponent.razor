@@ -1,0 +1,32 @@
+﻿@inherits InputSelect<TItem>
+@typeparam TItem
+
+<div class="formgroup">
+    <label>Pay to</label>
+    <div class="select-layout">
+        <select class="select">
+            <option disabled selected>Select Payee</option>
+            @foreach (var item in Items ?? Enumerable.Empty<TItem>())
+            {
+                <option value="@item">@DisplayText(item)</option>
+            }
+        </select>
+        <button class="select-button">
+            <img src="/img/icons/arrowRightWhite.svg"
+                 alt="arrow"/>
+        </button>
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter, EditorRequired]
+    public IReadOnlyCollection<TItem> Items { get; set; }
+
+    [Parameter]
+    public Func<TItem, string> DisplayText { get; set; }
+    
+    
+
+}

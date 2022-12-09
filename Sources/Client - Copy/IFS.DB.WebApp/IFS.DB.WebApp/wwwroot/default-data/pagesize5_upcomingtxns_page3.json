@@ -1,0 +1,19 @@
+﻿{
+  "UpcomingTransactions": [    
+    {
+      "Reference": "PMS00232",
+      "Narrative": "Paid invoice #564 for Sept",
+      "CreatedDate": "2020-02-29T17:16:40",
+      "CreditAmount": 800.00,
+      "Balance": 0.00
+    },
+    {
+      "Reference": "PMS00231",
+      "Narrative": "Paid invoice #564 for Sept",
+      "CreatedDate": "2020-01-29T17:16:40",
+      "CreditAmount": 800.00,
+      "Balance": 0.00
+    }
+  ],
+  "TotalRecords": 12
+}

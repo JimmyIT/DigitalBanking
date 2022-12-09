@@ -1,0 +1,24 @@
+﻿@using IFS.DB.WebApp.Pages.BaseComponents.TabLoigcal
+@using IFS.DB.WebApp.Helpers.Constants
+
+<CascadingValue Value="this">
+    @ChildContent(State)
+</CascadingValue>
+
+@code {
+
+    [Parameter]
+    public RenderFragment<TabState> ChildContent { get; set; }
+
+    public readonly TabState State = new TabState();
+
+    private List<TabPanel> _listPanel = new List<TabPanel>();
+
+    public void AddChild(TabPanel tabPanel)
+    {
+        _listPanel.Add(tabPanel);
+    }
+
+    public int ChildCount => _listPanel.Count;
+
+}

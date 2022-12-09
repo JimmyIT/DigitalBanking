@@ -1,0 +1,37 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.admin-company-layout {
+    padding: $indent-24 0;
+}
+
+.admin-company-container {
+    @include container;
+}
+
+.admin-company-header {
+    @include pageTitle;
+}
+
+.admin-company {
+    &-main {
+        @include box;
+
+        &-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: $indent-16;
+
+            &-text {
+                @include h2;
+                color: $color-wireframes-900;
+            }
+
+            &-button {
+                @include transparentButton;
+                padding: $indent-8 $indent-16;
+            }
+        }
+    }
+}

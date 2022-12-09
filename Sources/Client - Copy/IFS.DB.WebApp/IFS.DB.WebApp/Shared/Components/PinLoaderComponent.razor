@@ -1,0 +1,34 @@
+@* !!! For success style u need add "class="pin-loader pin-loader--success"" *@
+
+@* !!! For error style u need add "class="pin-loader pin-loader--error"" *@
+
+<div class="pin-loader @(ShowError ? "pin-loader--error" : "")">
+    @for (var i = 0; i < Nums; i++)
+    {
+        <img class="pin-loader-icon" attr-idx="@i" src="@(NumberFilled >= i + 1 ? "/img/icons/bluePinCodeIcon.svg" : "/img/icons/pinCodeIcon.svg")" alt="pin"/>
+    }
+
+    @* !!! Blue icon for success style *@
+    @* <img class="pin-loader-icon" src="/img/icons/bluePinCodeIcon.svg" alt="pin"/> *@
+
+    @* !!! Red icon for error style *@
+    @* <img class="pin-loader-icon" src="/img/icons/redPinCodeIcon.svg" alt="pin"/> *@
+</div>
+
+@code {
+
+    [Parameter]
+    public int NumberFilled { get; set; }
+
+    [Parameter]
+    public bool IsSubmitting { get; set; }
+
+    [Parameter]
+    public int Nums { get; set; }
+
+    [Parameter]
+    public bool ShowInvalid { get; set; }
+
+    private bool ShowError => (IsSubmitting && NumberFilled < Nums) || ShowInvalid;
+
+}

@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace IFS.DB.EF
+{
+    public partial class AccountApplication
+    {
+        public Guid UniqueId { get; set; }
+        public DateTime? DateSubmitted { get; set; }
+        public string? Ipaddress { get; set; }
+        public string? Referer { get; set; }
+        public int? Status { get; set; }
+        public bool ExistingAccountHolder { get; set; }
+        public string? ExistingAccountId { get; set; }
+        public string? AccountType01 { get; set; }
+        public string? AccountType02 { get; set; }
+        public string? AccountType03 { get; set; }
+        public string? AccountType04 { get; set; }
+        public string? AccountType05 { get; set; }
+        public string? AccountType06 { get; set; }
+        public string? AccountType07 { get; set; }
+        public string? AccountType08 { get; set; }
+        public string? AccountType09 { get; set; }
+        public string? AccountType10 { get; set; }
+        public string? TermLength { get; set; }
+        public bool DebitCardRequired { get; set; }
+        public bool CreditCardRequired { get; set; }
+        public string OwnershipType { get; set; } = null!;
+        public int NumberofSignatories { get; set; }
+        public string? Currency { get; set; }
+        public double? FundingDeposit { get; set; }
+        public double? TotalAccountOpeningFees { get; set; }
+        public string? FundingMethod { get; set; }
+        public string? FundingAccountId { get; set; }
+        public string? FundingAccountType { get; set; }
+        public string? FundingBankName { get; set; }
+        public string? FundingBanksRoutingId { get; set; }
+        public string? FundingBanksCity { get; set; }
+        public string? FundingBanksState { get; set; }
+        public string? FundingBanksCountry { get; set; }
+        public string? FundingCreditCardType1 { get; set; }
+        public string? FundingCreditCardNumber1 { get; set; }
+        public string? FundingCreditCardExpiryDate1 { get; set; }
+        public double? FundingCreditCardAmount1 { get; set; }
+        public string? FundingCreditCardType2 { get; set; }
+        public string? FundingCreditCardNumber2 { get; set; }
+        public string? FundingCreditCardExpiryDate2 { get; set; }
+        public double? FundingCreditCardAmount2 { get; set; }
+        public string? AccountHolderTitle { get; set; }
+        public string? AccountHolderFirstName { get; set; }
+        public string? AccountHolderMiddleInitial { get; set; }
+        public string? AccountHolderLastName { get; set; }
+        public string? AccountHolderSuffix { get; set; }
+        public string? SecondSignatoryName { get; set; }
+        public string? ThirdSignatoryName { get; set; }
+        public string? CorporationName { get; set; }
+        public string? AddressLine1 { get; set; }
+        public string? AddressLine2 { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? PostalCode { get; set; }
+        public string? Country { get; set; }
+        public string? HomePhoneNumberCountryCode { get; set; }
+        public string? HomePhoneNumber { get; set; }
+        public string? WorkPhoneNumberCountryCode { get; set; }
+        public string? WorkPhoneNumber { get; set; }
+        public string? FaxCountryCode { get; set; }
+        public string? FaxNumber { get; set; }
+        public string EmailAddress { get; set; } = null!;
+        public string? MailingAddressLine1 { get; set; }
+        public string? MailingAddressLine2 { get; set; }
+        public string? MailingAddressCity { get; set; }
+        public string? MailingAddressState { get; set; }
+        public string? MailingAddressPostalCode { get; set; }
+        public string? MailingAddressCountry { get; set; }
+        public string? SecurityInfo1 { get; set; }
+        public string? SecurityInfo2 { get; set; }
+        public string? SecurityInfo3 { get; set; }
+        public string? SecurityInfo4 { get; set; }
+        public string? SecurityInfo5 { get; set; }
+        public string? AllocatedClientId { get; set; }
+        public string? AllocatedAccountId1 { get; set; }
+        public string? AllocatedAccountType1 { get; set; }
+        public string? AllocatedAccountId2 { get; set; }
+        public string? AllocatedAccountType2 { get; set; }
+        public string? AllocatedAccountId3 { get; set; }
+        public string? AllocatedAccountType3 { get; set; }
+        public string? AllocatedAccountId4 { get; set; }
+        public string? AllocatedAccountType4 { get; set; }
+        public string? AllocatedAccountId5 { get; set; }
+        public string? AllocatedAccountType5 { get; set; }
+        public string? AllocatedAccountId6 { get; set; }
+        public string? AllocatedAccountId7 { get; set; }
+        public string? AllocatedAccounId8 { get; set; }
+        public string? AllocatedAccountId9 { get; set; }
+        public string? AllocatedAccountId10 { get; set; }
+        public string? LogonId { get; set; }
+        public string? Password { get; set; }
+        public Guid SessionId { get; set; }
+        public DateTime ExpiryDate { get; set; }
+        public string? ErrorDescription { get; set; }
+        public string? MessageContent { get; set; }
+        public bool? CanResubmit { get; set; }
+        public string? AmltracRefId { get; set; }
+        public string? ShuftiProRefId { get; set; }
+        public string? ShuftiProVerificationUrl { get; set; }
+        public DateTime? ShuftiProUrlExpiryDate { get; set; }
+        public string? KycRefId { get; set; }
+        public string? BackCallBackUrl { get; set; }
+        public string? SubmitCallBackUrl { get; set; }
+        public int? LatestStep { get; set; }
+        public string? AdditionalDocumentRequirement { get; set; }
+        public bool? AutoApproved { get; set; }
+        public bool? FirstTimeKyc { get; set; }
+        public int? TokenPurchaseRequestId { get; set; }
+        public string? TokenCompanyCode { get; set; }
+		public string? Reference { get; set; }
+        public bool? TransactionConfirmed { get; set; }
+    }
+}

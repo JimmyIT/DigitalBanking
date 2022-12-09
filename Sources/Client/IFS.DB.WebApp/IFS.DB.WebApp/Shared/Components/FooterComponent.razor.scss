@@ -1,0 +1,18 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.main-footer-layout {
+	border-top: 1px solid $color-gray-300;
+	padding: $indent-16 0;
+}
+
+.main-footer-container {
+	@include container;
+}
+
+.main-footer {
+	&__copy {
+		color: $color-gray-600;
+		text-align: right;
+	}
+}

@@ -1,0 +1,56 @@
+.payeesTable td {
+  vertical-align: middle;
+  width: 100%;
+}
+.payeesTable td:nth-child(2) {
+  min-width: 180px;
+}
+.payeesTable td:nth-child(3) {
+  min-width: 168px;
+}
+.payeesTable td:last-child {
+  min-width: 120px;
+}
+.payeesTable thead td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: #f2f7fd;
+  color: #81afed;
+}
+.payeesTable thead td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.payeesTable thead td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.payeesTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+.payeesTable tbody tr:last-child {
+  border-bottom: 0;
+}
+.payeesTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+.payeesTable tbody td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 20px;
+  color: #212121;
+}
+.payeesTable-item {
+  display: flex;
+  align-items: center;
+}
+.payeesTable-item__input {
+  margin-right: 8px;
+}

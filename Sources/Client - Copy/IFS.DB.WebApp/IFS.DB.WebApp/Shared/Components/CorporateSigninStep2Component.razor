@@ -1,0 +1,43 @@
+@using IFS.DB.WebApp.Helpers.Enums
+<EditForm id="individualSigninForm"
+          EditContext="@_editContext"
+          OnSubmit="@ProcessStep">
+    <DataAnnotationsValidator/>
+    <div class="auth-layout">
+        <div class="auth-container">
+            <div class="auth">
+                <p class="auth__title">@L["sign_in"]</p>
+                <div class="auth-box">
+                    <div class="auth-box-header">
+                        <div class="auth-box-header__item " @onclick="GoToStep(CorporateSignInEnum.SigninStepsEnum.FirstStep)">@L["step"] 1</div>
+                        <div class="auth-box-header__item active">@L["step"] 2</div>
+                        <div class="auth-box-header__item disabled">@L["step"] 3</div>
+                        <div class="auth-box-header__item disabled">@L["step"] 4</div>
+                    </div>
+                    <div class="auth-box-main">
+                        <p class="auth-box-main__title">@L["mse_authentication_code"]</p>
+                        <div class="auth-box-main__subtitle">
+                            <p class="auth-box-main__subtitle-text">@L["mse_authentication_code_instruction"]</p>
+                            <div class="auth-box-main__subtitle-info">
+                                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payments-header__tooltip-icon"/>
+                            </div>
+                        </div>
+                        <div class="auth-box-form">
+                            <div class="formgroup">
+                                <label>@L["mse_authentication_code"]</label>
+                                <div class="input-layout">
+                                    <InputText @ref="_txtMseCode" placeholder="@L["enter_here"]" type="password" class="input" @bind-Value="@_model.MseCode" />
+                                </div>
+                                <CustomValidationMessage For="@(() => _model.MseCode)"/>
+                            </div>
+                            <div class="auth-box-form__footer">
+                                <button type="button" class="auth-box-form__footer-back" @onclick="(() => ButtonBackOnClick())">@L["back"]</button>
+                                <button type="submit" class="auth-box-form__footer-next">@L["next"]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>

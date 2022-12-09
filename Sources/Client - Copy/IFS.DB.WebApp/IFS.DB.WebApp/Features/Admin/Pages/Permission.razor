@@ -1,0 +1,41 @@
+@layout BasicLayout
+@page "/admin/permission"
+
+<div class="admin-permission-layout">
+    <div class="admin-permission-container">
+        <div class="admin-permission">
+            <div class="admin-permission-header">
+                <div class="admin-permission-header-wrapper">
+                    <img src="/img/permission/permissionsLogoIcon.svg" alt="logo" class="admin-permission-header__logo" />
+                    <p class="admin-permission-header__title">Permissions</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="admin-permission-header__tooltip-icon" />
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-permission">
+            <div class="admin-permission-box">
+                <div class="admin-permission-box-selections">
+                    <div class="admin-permission-box-selections-radio">
+                        <button type="button" class="admin-permission-box-selections-radio__item active" onclick="onClickTab(event, 'Users')">Users</button>
+                        <button type="button" class="admin-permission-box-selections-radio__item" onclick="onClickTab(event, 'Groups')">Groups</button>
+                    </div>
+
+                    <div class="search admin-permission-box-selections-input-group-input">
+                        <SearchComponent/>
+                    </div>
+                </div>
+
+                <div class="check admin-permission-box-table" id="Users">
+                    <UsersPermissionTableComponent/>
+                </div>
+
+                <div class="check admin-permission-box-table" id="Groups" style="display: none">
+                    <GroupPermissionTableComponent/>
+                </div>
+
+                <PaginatorComponent/>
+            </div>
+        </div>
+    </div>
+</div>

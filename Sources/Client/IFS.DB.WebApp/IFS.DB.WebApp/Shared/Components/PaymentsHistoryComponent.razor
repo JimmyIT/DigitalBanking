@@ -1,0 +1,72 @@
+@using IFS.DB.WebApp.Helpers.Extensions
+<div class="payments-history">
+    <div class="payments-history-header">
+        <button type="button" class="@(_isPaymentHistoryPanel ? _active : _notactive)" @onclick=@ViewPaymentHistoryPanel>Last payments</button>
+        <button type="button" class="@(_isPayeeTemplatesPanel ? _active : _notactive)" @onclick=@ViewPayeeTemplatesPanel>Payee templates</button>
+    </div>
+
+    @if (_isPaymentHistoryPanel)
+    {
+        <div class="check" id="History">
+            <div style="display: flex">
+                <DropdownComponent TItem="SpecificPeriodType"
+                               OnSelectedItem="@OnSelectedValue"
+                               InlineStyle="margin-right: 12px"
+                               ButtonSelectInlineStyle="width:100%;">
+                    <InitialTip>@_specificPeriodType.ToDescription()</InitialTip>
+                    <DropdownChildContent>
+                        @foreach (var value in (SpecificPeriodType[])Enum.GetValues(typeof(SpecificPeriodType)))
+                        {
+                            <DropdownItemComponent Item="@value" Context="_">
+                                <DropdownItemChildContent>@value.ToDescription()</DropdownItemChildContent>
+                            </DropdownItemComponent>
+                        }
+                    </DropdownChildContent>
+                </DropdownComponent>
+            </div>
+
+            @if (_listLastPayment.Count > 0)
+            {
+                foreach (var lastPayment in _listLastPayment)
+                {
+                    var _tempLastPayment = lastPayment; 
+
+                    <div class="payee-reference" @onclick="@(() => SetPaymentHistory(_tempLastPayment))">
+                        <p class="payee-reference__title">
+                            @_tempLastPayment.TemplateRefernce
+                        </p>
+                        <div class="payee-reference-description">
+                            <div class="payee-reference-description__text">
+                                <p>@_tempLastPayment.PaymentType.ToString()</p>
+                                <img class="payee-reference-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                                <p>@_tempLastPayment.PaymentMethod.ToString()</p>
+                            </div>
+                            <p class="payee-reference-description__text">Account No.: @_tempLastPayment.DebitAccount</p>
+                        </div>
+                        <div class="payee-reference-description">
+                            <p class="payee-reference-description__text">@_tempLastPayment.PaymentDate.ToString("dd/MM/yyyy")</p>
+                            <p class="payee-reference-description__sum">@_tempLastPayment.CreditAmount.ToNumberFormat()</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+
+    @if (_isPayeeTemplatesPanel)
+    {
+        <div class="payments-history-info-wrapper check" id="Template">
+            <div>
+                @foreach (var item in _listPayees)
+                {
+                    <PayeeReferenceTemplatesComponent PayeeTemplate="@item"
+                                              OnSetPayeeTemplate="@SetPayeeTemplate"
+                                              OnPinnedItem=@SetFavouriteItem></PayeeReferenceTemplatesComponent>
+                }
+            </div>
+
+            <button id="Template" class="payments-history-info-button" @onclick=@(() => _navigateManager.NavigateTo("/payee"))>All payee templates</button>
+        </div>
+    }
+
+</div>

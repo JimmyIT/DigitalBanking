@@ -1,0 +1,48 @@
+﻿@typeparam TItem
+
+<div @ref=@_containerDropdownListElem
+     id=@ElementId class="customSelector @ContainerCssClass"
+     style="@ContainerInlineStyle"
+     @onfocusout=@OutFocusAsync>
+    @if (MultiSelect)
+    {
+        <button type="button"
+            @ref=@_dropdownButtonElem
+            class="customSelector-input @DropdownButtonCssClass"
+            id="filtersSelector"
+            @onclick="e => this._show=!this._show"
+            style="@DropdownButtonInlineStyle @(_show? "border-radius: 8px 8px 0px 0px":"")">
+            <p class="customSelector-input__placeholder admin-box-selections-customer-name">
+                @InitialPlaceHolder
+            </p>
+            <img src="@(!_show ? "/img/icons/dropdown.svg" : "/img/icons/revertDropdown.svg")" alt="dropdown" class="admin-box-selections-customer-icon" />
+        </button>
+    }
+    else
+    {
+        <button type="button"
+            @ref=@_dropdownButtonElem
+            class="customSelector-input @DropdownButtonCssClass"
+            id="filtersSelector"
+            @onclick="e => this._show=!this._show"
+            style="@DropdownButtonInlineStyle @(_show? "border-radius: 8px 8px 0px 0px":"")">
+            <p class="customSelector-input__placeholder admin-box-selections-customer-name">
+                @if (_selectedDropdownItemFragment != null)
+                {
+                    @_selectedDropdownItemFragment
+                }
+                else
+                {
+                    @InitialPlaceHolder
+                }
+            </p>
+            <img src="@(!_show ? "/img/icons/dropdown.svg" : "/img/icons/revertDropdown.svg")" alt="dropdown" class="admin-box-selections-customer-icon" />
+        </button>
+    }
+
+    <CascadingValue Name="DropdownComponent" Value="@this">
+        <div class="customSelector-dropdown" id="filters" style="@(_show ? "display:block" : "")" @onclick:stopPropagation @onclick:preventDefault>           
+            @ChildContent
+        </div>
+    </CascadingValue>
+</div>

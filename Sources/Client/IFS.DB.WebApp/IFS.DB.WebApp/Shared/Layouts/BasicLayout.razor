@@ -1,0 +1,13 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <HeaderComponent></HeaderComponent>
+    <div class="main">        
+        @Body
+    </div>
+    @if(!IsUseFooter("/admin/user-maintenance/create", NavLinkMatch.All) && !IsUseFooter("admin/user-maintenance/edit") &&
+        !IsUseFooter("/admin/group-maintenance/create", NavLinkMatch.All) && !IsUseFooter("/admin/group-maintenance/edit"))
+    {        
+        <FooterComponent></FooterComponent>
+    }
+</div>

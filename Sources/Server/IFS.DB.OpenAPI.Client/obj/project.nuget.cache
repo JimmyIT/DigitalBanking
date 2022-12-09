@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "fiZcHp8ZxGZv/rx5fLmz87Tkul0CqgM2Tp+veLBXij5LcY88ji1DR/cwk0s1MPaaI/QV1OpjEgMD/MHsZbUCLw==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\Sources\\iBank\\DigitalBanking\\trunk\\Sources\\Server\\IFS.DB.OpenAPI.Client\\IFS.DB.OpenAPI.Client.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\phuon\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\phuon\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\phuon\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

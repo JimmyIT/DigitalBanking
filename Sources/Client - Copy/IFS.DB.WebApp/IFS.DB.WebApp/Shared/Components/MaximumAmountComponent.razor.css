@@ -1,0 +1,54 @@
+.maximum-amount {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  padding: 24px 24px 20px 24px;
+}
+.maximum-amount:last-child {
+  margin-bottom: 0;
+}
+.maximum-amount-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  margin-bottom: 16px;
+}
+.maximum-amount-subtitle {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+}
+.maximum-amount-item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+}
+.maximum-amount-requir {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #9d9d9d;
+}
+.maximum-amount-edit {
+  max-width: 428px;
+}
+.maximum-amount-edit__header {
+  display: flex;
+  justify-content: space-between;
+}
+.maximum-amount-edit__input {
+  text-align: right;
+}

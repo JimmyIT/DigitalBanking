@@ -1,0 +1,21 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.payee-reference {
+    @include paymentCard;
+    margin-bottom: $indent-12;
+    cursor: pointer;
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &:hover:not(:disabled) {
+        border-color: $color-violet-200;
+    }
+
+    &-button {
+        @include lightBlueButton;
+        width: 100%;
+        margin-top: $indent-16;
+    }
+}

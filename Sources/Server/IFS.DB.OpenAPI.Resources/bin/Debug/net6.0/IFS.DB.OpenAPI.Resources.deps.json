@@ -1,0 +1,28 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "IFS.DB.OpenAPI.Resources/1.0.0": {
+        "runtime": {
+          "IFS.DB.OpenAPI.Resources.dll": {}
+        },
+        "resources": {
+          "en-GB/IFS.DB.OpenAPI.Resources.resources.dll": {
+            "locale": "en-GB"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "IFS.DB.OpenAPI.Resources/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

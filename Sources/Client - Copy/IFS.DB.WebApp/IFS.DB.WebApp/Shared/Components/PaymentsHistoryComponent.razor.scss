@@ -1,0 +1,169 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.payments {
+    &-history {
+        @include box;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        &-header {
+            @include boxTabs;
+            margin-bottom: $indent-16;
+        }
+
+        &-selector {
+            margin-bottom: $indent-16;
+        }
+
+        &-info-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &-history-info-button {
+        font-family: "Overpass", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 28px;
+        box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+        display: inline-block;
+        border-radius: 8px;
+        text-align: center;
+        padding: 16px;
+        box-shadow: none;
+        background: #f2f7fd;
+        color: #0360db;
+        width: 100%;
+        margin-top: 16px;
+
+
+        &:hover .iconBlock .icon {
+            opacity: 0;
+        }
+
+        &:hover .iconBlock .iconHover {
+            opacity: 1;
+        }
+
+        &:hover .iconBlock.active .iconActive {
+            opacity: 0;
+        }
+
+        &:hover .iconBlock.active .iconActiveHover {
+            opacity: 1;
+        }
+    }
+}
+
+.iconBlock {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.4s;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+
+    &:hover .icon {
+        opacity: 0;
+    }
+
+    &:hover .iconHover {
+        opacity: 1;
+    }
+
+    &:hover.active .iconActive {
+        opacity: 0;
+    }
+
+    &:hover.active .iconActiveHover {
+        opacity: 1;
+    }
+}
+
+.iconBlock.active .icon {
+    opacity: 0;
+}
+
+.iconBlock.active .iconActive {
+    opacity: 1;
+}
+
+.iconBlock .icon,
+.iconBlock .iconHover,
+.iconBlock .iconActive,
+.iconBlock .iconActiveHover {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.4s;
+}
+
+.iconBlock .iconHover,
+.iconBlock .iconActive,
+.iconBlock .iconActiveHover {
+    opacity: 0;
+}
+
+.payments-history-info-button > img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.payments-history-info-button .iconBlock,
+.payments-history-info-button > img {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 8px;
+}
+
+.payments-history-info-button .iconBlock:first-child,
+.payments-history-info-button > img:first-child {
+    margin-left: 0;
+}
+
+.payments-history-info-button .iconBlock:last-child,
+.payments-history-info-button > img:last-child {
+    margin-right: 0;
+}
+
+.payments-history-info-button:hover {
+    color: #0248a4;
+}
+
+.check {
+    flex-direction: column;
+}
+
+.payee-reference {
+    @include paymentCard;
+    margin-bottom: $indent-12;
+    cursor: pointer;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &:hover:not(:disabled) {
+        border-color: $color-violet-200;
+    }
+
+    &-button {
+        @include lightBlueButton;
+        width: 100%;
+        margin-top: $indent-16;
+    }
+}

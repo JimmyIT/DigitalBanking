@@ -1,0 +1,144 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.edit-user-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.edit-user-container {
+    @include container;
+}
+
+.edit-user {
+    &-breadcrumbs {
+        @include breadcrumbs;
+        margin-bottom: $indent-8;
+    }
+
+    &-header {
+        @include pageTitle;
+    }
+
+    &-info {
+        display: flex;
+        justify-content: space-between;
+        padding: $indent-16;
+        margin-bottom: $indent-24;
+        border: 1px solid $color-gray-300;
+        border-radius: 12px;
+
+        &-left {
+            display: flex;
+            flex-direction: column;
+
+            &-main {
+                display: flex;
+
+                &-item {
+                    min-width: 120px;
+                    &-title {
+                        @include label;
+                        color: $color-gray-600;
+                    }
+                    &-subtitle {
+                        @include h5;
+                    }
+                }
+            }
+
+            &-infomation {
+                align-items: center;
+
+                &__img {
+                    margin-right: $indent-4;
+                }
+            }
+        }
+
+        &-right {
+            display: flex;
+            align-items: center;
+
+            &-button {
+                @include transparentButton2;
+            }
+
+            &-buttons {
+                &__reject {
+                    @include redButton;
+                    background-color: transparent;
+                }
+
+                &__confirm {
+                    @include blueButton;
+                }
+            }
+        }
+    }
+
+    &-main {
+        display: flex;
+
+        &-left {
+            @include box;
+            min-width: 440px;
+            margin-right: $indent-24;
+            margin-bottom: 0;
+
+            &-head {
+                @include h2;
+                color: $color-gray-900;
+                margin-bottom: $indent-16;
+            }
+
+            &-formgroup {
+                margin-bottom: $indent-16;
+
+                &-name {
+                    @include label;
+                    margin-bottom: $indent-4;
+                    color: $color-gray-600;
+                }
+
+                &-title {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: $indent-4;
+
+                    &-name {
+                        @include label;
+                        color: $color-gray-600;
+                    }
+
+                    &-subtitle {
+                        @include caption1;
+                        color: $color-gray-500;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.edit-user-footer-layout {
+    background: $color-white;
+    padding: $indent-24 0;
+}
+
+.edit-user-footer-container {
+    @include container;
+}
+
+.edit-user-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    &__button {
+        @include blueButton;
+        min-width: 148px;
+
+        &.new-user-footer__button--inactive {
+            background: $color-blue-200;
+        }
+    }
+}

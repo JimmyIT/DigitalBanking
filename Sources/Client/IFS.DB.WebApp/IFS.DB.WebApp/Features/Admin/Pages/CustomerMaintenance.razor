@@ -1,0 +1,129 @@
+@layout HostAdminLayout
+@page "/customer-maintenance"
+
+<div class="admin-layout">
+    <div class="admin-container">
+        <div class="admin">
+            <div class="admin-header">
+                <div class="admin-header-wrapper">
+                    <img src="/img/admin/iconCustomers.svg" alt="logo" class="admin-header__logo" />
+                    <p class="admin-header__title">Customers</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="admin-header__tooltip-icon" />
+                </div>
+            </div>
+        </div>
+
+        <div class="admin">
+            <div class="admin-box">
+
+                <EditForm EditContext="_searchEditContext" style="width:100%;">
+                    <div class="admin-box-selections">
+                        <p class="admin-box-selections__name">Customer Selection</p>
+
+                        <div class="select-layout admin-box-selections-input-group">
+                            <div class="customSelector search admin-box-selections-input-group-input">
+                                <div class="customSelector-input" onclick="onClickFilterIcon()" id="filtersSelector">
+                                    <p class="customSelector-input__placeholder admin-box-selections-customer-name">Select customer</p>
+                                    <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+                                </div>
+
+                                <div class="customSelector-dropdown admin-box-selections-input-group-selector" id="filters">
+                                    <div class="customSelector-dropdown-item-input">
+                                        <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon customSelector-dropdown-item-input__icon" />
+                                        <input placeholder="Search" class="input search__input customSelector-dropdown-item-input__input">
+                                    </div>
+                                    <div class="customSelector-dropdown-item">
+                                        <p>IBM</p>
+                                    </div>
+                                    <div class="customSelector-dropdown-item">
+                                        <p>eBay</p>
+                                    </div>
+                                    <div class="customSelector-dropdown-item">
+                                        <p>Nintendo</p>
+                                    </div>
+                                    <div class="customSelector-dropdown-item">
+                                        <p>Gillette</p>
+                                    </div>
+                                    <div class="customSelector-dropdown-item">
+                                        <p>The Walt Disney Company</p>
+                                    </div>
+                                    <div class="customSelector-dropdown-item">
+                                        <p>Mitsubishi</p>
+                                    </div>
+                                    <div class="customSelector-dropdown-item-button">
+                                        <button class="customSelector-dropdown-item-button__button">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- -->
+                            <!-- -->
+                            <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@CustomerTypeEnum
+                                                                                            MultiSelect=@true
+                                                                                            ContainerInlineStyle="margin-right: 12px"
+                                                                                            DropdownButtonInlineStyle="width:100%;"
+                                                                                            SelectedListData=@_listSelectedCustomerTypes
+                                                                                            SelectedItems_Onclick=@SelectedCustomerTypesValue>
+                                <InitialPlaceHolder>Select customer type</InitialPlaceHolder>
+                                <ChildContent>
+                                    @*<IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem=@ProductTypeEnum
+                                    TValue="null" Context="_">
+                                    Product Type
+                                    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>*@
+                                    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=CustomerTypeEnum
+                                                                                                        TValue="CustomerTypeEnum.All"
+                                                                                                        Context="_"
+                                                                                                        SelectAll=@true
+                                                                                                        @onclick=@(() => SelectAllCustomerTypesValue())>
+                                        @CustomerTypeEnum.All.ToDescription()
+                                    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                                    @foreach (var value in ((CustomerTypeEnum[])Enum.GetValues(typeof(CustomerTypeEnum))).Where(x => x != CustomerTypeEnum.All).ToArray())
+                                    {
+                                        <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@CustomerTypeEnum
+                                                                                                        TValue="value" Context="_">
+                                            @value.ToDescription()
+                                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                                    }
+                                </ChildContent>
+                            </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+                            <!-- -->
+                            <!-- -->
+                            
+                            <div class="search admin-box-selections-input-group-input">
+                                <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon" />
+                                <input placeholder="Enter adress" class="input search__input">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="admin-box-filter">
+                        <div class="admin-box-filter-type">
+                            <p class="admin-box-filter-type-text">eBay</p>
+                            <img src="/img/icons/closeIcon.svg" alt="close" class="admin-box-filter-type__close" />
+                        </div>
+                        <div class="admin-box-filter-type">
+                            <p class="admin-box-filter-type-text">Gillette</p>
+                            <img src="/img/icons/closeIcon.svg" alt="close" class="admin-box-filter-type__close" />
+                        </div>
+                        <div class="admin-box-filter-type">
+                            <p class="admin-box-filter-type-text">The Walt Disney Company</p>
+                            <img src="/img/icons/closeIcon.svg" alt="close" class="admin-box-filter-type__close" />
+                        </div>
+                        @foreach (var selectedType in _listSelectedCustomerTypes)
+                        {
+                            <div class="admin-box-filter-type">
+                                <p class="admin-box-filter-type-text">@selectedType.ToDescription()</p>
+                                <img src="/img/icons/closeIcon.svg" alt="close" class="admin-box-filter-type__close" @onclick=@(() => RemoveSelectedCustomerType(selectedType))/>
+                            </div>
+                        }
+                        <div class="admin-box-filter-clear" @onclick=@ClearFilters>
+                            <p>Clear filters</p>
+                        </div>
+                    </div>
+                </EditForm>
+                <div class="admin-box-table">
+                    <CustomerTableComponent />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

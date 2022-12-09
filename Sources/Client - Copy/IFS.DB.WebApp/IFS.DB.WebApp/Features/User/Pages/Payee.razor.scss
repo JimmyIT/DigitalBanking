@@ -1,0 +1,131 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.payee-layout {
+    padding: $indent-24 0;
+}
+
+.payee-container {
+    @include container;
+}
+
+.payee {
+    &-header {
+        @include pageTitle;
+        margin-bottom: $indent-24;
+    }
+
+    &-box {
+        @include box;
+    }
+
+    &-filters {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: $indent-16;
+
+        &__left,
+        &__right {
+            display: flex;
+        }
+        &__left {
+            flex: 1;
+        }
+
+        &-buttons {
+            display: flex;
+        }
+
+        &-button {
+            @include buttonIconMedium;
+        }
+    }
+
+    &-search {
+        max-width: 508px;
+        margin-right: $indent-12;
+    }
+
+    &-account-selector {
+        max-width: 252px;
+    }
+
+    &-cards {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &-card {
+        @include paymentCard;
+        width: calc(33.3% - 11px);
+        margin: $indent-16 $indent-16 0 0;
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            margin-top: 0;
+        }
+        &:nth-child(3n + 3) {
+            margin-right: 0;
+        }
+    }
+}
+
+.payee-add-modal {
+    @include modalDefault;
+
+    &-layout {
+        @include modalDefaultContainer;
+    }
+
+    &-header-wrapper {
+        margin-bottom: $indent-16;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__title {
+            @include h2;
+            color: $color-wireframes-900;
+        }
+
+        &__close {
+            @include buttonIconMedium;
+        }
+    }
+
+    &__subtitle {
+        @include h4;
+        margin-bottom: $indent-16;
+    }
+
+    &-main {
+        margin-bottom: $indent-16;
+    }
+
+    &-form {
+        .formrow {
+            margin-bottom: $indent-16;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+
+        &__buttonCancel {
+            @include lightBlueButton;
+            min-width: 144px;
+        }
+
+        &__buttonSuccess {
+            @include blueButton;
+            min-width: 144px;
+        }
+    }
+}

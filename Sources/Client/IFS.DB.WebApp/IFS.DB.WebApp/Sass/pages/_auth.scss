@@ -1,0 +1,92 @@
+@import "../common/variables";
+@import "../mixins/";
+
+.auth-layout {
+	padding: 80px 0;
+}
+
+.auth-container {
+	@include container;
+}
+
+.auth {
+	&__title {
+		@include h1;
+		text-align: center;
+		margin-bottom: 44px;
+	}
+
+	&-box {
+		@include box;
+		max-width: 632px;
+		margin: 0 auto;
+
+		&-header {
+			@include boxTabs;
+			margin-bottom: $indent-20;
+		}
+
+		&-main {
+			&__title {
+				@include h2;
+				margin-bottom: $indent-4;
+			}
+
+			&__subtitle {
+				display: flex;
+				align-items: flex-start;
+
+				&-text {
+					@include h5;
+					font-weight: 400;
+					flex: 1;
+
+					b {
+						font-weight: 600;
+					}
+				}
+				&-info {
+					img {
+						width: 24px;
+						height: 24px;
+					}
+				}
+			}
+		}
+
+		&-form {
+			margin-top: $indent-16;
+
+			&__footer {
+				display: flex;
+				justify-content: space-between;
+				margin-top: $indent-16;
+
+				&-back,
+				&-next {
+					min-width: 100px;
+				}
+
+				&-back,
+				&-next,
+				&-forgot {
+					margin-right: $indent-16;
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+
+				&-back {
+					@include whiteButton;
+					box-shadow: none;
+				}
+				&-next {
+					@include blueButton;
+				}
+				&-forgot {
+					@include lightBlueButton;
+				}
+			}
+		}
+	}
+}

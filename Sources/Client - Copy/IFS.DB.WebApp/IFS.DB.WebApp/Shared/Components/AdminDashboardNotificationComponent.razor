@@ -1,0 +1,41 @@
+<div class="admin-company-changer">
+    @if (Notifications.MSEAuthorityCodeNotification != null)
+    {
+        <div class="admin-company-changer-item">
+            <div class="admin-company-changer-item-left">
+                <img src="@Notifications.MSEAuthorityCodeNotification.Icon" alt="shield" class="admin-company-changer-item-left__icon" />
+                <div class="admin-company-changer-item-left-text">
+                    <div class="admin-company-changer-item-left-text-title">
+                        <p class="admin-company-changer-item-left-text-title-name">@Notifications.MSEAuthorityCodeNotification.Name</p>
+                        <img src="/img/icons/dotIcon.svg" alt="dot" />
+                        <p class="admin-company-changer-item-left-text-title-time">@Notifications.MSEAuthorityCodeNotification.Time ago</p>
+                    </div>
+                    <p class="admin-company-changet-item-left-text-subtitle">@Notifications.MSEAuthorityCodeNotification.Description</p>
+                </div>
+            </div>
+            <button class="admin-company-changer-item-button" @onclick="@(() => _navigateManager.NavigateTo($"/admin/security?tab=code"))">Details</button>
+        </div>
+    }
+
+    @if (Notifications.AwaitingSignoffNotifications.Count > 0)
+    {
+        @foreach (var item in Notifications.AwaitingSignoffNotifications)
+        {
+            <div class="admin-company-changer-item">
+                <div class="admin-company-changer-item-left">
+                    <img src="@item.UrlAvarta" alt="avatar" class="admin-company-changer-item-left__icon" />
+                    <div class="admin-company-changer-item-left-text">
+                        <div class="admin-company-changer-item-left-text-title">
+                            <p class="admin-company-changer-item-left-text-title-name">@item.Name</p>
+                            <p class="admin-company-changer-item-left-text-title-status">@item.Status.ToDescription()</p>
+                            <img src="/img/icons/dotIcon.svg" alt="dot" />
+                            <p class="admin-company-changer-item-left-text-title-time">@item.Time ago</p>
+                        </div>
+                        <p class="admin-company-changet-item-left-text-subtitle">@item.Description</p>
+                    </div>
+                </div>
+                <button class="admin-company-changer-item-button" @onclick=@(() => _navigateManager.NavigateTo($"/admin/user-maintenance/edit?userID={item.UserID}"))>Details</button>
+            </div>
+        }
+    }
+</div>

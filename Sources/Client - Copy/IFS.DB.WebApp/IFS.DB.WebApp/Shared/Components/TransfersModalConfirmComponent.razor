@@ -1,0 +1,211 @@
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.Transfer
+@using IFS.DB.WebApp.Models.Payment
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+
+<div class="modal-layout" id="ModalConfirm" style="display:block!important">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalConfirm()"></div>
+        <div class="transfers-modal-layout">
+            <div class="transfers-modal">
+                <div class="transfers-modal-header-wrapper">
+                    <div class="transfers-modal-header">
+                        <p class="transfers-modal-header__title">Confirm Transfer</p>
+                        <div
+                            class="transfers-modal-header__icon"
+                            @onclick="Close">
+                            <img
+                                class="icon"
+                                src="/img/icons/closeIcon.svg"
+                                alt="close"/>
+                            <img
+                                class="iconHover"
+                                src="/img/icons/closeIconHover.svg"
+                                alt="close"/>
+                        </div>
+                    </div>
+                    <p class="transfers-modal-header__subtitle">
+                        To confirm transfer, please enter your password
+                    </p>
+                </div>
+                <EditForm EditContext="@_confirmPasswordContext" OnSubmit="@Confirm">
+                    <DataAnnotationsValidator/>
+
+                    <div class="transfers-modal-main">
+                        <div class="transfers-modal-main-info-card">
+                            <div class="transfers-modal-main-info-card-content">
+                                <div class="transfers-modal-main-info-card-content-item">
+                                    <p
+                                        class="transfers-modal-main-info-card-content-item__title">
+                                        From
+                                    </p>
+                                    <p
+                                        class="transfers-modal-main-info-card-content-item__text">
+                                        Account No. @TransferRequestModel.DebitAccount
+                                    </p>
+                                </div>
+                                <div class="transfers-modal-main-info-card-content-item">
+                                    <p
+                                        class="transfers-modal-main-info-card-content-item__title">
+                                        To
+                                    </p>
+                                    <p
+                                        class="transfers-modal-main-info-card-content-item__text">
+                                        Account No. @TransferRequestModel.CreditAccount
+                                    </p>
+                                </div>
+                                <div class="transfers-modal-main-info-card-content-item">
+                                    <p
+                                        class="transfers-modal-main-info-card-content-item__title">
+                                        Entered amount
+                                    </p>
+                                    <p
+                                        class="transfers-modal-main-info-card-content-item__text">
+                                        @TransferRequestModel.Amount.ToNumberFormat()
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formgroup transfers-modal-main-input">
+                            <label>Password</label>
+                            <div class="password">
+                                <InputText
+                                    @bind-Value="@_confirmPasswordModel.Password"
+                                    placeholder="Enter here"
+                                    class="input"
+                                    id="password"
+                                    type="@(_showPassword ? "text" : "password")">
+                                </InputText>
+                                <div
+                                    class="password__icon"
+                                    id="passwordIcon"
+                                    @onclick="OnClickVisiblePassword">
+                                    @PasswordIcon()
+                                </div>
+                            </div>
+                            <div class="input-alert" id="inputAlert" style="display:block!important;">
+                                <CustomValidationMessage For="@(() => _confirmPasswordModel.Password)"></CustomValidationMessage>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transfers-modal-footer">
+                        <button
+                            class="transfers-modal-footer__buttonCancel"
+                            @onclick="Close" @onclick:preventDefault>
+                            Cancel
+                        </button>
+                        <button
+                            class="transfers-modal-footer__buttonSuccess"
+                            type="submit">
+                            Confirm
+                        </button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private RenderFragment PasswordIcon()
+        => @<text>
+             @if (IsPasswordError)
+             {
+                 <img
+                     src="@(_showPassword ? "/img/icons/openEyeRedIcon.svg" : "/img/icons/eyeRedIcon.svg")"
+                     alt="eye"
+                     class="icon"/>
+                 <img
+                     src="@(_showPassword ? "/img/icons/openEyeRedIcon.svg" : "/img/icons/eyeRedIcon.svg")"
+                     alt="eye"
+                     class="iconHover"/>
+             }
+             else
+             {
+                 <img
+                     src="@(_showPassword ? "/img/icons/eyeIcon.svg" : "/img/icons/closeEyeIcon.svg")"
+                     alt="eye"
+                     class="icon"/>
+                 <img
+                     src="@(_showPassword ? "/img/icons/eyeIconHover.svg" : "/img/icons/closeEyeIconHover.svg")"
+                     alt="eye"
+                     class="iconHover"/>
+             }
+            </text>;
+}
+
+
+@code {
+
+    [CascadingParameter]
+    BlazoredModalInstance BlazoredModal { get; set; } = default!;
+
+    [CascadingParameter]
+    IModalService PaymentConfirmModalSvc { get; set; } = default!;
+
+
+    [Parameter, EditorRequired]
+    public CreateTransferRequestModel TransferRequestModel { get; set; } = default!;
+
+    private readonly ConfirmPasswordModel _confirmPasswordModel;
+    private readonly EditContext _confirmPasswordContext;
+    private readonly ValidationMessageStore _messageStore;
+
+    private bool _showPassword;
+
+    public TransfersModalConfirmComponent()
+    {
+        _confirmPasswordModel = new ConfirmPasswordModel();
+        _confirmPasswordContext = new EditContext(_confirmPasswordModel);
+        _messageStore = new ValidationMessageStore(_confirmPasswordContext);
+    }
+
+    protected override void OnInitialized()
+    {
+        _confirmPasswordContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _confirmPasswordContext.OnFieldChanged += (_, args) => { _messageStore.Clear(args.FieldIdentifier); };
+    }
+
+    private bool IsPasswordError => _confirmPasswordContext.GetValidationMessages(_confirmPasswordContext.Field(nameof(_confirmPasswordModel.Password))).Any();
+
+    private async Task Confirm()
+    {
+        if (!_confirmPasswordContext.Validate())
+            return;
+
+        if (!_confirmPasswordModel.Password.Equals(FakeData.Password))
+        {
+            _messageStore.Add(_confirmPasswordContext.Field(nameof(_confirmPasswordModel.Password)), "Incorrect password");
+            _confirmPasswordContext.NotifyValidationStateChanged();
+            return;
+        }
+
+        ShowTransfersModalSuccessComponent();
+
+        await BlazoredModal.CloseAsync();
+    }
+
+    private void ShowTransfersModalSuccessComponent()
+    {
+        ModalParameters parameters = new ModalParameters().Add(nameof(TransfersModalSuccessComponent.TransferRequestModel), TransferRequestModel);
+
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+
+        PaymentConfirmModalSvc.Show<TransfersModalSuccessComponent>("Transfer was confirmed", parameters, options);
+    }
+
+    private async Task Close() => await BlazoredModal.CloseAsync();
+
+
+    private void OnClickVisiblePassword()
+    {
+        _showPassword = !_showPassword;
+    }
+
+
+}

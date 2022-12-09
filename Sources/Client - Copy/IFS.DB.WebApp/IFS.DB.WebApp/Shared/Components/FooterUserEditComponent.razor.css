@@ -1,0 +1,211 @@
+.edit-user-footer-layout {
+  background: #ffffff;
+  padding: 24px 0;
+}
+
+.edit-user-footer-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.edit-user-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.edit-user-footer__archive {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  margin-right: 16px;
+}
+.edit-user-footer__archive:hover .iconBlock .icon {
+  opacity: 0;
+}
+.edit-user-footer__archive:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.edit-user-footer__archive:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.edit-user-footer__archive:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.edit-user-footer__archive .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.edit-user-footer__archive .iconBlock:hover .icon {
+  opacity: 0;
+}
+.edit-user-footer__archive .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.edit-user-footer__archive .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.edit-user-footer__archive .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.edit-user-footer__archive .iconBlock.active .icon {
+  opacity: 0;
+}
+.edit-user-footer__archive .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.edit-user-footer__archive .iconBlock .icon,
+.edit-user-footer__archive .iconBlock .iconHover,
+.edit-user-footer__archive .iconBlock .iconActive,
+.edit-user-footer__archive .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.edit-user-footer__archive .iconBlock .iconHover,
+.edit-user-footer__archive .iconBlock .iconActive,
+.edit-user-footer__archive .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.edit-user-footer__archive > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.edit-user-footer__archive .iconBlock,
+.edit-user-footer__archive > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.edit-user-footer__archive .iconBlock:first-child,
+.edit-user-footer__archive > img:first-child {
+  margin-left: 0;
+}
+.edit-user-footer__archive .iconBlock:last-child,
+.edit-user-footer__archive > img:last-child {
+  margin-right: 0;
+}
+.edit-user-footer__archive:hover {
+  color: #0248a4;
+}
+.edit-user-footer__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  min-width: 148px;
+}
+.edit-user-footer__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.edit-user-footer__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.edit-user-footer__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.edit-user-footer__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.edit-user-footer__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.edit-user-footer__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.edit-user-footer__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.edit-user-footer__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.edit-user-footer__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.edit-user-footer__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.edit-user-footer__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.edit-user-footer__button .iconBlock .icon,
+.edit-user-footer__button .iconBlock .iconHover,
+.edit-user-footer__button .iconBlock .iconActive,
+.edit-user-footer__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.edit-user-footer__button .iconBlock .iconHover,
+.edit-user-footer__button .iconBlock .iconActive,
+.edit-user-footer__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.edit-user-footer__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.edit-user-footer__button .iconBlock,
+.edit-user-footer__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.edit-user-footer__button .iconBlock:first-child,
+.edit-user-footer__button > img:first-child {
+  margin-left: 0;
+}
+.edit-user-footer__button .iconBlock:last-child,
+.edit-user-footer__button > img:last-child {
+  margin-right: 0;
+}
+.edit-user-footer__button:hover {
+  background-color: #0248a4;
+}
