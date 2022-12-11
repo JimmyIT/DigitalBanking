@@ -43,21 +43,23 @@
 
                 <!---->
                 <!---->
-                @*@for(int index = 0; index < _updatedMandateItems.Count;index++)
-                {
-                <MandatesItemComponent MandatesItemID="@((index + 1).ToString())"
-                MandatesItem=@_updatedMandateItems[index]
-                MandatesItem_OnDelete=@DeleteValueItemAsync></MandatesItemComponent>
-                }*@
-                @foreach (MandatesItemModel mandatesItem in _updatedMandateItems)
-                {
-                    <CascadingValue Value="this">
-                        <MandatesItemComponent MandatesItemID="@mandatesItem.MandatesItemId.GetValueOrDefault().ToString()"
-                                           MandatesItem=@mandatesItem
-                                           EditContextIndex=@_editContextCount
+                <CascadingValue Value="this">
+                    @for (int index = 0; index < _updatedMandateItems.Count; index++)
+                    {
+                        <MandatesItemComponent MandatesItemID="@((index + 1).ToString())"
+                                           MandatesItem=@_updatedMandateItems[index]
                                            MandatesItem_OnDelete=@DeleteValueItemAsync></MandatesItemComponent>
-                    </CascadingValue>
+                    }
+                </CascadingValue>
+                @*<CascadingValue Value="this">
+                @foreach (MandatesItemModel mandatesItem in _updatedMandateItems.Select(x => x with { }))
+                {
+                <MandatesItemComponent MandatesItemID="@mandatesItem.MandatesItemId.GetValueOrDefault().ToString()"
+                MandatesItem=@mandatesItem
+                MandatesItem_OnDelete=@DeleteValueItemAsync></MandatesItemComponent>
+
                 }
+                </CascadingValue>*@
                 <!---->
                 <!---->
 

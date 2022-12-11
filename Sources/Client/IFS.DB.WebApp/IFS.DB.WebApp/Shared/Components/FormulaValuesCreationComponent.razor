@@ -1,0 +1,43 @@
+﻿@using IFS.DB.WebApp.Models.Mandates
+
+<div class="mandates-value-item-first-formula-cards">
+    <!---->
+    <!---->
+    <div class="mandates-value-item-first-formula-cards-title">
+        <p class="mandates-value-item-first-formula-cards-title-text">Formula @(_formulaValues.ValueId)</p>
+        <div class="mandates-value-item-first-head__icon" @onclick=@DeleteFormulaValueItemAsync>
+            <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+            <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+        </div>
+    </div>
+    <!---->
+    <!---->
+    <div class="mandates-value-item-first-formula-cards-info">
+        <CascadingValue Value="this">
+            @for (int pairOfValueIndex = 0; pairOfValueIndex < _formulaValues.PairOfValues.Count; pairOfValueIndex++)
+            {                
+                <!---->
+                <!---->
+
+                <PairValueOfFormulaComponent PairValueOfFormula=@(_formulaValues.PairOfValues[pairOfValueIndex] with {})></PairValueOfFormulaComponent>
+
+                <!---->
+                <!---->
+                @if (pairOfValueIndex < _formulaValues.PairOfValues.Count - 1)
+                {
+                    <p class="mandates-value-item-first-formula-cards-info-and">and</p>
+                }
+            }
+        </CascadingValue>
+        <!---->
+        <!---->
+        <button class="mandates-value-item-first-formula-cards-info-add" @onclick=@AddNewPairOfFormulaValueItemAsync>
+            <img src="/img/icons/add.svg" alt="add" class="icon" />
+            <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+        </button>
+    </div>
+
+    <!---->
+    <!---->
+
+</div>

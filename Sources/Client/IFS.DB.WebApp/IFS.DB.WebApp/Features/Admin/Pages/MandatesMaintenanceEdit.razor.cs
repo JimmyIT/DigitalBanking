@@ -3,6 +3,7 @@ using IFS.DB.WebApp.Models;
 using IFS.DB.WebApp.Models.Mandates;
 using IFS.DB.WebApp.Shared.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Z.Collections.Extensions;
 
 namespace IFS.DB.WebApp.Features.Admin.Pages;
 
@@ -15,7 +16,7 @@ public partial class MandatesMaintenanceEdit
     private MandatesMaintenanceRequestModel _mandateMaintenanceRequestModel;
 
     // To keep all added contexts 
-    private Dictionary<int, EditContext> _mandatesContexts = new Dictionary<int, EditContext>();
+    private List<EditContext> _mandatesContexts = new List<EditContext>();
     private List<MandatesItemComponent> _mandatesItemComponents = new List<MandatesItemComponent>();
 
     private ValidationMessageStore _messageStore;
@@ -25,19 +26,20 @@ public partial class MandatesMaintenanceEdit
     private int _updatedMandateItemsCount = 0;
     private List<MandatesItemModel> _updatedMandateItems;
 
-    internal async Task AddEditContextAsync(int index, EditContext ctx) => _mandatesContexts.Add(index, ctx);
+    internal async Task AddEditContextAsync(EditContext ctx) => _mandatesContexts.Add(ctx);
     internal async Task AddMandatesItemComponentAsync(MandatesItemComponent mandateItemComponent) => _mandatesItemComponents.Add(mandateItemComponent);
-    internal async Task RemoveEditContextAsync(int index, EditContext ctx) => _mandatesContexts.Remove(index);
+    internal async Task RemoveEditContextAsync(EditContext ctx) => _mandatesContexts.Remove(ctx);
     internal async Task RemoveMandatesItemComponentAsync(MandatesItemComponent mandateItemComponent) => _mandatesItemComponents.Remove(mandateItemComponent);
     internal async Task SetMandatesItemAsync(MandatesItemModel updatedMandatesItem)
     {
-        _updatedMandateItems.ForEach(mandatesItem =>
+        _updatedMandateItems.ForEach(item =>
         {
-            if (mandatesItem.MandatesItemId == updatedMandatesItem.MandatesItemId)
+            if(item.MandatesItemId == updatedMandatesItem.MandatesItemId)
             {
-                mandatesItem.ItemType = updatedMandatesItem.ItemType;
-                mandatesItem.SimpleValueItem = updatedMandatesItem.SimpleValueItem;
-                mandatesItem.Formula = updatedMandatesItem.Formula;
+                item.MandatesItemId = updatedMandatesItem.MandatesItemId;
+                item.ItemType = updatedMandatesItem.ItemType;
+                item.SimpleValueItem = updatedMandatesItem.SimpleValueItem;
+                item.Formula = updatedMandatesItem.Formula;
             }
         });
     }
@@ -64,7 +66,7 @@ public partial class MandatesMaintenanceEdit
         }
         else
         {
-            _updatedMandateItems = new List<MandatesItemModel>() { new MandatesItemModel(1) };
+            _updatedMandateItems = new List<MandatesItemModel>() { new MandatesItemModel() { MandatesItemId = 1 } };
         }
         _updatedMandateItemsCount = _updatedMandateItems.Count();
 
@@ -74,12 +76,12 @@ public partial class MandatesMaintenanceEdit
         _messageStore = new ValidationMessageStore(_maxAmountEditContext);
         _maxAmountEditContext.OnFieldChanged += HandleFieldChanged;
 
-        _mandatesContexts.Add(1, _maxAmountEditContext);
+        _mandatesContexts.Add(_maxAmountEditContext);
     }
 
     private async Task SaveUpdatesAsync()
     {
-        if (_mandatesContexts.Any(ctx => ctx.Value.Validate() is false))
+        if (_mandatesContexts.Any(ctx => ctx.Validate() is false))
         {
             return;
         }
@@ -100,56 +102,26 @@ public partial class MandatesMaintenanceEdit
 
     private async Task AddValueItemAsync()
     {
-        if (_mandatesContexts.Any(ctx => ctx.Value.Validate() is false))
+        if (_mandatesContexts.Any(ctx => ctx.Validate() is false))
         {
             return;
         }
 
-        _updatedMandateItems.Add(new MandatesItemModel(++_updatedMandateItemsCount));
-        _editContextCount = 1 + _updatedMandateItems.Count();
-
+        _updatedMandateItems.Add(new MandatesItemModel() { MandatesItemId = ++_updatedMandateItemsCount });        
     }
 
-    private async Task DeleteValueItemAsync((MandatesItemComponent itemComponent, int ctxIndex, MandatesItemModel mandateItem) args)
+    private async Task DeleteValueItemAsync((MandatesItemComponent itemComponent, EditContext ctx, MandatesItemModel mandateItem) args)
     {
-        _mandatesItemComponents.RemoveAll(x => x.MandatesItemID == args.itemComponent.MandatesItemID);
-        _mandatesContexts.Remove(args.ctxIndex);
-        _updatedMandateItems.RemoveAll(x => x.MandatesItemId == args.mandateItem.MandatesItemId);
-        
-        //StateHasChanged();
+        _mandatesContexts.Remove(args.ctx);
+        _mandatesItemComponents.Remove(args.itemComponent);
+        _updatedMandateItems.Remove(args.mandateItem);
 
-        //// Re-calculate index
-        //var tempListMandatesItems = _updatedMandateItems;
-        //var tempListMandatesItemComponents = _mandatesItemComponents;
-
-        //_updatedMandateItemsCount = 0;
-        //tempListMandatesItemComponents.ForEach(mandateItemComp =>
-        //{
-        //    mandateItemComp.MandatesItemID = (++_updatedMandateItemsCount).ToString();
-        //});
-
-        //_updatedMandateItemsCount = 0;
-        //tempListMandatesItems.ForEach(mandItem =>
-        //{
-        //    mandItem.MandatesItemId = ++_updatedMandateItemsCount;
-        //    mandItem.SimpleValueItem = mandItem.SimpleValueItem;
-        //    mandItem.Formula = mandItem.Formula;
-
-        //    _mandatesItemComponents.ForEach(mandateItemComp =>
-        //    {
-        //        if(mandateItemComp.MandatesItemID == mandItem.MandatesItemId.GetValueOrDefault().ToString())
-        //        {
-        //            mandateItemComp.UpdateItemModelAsync(mandItem);
-        //            mandateItemComp.ForeceStateHasChanged();
-        //        }
-        //    });
-        //});
-
-        //_updatedMandateItems = tempListMandatesItems;
-        //_mandatesItemComponents = tempListMandatesItemComponents;
-        //StateHasChanged();
+        _updatedMandateItemsCount = 0;
+        _updatedMandateItems.ForEach(item =>
+        {
+            item.MandatesItemId = ++_updatedMandateItemsCount;
+        });
     }
 
-    //protected async void RenderAsync(object sender, EventArgs e) => await this.InvokeAsync(StateHasChanged);
     private async Task RestartEditting() => await PrepareRequestModelAsync();
 }

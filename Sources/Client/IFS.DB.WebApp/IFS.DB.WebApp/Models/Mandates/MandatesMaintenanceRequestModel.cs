@@ -11,7 +11,7 @@ public record MandatesMaintenanceRequestModel
     [GreaterThanZero("Maximum amount must be greater than 0")]
     public decimal? MaximumAmount { get; set; }
 
-    //[ValidateComplexType]
+   // [ValidateComplexType]
     public List<MandatesItemModel>? MandatesItems { get; set; }
 }
 

@@ -7,20 +7,13 @@ namespace IFS.DB.WebApp.Models.Mandates;
 
 public record MandatesMaintenanceModel
 {
+    public int UserID { get; set; }
     public decimal? MaximumAmount { get; set; }
     public List<MandatesItemModel>? MandatesItems { get; set; }
 }
 
 public record MandatesItemModel
 {
-    public MandatesItemModel()
-    { }
-
-    public MandatesItemModel(int mandatesId)
-    {
-        MandatesItemId = mandatesId;
-    }
-
     public int? MandatesItemId { get; set; }
     public MandatesItemTypeEnum ItemType { get; set; }
     public SimpleValueItemModel? SimpleValueItem { get; set; }
@@ -29,11 +22,13 @@ public record MandatesItemModel
 
 public record SimpleValueItemModel
 {
+    public string SimpleValueID { get; set; }
     public string CurrencyCode { get; set; } = "USD";
 
     [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "required")]
     [GreaterThanZero("Amount must be greater than 0")]
     public decimal? Amount { get; set; }
+
     [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "required")]
     public int NumberOfSignatures { get; set; }
 }
@@ -45,8 +40,12 @@ public record FormulaItemsModel()
 
 public record FormulaItemModel
 {
+    public string FormulaItemID { get; set; }
     public string CurrencyCode { get; set; } = "USD";
-    public decimal Amount { get; set; }
+
+    [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "required")]
+    [GreaterThanZero("Amount must be greater than 0")]
+    public decimal? Amount { get; set; }
     public List<FormulaValuesModel> FormulaValues { get; set; }
 }
 
@@ -58,6 +57,7 @@ public record FormulaValuesModel
 
 public record PairValueOfFormula()
 {
+    public string PairValueID { get; set; }
     public int NumberSignatures { get; set; }
     public LevelOfUserEnum? LevelOfUser { get; set; }
 }

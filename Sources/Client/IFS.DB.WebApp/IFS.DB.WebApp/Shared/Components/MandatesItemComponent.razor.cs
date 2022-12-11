@@ -11,52 +11,51 @@ public partial class MandatesItemComponent
 {
     [CascadingParameter] public MandatesMaintenanceEdit Owner { get; set; } = default!;
     [Parameter] public string MandatesItemID { get; set; }
-    [Parameter] public int EditContextIndex { get; set; }
     [Parameter] public MandatesItemModel MandatesItem { get; set; }
-    [Parameter] public EventCallback<(MandatesItemComponent, int, MandatesItemModel)> MandatesItem_OnDelete { get; set; }
+    [Parameter] public EventCallback<(MandatesItemComponent, EditContext, MandatesItemModel)> MandatesItem_OnDelete { get; set; }
 
     private EditContext _editContext;
     private ValidationMessageStore _validationMessageStore;
 
-    private MandatesItemModel _mandatesItemModel = new MandatesItemModel();
-    private SimpleValueItemModel _simpleValueItemModel = new SimpleValueItemModel();
-    private FormulaItemsModel _formulaItemsModel = new FormulaItemsModel();
-    private List<FormulaItemModel> _formulaItemListModel;
+    private List<FormulaItemCreationComponent> _listFormulaItemComponent;
+
+    private MandatesItemModel _mandatesItem;
+    private SimpleValueItemModel _simpleValueItem;
+    private FormulaItemsModel _formulaItems;
 
     private bool _isSimpleValueSection = false;
     private bool _isFormulaSection = false;
 
-    internal async Task ForeceStateHasChanged()
+    internal async Task AddEditContextAsync(EditContext ctx) => await Owner.AddEditContextAsync(ctx);
+    internal async Task AddFormulaItemComponentAsync(FormulaItemCreationComponent formulaItemComponent)
+        => _listFormulaItemComponent.Add(formulaItemComponent);
+    internal async Task RemoveEditContextAsync(EditContext ctx) => Owner.RemoveEditContextAsync(ctx);
+    internal async Task SetUpdatedFormulaData(FormulaItemModel updatedFormulaItem)
     {
-        StateHasChanged();
-    }
-
-    internal async Task UpdateItemModelAsync(MandatesItemModel mandatesItemModel)
-    {
-        switch (mandatesItemModel.ItemType)
+        _formulaItems.Items.ForEach(formulaItem =>
         {
-            case MandatesItemTypeEnum.Simple:
-                {
-                    _simpleValueItemModel = mandatesItemModel.SimpleValueItem;
-                    break;
-                }
-            case MandatesItemTypeEnum.Formula:
-                {
-                    break;
-                }
-        }
+            if(formulaItem.FormulaItemID.Equals(updatedFormulaItem.FormulaItemID))
+            {
+                formulaItem.CurrencyCode = updatedFormulaItem.CurrencyCode;
+                formulaItem.Amount = updatedFormulaItem.Amount;
+                formulaItem.FormulaValues = updatedFormulaItem.FormulaValues;
+            }
+        });
+
+        _mandatesItem.Formula.Items = _formulaItems.Items.Select(x => x with { }).ToList();
+        await Owner.SetMandatesItemAsync(_mandatesItem with { });
     }
+    internal async Task ForceStateHasChanged() => StateHasChanged();
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
-        parameters.SetParameterProperties(this);        
+        parameters.SetParameterProperties(this);
+
+        _mandatesItem = MandatesItem with { };        
+        _simpleValueItem = _mandatesItem.SimpleValueItem;
+        _formulaItems = _mandatesItem.Formula;
 
         await base.SetParametersAsync(parameters);
-    }
-
-    protected override void OnParametersSet()
-    {                
-        base.OnParametersSet();
     }
 
     protected override async Task OnInitializedAsync()
@@ -69,18 +68,9 @@ public partial class MandatesItemComponent
         await PrepareUIAsync();
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            
-        }
-    }
-
     private async Task PrepareUIAsync()
     {
-        _mandatesItemModel = MandatesItem with { };
-        switch (_mandatesItemModel.ItemType)
+        switch (_mandatesItem.ItemType)
         {
             case MandatesItemTypeEnum.Simple:
                 {
@@ -97,81 +87,87 @@ public partial class MandatesItemComponent
 
     private async Task ActiveSimpleValueSectionAync()
     {
-        _mandatesItemModel.ItemType = MandatesItemTypeEnum.Simple;
-        await GetAtiveOptionAsync(MandatesItemTypeEnum.Simple);
-
-        if (_mandatesItemModel.SimpleValueItem != null)
+        if (_editContext != null)
         {
-            _simpleValueItemModel.CurrencyCode = _mandatesItemModel.SimpleValueItem.CurrencyCode;
-            _simpleValueItemModel.Amount = _mandatesItemModel.SimpleValueItem.Amount;
-            _simpleValueItemModel.NumberOfSignatures = _mandatesItemModel.SimpleValueItem.NumberOfSignatures;
+            await Owner.RemoveEditContextAsync(_editContext);
+            await Owner.RemoveMandatesItemComponentAsync(this);
+        }
+
+        _mandatesItem.ItemType = MandatesItemTypeEnum.Simple;
+        await GetAtiveOptionAsync(MandatesItemTypeEnum.Simple);
+        if (_mandatesItem.SimpleValueItem != null)
+        {
+            _simpleValueItem = _mandatesItem.SimpleValueItem with { };
         }
         else
         {
-            _simpleValueItemModel = new SimpleValueItemModel(); 
+            _simpleValueItem = new SimpleValueItemModel();
+            _simpleValueItem.SimpleValueID = Guid.NewGuid().ToString("N");
+            _mandatesItem.SimpleValueItem = _simpleValueItem;
         }
+        _mandatesItem.Formula = null;
+        await Owner.SetMandatesItemAsync(_mandatesItem);
 
-        if (_editContext != null)
-        {
-            //await Owner.RemoveEditContextAsync(_editContext);
-            //await Owner.RemoveMandatesItemComponentAsync(this);
-            _editContext.Validate();
-            return;
-        }       
-
-        _editContext = new EditContext(_simpleValueItemModel);
+        _editContext = new EditContext(_simpleValueItem);
         _editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
         _validationMessageStore = new ValidationMessageStore(_editContext);
         _editContext.OnFieldChanged += EditContext_OnFieldChanged;
 
-        await Owner.AddEditContextAsync(EditContextIndex, _editContext);
+        await Owner.AddEditContextAsync(_editContext);
         await Owner.AddMandatesItemComponentAsync(this);
     }
 
     private async Task ActiveFormulaSection()
     {
-        //_mandatesItemModel.ItemType = MandatesItemTypeEnum.Formula;
-        //await GetAtiveOptionAsync(_mandatesItemModel.ItemType);
+        if (_editContext != null)
+        {
+            await Owner.RemoveEditContextAsync(_editContext);
+        }
 
-        //if (_mandatesItemModel.Formula != null)
-        //{
-        //    _formulaItemsModel = _mandatesItemModel.Formula;
-        //}
-        //else
-        //{
-        //    _formulaItemsModel = new FormulaItemsModel()
-        //    {
-        //        Items = new List<FormulaItemModel>()
-        //        {
-        //            new FormulaItemModel()
-        //        }
-        //    };
-        //}
+        _mandatesItem.ItemType = MandatesItemTypeEnum.Formula;
+        await GetAtiveOptionAsync(MandatesItemTypeEnum.Formula);
+        if (_mandatesItem.Formula != null)
+        {
+            _formulaItems = _mandatesItem.Formula with { };
+        }
+        else
+        {
+            _formulaItems = new FormulaItemsModel()
+            {
+                Items = new List<FormulaItemModel>()
+                {
+                    new FormulaItemModel()
+                    {
+                        FormulaItemID = Guid.NewGuid().ToString("N")
+                    }
+                }
+            };
+            _mandatesItem.Formula = _formulaItems;
+        }
+        _mandatesItem.SimpleValueItem = null;
 
-        //_formulaItemListModel = _formulaItemsModel.Items;
-        //_editContext = new EditContext(_formulaItemModel);
-        //_editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
-        //_validationMessageStore = new ValidationMessageStore(_editContext);
-        //await Owner.AddEditContextAsync(_editContext);
+        await Owner.SetMandatesItemAsync(_mandatesItem with { });
+
+        _listFormulaItemComponent = new List<FormulaItemCreationComponent>();
     }
 
     private async void EditContext_OnFieldChanged(object sender, FieldChangedEventArgs e)
     {
-        switch (MandatesItem.ItemType)
+        switch (_mandatesItem.ItemType)
         {
             case MandatesItemTypeEnum.Simple:
                 {
-                    _mandatesItemModel.SimpleValueItem = _simpleValueItemModel;
+                    _mandatesItem.SimpleValueItem = _simpleValueItem;
                     break;
                 }
             case MandatesItemTypeEnum.Formula:
                 {
-                    _mandatesItemModel.Formula = _formulaItemsModel;
+                    _mandatesItem.Formula = _formulaItems;
                     break;
                 }
         }
 
-        await Owner.SetMandatesItemAsync(_mandatesItemModel);
+        await Owner.SetMandatesItemAsync(_mandatesItem with { });
     }
 
     private async Task GetAtiveOptionAsync(MandatesItemTypeEnum mandateItemType)
@@ -186,7 +182,6 @@ public partial class MandatesItemComponent
     /// <returns></returns>
     private async Task RemoveMandatesItemAsync()
     {
-        await MandatesItem_OnDelete.InvokeAsync((this, EditContextIndex, _mandatesItemModel));
+        await MandatesItem_OnDelete.InvokeAsync((this, _editContext, _mandatesItem));
     }
-
 }
