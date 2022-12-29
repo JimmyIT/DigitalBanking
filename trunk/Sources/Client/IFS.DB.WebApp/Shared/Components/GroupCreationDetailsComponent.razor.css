@@ -1,0 +1,41 @@
+.details {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  min-width: 440px;
+  margin-right: 24px;
+  margin-bottom: 0;
+}
+.details:last-child {
+  margin-bottom: 0;
+}
+.details-head {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  margin-bottom: 16px;
+  color: #212121;
+}
+.details-formgroup {
+  margin-bottom: 16px;
+}
+.details-formgroup:last-child {
+  margin-bottom: 0;
+}
+.details-formgroup-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+  color: #6a6a6a;
+}
+.details-formgroup-area {
+  min-height: 480px;
+}

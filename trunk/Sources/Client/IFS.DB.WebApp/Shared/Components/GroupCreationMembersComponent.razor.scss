@@ -1,0 +1,97 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.members {
+    @include box;
+    width: 100%;
+
+    .customSelector {
+        margin-bottom: 16px;
+    }
+
+    &-head {
+        @include h2;
+        margin-bottom: $indent-16;
+        color: $color-gray-900;
+    }
+
+    &-formgroup {
+        margin-bottom: $indent-16;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &-name {
+            @include label;
+            margin-bottom: $indent-4;
+            color: $color-gray-600;
+        }
+
+        &-area {
+            min-height: 480px;
+        }
+    }
+
+    &-dropdown {
+        width: 100%;
+    }
+
+    &-item {
+        display: flex;
+        align-items: center;
+
+        &-icon {
+            margin-right: $indent-8;
+        }
+    }
+
+    &-container {
+        @include customScroll;
+        overflow-y: auto;
+        height: 494px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+
+        &.new-group-main-right-container {
+            padding-right: 14px;
+        }
+
+        &-item {
+            width: calc(50% - 6px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: $indent-12;
+            margin-right: $indent-12;
+            padding: $indent-8;
+            border-radius: $indent-8;
+            background: $color-background;
+            height: max-content;
+
+            &:nth-child(-n + 2) {
+                margin-top: 0;
+            }
+
+            &:nth-child(even) {
+                margin-right: 0;
+            }
+
+            &-profile {
+                display: flex;
+                align-items: center;
+
+                &-name {
+                    @include h5;
+                    margin: 6px $indent-8;
+                    color: $color-gray-800;
+                }
+            }
+
+            &-delete {
+                @include buttonIconSmall;
+            }
+        }
+    }
+}

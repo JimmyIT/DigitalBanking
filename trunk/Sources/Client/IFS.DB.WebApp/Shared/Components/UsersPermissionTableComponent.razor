@@ -1,0 +1,99 @@
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Models.Permission
+@using Humanizer
+@using IFS.DB.WebApp.Models
+@using Z.Collections.Extensions
+
+<div>
+    <QuickGrid
+        Class="usersTable"
+        TGridItem="UserPermissionModel"
+        Items="_userPermissions.AsQueryable()"
+        Pagination="_pagination"
+        Theme="override"
+        @ref="_gridRef">
+        <TemplateColumn TGridItem="UserPermissionModel" Title="USER NAME" SortBy="_sortByName">
+            <div class="usersTable-item">
+                <img src="@context.User!.AvatarUrl" alt="avatar" class="usersTable-item__img"/> @context.User!.Name
+            </div>
+        </TemplateColumn>
+        <TemplateColumn TGridItem="UserPermissionModel" Title="BELONGS TO GROUP">
+            @context.Group!.Name
+        </TemplateColumn>
+        <TemplateColumn TGridItem="UserPermissionModel" Title="FOLLOWS GROUP PERMISSION">
+            <HeaderTemplate Context="Col">
+                <div class="col-header-content">
+                    <div class="col-title">
+                        <div class="col-title-text usersTable-item">
+                            <input type="checkbox" class="usersTable-item__input" checked="@AllGroupSelected" @onchange="SetAllChange"/>
+                            FOLLOWS GROUP PERMISSION
+                        </div>
+                    </div>
+                </div>
+            </HeaderTemplate>
+            <ChildContent>
+                <div class="usersTable-item">
+                    <input type="checkbox" class="usersTable-item__input" checked="@context.IsFollowGroup" @onchange="@((args) => context.IsFollowGroup = bool.Parse(args.Value.ToString()))"/>
+                    <span style="visibility: @(context.IsFollowGroup ? "hidden" : "visible")"> The user doesn’t follow group permission. You can setup Personal Permissions.</span>
+                </div>
+            </ChildContent>
+        </TemplateColumn>
+        <TemplateColumn TGridItem="UserPermissionModel" Title="" Align="Align.Right">
+            <button
+                class="usersTable-button @(context.IsFollowGroup ? "usersTable-button--inactive" : "")" disabled="@context.IsFollowGroup"
+                    @onclick="@(() => _navigateManager.NavigateTo($"/admin/user/{context.Id}/permission/accounts"))">
+                Set up Permissions
+            </button>
+        </TemplateColumn>
+    </QuickGrid>
+      <Paginator Value="@_pagination"/>
+</div>
+
+@code {
+
+    private IList<UserPermissionModel> _userPermissions = new List<UserPermissionModel>();
+    
+    private readonly GridSort<UserPermissionModel> _sortByName = GridSort<UserPermissionModel>
+        .ByAscending(x => x.User!.Name)
+        .ThenDescending(x => x.User!.Name);
+
+    private bool AllGroupSelected => _userPermissions.All(x => x.IsFollowGroup is true);
+
+    private QuickGrid<UserPermissionModel> _gridRef;
+    private string? _searchString;
+
+    private readonly PaginationState _pagination = new PaginationState
+    {
+        ItemsPerPage = 5
+    };
+
+    protected override void OnInitialized()
+    {
+        _userPermissions = FakeData.UserPermissions;
+    }
+
+    private async Task GetUserPermission()
+    {
+        _userPermissions = FakeData.UserPermissions;
+
+    // if (!string.IsNullOrEmpty(_searchString))
+    // {
+    //     _userPermissions = _userPermissions.Where(x => x.UserReference?.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase) ?? false).ToList();
+    // }
+    //
+    // if (!string.IsNullOrEmpty(_selectedAccount))
+    // {
+    //     _userPermissions = _userPermissions.Where(x => x.DebitAccount?.Equals(_selectedAccount, StringComparison.CurrentCultureIgnoreCase) ?? false).ToList();
+    // }
+
+        await _gridRef.RefreshDataAsync();
+    }
+
+    private void SetAllChange(ChangeEventArgs args)
+    {
+        bool value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+        
+        _userPermissions.ForEach(x => x.IsFollowGroup = value);
+    }
+
+}

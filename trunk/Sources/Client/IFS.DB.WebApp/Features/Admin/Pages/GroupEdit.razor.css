@@ -1,0 +1,304 @@
+.edit-group-layout {
+  padding: 24px 0 36px;
+}
+
+.edit-group-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.edit-group-breadcrumbs {
+  display: flex;
+  margin-bottom: 8px;
+}
+.edit-group-breadcrumbs__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  padding: 4px 0;
+  margin-right: 8px;
+}
+.edit-group-breadcrumbs__item::after {
+  content: "/";
+  margin-left: 8px;
+}
+.edit-group-breadcrumbs__item:last-child {
+  margin-right: 0;
+}
+.edit-group-breadcrumbs__item:last-child::after {
+  display: none;
+}
+.edit-group-breadcrumbs__item.active {
+  color: #212121;
+}
+.edit-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.edit-group-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.edit-group-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.edit-group-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.edit-group-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.edit-group-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.edit-group-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.edit-group-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.edit-group-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.edit-group-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.edit-group-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.edit-group-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.edit-group-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.edit-group-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.edit-group-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.edit-group-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.edit-group-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.edit-group-header__button .iconBlock .icon,
+.edit-group-header__button .iconBlock .iconHover,
+.edit-group-header__button .iconBlock .iconActive,
+.edit-group-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.edit-group-header__button .iconBlock .iconHover,
+.edit-group-header__button .iconBlock .iconActive,
+.edit-group-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.edit-group-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.edit-group-header__button .iconBlock,
+.edit-group-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.edit-group-header__button .iconBlock:first-child,
+.edit-group-header__button > img:first-child {
+  margin-left: 0;
+}
+.edit-group-header__button .iconBlock:last-child,
+.edit-group-header__button > img:last-child {
+  margin-right: 0;
+}
+.edit-group-header__button:hover {
+  color: #0248a4;
+}
+.edit-group-main {
+  display: flex;
+  height: 688px;
+}
+
+.edit-group-footer-layout {
+  background: #ffffff;
+  padding: 24px 0;
+}
+
+.edit-group-footer-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.edit-group-footer {
+  display: flex;
+  justify-content: end;
+}
+.edit-group-footer-item {
+  display: flex;
+  align-items: center;
+  margin-right: 44px;
+}
+.edit-group-footer-item-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  margin-right: 4px;
+  color: #6a6a6a;
+}
+.edit-group-footer-item-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #393939;
+}
+.edit-group-footer-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  min-width: 148px;
+}
+.edit-group-footer-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.edit-group-footer-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.edit-group-footer-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.edit-group-footer-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.edit-group-footer-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.edit-group-footer-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.edit-group-footer-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.edit-group-footer-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.edit-group-footer-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.edit-group-footer-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.edit-group-footer-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.edit-group-footer-button .iconBlock .icon,
+.edit-group-footer-button .iconBlock .iconHover,
+.edit-group-footer-button .iconBlock .iconActive,
+.edit-group-footer-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.edit-group-footer-button .iconBlock .iconHover,
+.edit-group-footer-button .iconBlock .iconActive,
+.edit-group-footer-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.edit-group-footer-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.edit-group-footer-button .iconBlock,
+.edit-group-footer-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.edit-group-footer-button .iconBlock:first-child,
+.edit-group-footer-button > img:first-child {
+  margin-left: 0;
+}
+.edit-group-footer-button .iconBlock:last-child,
+.edit-group-footer-button > img:last-child {
+  margin-right: 0;
+}
+.edit-group-footer-button:hover {
+  background-color: #0248a4;
+}

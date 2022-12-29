@@ -1,0 +1,245 @@
+@import "../common/variables";
+@import "../mixins/";
+
+.profile-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.profile-container {
+    @include container;
+}
+
+.profile {
+    &-header {
+        @include pageTitle;
+        margin-bottom: $indent-24;
+    }
+
+    &-section {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    &-menu {
+        @include menu;
+        margin-right: $indent-24;
+    }
+
+    &-main {
+        @include box;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 540px;
+
+        &__content {
+            flex: 1;
+        }
+
+        &__title {
+            @include h2;
+            margin-bottom: $indent-16;
+        }
+
+        &__hr {
+            @include line;
+            margin: $indent-16 0;
+        }
+
+        &-formblock {
+            margin-top: $indent-16;
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &__title {
+                @include h4;
+                margin-bottom: $indent-16;
+            }
+        }
+
+        &__footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            &-message {
+                @include h5;
+                display: flex;
+                align-items: center;
+                margin-right: $indent-12;
+
+                &__icon {
+                    @include square-icon(24px);
+                }
+            }
+
+            &-button {
+                @include blueButton;
+                min-width: 160px;
+            }
+        }
+    }
+
+    &-info {
+        display: flex;
+
+        &-avatar {
+            @include avatar;
+            @include square-icon(104px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: $color-sky-blue-500;
+            margin-right: $indent-16;
+            position: relative;
+
+            &__initials {
+                @include h2;
+                color: $color-white;
+            }
+
+            &-edit {
+                @include buttonIcon;
+                border-radius: 4px;
+                background: $color-sky-blue-100;
+                padding: $indent-8;
+                position: absolute;
+                bottom: -6px;
+                right: -6px;
+                z-index: 2;
+                cursor: pointer;
+
+                &-dropdown {
+                    @include dropdown;
+                }
+            }
+        }
+
+        &-main {
+            flex: 1;
+            border-radius: 12px;
+            background: $color-gray-100;
+            padding: $indent-16;
+
+            &__title {
+                @include h5;
+                color: $color-gray-800;
+                margin-bottom: $indent-8;
+            }
+
+            &__row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-end;
+
+                &-content {
+                    flex: 1;
+                    display: flex;
+                }
+
+                &-button {
+                    @include transparentButton;
+                }
+            }
+
+            &__column {
+                width: 140px;
+                margin-right: $indent-12;
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &-caption {
+                    @include label;
+                    color: $color-gray-600;
+                }
+            }
+        }
+    }
+
+    &-notifications-block {
+        margin-top: $indent-16;
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &__title {
+            @include h4;
+            margin-bottom: $indent-12;
+        }
+
+        &__item {
+            margin-bottom: $indent-8;
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &-label {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                &-text {
+                    @include h5;
+                    margin-left: $indent-8;
+                }
+            }
+
+            &-radio {
+                @include radio;
+            }
+
+            &-caption {
+                color: $color-gray-600;
+                padding-left: 32px;
+            }
+        }
+    }
+
+    &-security-sessions {
+        margin-top: $indent-16;
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &__title {
+            @include h4;
+        }
+
+        &-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    &-security-session {
+        width: 284px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+        background: $color-gray-100;
+        padding: $indent-16;
+        margin: $indent-12 $indent-12 0 0;
+
+        &__title {
+            @include h5;
+        }
+
+        &__caption {
+            @include caption1;
+            color: $color-gray-600;
+        }
+
+        &__text {
+            flex: 1;
+            margin-top: $indent-12;
+        }
+
+        &__button {
+            @include transparentButton;
+            margin-top: $indent-12;
+        }
+    }
+}

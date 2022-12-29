@@ -1,0 +1,112 @@
+@layout BasicLayout
+@page "/admin/permission"
+@using static Permission.TabPath
+@using IFS.DB.WebApp.Shared.BaseComponents.TabLoigcal
+
+<div class="admin-permission-layout">
+    <div class="admin-permission-container">
+        <div class="admin-permission">
+            <div class="admin-permission-header">
+                <div class="admin-permission-header-wrapper">
+                    <img src="/img/permission/permissionsLogoIcon.svg" alt="logo" class="admin-permission-header__logo"/>
+                    <p class="admin-permission-header__title">Permissions</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="admin-permission-header__tooltip-icon"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-permission">
+            <div class="admin-permission-box">
+                <Tab Context="tabState" @ref="_tabRef">
+                    <div class="admin-permission-box-selections">
+
+                        <div class="admin-permission-box-selections-radio">
+                            <button
+                                type="button"
+                                class="admin-permission-box-selections-radio__item  @(tabState.ClassStatus(User.Index, "active"))"
+                                @onclick="@tabState.SetActive(User.Index)">
+                                Users
+                            </button>
+                            <button
+                                type="button"
+                                class="admin-permission-box-selections-radio__item  @(tabState.ClassStatus(TabPath.Group.Index, "active"))"
+                                @onclick="@tabState.SetActive(TabPath.Group.Index)">
+                                Groups
+                            </button>
+                        </div>
+
+                        <div class="search admin-permission-box-selections-input-group-input">
+                            <SearchComponent UseSearchButton="true"/>
+                        </div>
+                    </div>
+                    <TabPanel Index="User.Index">
+                        <div class="check admin-permission-box-table" id="Users">
+                            <UsersPermissionTableComponent/>
+                        </div>
+                    </TabPanel>
+                    <TabPanel Index="TabPath.Group.Index">
+                        <div class="check admin-permission-box-table" id="Groups">
+                            <GroupPermissionTableComponent/>
+                        </div>
+                    </TabPanel>
+                </Tab>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public struct QueryParam
+    {
+        public const string Tab = "tab";
+    }
+
+    public struct TabPath
+    {
+        public struct User
+        {
+            public const int Index = 0;
+            public const string PathName = "user";
+        }
+
+        public struct Group
+        {
+            public const int Index = 1;
+            public const string PathName = "group";
+        }
+    }
+
+}
+
+@code {
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = QueryParam.Tab)]
+    public string? Tab { get; set; }
+
+    private int _tabIndex = 0;
+
+    private Tab? _tabRef;
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrEmpty(Tab))
+        {
+            _tabIndex = Tab switch {
+                TabPath.Group.PathName => TabPath.Group.Index,
+                _ => User.Index,
+                };
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _tabRef?.State.SetActive(_tabIndex).Invoke();
+            StateHasChanged();
+        }
+    }
+
+}

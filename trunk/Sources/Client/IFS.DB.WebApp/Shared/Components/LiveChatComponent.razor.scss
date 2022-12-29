@@ -1,0 +1,180 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.liveChat {
+    @include box;
+    width: 400px;
+    height: 528px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 4px 32px rgba(40, 49, 61, 0.18);
+    margin: 0;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+
+    &-header {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $color-gray-200;
+        padding-bottom: $indent-12;
+
+        &__title {
+            @include h3;
+            flex: 1;
+        }
+
+        &__close {
+            &-img {
+                @include square-icon(24px);
+            }
+        }
+    }
+
+    &-main {
+        flex: 1;
+        min-height: 140px;
+        padding: $indent-12 0;
+        overflow-y: auto;
+    }
+
+    &-message-author {
+        @include h5;
+        display: block;
+        margin-bottom: $indent-4;
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &__position {
+            @include caption1;
+            color: $color-gray-700;
+            margin-left: $indent-4;
+        }
+
+        &.liveChat-message-author--right {
+            text-align: right;
+            align-self: flex-end;
+        }
+    }
+
+    &-messages {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &-message {
+        max-width: 244px;
+        border-radius: 8px;
+        background: $color-sky-blue-400;
+        padding: $indent-8 $indent-12;
+        margin-bottom: 8px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &-text {
+            color: $color-white;
+        }
+
+        &-file {
+            display: flex;
+            margin-top: $indent-4;
+
+            &__icon {
+                @include square-icon(24px);
+                margin-right: $indent-4;
+            }
+
+            &__name {
+                flex: 1;
+            }
+        }
+
+        &.liveChat-message--right {
+            align-self: flex-end;
+            background: $color-gray-200;
+
+            .liveChat-message-text {
+                color: $color-gray-800;
+            }
+        }
+    }
+
+    &-footer {
+        border-top: 1px solid $color-gray-200;
+        padding-top: $indent-12;
+        overflow-y: auto;
+
+        &-buttons {
+            display: flex;
+            margin-top: $indent-12;
+        }
+
+        &-button {
+            flex: 1;
+            margin-right: $indent-12;
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &--attach {
+                @include lightBlueButton;
+            }
+
+            &--send {
+                @include blueButton;
+            }
+        }
+    }
+
+    &-file {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: $indent-12;
+
+        &__icon {
+            @include square-icon(24px);
+            margin-right: $indent-4;
+
+            &.liveChat-file__icon--load {
+                animation: rotating 1s linear infinite;
+            }
+        }
+
+        &__name {
+            flex: 1;
+        }
+
+        &__delete {
+            margin-left: $indent-4;
+
+            &-icon {
+                @include square-icon(24px);
+            }
+        }
+
+        &__text {
+            @include label;
+            width: 100%;
+        }
+
+        &.liveChat-file--error {
+            .liveChat-file__name,
+            .liveChat-file__text {
+                color: $color-red-500;
+            }
+        }
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,44 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.user-layout {
+	padding: $indent-24 0 $indent-32;
+}
+
+.user-container {
+	@include container;
+}
+
+.user-header {
+	@include pageTitle;
+}
+
+.user-main {
+	@include box;
+
+	&-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: $indent-16;
+
+		&-name {
+			@include h2;
+			color: $color-wireframes-900;
+		}
+
+		&-right {
+			display: flex;
+
+			&__input {
+				min-width: 260px;
+				margin-right: $indent-12;
+				position: relative;
+			}
+
+			&__selector {
+				min-width: 260px;
+			}
+		}
+	}
+}

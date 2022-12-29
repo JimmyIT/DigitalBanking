@@ -1,0 +1,183 @@
+﻿<div class="modal-layout" id="ModalConfirm2FA" style="display:block!important">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalConfirm2FA()"></div>
+        <div class="payments-modal-layout">
+            <div class="payments-modal">
+                <div class="payments-modal-header-wrapper">
+                    <div class="payments-modal-header">
+                        <p class="payments-modal-header__title">Payment was confirmed</p>
+                        <div class="payments-modal-header__icon" @onclick="@Close">
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                    </div>
+                    <p class="payments-modal-header__subtitle">To confirm payment, please enter your financial phone number</p>
+                </div>
+
+                @if (IsInputPayee)
+                {
+                    <div class="payments-modal-main">
+                        <div class="payments-modal-main-info-card">
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Pay to</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePayeeAndPaymentModel.TemplateRefernce</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment type</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePayeeAndPaymentModel.PaymentType</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Method</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePayeeAndPaymentModel.PaymentMethod</p>
+                                </div>
+                            </div>
+
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">From account</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">Account No.: @CreatePayeeAndPaymentModel.DebitAccount</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Credit amount</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePayeeAndPaymentModel.CreditAmount.ToNumberFormat()</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment date</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePayeeAndPaymentModel.PaymentDate.ToString("dd/MM/yyyy")</p>
+                                </div>
+                            </div>
+
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Reference</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePayeeAndPaymentModel.PaymentReference</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Narrative</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePayeeAndPaymentModel.DebitNarrative</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payments-modal-main-input">
+                            <label>Phone number</label>
+                            <div class="phone">
+                                <div class="customSelector search">
+                                    <div class="customSelector-input" onclick="onTriggerPhoneSelector()" id="typesSelector">
+                                        <p class="customSelector-input__placeholder">+44</p>
+                                        <img src="/img/icons/dropdown.svg" alt="dropdown" />
+                                    </div>
+
+                                    <div class="customSelector-dropdown" id="types">
+                                        <div class="customSelector-dropdown-item">
+                                            <p>+55</p>
+                                        </div>
+                                        <div class="customSelector-dropdown-item">
+                                            <p>+66</p>
+                                        </div>
+                                        <div class="customSelector-dropdown-item">
+                                            <p>+77</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input placeholder="000 000 000" class="input" />
+                            </div>
+                        </div>
+
+                        <p class="payments-modal-main__subtitle">Or scan QR code through your mobile application to confirm Payment</p>
+
+                        <img src="/img/payment/qrIcon.svg" alt="qr" />
+
+                    </div>
+
+                }
+                else
+                {
+                    <div class="payments-modal-main">
+                        <div class="payments-modal-main-info-card">
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Pay to</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.TemplateRefernce</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment type</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.PaymentType</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Method</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.PaymentMethod</p>
+                                </div>
+                            </div>
+
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">From account</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">Account No.: @CreatePaymentModel.DebitAccount</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Credit amount</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.CreditAmount.ToNumberFormat()</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment date</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.PaymentDate.ToString("dd/MM/yyyy")</p>
+                                </div>
+                            </div>
+
+                            <div class="payments-modal-main-info-card-content">
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Reference</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.PaymentReference</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                    <p class="payments-modal-main-info-card-content-item__title">Payment Narrative</p>
+                                    <p class="payments-modal-main-info-card-content-item__text">@CreatePaymentModel.DebitNarrative</p>
+                                </div>
+                                <div class="payments-modal-main-info-card-content-item">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payments-modal-main-input">
+                            <label>Phone number</label>
+                            <div class="phone">
+                                <div class="customSelector search">
+                                    <div class="customSelector-input" onclick="onTriggerPhoneSelector()" id="typesSelector">
+                                        <p class="customSelector-input__placeholder">+44</p>
+                                        <img src="/img/icons/dropdown.svg" alt="dropdown" />
+                                    </div>
+
+                                    <div class="customSelector-dropdown" id="types">
+                                        <div class="customSelector-dropdown-item">
+                                            <p>+55</p>
+                                        </div>
+                                        <div class="customSelector-dropdown-item">
+                                            <p>+66</p>
+                                        </div>
+                                        <div class="customSelector-dropdown-item">
+                                            <p>+77</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input placeholder="000 000 000" class="input" />
+                            </div>
+                        </div>
+
+                        <p class="payments-modal-main__subtitle">Or scan QR code through your mobile application to confirm Payment</p>
+
+                        <img src="/img/payment/qrIcon.svg" alt="qr" />
+
+                    </div>
+                }
+
+                <div class="payments-modal-footer">
+                    <button class="payments-modal-footer__buttonSuccess" @onclick="@Confirm">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

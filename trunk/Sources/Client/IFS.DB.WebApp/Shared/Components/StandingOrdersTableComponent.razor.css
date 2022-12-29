@@ -1,0 +1,191 @@
+.standingOrdersTable td {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 8px 6px;
+}
+.standingOrdersTable td:first-child {
+  text-align: center;
+  padding-left: 12px;
+}
+.standingOrdersTable td:last-child {
+  text-align: end;
+  overflow: visible;
+}
+.standingOrdersTable td:nth-child(4) {
+  text-align: center;
+}
+.standingOrdersTable td:nth-child(5) {
+  width: 80px;
+}
+.standingOrdersTable td:nth-child(6) {
+  width: 40px;
+}
+.standingOrdersTable thead td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  background: #f2f7fd;
+  color: #81afed;
+}
+.standingOrdersTable thead td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.standingOrdersTable thead td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.standingOrdersTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+.standingOrdersTable tbody tr:last-child {
+  border-bottom: 0;
+}
+.standingOrdersTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+.standingOrdersTable tbody td.standingOrdersTable-date {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  text-align: left;
+  padding-top: 12px;
+  padding-bottom: 4px;
+}
+.standingOrdersTable tbody td:nth-child(4) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+}
+.standingOrdersTable-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #6a6a6a;
+  background-color: #ededed;
+  display: flex;
+  justify-content: center;
+}
+.standingOrdersTable-button.standingOrdersTable-button--error {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #fc4c16;
+  background-color: #fff1ed;
+}
+.standingOrdersTable-button.standingOrdersTable-button--success {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #0a9a0c;
+  background-color: #edffed;
+}
+.standingOrdersTable-action {
+  position: relative;
+  box-sizing: border-box;
+}
+.standingOrdersTable-action-icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.standingOrdersTable-action-icon:hover .icon {
+  opacity: 0;
+}
+.standingOrdersTable-action-icon:hover .iconHover {
+  opacity: 1;
+}
+.standingOrdersTable-action-icon:hover.active .iconActive {
+  opacity: 0;
+}
+.standingOrdersTable-action-icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.standingOrdersTable-action-icon.active .icon {
+  opacity: 0;
+}
+.standingOrdersTable-action-icon.active .iconActive {
+  opacity: 1;
+}
+.standingOrdersTable-action-icon .icon,
+.standingOrdersTable-action-icon .iconHover,
+.standingOrdersTable-action-icon .iconActive,
+.standingOrdersTable-action-icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.standingOrdersTable-action-icon .iconHover,
+.standingOrdersTable-action-icon .iconActive,
+.standingOrdersTable-action-icon .iconActiveHover {
+  opacity: 0;
+}
+.standingOrdersTable-action-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  width: 156px;
+  display: none;
+  padding: 8px 0;
+  border: 1px solid #CDDFF8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+  z-index: 2;
+}
+.standingOrdersTable-action-dropdown-item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  padding: 14px 16px;
+  text-align: left;
+  color: #6a6a6a;
+  cursor: pointer;
+}
+.standingOrdersTable-action-dropdown-item:hover {
+  color: #212121;
+  background-color: #f2f7fd;
+}

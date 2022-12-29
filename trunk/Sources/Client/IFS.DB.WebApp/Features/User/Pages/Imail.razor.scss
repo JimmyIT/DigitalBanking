@@ -1,0 +1,26 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.imail-layout {
+    padding: $indent-24 0 $indent-32;
+}
+
+.imail-container {
+    @include container;
+}
+
+.imail-header {
+    @include pageTitle;
+    margin-bottom: $indent-24;
+}
+
+.imail {
+    &-section {
+        display: flex;
+        align-items: flex-start;
+
+        @media (max-width: 1260px) {
+            flex-direction: column-reverse;
+        }
+    }
+}

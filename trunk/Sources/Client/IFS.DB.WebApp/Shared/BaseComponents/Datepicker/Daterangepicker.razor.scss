@@ -1,0 +1,22 @@
+﻿.datepicker {
+  position: relative;
+  width: 100%;
+
+  & .datepicker__icon {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translate(0, -50%);
+  }
+
+  & .datepicker__input {
+    padding-left: 48px;
+  }
+  
+  & input[type="date"]::-webkit-inner-spin-button,
+  & input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+  
+}

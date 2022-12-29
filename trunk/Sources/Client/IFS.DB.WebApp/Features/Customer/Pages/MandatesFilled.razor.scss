@@ -1,0 +1,172 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.mandates-layout {
+	padding: $indent-24 0 $indent-36;
+}
+
+.mandates-container {
+	@include container;
+}
+
+.mandates-header {
+	@include pageTitle;
+	margin-bottom: $indent-8;
+}
+
+.mandates {
+	&-subtitle {
+		@include h4;
+		margin-bottom: $indent-24;
+		color: $color-gray-800;
+	}
+
+	&-amount {
+		@include box;
+		padding: $indent-24 $indent-24 20px $indent-24;
+
+		&-name {
+			@include h2;
+			margin-bottom: $indent-16;
+		}
+
+		&-subtitle {
+			@include label;
+			color: $color-gray-600;
+		}
+
+		&-item {
+			@include h2;
+		}
+	}
+
+	&-value {
+		@include box;
+		padding: $indent-24;
+
+		&-name {
+			@include h2;
+			margin-bottom: $indent-12;
+		}
+
+		&-subtitle {
+			@include h5;
+			margin-bottom: $indent-12;
+			color: $color-gray-600;
+		}
+
+		&-item {
+			&-first {
+				padding: $indent-16;
+				margin-bottom: $indent-12;
+				background-color: $color-background;
+				border-radius: $indent-12;
+
+				&-head {
+					display: flex;
+					justify-content: space-between;
+
+					&-name {
+						@include h3;
+						color: $color-sky-blue-500;
+					}
+
+					&__icon {
+						height: 24px;
+					}
+				}
+
+				&-line {
+					@include line;
+					width: 100%;
+					margin: $indent-12 0;
+				}
+
+				&-point {
+					display: flex;
+
+					&-content {
+						margin-right: $indent-16;
+
+						&:last-child {
+							margin-right: 0;
+						}
+
+						&-name {
+							@include label;
+							margin-bottom: $indent-4;
+							color: $color-gray-600;
+						}
+
+						&-text {
+							@include h4;
+						}
+					}
+				}
+
+				&-formula-cards {
+					flex-direction: column;
+					margin-top: $indent-12;
+					padding: $indent-16;
+					padding-bottom: 19px;
+					background-color: $color-white;
+					border-radius: $indent-8;
+
+					&-title {
+						display: flex;
+						justify-content: space-between;
+
+						&-text {
+							@include h5;
+							margin-bottom: $indent-8;
+							color: $color-gray-800;
+						}
+					}
+
+					&-info {
+						display: flex;
+						align-items: center;
+
+						&-number {
+							max-width: 152px;
+							margin-right: $indent-12;
+
+							&-name {
+								@include label;
+								margin-bottom: $indent-4;
+								color: $color-gray-600;
+							}
+
+							&-text {
+								@include body;
+							}
+						}
+
+						&-and {
+							@include label2;
+							margin: 0 44px 0 44px;
+							// padding: 42px 0 22px 0;
+							color: $color-sky-blue-400;
+						}
+					}
+				}
+
+				&-or {
+					display: flex;
+					align-items: center;
+					margin-top: $indent-12;
+
+					&-text {
+						width: $indent-16;
+						margin-right: $indent-8;
+					}
+				}
+			}
+		}
+
+		&__button {
+			@include lightBlueButton;
+			display: flex;
+		}
+	}
+}

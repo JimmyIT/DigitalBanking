@@ -1,0 +1,123 @@
+@* <table class="accountTable"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <td>User Name</td> *@
+@*             <td><div class="accountTable-item"><input type="checkbox" class="accountTable-item__input"/>Viewing Permission</div></td> *@
+@*         </tr> *@
+@*     </thead> *@
+@* *@
+@*     <tbody> *@
+@*         <tr> *@
+@*             <td><div class="accountTable-item">Customer Fixed Loans (00257020)	</div></td> *@
+@*             <td> *@
+@*                 <div class="accountTable-item"> *@
+@*                     <input type="checkbox" class="accountTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="accountTable-item">Bank Operational Account - IB (00257001)</div></td> *@
+@*             <td> *@
+@*                 <div class="accountTable-item"> *@
+@*                     <input type="checkbox" class="accountTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="accountTable-item">Bank Operational Account - IB (00257002)</div></td> *@
+@*             <td> *@
+@*                 <div class="accountTable-item"> *@
+@*                     <input type="checkbox" class="accountTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="accountTable-item">Bank Operational Account - IB (00257003)</div></td> *@
+@*             <td> *@
+@*                 <div class="accountTable-item"> *@
+@*                     <input type="checkbox" class="accountTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="accountTable-item">Bank Operational Account - IB (00257004)	</div></td> *@
+@*             <td> *@
+@*                 <div class="accountTable-item"> *@
+@*                     <input type="checkbox" class="accountTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="accountTable-item">Bank Operational Account - IB (00257005)</div></td> *@
+@*             <td> *@
+@*                 <div class="accountTable-item"> *@
+@*                     <input type="checkbox" class="accountTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="accountTable-item">Bank Operational Account - IB (00257006)</div></td> *@
+@*             <td> *@
+@*                 <div class="accountTable-item"> *@
+@*                     <input type="checkbox" class="accountTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*         </tr> *@
+@*     </tbody> *@
+@* </table> *@
+
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Models.Permission
+@using Humanizer
+@using IFS.DB.WebApp.Models
+@using Z.Collections.Extensions
+
+<div>
+    <QuickGrid
+        Class="accountTable"
+        TGridItem="PermissionModel"
+        Items="Permissions.AsQueryable()"
+        Theme="override"
+        @ref="_gridRef">
+        <TemplateColumn TGridItem="PermissionModel" Title="BELONGS TO GROUP">
+            <div class="accountTable-item">
+                @context.Account.AccountDescription @($"({context.Account.AccountNumber})")
+            </div>
+        </TemplateColumn>
+        <TemplateColumn TGridItem="PermissionModel" Title="FOLLOWS GROUP PERMISSION">
+            <HeaderTemplate Context="Col">
+                <div class="col-header-content">
+                    <div class="col-title">
+                        <div class="col-title-text accountTable-item">
+                            <input type="checkbox" class="accountTable-item__input" checked="@AllGroupSelected" @onchange="SetAllChange"/>
+                           Viewing Permission
+                        </div>
+                    </div>
+                </div>
+            </HeaderTemplate>
+            <ChildContent>
+                <div class="accountTable-item">
+                    <input type="checkbox" class="accountTable-item__input" checked="@context.IsViewingAccount" @onchange="@((args) => context.IsViewingAccount = bool.Parse(args.Value.ToString()))"/>
+                </div>
+            </ChildContent>
+        </TemplateColumn>
+    </QuickGrid>
+</div>
+
+@code {
+
+    [Parameter]
+    public List<PermissionModel> Permissions { get; set; } = new List<PermissionModel>();
+
+    private QuickGrid<PermissionModel> _gridRef = default!;
+
+    private bool AllGroupSelected => Permissions.All(x => x.IsViewingAccount is true);
+
+    private void SetAllChange(ChangeEventArgs args)
+    {
+        bool value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+
+        Permissions.ForEach(x => x.IsViewingAccount = value);
+    }
+
+}

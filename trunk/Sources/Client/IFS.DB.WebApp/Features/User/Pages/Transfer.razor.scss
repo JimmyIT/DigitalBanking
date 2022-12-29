@@ -1,0 +1,112 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.transfers-layout {
+    padding: $indent-24 0 $indent-12;
+}
+
+.transfers-container {
+    @include container;
+}
+
+.transfers-header {
+    @include pageTitle;
+}
+
+.transfers {
+    &-main {
+        display: flex;
+
+        &__left {
+            @include box;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0;
+        }
+
+        &__right {
+            width: 440px;
+            margin-left: $indent-24;
+            display: flex;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &-form {
+        margin-bottom: $indent-16;
+
+        &__title {
+            @include h2;
+            color: $color-wireframes-900;
+            margin-bottom: $indent-16;
+        }
+
+        &-transfer {
+            @include formHorizontal;
+
+            &-selector {
+                flex: 1;
+
+                &__text {
+                    @include caption1;
+                    margin-top: $indent-4;
+                    color: $color-gray-600;
+                }
+            }
+        }
+    }
+
+    &-information {
+        &__title {
+            @include h4;
+        }
+
+        &-form {
+            @include formHorizontal;
+            align-items: flex-start;
+            margin-top: $indent-16;
+
+            &__selector {
+                width: 100%;
+            }
+
+            &__amount {
+                width: 30%;
+                text-align: end;
+            }
+
+            &__textarea {
+                margin-top: $indent-16;
+            }
+        }
+    }
+
+    &-footer {
+        flex: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-top: $indent-16;
+
+        &__buttonCancel {
+            @include lightBlueButton;
+            min-width: 160px;
+        }
+
+        &__buttonSuccess {
+            @include blueButton;
+            min-width: 160px;
+        }
+    }
+}
+
+
+.underline-text {
+    @include caption1;
+    margin-top: $indent-4;
+    color: $color-gray-600;
+}

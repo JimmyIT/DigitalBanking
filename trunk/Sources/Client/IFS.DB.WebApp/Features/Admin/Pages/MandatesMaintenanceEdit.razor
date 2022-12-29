@@ -1,0 +1,109 @@
+@layout HostAdminLayout
+@page "/mandates-maintenance/edit"
+@using IFS.DB.WebApp.Models.Mandates
+
+<div class="mandates-layout">
+    <div class="mandates-container">
+        <div class="mandates-header">
+            <div class="mandates-header-wrapper">
+                <img src="/img/icons/mandatesIcon.svg" alt="logo" class="mandates-header__logo" />
+                <p class="mandates-header__title">Mandates</p>
+                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="mandates-header__tooltip-icon" />
+            </div>
+        </div>
+
+        <div class="mandates">
+            <p class="mandates-subtitle">Default settings for all customers and products</p>
+            <div class="maximum-amount">
+                <EditForm EditContext=@_maxAmountEditContext>
+                    <DataAnnotationsValidator></DataAnnotationsValidator>
+
+                    <div class="maximum-amount-edit">
+                        <div class="maximum-amount-edit__header">
+                            <p class="maximum-amount-subtitle">Maximum amount for a single item</p>
+                            <p class="maximum-amount-requir">Required</p>
+                        </div>
+                        <AmountComponent placeholder="0,00" class="input maximum-amount-edit__input"
+                                         @bind-Value=@_mandateMaintenanceRequestModel.MaximumAmount
+                                         ValidationFor="@(() => _mandateMaintenanceRequestModel.MaximumAmount)"></AmountComponent>
+                    </div>
+                </EditForm>
+            </div>
+            <!---->
+            <!---->
+            <div class="mandates-value">
+
+                <!---->
+                <!---->
+
+                <p class="mandates-value-name">Value items</p>
+                <p class="mandates-value-subtitle">
+                    This section will reflect the conditions under which mandates can be implemented
+                </p>
+
+                <!---->
+                <!---->
+
+                <CascadingValue Value="this">
+                    @if (isChanged)
+                    {
+                        @for (int index = 0; index < _updatedMandateItems.Count; index++)
+                        {
+                            <MandatesItemComponent MandatesItemID="@((index + 1).ToString())"
+                                           MandatesItem=@_updatedMandateItems[index]
+                                           MandatesItem_OnDelete=@DeleteValueItemAsync></MandatesItemComponent>
+                        }
+                    }
+                    else
+                    {
+                        @for (int index = 0; index < _updatedMandateItems.Count; index++)
+                        {
+                            <MandatesItemComponent MandatesItemID="@((index + 1).ToString())"
+                                           MandatesItem=@_updatedMandateItems[index]
+                                           MandatesItem_OnDelete=@DeleteValueItemAsync></MandatesItemComponent>
+                        }
+                    }
+                </CascadingValue>
+                @*<CascadingValue Value="this">
+                @foreach (MandatesItemModel mandatesItem in _updatedMandateItems.Select(x => x with { }))
+                {
+                <MandatesItemComponent MandatesItemID="@mandatesItem.MandatesItemId.GetValueOrDefault().ToString()"
+                MandatesItem=@mandatesItem
+                MandatesItem_OnDelete=@DeleteValueItemAsync></MandatesItemComponent>
+
+                }
+                </CascadingValue>*@
+                <!---->
+                <!---->
+
+                <div>
+                    <button class="mandates-value__button" @onclick=@AddValueItemAsync>
+                        <span class="iconBlock">
+                            <img src="/img/icons/add.svg" alt="add" class="icon" />
+                            <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+                        </span>
+                        <span>Add Value Item</span>
+                    </button>
+                </div>
+
+                <!---->
+                <!---->
+
+            </div>
+        </div>
+        <!---->
+        <!---->
+    </div>
+</div>
+<footer class="mandates-footer-layout">
+    <div class="mandates-footer-container">
+        <div class="mandates-footer">
+            <button class="mandates-footer-cancel" @onclick=@(() => _navigateManager.NavigateTo("/mandates-maintenance"))>Cancel</button>
+
+            <div class="mandates-footer-button">
+                <button class="mandates-footer-button__start" @onclick=@(() => RestartEditting())>Start again</button>
+                <button type="button" class="mandates-footer-button__save" @onclick=@SaveUpdatesAsync>Save updates</button>
+            </div>
+        </div>
+    </div>
+</footer>

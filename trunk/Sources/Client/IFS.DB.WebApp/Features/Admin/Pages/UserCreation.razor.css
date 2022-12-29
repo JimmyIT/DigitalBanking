@@ -1,0 +1,417 @@
+.new-user-layout {
+  padding: 24px 0 36px;
+}
+
+.new-user-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.new-user-breadcrumbs {
+  display: flex;
+  margin-bottom: 8px;
+}
+.new-user-breadcrumbs__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  padding: 4px 0;
+  margin-right: 8px;
+}
+.new-user-breadcrumbs__item::after {
+  content: "/";
+  margin-left: 8px;
+}
+.new-user-breadcrumbs__item:last-child {
+  margin-right: 0;
+}
+.new-user-breadcrumbs__item:last-child::after {
+  display: none;
+}
+.new-user-breadcrumbs__item.active {
+  color: #212121;
+}
+.new-user-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.new-user-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.new-user-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.new-user-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.new-user-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.new-user-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.new-user-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.new-user-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.new-user-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.new-user-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.new-user-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.new-user-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.new-user-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.new-user-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.new-user-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.new-user-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.new-user-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.new-user-header__button .iconBlock .icon,
+.new-user-header__button .iconBlock .iconHover,
+.new-user-header__button .iconBlock .iconActive,
+.new-user-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.new-user-header__button .iconBlock .iconHover,
+.new-user-header__button .iconBlock .iconActive,
+.new-user-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.new-user-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.new-user-header__button .iconBlock,
+.new-user-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.new-user-header__button .iconBlock:first-child,
+.new-user-header__button > img:first-child {
+  margin-left: 0;
+}
+.new-user-header__button .iconBlock:last-child,
+.new-user-header__button > img:last-child {
+  margin-right: 0;
+}
+.new-user-header__button:hover {
+  color: #0248a4;
+}
+.new-user-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  margin-bottom: 24px;
+  border: 1px solid #d2d2d2;
+  border-radius: 12px;
+}
+.new-user-info-left-title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+}
+.new-user-info-left-subtitle {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #212121;
+}
+.new-user-info-right {
+  display: flex;
+  align-items: center;
+}
+.new-user-info-right-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  padding: 8px 16px;
+  display: flex;
+  color: #d2d2d2;
+  cursor: default;
+}
+.new-user-info-right-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.new-user-info-right-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.new-user-info-right-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.new-user-info-right-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.new-user-info-right-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.new-user-info-right-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.new-user-info-right-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.new-user-info-right-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.new-user-info-right-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.new-user-info-right-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.new-user-info-right-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.new-user-info-right-button .iconBlock .icon,
+.new-user-info-right-button .iconBlock .iconHover,
+.new-user-info-right-button .iconBlock .iconActive,
+.new-user-info-right-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.new-user-info-right-button .iconBlock .iconHover,
+.new-user-info-right-button .iconBlock .iconActive,
+.new-user-info-right-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.new-user-info-right-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.new-user-info-right-button .iconBlock,
+.new-user-info-right-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.new-user-info-right-button .iconBlock:first-child,
+.new-user-info-right-button > img:first-child {
+  margin-left: 0;
+}
+.new-user-info-right-button .iconBlock:last-child,
+.new-user-info-right-button > img:last-child {
+  margin-right: 0;
+}
+.new-user-info-right-button:hover {
+  color: #0248a4;
+}
+.new-user-info-right-button:hover {
+  color: #d2d2d2;
+}
+.new-user-main {
+  display: flex;
+}
+
+.new-user-footer-layout {
+  background: #ffffff;
+  padding: 24px 0;
+}
+
+.new-user-footer-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.new-user-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.new-user-footer__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  min-width: 148px;
+}
+.new-user-footer__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.new-user-footer__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.new-user-footer__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.new-user-footer__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.new-user-footer__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.new-user-footer__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.new-user-footer__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.new-user-footer__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.new-user-footer__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.new-user-footer__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.new-user-footer__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.new-user-footer__button .iconBlock .icon,
+.new-user-footer__button .iconBlock .iconHover,
+.new-user-footer__button .iconBlock .iconActive,
+.new-user-footer__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.new-user-footer__button .iconBlock .iconHover,
+.new-user-footer__button .iconBlock .iconActive,
+.new-user-footer__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.new-user-footer__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.new-user-footer__button .iconBlock,
+.new-user-footer__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.new-user-footer__button .iconBlock:first-child,
+.new-user-footer__button > img:first-child {
+  margin-left: 0;
+}
+.new-user-footer__button .iconBlock:last-child,
+.new-user-footer__button > img:last-child {
+  margin-right: 0;
+}
+.new-user-footer__button:hover {
+  background-color: #0248a4;
+}
+.new-user-footer__button.new-user-footer__button--inactive {
+  background: #a1e1ff;
+}

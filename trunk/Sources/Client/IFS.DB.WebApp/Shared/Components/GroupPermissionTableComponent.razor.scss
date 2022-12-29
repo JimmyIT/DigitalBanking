@@ -1,0 +1,89 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+::deep .groupTable {
+	th, td {
+		vertical-align: middle;
+
+		//&:nth-child(2) {
+		//	width: 160px;
+		//}
+
+		&:nth-child(3) {
+			width: 228px;
+			text-align: right;
+		}
+	}
+
+	thead {
+		th {
+			padding: $indent-8 20px;
+			background: $color-sky-blue-100;
+
+			&:first-child {
+				border-radius: 8px 0 0 8px;
+			}
+
+			&:last-child {
+				border-radius: 0 8px 8px 0;
+			}
+
+			.col-header-content .col-title-text {
+				@include label2;
+				color: $color-sky-blue-300;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid $color-sky-blue-100;
+
+			&:last-child {
+				border-bottom: 0;
+
+				td {
+					padding-bottom: 0;
+				}
+			}
+		}
+
+		td {
+			@include h5;
+			padding: 20px;
+			color: $color-gray-600;
+
+			&:first-child {
+				color: $color-gray-900;
+			}
+
+			&:last-child {
+				color: $color-sky-blue-500;
+			}
+		}
+	}
+
+	&-item {
+		display: flex;
+		align-items: center;
+
+		&__input {
+			margin-right: $indent-8;
+			border: 1.25px solid $color-sky-blue-500;
+			border-radius: 2px;
+		}
+
+		&__img {
+			margin-right: $indent-8;
+		}
+	}
+
+	&-button {
+		@include button1;
+		color: $color-sky-blue-500;
+
+		&.groupTable-button--inactive {
+			color: $color-gray-300;
+		}
+	}
+}

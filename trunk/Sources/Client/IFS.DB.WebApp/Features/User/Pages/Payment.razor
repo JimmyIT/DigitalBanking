@@ -1,0 +1,460 @@
+@layout UserLayout
+@page "/payments"
+@using IFS.DB.WebApp.Shared.BaseComponents.Datepicker
+
+<div class="payments-layout">
+    <div class="payments-container">
+        <div class="payments">
+            <div class="payments-header">
+                <div class="payments-header-wrapper">
+                    <img src="/img/transactionTable/payment.svg" alt="logo" class="payments-header__logo" />
+                    <p class="payments-header__title">Payments</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payments-header__tooltip-icon" />
+                </div>
+
+                <div>
+                    <button class="payments-header__button" onclick="location.href='/transfers'">
+                        Make Transfer
+                        <img src="/img/icons/arrowRight.svg" alt="arrow" />
+                    </button>
+                </div>
+            </div>
+
+            <div class="payments-main">
+                @if (_isInputPayee)
+                { 
+                    <EditForm id="createPaymentContext" EditContext="@_createPaymentContext" OnInvalidSubmit="@InvalidSubmit" OnValidSubmit="@CreatePayment" style="flex: 1;">
+                        <DataAnnotationsValidator />
+                        <!---->
+                        <!---->
+                        <div class="payments-main__left">
+                            <!---->
+                            <!---->
+                            <div class="payments-new">
+                                <p class="payments-new__title">New Payment</p>
+                                <div class="payments-new-payee">
+                                    <div class="formgroup payments-new-payee-selector">
+                                        <label>Template reference</label>
+                                        <div class="select-layout">
+                                            <InputText placeholder="Enter here" class="input" @bind-Value=@_createPayeeAndPaymentModel.TemplateRefernce></InputText>
+                                        </div>
+                                        <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.TemplateRefernce)"></CustomValidationMessage>
+                                    </div>
+                                    <div class="formgroup payments-new-payee-create">
+                                        <p class="formgroup payments-new-payee-create__text">or</p>
+                                        <button type="button" class="payments-new-payee-create__button"
+                                            @onclick=@(() => EnableInputPayeeMode(false))>
+                                            Select a payee
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!---->
+                            <!---->
+                            <div class="payments-details">
+                                <!---->
+                                <!---->                                
+                                <div class="payments-information-form">
+                                    <!---->
+                                    <!---->    
+                                    <div class="formgroup">
+                                        <PaymentTypeComponent TValue="PaymentTypeEnum?"
+                                                          Label="Select" ContainerCssClass="min-width-213"
+                                                          ValidationFor="() => _createPayeeAndPaymentModel.PaymentType"
+                                                          OnValueChanged=@OnPaymentType_OnChanged
+                                                          @bind-Value="@_createPayeeAndPaymentModel.PaymentType">
+                                        </PaymentTypeComponent>
+                                    </div>
+                                    <!---->
+                                    <!----> 
+                                    <div class="formgroup">
+                                        <label>Account name</label>
+                                        <div class="input-layout">
+                                            <InputText placeholder="Enter here" class="input" @bind-Value="_createPayeeAndPaymentModel.CreditAccountName"></InputText>
+                                        </div>
+                                        <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.CreditAccountName)"></CustomValidationMessage>
+                                    </div>
+                                    <!---->
+                                    <!---->
+                                    <div class="formgroup">
+                                        @if (_createPayeeAndPaymentModel.PaymentType == PaymentTypeEnum.International)
+                                        { 
+                                            <label>IBAN</label>
+                                            <div class="input-layout">
+                                                <InputText placeholder="Enter here" class="input" @bind-Value="_createPayeeAndPaymentModel.IBAN"></InputText>
+                                            </div>
+                                            <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.IBAN)"></CustomValidationMessage>
+                                        }
+                                        else
+                                        {
+                                            <label>Account no.</label>
+                                            <div class="input-layout">
+                                                <InputText placeholder="Enter here" class="input" @bind-Value="_createPayeeAndPaymentModel.CreditAccount"></InputText>
+                                            </div>
+                                            <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.CreditAccount)"></CustomValidationMessage>
+                                        }                                        
+                                    </div> 
+                                    <!---->
+                                    <!---->
+                                    <div class="formgroup">
+                                        <CurrencySelectionComponent TValue="string"
+                                                                    Label="Currency"
+                                                                    DefaultOption="Select"
+                                                                    ValidationFor="() => _createPayeeAndPaymentModel.CurrencyCode"
+                                                                    @bind-Value="@_createPayeeAndPaymentModel.CurrencyCode">
+                                        </CurrencySelectionComponent>
+                                    </div>   
+                                    <!---->
+                                    <!----> 
+                                </div>
+                                <!---->
+                                <!---->                                
+                                <div class="payments-information-form">
+                                    <!---->
+                                    <!---->                                    
+                                    @if (_createPayeeAndPaymentModel.PaymentType == PaymentTypeEnum.International)
+                                    {
+                                        <div class="formgroup">
+                                            <label>Bank name</label>
+                                            <div class="input-layout">
+                                                <InputText placeholder="Enter here" class="input" @bind-Value="_createPayeeAndPaymentModel.BankName"></InputText>
+                                            </div>
+                                            <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.BankName)"></CustomValidationMessage>
+                                        </div>                                
+                                        <!---->
+                                        <!---->
+                                        <div class="formgroup">
+                                            <label>SWIFT ID</label>
+                                            <div class="input-layout">
+                                                <InputText placeholder="Enter here" @bind-Value="_createPayeeAndPaymentModel.SwiftID" class="input" />
+                                            </div>
+                                            <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.SwiftID)"></CustomValidationMessage>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="formgroup">
+                                            <label>Sort code</label>
+                                            <div class="input-layout">
+                                                <InputText placeholder="Enter here" @bind-Value="_createPayeeAndPaymentModel.SortCode" class="input" />
+                                            </div>
+                                            <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.SortCode)"></CustomValidationMessage>
+                                        </div>
+                                    }
+                                    <!---->
+                                    <!---->    
+                                    <div class="formgroup">
+                                        @if (_createPayeeAndPaymentModel.PaymentType != PaymentTypeEnum.International)
+                                        {
+                                            <label>Payment Method</label>
+                                            <div class="input-layout">
+                                               <InputSelect @bind-Value="_createPayeeAndPaymentModel.PaymentMethod" class="select payments-details-item__selector min-width-213">
+                                                    <option>Select</option>
+                                                    @foreach (var value in (PaymentMethodEnum[])Enum.GetValues(typeof(PaymentMethodEnum)))
+                                                    {
+                                                        <option value="@value">@value.ToDescription()</option>
+                                                    }
+                                                </InputSelect>
+                                            </div>
+                                            <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.PaymentMethod)"></CustomValidationMessage>
+                                        }
+                                    </div> 
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </div>
+                            <!---->
+                            <!---->                            
+                            <div class="payments-information">
+                                <p class="payments-information__title">Payment information</p>           
+                                <div class="payments-information-form">
+                                    <div class="formgroup payments-information-form__selector">
+                                        <div class="formgroup payments-information-form__selector">
+                                           <div class="formgroup payments-information-form__selector">
+                                               <PaymentAccountSelectionComponent TValue="string"
+                                                   Label="From" ValidationFor="() => _createPayeeAndPaymentModel.DebitAccount"
+                                                   @bind-Value="_createPayeeAndPaymentModel.DebitAccount">
+                                               </PaymentAccountSelectionComponent>
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <!---->
+                                    <div class="formgroup">
+                                        <AmountComponent LabelText="Credit amount"
+                                           @bind-Value="@_createPayeeAndPaymentModel.CreditAmount"
+                                           class="input payments-information-form__amount"
+                                           ValidationFor="@(() => _createPayeeAndPaymentModel.CreditAmount)" />
+                                    </div>
+                                    <!---->
+                                    <!----> 
+                                    <div class="formgroup">
+                                        <label>Payment date</label>
+                                        <div class="input-layout">
+                                            <InputDate @bind-Value="_createPayeeAndPaymentModel.PaymentDate" class="input" />
+                                        </div>
+                                        <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.PaymentDate)"></CustomValidationMessage>
+                                        @*<DateRangeComponent />*@
+                                    </div>
+                                </div>
+                                <div class="formgroup payments-information-form__textarea">
+                                    <label>Payment reference</label>
+                                    <div class="input-layout">
+                                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="_createPayeeAndPaymentModel.PaymentReference"></InputTextArea>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.PaymentReference)"></CustomValidationMessage>
+                                </div>
+                                <div class="formgroup payments-information-form__textarea">
+                                    <label>Debit narrative</label>
+                                    <div class="input-layout">
+                                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="_createPayeeAndPaymentModel.DebitNarrative"></InputTextArea>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.DebitNarrative)"></CustomValidationMessage>
+                                </div>
+                                <div class="payments-information-form">
+                                    <div class="formgroup">
+                                        <div class="payments-information-form__document-selector">
+                                            <label>Type of document</label>
+                                            <div class="select-layout">
+                                                <InputSelect @bind-Value="@_createPayeeAndPaymentModel.TypeOfDocument" class="select qwe" id="detailsSelector">
+                                                    <option value="">Select a type</option>
+                                                    <option value="Name and Address">Name and Address</option>
+                                                    <option value="Address">Address</option>
+                                                    <option value="Name">Name</option>
+                                                    <option value="CV">CV</option>
+                                                </InputSelect>
+                                            </div>
+                                            <CustomValidationMessage For="@(() => _createPayeeAndPaymentModel.TypeOfDocument)"></CustomValidationMessage>
+                                        </div>
+                                    </div>
+                                    <div class="formgroup">
+                                        <label>&nbsp;</label>
+                                        <div class="input-layout">
+                                            <FileUploader />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                            <!---->
+                            <!---->
+                        </div>
+                        <!---->
+                        <!---->
+                        <div class="payments-footer">
+                            <button type="button" class="payments-footer__buttonCancel" @onclick=@(() => _navigateManager.NavigateTo("/user/dashboard"))>Cancel</button>
+                            <button type="submit" class="payments-footer__buttonSuccess">Proceed</button>
+                        </div>
+                        <!---->
+                        <!---->
+                    </EditForm>
+                }
+                else
+                {
+                    <EditForm id="createPaymentContext" EditContext="@_createPaymentContext" OnInvalidSubmit="@InvalidSubmit" OnValidSubmit="@CreatePayment" style="flex: 1;">
+                        <DataAnnotationsValidator />
+                        <div class="payments-main__left">
+                            <div class="payments-new">
+                                <p class="payments-new__title">New Payment</p>
+                                <div class="payments-new-payee">
+                                    <div class="formgroup payments-new-payee-selector">
+                                        <label>Pay to</label>
+                                        <div class="select-layout">
+                                            <InputSelect ValueExpression="@(() => _createPaymentModel.TemplateRefernce)"
+                                                     Value="@_createPaymentModel.TemplateRefernce"
+                                                     ValueChanged="@((string value) => OnSelectedPayeeChanged(value))"
+                                                     class="select" id="payeeSelector">
+                                                <option value="">Select</option>
+                                                @foreach (var item in _listPayees)
+                                                {
+                                                <option value="@item.HostReference">@item.HostReference</option>
+                                                }
+                                        </InputSelect>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.TemplateRefernce)"></CustomValidationMessage>
+                                    @*<PayeeSelectionComponent />*@
+                                </div>
+                                <div class="formgroup payments-new-payee-create">
+                                    <p class="formgroup payments-new-payee-create__text">or</p>
+                                    <button type="button" class="payments-new-payee-create__button"
+                                            @onclick=@(() => EnableInputPayeeMode(true))>
+                                        Input payee
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payments-details">
+                            <p class="payments-details__title" id="details">
+                                To see this details please select Payee first
+                            </p>
+                            <div class="payments-details-item-wrapper">
+                                <div class="payments-details-item">
+                                    <p class="payments-details-item__label">Template reference</p>
+                                    <p class="payments-details-item__body" id="text">@(!string.IsNullOrEmpty(_selectedPayee.HostReference) ? _selectedPayee.HostReference : "-")</p>
+                                </div>
+                                <div class="payments-details-item">
+                                    <p class="payments-details-item__label">Debit Account</p>
+                                    <p class="payments-details-item__body" id="type">@(!string.IsNullOrEmpty(_selectedPayee.DebitAccount) ? _selectedPayee.DebitAccount : "-")</p>
+                                </div>
+                                <div class="payments-details-item">
+                                    <p class="payments-details-item__label">Payment type</p>
+                                    <p class="payments-details-item__body" id="account">@(!string.IsNullOrEmpty(_selectedPayee.HostReference) ? _selectedPayee.PaymentTemplateType : "-")</p>
+                                </div>
+                                @if (!string.IsNullOrEmpty(_selectedPayee.HostReference))
+                                    {
+                                        if (_selectedPayee.PaymentTemplateType != PaymentTypeEnum.International)
+                                        {
+                                            <div class="payments-details-item">
+                                                <p class="payments-details-item__label">Payment Method</p>
+                                                <InputSelect @bind-Value="_createPaymentModel.PaymentMethod" class="select payments-details-item__selector">
+                                                    <option>Select a method</option>
+                                                    @foreach (var value in (PaymentMethodEnum[])Enum.GetValues(typeof(PaymentMethodEnum)))
+                                                    {
+                                            <option value="@value">@value.ToDescription()</option>
+                                                    }
+                                    </InputSelect>
+
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.PaymentMethod)"></CustomValidationMessage>
+
+                                </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="payments-details-item">
+                                            <p class="payments-details-item__label">Payment Method</p>
+                                            <p class="payments-details-item__body" id="method">-</p>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="payments-information">
+                                <p class="payments-information__title">Payment information</p>
+                                <div class="payments-information-form">
+                                    <div class="formgroup payments-information-form__selector">
+                                        <div class="formgroup payments-information-form__selector">
+                                            <div class="formgroup payments-information-form__selector">
+                                                <PaymentAccountSelectionComponent TValue="string"
+                                                                              Label="From"
+                                                                              ValidationFor="() => _createPaymentModel.DebitAccount"
+                                                                              @bind-Value="_createPaymentModel.DebitAccount">
+                                                </PaymentAccountSelectionComponent>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formgroup payments-information-form__amount">
+                                        <AmountComponent LabelText="Credit amount"
+                                                     @bind-Value="@_createPaymentModel.CreditAmount"
+                                                     class="input payments-information-form__amount"
+                                                     ValidationFor="@(() => _createPaymentModel.CreditAmount)" />
+                                    </div>
+                                    <div class="formgroup payments-information-form__currency">
+                                        <CurrencySelectionComponent TValue="string"
+                                                                Label="Currency"
+                                                                DefaultOption="Select"
+                                                                ValidationFor="() => _createPaymentModel.CurrencyCode"
+                                                                @bind-Value="@_createPaymentModel.CurrencyCode">
+                                        </CurrencySelectionComponent>
+                                    </div>
+                                    <div class="formgroup">
+                                        <label>Payment date</label>
+                                        <div class="input-layout">
+                                            @* <InputDate @bind-Value="_createPaymentModel.PaymentDate" class="input" /> *@
+                                            <Datepicker @bind-Value="_createPaymentModel.PaymentDate"></Datepicker>
+                                        </div>
+                                        <CustomValidationMessage For="@(() => _createPaymentModel.PaymentDate)"></CustomValidationMessage>
+                                        @*<DateRangeComponent />*@
+                                    </div>
+                                </div>
+                                <div class="formgroup payments-information-form__textarea">
+                                    <label>Payment Reference</label>
+                                    <div class="input-layout">
+                                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="_createPaymentModel.PaymentReference"></InputTextArea>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.PaymentReference)"></CustomValidationMessage>
+                                </div>
+                                <div class="formgroup payments-information-form__textarea">
+                                    @*<NarrativeComponent />*@
+                                    <label>Debit Narrative</label>
+                                    <div class="input-layout">
+                                        <InputTextArea placeholder="Enter here" class="input" @bind-Value="_createPaymentModel.DebitNarrative"></InputTextArea>
+                                    </div>
+                                    <CustomValidationMessage For="@(() => _createPaymentModel.DebitNarrative)"></CustomValidationMessage>
+                                </div>
+
+                                <div class="payments-information-form">
+                                    <div class="formgroup">
+                                        <div class="payments-information-form__document-selector">
+                                            <label>Type of document</label>
+                                            <div class="select-layout">
+                                                <InputSelect @bind-Value="@_createPaymentModel.TypeOfDocument"
+                                                         class="select qwe" id="detailsSelector">
+                                                    <option value="">Select</option>
+                                                    <option value="Name and Address">Name and Address</option>
+                                                    <option value="Address">Address</option>
+                                                    <option value="Name">Name</option>
+                                                    <option value="CV">CV</option>
+                                                </InputSelect>
+
+                                                @* !!! For using selector as on design please use commited code below !!! *@
+
+                                                @* <div class="customSelector-input" onclick="onClickFilterIcon()"
+                                            id="filtersSelector">
+                                            <p
+                                            class="customSelector-input__placeholder admin-box-selections-customer-name">
+                                            Select a type</p>
+                                            <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+                                            </div>
+
+                                            <div class="customSelector-dropdown" id="filters">
+                                            <div class="customSelector-dropdown-item">
+                                            <p>Name and Address</p>
+                                            </div>
+                                            <div class="customSelector-dropdown-item">
+                                            <p>Address</p>
+                                            </div>
+                                            <div class="customSelector-dropdown-item">
+                                            <p>Name</p>
+                                            </div>
+                                            <div class="customSelector-dropdown-item">
+                                            <p>CV</p>
+                                            </div>
+                                            </div> *@
+                                            </div>
+                                            <CustomValidationMessage For="@(() => _createPaymentModel.TypeOfDocument)"></CustomValidationMessage>
+                                        </div>
+                                    </div>
+                                    <div class="formgroup">
+                                        <label>&nbsp;</label>
+                                        <div class="input-layout">
+                                            <FileUploader />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="payments-footer">
+                                <button type="button" class="payments-footer__buttonCancel" @onclick=@(() => _navigateManager.NavigateTo("/user/dashboard"))>Cancel</button>
+                                <button type="submit" class="payments-footer__buttonSuccess">Proceed</button>
+                            </div>
+
+                            <!--    -->
+                            <!--TODO-->
+                            <!--    -->
+                            @*<ConfirmPayeeModalComponent />
+
+                        <Confirm2FAModalComponent />
+
+                        <SuccessPayeeModalComponent />*@
+                        </div>
+                    </EditForm>
+                }
+                <div class="payments-main__right">
+                    <PaymentsHistoryComponent OnSetPaymentHistory="OnSelectedPaymentHistory" OnSetPayeeTemplate="OnSelectedPayeeTemplate" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

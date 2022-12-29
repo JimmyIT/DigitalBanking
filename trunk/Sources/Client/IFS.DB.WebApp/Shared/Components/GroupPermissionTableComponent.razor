@@ -1,0 +1,159 @@
+@* <table class="groupTable"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <td>Group Name</td> *@
+@*             <td><div class="groupTable-item"><input type="checkbox" class="groupTable-item__input"/>Account Viewing</div></td> *@
+@*             <td></td> *@
+@*         </tr> *@
+@*     </thead> *@
+@* *@
+@*     <tbody> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Developers</div></td> *@
+@*             <td></td> *@
+@*             <td><button class="groupTable-button">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Sales</div></td> *@
+@*             <td></td> *@
+@*             <td><button class="groupTable-button">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Marketing</div></td> *@
+@*             <td> *@
+@*                 <div class="groupTable-item"> *@
+@*                     <input type="checkbox" class="groupTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*             <td><button class="groupTable-button groupTable-button--inactive">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Internal Division</div></td> *@
+@*             <td> *@
+@*                 <div class="groupTable-item"> *@
+@*                     <input type="checkbox" class="groupTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*             <td><button class="groupTable-button groupTable-button--inactive">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Manufacturing</div></td> *@
+@*             <td> *@
+@*                 <div class="groupTable-item"> *@
+@*                     <input type="checkbox" class="groupTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*             <td><button class="groupTable-button groupTable-button--inactive">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Executive</div></td> *@
+@*             <td> *@
+@*                 <div class="groupTable-item"> *@
+@*                     <input type="checkbox" class="groupTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*             <td><button class="groupTable-button groupTable-button--inactive">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Middle Office</div></td> *@
+@*             <td> *@
+@*                 <div class="groupTable-item"> *@
+@*                     <input type="checkbox" class="groupTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*             <td><button class="groupTable-button groupTable-button--inactive">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Design</div></td> *@
+@*             <td> *@
+@*                 <div class="groupTable-item"> *@
+@*                     <input type="checkbox" class="groupTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*             <td><button class="groupTable-button groupTable-button--inactive">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td><div class="groupTable-item">Developers</div></td> *@
+@*             <td> *@
+@*                 <div class="groupTable-item"> *@
+@*                     <input type="checkbox" class="groupTable-item__input"/> *@
+@*                 </div> *@
+@*             </td> *@
+@*             <td><button class="groupTable-button groupTable-button--inactive">Set up Permissions</button></td> *@
+@*         </tr> *@
+@*     </tbody> *@
+@* </table> *@
+
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Models.Permission
+@using Humanizer
+@using IFS.DB.WebApp.Models
+@using Z.Collections.Extensions
+
+<div>
+    <QuickGrid
+        Class="groupTable"
+        TGridItem="GroupPermissionModel"
+        Items="_groupPermissions.AsQueryable()"
+        Pagination="_pagination"
+        Theme="override"
+        @ref="_gridRef">
+        <TemplateColumn TGridItem="GroupPermissionModel" Title="BELONGS TO GROUP">
+            @context.Name
+        </TemplateColumn>
+        <SelectableColumn
+            OnSingleClicked
+            Title="">
+            <HeaderTemplate>
+
+            </HeaderTemplate>
+            <ChildContent>
+
+            </ChildContent>
+        </SelectableColumn>
+        <TemplateColumn TGridItem="GroupPermissionModel" Title="" Align="Align.Right">
+            <button class="groupTable-button" @onclick="@(() => _navigateManager.NavigateTo($"/admin/group/{context.Id}/permission/accounts"))">Set up Permissions</button>
+        </TemplateColumn>
+    </QuickGrid>
+    <Paginator Value="@_pagination"/>
+</div>
+
+@code {
+
+    private IList<GroupPermissionModel> _groupPermissions = new List<GroupPermissionModel>();
+
+    private readonly GridSort<GroupPermissionModel> _sortByName = GridSort<GroupPermissionModel>
+        .ByAscending(x => x.Name)
+        .ThenDescending(x => x.Name);
+
+    private QuickGrid<GroupPermissionModel> _gridRef;
+    private string? _searchString;
+
+    private readonly PaginationState _pagination = new PaginationState
+    {
+        ItemsPerPage = 5
+    };
+
+    protected override void OnInitialized()
+    {
+        _groupPermissions = FakeData.GroupPermissions;
+    }
+
+    private async Task GetUserPermission()
+    {
+        _groupPermissions = FakeData.GroupPermissions;
+
+    // if (!string.IsNullOrEmpty(_searchString))
+    // {
+    //     _userPermissions = _userPermissions.Where(x => x.UserReference?.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase) ?? false).ToList();
+    // }
+    //
+    // if (!string.IsNullOrEmpty(_selectedAccount))
+    // {
+    //     _userPermissions = _userPermissions.Where(x => x.DebitAccount?.Equals(_selectedAccount, StringComparison.CurrentCultureIgnoreCase) ?? false).ToList();
+    // }
+
+        await _gridRef.RefreshDataAsync();
+    }
+
+}

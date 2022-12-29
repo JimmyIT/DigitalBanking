@@ -1,0 +1,14 @@
+﻿@import './common/variables';
+@import './common/fonts';
+@import './mixins';
+@import './common/reset';
+
+@import './partials';
+
+body {
+    @include body;
+    background: $color-gray-200;
+    color: $color-gray-900;
+    word-break: break-word;
+}
+

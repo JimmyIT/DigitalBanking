@@ -1,0 +1,68 @@
+﻿@using IFS.DB.WebApp.Models.Mandates
+
+<div class="mandates-value-item">
+    <!---->
+    <!---->
+    <div class="mandates-value-item-first">
+        <div class="mandates-value-item-first-head">
+            <p class="mandates-value-item-first-head-name">@($"Value item No.{_mandatesItem.MandatesItemId}")</p>
+            <div class="mandates-value-item-first-head__icon" @onclick=@RemoveMandatesItemAsync>
+                <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+            </div>
+        </div>
+        <!---->
+        <!---->
+        <div class="mandates-value-item-first-pick">
+            <button class="mandates-value-item-first-pick__item @(_isSimpleValueSection ? "active":"")"
+                    @onclick=@(() => ActiveSimpleValueSectionAync()) disabled=@(_isSimpleValueSection)>
+                Simple value
+            </button>
+            <button class="mandates-value-item-first-pick__item @(_isFormulaSection ? "active":"")"
+                    @onclick=@(() => ActiveFormulaSection()) disabled=@(_isFormulaSection)>
+                Formula
+            </button>
+        </div>
+        <!---->
+        <!---->
+        <hr class="mandates-value-item-first-line" />
+
+        @if (_isSimpleValueSection)
+        {
+            <EditForm EditContext=@_editContext>
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+
+                <div class="mandates-value-item-first-formula mandates-value-item-first-point" id="Template">
+                    <div class="mandates-value-item-first-point" style="display: flex;">
+                        <div class="mandates-value-item-first-point-content">
+                            <p class="mandates-value-item-first-point-content-name">Items up to a value of (@(_simpleValueItem.CurrencyCode))</p>
+                            <AmountComponent placeholder="0,00" class="mandates-value-item-first-point-content-input"
+                                         @bind-Value=@_simpleValueItem.Amount
+                                         ValidationFor="@(() => _simpleValueItem.Amount)"></AmountComponent>
+                        </div>
+
+                        <p class="mandates-value-item-first-point-text">Require</p>
+
+                        <div class="mandates-value-item-first-point-content">
+                            <p class="mandates-value-item-first-point-content-name">Number of signatures</p>
+                            <InputNumber placeholder="0" class="input mandates-value-item-first-point-number-input" @bind-Value=@_simpleValueItem.NumberOfSignatures></InputNumber>
+                            <CustomValidationMessage For="@(() => _simpleValueItem.NumberOfSignatures)"></CustomValidationMessage>
+                        </div>
+                    </div>
+                </div>
+            </EditForm>
+        }
+
+        @if (_isFormulaSection)
+        {
+            <CascadingValue Value="this">
+                @foreach (FormulaItemModel formulaItem in _formulaItems.Items)
+                {
+                    <FormulaItemCreationComponent FormulaItem=@(formulaItem with {})></FormulaItemCreationComponent>
+                }
+            </CascadingValue>
+        }
+    </div>
+    <!---->
+    <!---->
+</div>

@@ -1,0 +1,160 @@
+@using IFS.DB.WebApp.Models.Permission
+@using IFS.DB.WebApp.Features.Admin.Pages
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Helpers.EventHanderBinding
+@implements IDisposable
+
+<div>
+    <QuickGrid
+        Class="transfersTable"
+        TGridItem="PermissionModel"
+        Items="Permissions.AsQueryable()"
+        Theme="override"
+        @ref="_gridRef">
+
+        <TemplateColumn TGridItem="PermissionModel" Title="BELONGS TO GROUP">
+            <div class="transfersTable-item">
+                @context.Account.AccountDescription @($"({context.Account.AccountNumber})")
+            </div>
+        </TemplateColumn>
+
+        <TemplateColumn TGridItem="PermissionModel" Title="UNLIMITED DEBIT">
+            <HeaderTemplate Context="Col">
+                @Header(AllUnlimitedDebitSelected, SetAllUnlimitedDebit, "UNLIMITED DEBIT")
+            </HeaderTemplate>
+            <ChildContent>
+                <PermissionCheckBoxOrAmountItemComponent
+                    @bind-Checked="context.IsUnlimitedDebit"
+                    @bind-Amount="context.MaxDebitAmount"
+                    Model="context"
+                    ValidationFor="@(() => context.MaxDebitAmount)"
+                    ForwardEditContext="BindChildEditCtx"
+                    BindChangeEvent="_bindGlobalSetUnlimitedDebitHandler">
+                </PermissionCheckBoxOrAmountItemComponent>
+            </ChildContent>
+        </TemplateColumn>
+
+        <TemplateColumn TGridItem="PermissionModel" Title="UNLIMITED SIGNING">
+            <HeaderTemplate Context="Col">
+                @Header(AllUnlimitedSigningSelected, SetAllUnlimitedSigning, "UNLIMITED SIGNING")
+            </HeaderTemplate>
+            <ChildContent>
+                <PermissionCheckBoxOrAmountItemComponent
+                    @bind-Checked="context.IsUnlimitedSigning"
+                    @bind-Amount="context.MaxSigningAmount"
+                    Model="context"
+                    ValidationFor="@(() => context.MaxSigningAmount)"
+                    ForwardEditContext="BindChildEditCtx"
+                    BindChangeEvent="_bindGlobalSetUnlimitedSigningHandler">
+                </PermissionCheckBoxOrAmountItemComponent>
+            </ChildContent>
+        </TemplateColumn>
+
+        <TemplateColumn TGridItem="PermissionModel" Title="SIGN OWN">
+            <HeaderTemplate Context="Col">
+                @Header(AllSignOwnSelected, SetAllSignOwn, "SIGN OWN")
+            </HeaderTemplate>
+            <ChildContent>
+                <div class="transfersTable-item">
+                    <input type="checkbox" class="transfersTable-item__input" checked="@context.IsSignOwn" @onchange="@((args) => context.IsSignOwn = bool.Parse(args.Value.ToString()))"/>
+                </div>
+            </ChildContent>
+        </TemplateColumn>
+    </QuickGrid>
+</div>
+
+@code {
+
+    private RenderFragment Header(bool isChecked, Action<ChangeEventArgs> action, string? title) => __builder =>
+    {
+        <div class="col-header-content">
+            <div class="col-title">
+                <div class="col-title-text transfersTable-item">
+                    <input type="checkbox" class="transfersTable-item__input" checked="@isChecked" @onchange="@action"/>
+                    @title
+                </div>
+            </div>
+        </div>
+    };
+
+}
+
+@code {
+
+    [CascadingParameter]
+    public PermissionAvailableAccounts Owner { get; set; } = null!;
+
+    [Parameter]
+    public List<PermissionModel> Permissions { get; set; } = new();
+
+    private QuickGrid<PermissionModel> _gridRef = default!;
+
+    private bool AllUnlimitedDebitSelected 
+        => Permissions.All(x => x.IsUnlimitedDebit);
+    
+    private bool AllUnlimitedSigningSelected
+        => Permissions.All(x => x.IsUnlimitedSigning);
+    
+    private bool AllSignOwnSelected 
+        => Permissions.All(x => x.IsSignOwn);
+
+    private ChangeEventBinding _bindGlobalSetUnlimitedDebitHandler = new();
+    private ChangeEventBinding _bindGlobalSetUnlimitedSigningHandler = new();
+
+    private List<EditContext> _childEditCtxList = new();
+
+    protected override void OnInitialized()
+    {
+        
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _childEditCtxList.ForEach(Owner.AddChildEditCtx);
+        }
+    }
+    
+    private void SetAllUnlimitedDebit(ChangeEventArgs args)
+    {
+        bool value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+
+        Permissions.ForEach(x => x.IsUnlimitedDebit = value);
+
+        _bindGlobalSetUnlimitedDebitHandler.Invoke(this, args);
+    }
+
+    private void SetAllUnlimitedSigning(ChangeEventArgs args)
+    {
+        bool value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+
+        Permissions.ForEach(x => x.IsUnlimitedSigning = value);
+
+        _bindGlobalSetUnlimitedSigningHandler.Invoke(this, args);
+    }
+
+    private void SetAllSignOwn(ChangeEventArgs args)
+    {
+        bool value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+
+        Permissions.ForEach(x => x.IsSignOwn = value);
+    }
+
+    private void BindChildEditCtx(EditContext editCtx) => _childEditCtxList.Add(editCtx);
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _childEditCtxList.ForEach(Owner.RemoveChildEditCtx);
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+}

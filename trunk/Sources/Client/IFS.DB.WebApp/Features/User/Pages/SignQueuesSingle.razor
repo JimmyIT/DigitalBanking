@@ -1,0 +1,496 @@
+@layout SignQueuesLayout
+@page "/sign-queues/{Path}/single"
+@using IFS.DB.WebApp.Models.SigningQueue
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.Batch
+@using Z.Reflection.Extensions
+@using Humanizer
+
+<div class="sign-queues-single-layout">
+<div class="sign-queues-single-container">
+<div class="sign-queues-single">
+<div class="sign-queues-single-header">
+    <div class="sign-queues-single-header-breadcrumbs">
+        <p class="sign-queues-single-header-breadcrumbs__item">Sign Queues</p>
+        <p class="sign-queues-single-header-breadcrumbs__item">@Path.Humanize()</p>
+        <p class="sign-queues-single-header-breadcrumbs__item active">@_commonDataModel.Reference</p>
+    </div>
+
+    <div class="sign-queues-single-header-title">
+        <div class="sign-queues-single-header-title-line">
+            <button @onclick="@(() => _navigateManager.NavigateTo($"/sign-queues/{Path}"))">
+                <img src="/img/icons/return.svg" alt="return" class="sign-queues-single-header-title-line__return-icon"/>
+            </button>
+            <p class="sign-queues-single-header-title-line-name">@_commonDataModel.Reference</p>
+        </div>
+    </div>
+</div>
+
+<div class="sign-queues-single-card">
+@if (_productType is ProductTypeQueue.Payment && _paymentQueueModel is not null)
+{
+    <div class="sign-queues-single-card-info">
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Template Reference</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.TemplateReference</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Default Account</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.DefaultAccount</p>
+        </div>
+    </div>
+
+    <hr class="sign-queues-single-card-dash"/>
+
+    <p class="sign-queues-single-card-title">Payee’s Details</p>
+    <div class="sign-queues-single-card-info">
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Sort Code</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.SortCode</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Account name</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.AccountName</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Account number</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.AccountNumber</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Payee Reference</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.PayeeReference</p>
+        </div>
+    </div>
+
+    <hr class="sign-queues-single-card-dash"/>
+
+    <p class="sign-queues-single-card-title">Other details</p>
+    <div class="sign-queues-single-card-info">
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Debit Account</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.DebitAccount</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">User Reference</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.UserReference</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Payment Date</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.PaymentDate</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Attached files</p>
+            <p class="sign-queues-single-card-info-item-text"><img src="/img/sign/file.svg" alt="file" class="sign-queues-single-card-info-item-text__image"/>Screenshot.pdf</p>
+        </div>
+    </div>
+
+    <div class="sign-queues-single-card-info">
+        <div class="sign-queues-single-card-info-item sign-queues-single-card-info-item--fullwidth">
+            <p class="sign-queues-single-card-info-item-title">Debit Narrative</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.DebitNarrative</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Default Credit Narrative</p>
+            <p class="sign-queues-single-card-info-item-text">@_paymentQueueModel.DefaultCreditNarrative</p>
+        </div>
+    </div>
+}
+
+@if (_productType is ProductTypeQueue.Transfer && _transferQueueModel is not null)
+{
+    <div class="sign-queues-single-card-info">
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">From account</p>
+            <p class="sign-queues-single-card-info-item-text">@_transferQueueModel.DebitAccount</p>
+        </div>
+
+    </div>
+
+    <hr class="sign-queues-single-card-dash"/>
+
+    <p class="sign-queues-single-card-title">Payment information</p>
+
+    <div class="sign-queues-single-card-info">
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Transfer to</p>
+            <p class="sign-queues-single-card-info-item-text">@_transferQueueModel.CreditAccount</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Credit amount</p>
+            <p class="sign-queues-single-card-info-item-text">@_transferQueueModel.Amount.ToNumberFormat()</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">
+                Transfer date
+            </p>
+            <p class="sign-queues-single-card-info-item-text">@_transferQueueModel.TransferDate.ToFullDateTimeFormat()</p>
+        </div>
+
+    </div>
+
+    <div class="sign-queues-single-card-info">
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Debit Narrative</p>
+            <p class="sign-queues-single-card-info-item-text">@_transferQueueModel.DebitNarrative</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Credit Narrative</p>
+            <p class="sign-queues-single-card-info-item-text">@_transferQueueModel.CreditNarrative</p>
+        </div>
+
+    </div>
+}
+
+@if (_productType is ProductTypeQueue.PayeeTemplate && _payeeQueueModel is not null)
+{
+    <div class="sign-queues-single-card-info">
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Template reference</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.HostReference</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Debit account</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.DebitAccount</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Payment type</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.PaymentTemplateType</p>
+        </div>
+
+    </div>
+
+    <hr class="sign-queues-single-card-dash"/>
+
+    <p class="sign-queues-single-card-title">Payment information</p>
+
+    <div class="sign-queues-single-card-info">
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Bank Name</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.BankName</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Account name</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.BeneficiaryName</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Account No.</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.BeneficiaryAccountNumber</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Payment reference</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.BeneficiaryReference</p>
+        </div>
+
+    </div>
+
+    <div class="sign-queues-single-card-info">
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">SWIFT ID</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.SortCode</p>
+        </div>
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Currency</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.CreditCurrency</p>
+        </div>
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Debit Narrative</p>
+            <p class="sign-queues-single-card-info-item-text">@_payeeQueueModel.DebitNarrative</p>
+        </div>
+    </div>
+    
+}
+
+@if (_productType is ProductTypeQueue.Batch && _batchQueueModel is not null)
+{
+    <p class="sign-queues-single-card-title">General details </p>
+    <div class="sign-queues-single-card-info">
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">User Reference</p>
+            <p class="sign-queues-single-card-info-item-text">@_batchQueueModel.UserReference</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Debit Account</p>
+            <p class="sign-queues-single-card-info-item-text">@_batchQueueModel.DebitAccount</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Batch Amount</p>
+            <p class="sign-queues-single-card-info-item-text">@_batchQueueModel.Amount.ToNumberFormat()</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Payment date</p>
+            <p class="sign-queues-single-card-info-item-text">@_batchQueueModel.PaymentDate.ToFullDateTimeFormat()</p>
+        </div>
+
+    </div>
+    
+    <div class="sign-queues-single-card-info">
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Debit Narrative</p>
+            <p class="sign-queues-single-card-info-item-text">@_batchQueueModel.DebitNarrative</p>
+        </div>
+
+        <div class="sign-queues-single-card-info-item">
+            <p class="sign-queues-single-card-info-item-title">Default Credit Narrative</p>
+            <p class="sign-queues-single-card-info-item-text">@_batchQueueModel.DefaultCreditNarrative</p>
+        </div>
+
+    </div>
+
+    <hr class="sign-queues-single-card-dash"/>
+    <p class="sign-queues-single-card-title">Batch items </p>
+                                                         
+    @foreach(var item in _batchQueueModel.BatchItems ?? new List<BatchItemModel>())
+    {
+        <hr class="sign-queues-single-card-dash"/>
+        <div class="sign-queues-single-card-info">
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Transaction type</p>
+                <p class="sign-queues-single-card-info-item-text">@item.TransactionType</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Credit Account</p>
+                <p class="sign-queues-single-card-info-item-text">@item.CreditAccount</p>
+            </div>
+            
+           <div class="sign-queues-single-card-info-item">
+                <p class="sign-queues-single-card-info-item-title">Amount</p>
+                <p class="sign-queues-single-card-info-item-text">@item.Amount.ToNumberFormat()</p>
+            </div>
+
+            <div class="sign-queues-single-card-info-item sign-queues-single-card-info-item--fullwidth">
+                <p class="sign-queues-single-card-info-item-title ">Credit Narrative</p>
+                <p class="sign-queues-single-card-info-item-text">@item.CreditNarrative</p>
+            </div>
+
+        </div>
+    }
+}
+</div>
+
+</div>
+</div>
+</div>
+
+<footer class="sign-queues-footer-layout">
+    <div class="sign-queues-footer-container">
+        <div class="sign-queues-footer">
+            <div class="sign-queues-footer-left">
+                <div class="sign-queues-footer-left-total">
+                    <p class="sign-queues-footer-left-total-text">Total Required</p>
+                    <p class="sign-queues-footer-left-total-text">@_commonDataModel.TotalSignOff</p>
+                </div>
+
+                <div class="sign-queues-footer-left-awaiting">
+                    <p class="sign-queues-footer-left-awaiting-text">Awaiting Sign-off </p>
+                    <p class="sign-queues-footer-left-awaiting-text">@_commonDataModel.AwaitingSignOff</p>
+                </div>
+            </div>
+
+            <div class="sign-queues-footer-right">
+                
+                @if (_productType is not  ProductTypeQueue.PayeeTemplate)
+                {
+                    <div class="sign-queues-footer-right-batch">
+                        <p class="sign-queues-footer-right-batch-text">Amount:</p>
+                        <p class="sign-queues-footer-right-batch-text">
+                            @(_productType switch{
+                                ProductTypeQueue.Payment => _paymentQueueModel?.CreditAmount.ToNumberFormat(),
+                                ProductTypeQueue.Batch => _batchQueueModel?.Amount.ToNumberFormat(),
+                                ProductTypeQueue.Transfer => _transferQueueModel?.Amount.ToNumberFormat()
+                                })
+                        </p>
+                    </div>
+                }
+
+                <div class="sign-queues-footer-right-act">
+                    <button class="sign-queues-footer-right-act-reject" @onclick="Reject">Reject</button>
+                    <button class="sign-queues-footer-right-act-sign" @onclick="SignOff">Sign Off</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+@code {
+
+    [CascadingParameter]
+    public IModalService ModalSvc { get; set; }
+
+    [Parameter]
+    public string? Path { get; set; }
+
+    private _PaymentQueueModel? _paymentQueueModel;
+    private _TransferQueueModel? _transferQueueModel;
+    private _PayeeQueueModel? _payeeQueueModel;
+    private BatchModel? _batchQueueModel;
+
+    private CommonQueueModel _commonDataModel;
+
+    private ProductTypeQueue _productType;
+
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrEmpty(Path) || _appStore.CommonSigningQueueStore is null)
+            _navigateManager.NavigateTo($"/sign-queues/{Path}");
+
+        _commonDataModel = _appStore.CommonSigningQueueStore! with {};
+        _productType = _appStore.CommonSigningQueueStore.ProductType;
+
+        if (_productType is ProductTypeQueue.Payment)
+        {
+            _paymentQueueModel = FakeData.PaymentQueues?.FirstOrDefault(x => x.Id == _commonDataModel.ItemId);
+        }
+
+        if (_productType is ProductTypeQueue.Transfer)
+        {
+            _transferQueueModel = FakeData.TransferQueues?.FirstOrDefault(x => x.Id == _commonDataModel.ItemId);
+        }
+
+        if (_productType is ProductTypeQueue.PayeeTemplate)
+        {
+            _payeeQueueModel = FakeData.PayeeQueues?.FirstOrDefault(x => x.Id == _commonDataModel.ItemId);
+        }
+
+        if (_productType is ProductTypeQueue.Batch)
+        {
+            _batchQueueModel = FakeData.BatchQueues?.FirstOrDefault(x => x.Id == _commonDataModel.ItemId);
+        }
+    }
+
+    private async Task Reject()
+    {
+        var modalParameters = new ModalParameters
+        {
+            { nameof(SimplePasswordConfirmModalComponent.HeaderTitle), $"Reject {_commonDataModel.Reference}" },
+            { nameof(SimplePasswordConfirmModalComponent.HeaderSubtitle), $"Please enter your password to confirm {_productType.GetCustomAttributeDescription()} rejection" },
+            { nameof(SimplePasswordConfirmModalComponent.IsNegative), true },
+            { nameof(SimplePasswordConfirmModalComponent.ConfirmText), "Reject" }
+        };
+
+        IModalReference modal = ModalSvc.Show<SimplePasswordConfirmModalComponent>(
+            title: string.Empty,
+            parameters: modalParameters,
+            new ModalOptions
+            {
+                UseCustomLayout = true
+            });
+
+        ModalResult confirmModalResult = await modal.Result;
+
+        if (confirmModalResult.Confirmed is false)
+            return;
+
+        var index = FakeData.CommonSigningQueues.FindIndex(x => x.Id == _commonDataModel.Id);
+
+        if (index == -1) throw new InvalidOperationException("");
+
+        _commonDataModel.AwaitingSignOff -= 1;
+        _commonDataModel.CanSign = false;
+
+        if (_commonDataModel.AwaitingSignOff == 0)
+        {
+            FakeData.CommonSigningQueues.RemoveAt(index);
+        }
+        else
+        {
+            FakeData.CommonSigningQueues[index] = _commonDataModel 
+                with { };
+        }
+
+        ModalSvc.Show<SimpleAnnouncementModalComponent>(
+            title: string.Empty,
+            new ModalParameters
+            {
+                { nameof(SimpleAnnouncementModalComponent.HeaderTitle), "Rejection confirmed" },
+                { nameof(SimpleAnnouncementModalComponent.OnClose), EventCallback.Factory.Create(this, () => _navigateManager.NavigateTo("/sign-queues/payment")) },
+            },
+            new ModalOptions
+            {
+                UseCustomLayout = true
+            });
+    }
+
+    private async Task SignOff()
+    {
+        var modalParameters = new ModalParameters
+        {
+            { nameof(SimplePasswordConfirmModalComponent.HeaderTitle), $"Sign of {_commonDataModel.Reference}" },
+            { nameof(SimplePasswordConfirmModalComponent.HeaderSubtitle), $"Please enter your password to confirm {_productType.GetCustomAttributeDescription()} Sign off" },
+            { nameof(SimplePasswordConfirmModalComponent.ConfirmText), "Sign off" }
+        };
+
+        IModalReference modal = ModalSvc.Show<SimplePasswordConfirmModalComponent>(
+            title: string.Empty,
+            parameters: modalParameters,
+            new ModalOptions
+            {
+                UseCustomLayout = true
+            });
+
+        ModalResult confirmModalResult = await modal.Result;
+
+        if (confirmModalResult.Confirmed is false)
+            return;
+
+        var index = FakeData.CommonSigningQueues.FindIndex(x => x.Id == _commonDataModel.Id);
+
+        if (index == -1) throw new InvalidOperationException("");
+
+        _commonDataModel.AwaitingSignOff -= 1;
+        _commonDataModel.CanSign = false;
+
+        if (_commonDataModel.AwaitingSignOff == 0)
+        {
+            FakeData.CommonSigningQueues.RemoveAt(index);
+        }
+        else
+        {
+            FakeData.CommonSigningQueues[index] = _commonDataModel 
+                with { };
+        }
+
+        ModalSvc.Show<SimpleAnnouncementModalComponent>(
+            title: string.Empty,
+            new ModalParameters
+            {
+                { nameof(SimpleAnnouncementModalComponent.HeaderTitle), "Sign-off confirmed" },
+                { nameof(SimpleAnnouncementModalComponent.HeaderSubTitle), "The reference was confirmed" },
+                { nameof(SimpleAnnouncementModalComponent.OnClose), EventCallback.Factory.Create(this, () => _navigateManager.NavigateTo($"/sign-queues/{Path}")) },
+            },
+            new ModalOptions
+            {
+                UseCustomLayout = true
+            });
+    }
+
+   
+
+}

@@ -1,0 +1,40 @@
+﻿<div class="menu" @ref="_element" tabindex="0" @onfocusout="HideMenu">
+    <div @onclick="ToggleMenu" @onclick:stopPropagation >
+        @TooltipHeader(_show)
+    </div>
+    <div class="menu-content-wrapper @(_show ? "show" : "")" style="width: @(Width)px" @onclick="@(() => _show = false)">
+        @TooltipBody(_show)
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment<bool> TooltipBody { get; set; } = null!;
+
+    [Parameter]
+    public RenderFragment<bool> TooltipHeader { get; set; } = null!;
+    
+    [Parameter]
+    public bool AutoClose { get; set; }
+
+    [Parameter] public int Width { get; set; }
+    
+    private ElementReference _element;
+
+    private bool _show = false;
+
+    private async Task ToggleMenu()
+    {
+        if (_show is false)
+            await _element.FocusAsync();
+        _show = !_show;
+    }
+
+    private void HideMenu()
+    {
+        if (AutoClose)
+            _show = false;
+    }
+    
+}

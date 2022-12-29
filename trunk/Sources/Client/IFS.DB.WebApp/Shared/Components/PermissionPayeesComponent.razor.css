@@ -1,0 +1,84 @@
+::deep .payeesTable td,
+::deep .payeesTable th {
+  vertical-align: middle;
+  width: 100%;
+}
+::deep .payeesTable td:nth-child(2),
+::deep .payeesTable th:nth-child(2) {
+  min-width: 180px;
+}
+::deep .payeesTable td:nth-child(3),
+::deep .payeesTable th:nth-child(3) {
+  min-width: 168px;
+}
+::deep .payeesTable td:last-child,
+::deep .payeesTable th:last-child {
+  min-width: 120px;
+}
+@media (max-width: 1260px) and (min-width: 740px) {
+  ::deep .payeesTable td:nth-child(2),
+  ::deep .payeesTable th:nth-child(2) {
+    width: 168px;
+  }
+  ::deep .payeesTable td:nth-child(3),
+  ::deep .payeesTable th:nth-child(3) {
+    width: 158px;
+  }
+  ::deep .payeesTable td:last-child,
+  ::deep .payeesTable th:last-child {
+    width: 118px;
+  }
+}
+::deep .payeesTable thead th {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: #f2f7fd;
+  color: #81afed;
+}
+::deep .payeesTable thead th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+::deep .payeesTable thead th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+::deep .payeesTable thead th .col-header-content .col-title-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #81afed;
+}
+::deep .payeesTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+::deep .payeesTable tbody tr:last-child {
+  border-bottom: 0;
+}
+::deep .payeesTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+::deep .payeesTable tbody td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 20px;
+  color: #212121;
+}
+::deep .payeesTable-item {
+  display: flex;
+  align-items: center;
+}
+::deep .payeesTable-item__input {
+  margin-right: 8px;
+}

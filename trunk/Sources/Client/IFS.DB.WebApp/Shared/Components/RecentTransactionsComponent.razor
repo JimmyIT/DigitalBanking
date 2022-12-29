@@ -1,0 +1,68 @@
+@using IFS.DB.WebApp.Models.Transactions
+<div class="home-transactions">
+     <p class="home-transactions__title">
+            @if (!string.IsNullOrEmpty(Title))
+            {
+                @Title
+            }
+            else
+            {
+                @("Recent Transations")
+            }
+        </p>
+    <DataGridComponent @ref="_dataSourceGrid" TItem="TransactionModel"
+                       Columns="_columnsDefinition"
+                       DataItems="@_recentTransactionModel.RecentTransactions"
+                       TotalItems="_recentTransactionModel.TotalRecords"
+                       CurrentPageNumber="@_pageIndex"
+                       OnNextPageClickCallback="OnNextPageChanged"
+                       OnPrevPageClickCallback="OnPrevPageChanged"
+                       OnPageIndexClickCallback="OnPageIndexChanged"
+                       OnSortDataChangedCallback="OnSortDataChanged"
+                       ChangablePageSize=@ChangablePageSize
+                       OnPageSizeChangedCallback=@OnPageSizeChanged
+                       PagingConfig=@_pagingConfig                       
+                       TableClass="transactionTable">
+        <CustomHtmlPager>
+            @if (IsCustomPager)
+            {
+                @if (CustomPager != null)
+                {
+                    @CustomPager
+                }
+                else
+                {
+                    <div class="view-more__section">
+                        <button class="view-more__button" @onclick=@(() => _navigateManager.NavigateTo("/history"))>
+                            View more items...
+                        </button>
+                    </div>
+                }
+            }
+        </CustomHtmlPager>
+    </DataGridComponent>
+</div>
+
+@code {
+    private RenderFragment IconTypeTemplate(TransactionModel transactionModel)
+    => @<text>
+        @if (transactionModel.ProductType == ProductTypeEnum.Domestic || transactionModel.ProductType == ProductTypeEnum.SWIFT)
+        {
+                <img src="/img/transactionTable/payment.svg"
+             alt="eye"
+             class="icon" />
+        }
+        else if (transactionModel.ProductType == ProductTypeEnum.Transfer)
+        {
+                <img src="/img/transactionTable/transfer.svg"
+             alt="eye"
+             class="icon" />
+        }
+        else if (transactionModel.ProductType == ProductTypeEnum.Batches)
+        {
+                <img src="/img/transactionTable/batchMaintenance.svg"
+             alt="eye"
+             class="icon" />
+        }
+        </text>;
+}

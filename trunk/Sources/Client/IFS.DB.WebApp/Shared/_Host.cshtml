@@ -1,0 +1,16 @@
+﻿@page "/"
+@namespace IFS.DB.WebApp.Pages
+@using Microsoft.AspNetCore.Localization
+@using System.Globalization
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+    this.HttpContext.Response.Cookies.Append(
+        CookieRequestCultureProvider.DefaultCookieName,
+        CookieRequestCultureProvider.MakeCookieValue(
+            new RequestCulture(
+                CultureInfo.CurrentCulture,
+                CultureInfo.CurrentUICulture)));
+}
+
+<component type="typeof(App)" render-mode="Server" />

@@ -1,0 +1,202 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.standing-orders-layout {
+  padding: $indent-24 0;
+}
+
+.standing-orders-container {
+  @include container;
+}
+
+.standing-orders {
+  &-header {
+    @include pageTitle;
+    margin-bottom: $indent-24;
+  }
+
+  &-box {
+    @include box;
+  }
+
+  &-search {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $indent-16;
+
+    &__left {
+      flex: 1;
+    }
+
+    &-body {
+      //max-width: 508px;
+      display: flex;
+
+      &__input {
+        max-width: 508px;
+        margin-right: 12px;
+      }
+
+      &__button {
+        @include lightBlueButton;
+        min-width: 140px;
+        margin-left: $indent-16;
+
+        &-icon {
+          @include buttonIconMedium;
+        }
+      }
+    }
+
+  }
+
+  //&-search {
+  //  //max-width: 508px;
+  //  display: flex;
+  //  
+  //  &__input {
+  //    max-width: 508px;
+  //    margin-right: 12px;
+  //  }
+  //}
+  &-filter {
+    display: flex;
+    align-items: center;
+    margin-top: $indent-16;
+  }
+
+
+  &-filter-tag {
+    display: flex;
+    align-items: center;
+    margin-top: $indent-16;
+
+    &-type {
+      @include body;
+      display: flex;
+      align-items: center;
+      padding: $indent-8 $indent-12;
+      margin-right: $indent-8;
+      background: $color-sky-blue-100;
+      color: $color-sky-blue-300;
+      border-radius: 8px;
+
+      &:nth-child(4) {
+        margin-right: $indent-16;
+      }
+
+      &-text {
+        margin-right: $indent-8;
+      }
+
+      &__close {
+        margin-left: $indent-8;
+        cursor: pointer;
+      }
+
+    }
+
+    &-clear {
+      @include transparentButton;
+      cursor: pointer;
+    }
+
+    &__close {
+      margin-left: $indent-8;
+      cursor: pointer;
+    }
+  }
+
+  &-soring-button {
+    @include buttonIconMedium;
+  }
+}
+
+::deep .standingOrdersTable {
+
+  margin-top: $indent-16;
+
+  td {
+    @include textWithDots;
+
+    &:first-child {
+      padding-left: $indent-12;
+    }
+
+    &:last-child {
+      overflow: visible;
+    }
+
+    &:nth-child(2) {
+      width: 400px;
+    }
+
+    &:nth-child(5) {
+      width: 80px;
+    }
+
+    &:nth-child(6) {
+      width: 40px;
+    }
+
+  }
+
+  tbody {
+    td {
+      &:nth-child(4) {
+        @include h5;
+      }
+    }
+  }
+
+  &-button {
+    @include label;
+    @include grayTextBox;
+    display: flex;
+    justify-content: center;
+
+    &.standingOrdersTable-button--error {
+      @include redTextBox;
+    }
+
+    &.standingOrdersTable-button--success {
+      @include greenTextBox;
+    }
+  }
+
+  &-action {
+    position: relative;
+    box-sizing: border-box;
+
+    &-icon {
+      @include buttonIcon;
+    }
+
+    &-dropdown {
+      position: absolute;
+      top: 45px;
+      right: 10px;
+      width: 156px;
+      display: none;
+      padding: 8px 0;
+      border: 1px solid $color-sky-blue-200;
+      border-radius: 8px;
+      background-color: $color-white;
+      box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+      z-index: 2;
+
+      &-item {
+        @include field;
+        padding: 14px 16px;
+        text-align: left;
+        color: $color-gray-600;
+        cursor: pointer;
+
+        &:hover {
+          color: $color-gray-900;
+          background-color: $color-sky-blue-100;
+        }
+      }
+    }
+  }
+}

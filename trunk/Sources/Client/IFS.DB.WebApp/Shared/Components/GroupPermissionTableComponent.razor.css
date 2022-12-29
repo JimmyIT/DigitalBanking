@@ -1,0 +1,74 @@
+::deep .groupTable th, ::deep .groupTable td {
+  vertical-align: middle;
+}
+::deep .groupTable th:nth-child(3), ::deep .groupTable td:nth-child(3) {
+  width: 228px;
+  text-align: right;
+}
+::deep .groupTable thead th {
+  padding: 8px 20px;
+  background: #f2f7fd;
+}
+::deep .groupTable thead th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+::deep .groupTable thead th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+::deep .groupTable thead th .col-header-content .col-title-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #81afed;
+}
+::deep .groupTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+::deep .groupTable tbody tr:last-child {
+  border-bottom: 0;
+}
+::deep .groupTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+::deep .groupTable tbody td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 20px;
+  color: #6a6a6a;
+}
+::deep .groupTable tbody td:first-child {
+  color: #212121;
+}
+::deep .groupTable tbody td:last-child {
+  color: #0360db;
+}
+::deep .groupTable-item {
+  display: flex;
+  align-items: center;
+}
+::deep .groupTable-item__input {
+  margin-right: 8px;
+  border: 1.25px solid #0360db;
+  border-radius: 2px;
+}
+::deep .groupTable-item__img {
+  margin-right: 8px;
+}
+::deep .groupTable-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  color: #0360db;
+}
+::deep .groupTable-button.groupTable-button--inactive {
+  color: #d2d2d2;
+}

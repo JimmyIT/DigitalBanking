@@ -1,0 +1,129 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+::deep .transfersTable {
+    td,
+    th {
+        vertical-align: middle;
+        width: 100%;
+
+        &:nth-child(2),
+        &:nth-child(3) {
+            min-width: 268px;
+        }
+
+        &:last-child {
+            min-width: 120px;
+        }
+
+        @include tablet {
+            &:last-child {
+                width: 120px;
+            }
+        }
+    }
+
+    thead {
+        th {
+            @include label2;
+            padding: $indent-8 20px;
+            background: $color-sky-blue-100;
+            color: $color-sky-blue-300;
+
+            &:first-child {
+                border-radius: 8px 0 0 8px;
+            }
+
+            &:last-child {
+                border-radius: 0 8px 8px 0;
+            }
+
+            .col-header-content .col-title-text {
+                @include label2;
+                color: $color-sky-blue-300;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $color-sky-blue-100;
+
+            &:last-child {
+                border-bottom: 0;
+
+                td {
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        td {
+            @include body;
+            padding: 20px;
+            color: $color-gray-900;
+        }
+    }
+
+    &-item {
+        display: flex;
+        align-items: center;
+
+        &-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            margin-right: $indent-12;
+        }
+
+        &__input {
+            margin-right: $indent-8;
+        }
+
+        &__text {
+            @include label2;
+            color: $color-gray-600;
+            word-break: normal;
+        }
+
+        &__amount {
+            max-width: 140px;
+            text-align: right;
+        }
+
+        & .formgroup.formgroup--inactive {
+            @mixin disabledInput {
+                border-color: $color-gray-200;
+                background: $color-gray-100;
+                color: $color-gray-500;
+            }
+
+            label {
+                color: $color-gray-500;
+            }
+
+            input {
+                @include disabledInput;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    @include disabledInput;
+                    &::placeholder {
+                        color: $color-gray-500;
+                    }
+                }
+            }
+
+            &:hover {
+                label {
+                    color: $color-gray-500;
+                }
+
+                input {
+                    @include disabledInput;
+                }
+            }
+        }
+    }
+}

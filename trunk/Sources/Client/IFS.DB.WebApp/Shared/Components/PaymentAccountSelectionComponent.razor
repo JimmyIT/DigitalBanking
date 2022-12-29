@@ -1,0 +1,83 @@
+﻿@using System.Linq.Expressions
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Models.Payment
+@typeparam TValue
+@inherits InputSelect<TValue>
+
+@if (!string.IsNullOrEmpty(Label))
+{
+    <label>@Label</label>
+}
+<div class="select-layout">
+    <InputSelect 
+        Value="Value" 
+        class="select" 
+        ValueChanged="async (TValue value) => await OnValueChangedInternal(value)" 
+        ValueExpression="@ValidationFor">
+        <option value="">@DefaultOption</option>
+        @foreach (var item in _listAccount ?? Enumerable.Empty<AccountModel>())
+        {
+            <option value="@item.AccountNumber">@item.AccountNumber @item.AccountDescription</option>
+        }
+    </InputSelect> 
+
+    @* !!! For using selector as on design please use code below !!! *@
+
+    @* <div class="customSelector">
+        <div class="customSelector-input" onclick="onClickFilterIcon()"
+            id="filtersSelector">
+            <p
+                class="customSelector-input__placeholder admin-box-selections-customer-name">
+                Select an account</p>
+            <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+        </div>
+
+        <div class="customSelector-dropdown" id="filters">
+            <div class="customSelector-dropdown-item">
+                <p>Payee 1</p>
+            </div>
+            <div class="customSelector-dropdown-item">
+                <p>Payee 2</p>
+            </div>
+        </div>
+    </div> *@
+</div>
+
+@if (!string.IsNullOrEmpty(Description))
+{
+    <p class="underline-text">@Description</p>
+}
+
+<CustomValidationMessage For="ValidationFor"></CustomValidationMessage>
+
+
+@code {
+
+    [Parameter] public string Label { get; set; }
+    [Parameter] public string Description { get; set; }
+    [Parameter] public string DefaultOption { get; set; } = "Select";
+    [Parameter] public EventCallback<TValue>? OnValueChanged { get; set; }
+    [Parameter, EditorRequired] public Expression<Func<TValue>> ValidationFor { get; set; } = default!;
+
+    private IReadOnlyCollection<AccountModel>? _listAccount;
+
+    private async Task OnValueChangedInternal(TValue value)
+    {
+        Value = value;
+        if (ValueChanged.HasDelegate)
+            await ValueChanged.InvokeAsync(value)!;
+
+    }
+
+    protected override void OnInitialized()
+    {
+        _listAccount = FakeData.Accounts;        
+
+        if(!string.IsNullOrEmpty(CurrentValueAsString))
+        {
+            _listAccount = _listAccount.Where(x => x.AccountNumber == CurrentValueAsString).ToList();
+        }
+    }
+
+}

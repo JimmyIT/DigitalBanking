@@ -1,0 +1,70 @@
+@using IFS.DB.WebApp.Helpers.Extensions
+@if (AccountItem != null)
+{
+    <div class="card-info @(isActive ? "card-info--active" : "")" @onclick="(() => SelectedCarouselItem())">
+        <div class="card-info__header-1">
+            <p class="card-info__caption">@AccountItem.AccountDescription</p>
+            <p class="card-info__currency">@AccountItem.CurrencyCode</p>
+        </div>
+        <div class="card-info__header-2">
+            <p class="card-info__title">
+                Account No. @AccountItem.AccountNumber
+                <div class="card-info__title__copy">
+                    <img src="@(isActive ? "/img/icons/copyWhite.svg" : "/img/icons/copy.svg")" alt="copy" class="card-info__title-copy icon" />
+                    <img src="@(isActive ? "/img/icons/copyWhite.svg" : "/img/icons/copyGray.svg")" alt="copy" class="card-info__title-copy iconHover" />
+                </div>
+            </p>
+            <div class="card-info__favorite">
+                @if (AccountItem.IsFavourite)
+                {
+                    <a class="card-info-favouriteStar__button"
+                           @onclick=@(() => SetFavouriteAccountInfo(false))
+                           @onclick:stopPropagation=true>
+                        <img class="icon" src="/img/icons/favorite.svg" alt="favorite" />
+                        <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="favorite" />
+                    </a>
+                }
+                else
+                {
+                    <a class="card-info-favouriteStar__button"
+                           @onclick=@(() => SetFavouriteAccountInfo(true))
+                           @onclick:stopPropagation=true>
+                        <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="favorite" />
+                        <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="favorite" />
+                    </a>
+                }
+            </div>
+        </div>
+
+        <hr class="card-info__hr" />
+
+        <div class="card-info-balance">
+            <div class="card-info__header-2">
+                <p class="card-info-balance__title">
+                    Balance
+                </p>
+                <p class="card-info__favorite">
+                    <img src="@(isActive ? "/img/icons/dotsIcon.svg" : "/img/icons/dotsIcon.svg")"
+                     alt="tooltip"  @onclick=@ViewMoreInfomation class="icon" />
+                    <img src="@(isActive ? "/img/icons/dotsIcon_white.svg" : "/img/icons/dotsHoverIcon.svg")"
+                     alt="tooltip" class="iconHover" @onclick=@ViewMoreInfomation/>
+                </p>
+            </div>
+
+            <div class="card-info-balance-list">
+                <div class="card-info-balance-list__item">
+                    <p class="card-info-balance-list__item-caption">Current:</p>
+                    <p class="card-info-balance-list__item-number">@AccountItem.CurrentBalance.ToNumberFormat()</p>
+                </div>
+                <div class="card-info-balance-list__item">
+                    <p class="card-info-balance-list__item-caption">Available:</p>
+                    <p class="card-info-balance-list__item-number">@AccountItem.AvailableBalance.ToNumberFormat()</p>
+                </div>
+                @*<div class="card-info-balance-list__item">
+            <p class="card-info-balance-list__item-caption">Overdraft Remaining:</p>
+            <p class="card-info-balance-list__item-number">@AccountItem.OverdraftLimit</p>
+            </div>*@
+            </div>
+        </div>
+    </div>
+}

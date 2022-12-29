@@ -1,0 +1,190 @@
+@using IFS.DB.WebApp.Features.Admin.Pages
+@using IFS.DB.WebApp.Models.Permission
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@* <table class="payeesTable"> *@
+@*     <thead> *@
+@*     <tr> *@
+@*         <td>Account</td> *@
+@*         <td><div class="payeesTable-item"><input type="checkbox" class="payeesTable-item__input"/>Unlimited Debit</div></td> *@
+@*         <td><div class="payeesTable-item"><input type="checkbox" class="payeesTable-item__input"/>Unlimited Signing</div></td> *@
+@*         <td><div class="payeesTable-item"><input type="checkbox" class="payeesTable-item__input"/>Sign own</div></td> *@
+@*     </tr> *@
+@*     </thead> *@
+@* *@
+@*     <tbody> *@
+@*     <tr> *@
+@*         <td><div class="payeesTable-item">Customer Fixed Loans (00257020)</div></td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*     </tr> *@
+@* *@
+@*     <tr> *@
+@*         <td><div class="payeesTable-item">Bank Operational Account - IB (00257001)</div></td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*     </tr> *@
+@* *@
+@*     <tr> *@
+@*         <td><div class="payeesTable-item">Bank Operational Account - IB (00257002)</div></td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*         <td> *@
+@*             <div class="payeesTable-item"> *@
+@*                 <input type="checkbox" class="payeesTable-item__input"/> *@
+@*             </div> *@
+@*         </td> *@
+@*     </tr> *@
+@*     </tbody> *@
+@* </table> *@
+
+<div>
+    <QuickGrid
+        Class="payeesTable"
+        TGridItem="PermissionModel"
+        Items="Permissions.AsQueryable()"
+        Theme="override"
+        @ref="_gridRef">
+
+        <TemplateColumn TGridItem="PermissionModel" Title="BELONGS TO GROUP">
+            <div class="payeesTable-item">
+                @context.Account.AccountDescription @($"({context.Account.AccountNumber})")
+            </div>
+        </TemplateColumn>
+
+        <TemplateColumn TGridItem="PermissionModel" Title="UNLIMITED DEBIT">
+            <HeaderTemplate Context="Col">
+                @Header(AllAllowedToEnterSelected, SetAllAllowedToEnter, "ALLOWED TO ENTER")
+            </HeaderTemplate>
+            <ChildContent>
+                <div class="payeesTable-item">
+                    <input type="checkbox" class="payeesTable-item__input" checked="@context.IsAllowedToEnter" @onchange="@((args) => context.IsAllowedToEnter = bool.Parse(args.Value.ToString()))"/>
+                </div>
+            </ChildContent>
+        </TemplateColumn>
+
+        <TemplateColumn TGridItem="PermissionModel" Title="UNLIMITED SIGNING">
+            <HeaderTemplate Context="Col">
+                @Header(AllAllowedToSignSelected, SetAllAllowedToSign, "ALLOWED TO SIGN")
+            </HeaderTemplate>
+            <ChildContent>
+                <div class="payeesTable-item">
+                    <input type="checkbox" class="payeesTable-item__input" checked="@context.IsAllowedToSign" @onchange="@((args) => context.IsAllowedToSign = bool.Parse(args.Value.ToString()))"/>
+                </div>
+            </ChildContent>
+        </TemplateColumn>
+
+        <TemplateColumn TGridItem="PermissionModel" Title="SIGN OWN">
+            <HeaderTemplate Context="Col">
+                @Header(AllSignOwnSelected, SetAllSignOwn, "SIGN OWN")
+            </HeaderTemplate>
+            <ChildContent>
+                <div class="payeesTable-item">
+                    <input type="checkbox" class="payeesTable-item__input" checked="@context.IsSignOwn" @onchange="@((args) => context.IsSignOwn = bool.Parse(args.Value.ToString()))"/>
+                </div>
+            </ChildContent>
+        </TemplateColumn>
+    </QuickGrid>
+</div>
+
+@code {
+
+    private RenderFragment Header(bool isChecked, Action<ChangeEventArgs> action, string? title) => __builder =>
+    {
+        <div class="col-header-content">
+            <div class="col-title">
+                <div class="col-title-text payeesTable-item">
+                    <input type="checkbox" class="payeesTable-item__input" checked="@isChecked" @onchange="@action"/>
+                    @title
+                </div>
+            </div>
+        </div>
+    };
+
+}
+
+@code {
+
+    [CascadingParameter]
+    public PermissionAvailableAccounts Owner { get; set; } = null!;
+
+    [Parameter]
+    public List<PermissionModel> Permissions { get; set; } = new();
+
+    private QuickGrid<PermissionModel> _gridRef = default!;
+
+    private bool AllAllowedToEnterSelected
+        => Permissions.All(x => x.IsAllowedToEnter);
+
+    private bool AllAllowedToSignSelected
+        => Permissions.All(x => x.IsAllowedToSign);
+
+    private bool AllSignOwnSelected
+        => Permissions.All(x => x.IsSignOwn);
+
+
+    protected override void OnInitialized()
+    {
+    }
+
+
+    private void SetAllAllowedToEnter(ChangeEventArgs args)
+    {
+        bool value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+
+        Permissions.ForEach(x => x.IsAllowedToEnter = value);
+    }
+
+    private void SetAllAllowedToSign(ChangeEventArgs args)
+    {
+        bool value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+
+        Permissions.ForEach(x => x.IsAllowedToSign = value);
+    }
+
+    private void SetAllSignOwn(ChangeEventArgs args)
+    {
+        bool value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+
+        Permissions.ForEach(x => x.IsSignOwn = value);
+    }
+
+
+
+
+
+
+}

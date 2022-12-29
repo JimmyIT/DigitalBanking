@@ -1,0 +1,19 @@
+.menu {
+  position: relative;
+  box-sizing: border-box;
+}
+.menu-content-wrapper {
+  position: absolute;
+  top: 45px;
+  right: 10px;
+  display: none;
+  padding: 8px 0;
+  border: 1px solid #CDDFF8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+  z-index: 2;
+}
+.menu-content-wrapper.show {
+  display: block;
+}

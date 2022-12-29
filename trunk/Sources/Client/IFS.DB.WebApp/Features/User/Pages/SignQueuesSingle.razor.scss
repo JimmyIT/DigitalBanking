@@ -1,0 +1,214 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.sign-queues-single-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.sign-queues-single-container {
+    @include container;
+}
+
+.sign-queues-single {
+    &-header {
+        @include pageTitle;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &-breadcrumbs {
+            @include breadcrumbs;
+        }
+
+        &-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: $indent-8;
+
+            &-line {
+                display: flex;
+                align-items: center;
+                margin-top: $indent-16;
+
+                &__return-icon {
+                    @include shadowButton;
+                    margin-right: $indent-12;
+                }
+
+                &-name {
+                    @include h1;
+                    margin-right: $indent-12;
+                }
+            }
+        }
+    }
+
+    &-card {
+        @include box;
+
+        &-info {
+            display: flex;
+            margin-bottom: $indent-16;
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &-item {
+                margin-right: 32px;
+                width: 100%;
+                max-width: 260px;
+
+                &:last-child {
+                    max-width: unset;
+                    margin-right: 0;
+                }
+
+                &--fullwidth {
+                    max-width: 552px;
+                }
+
+                &-title {
+                    @include label;
+                    color: $color-gray-600;
+                }
+
+                &-text {
+                    @include body;
+
+                    &__image {
+                        display: inline-block;
+                        vertical-align: top;
+                        margin-right: 4px;
+                    }
+                }
+            }
+        }
+
+        &-dash {
+            @include hr;
+            margin-bottom: $indent-16;
+            background: $color-sky-blue-100;
+        }
+
+        &-title {
+            @include h4;
+            margin-bottom: $indent-8;
+            color: $color-gray-800;
+        }
+    }
+}
+
+
+.sign-queues-footer-layout {
+    background: $color-white;
+    padding: $indent-24 0;
+}
+
+.sign-queues-footer-container {
+    @include container;
+}
+
+.sign-queues-footer {
+    display: flex;
+    justify-content: space-between;
+
+    &-left {
+        display: flex;
+        align-items: center;
+
+        &-total {
+            display: flex;
+            align-items: center;
+            margin-right: 40px;
+
+            &-text {
+                @include h4;
+
+                &:first-child {
+                    margin-right: $indent-8;
+                    color: $color-gray-600;
+                }
+
+                &:last-child {
+                    color: $color-gray-800;
+                }
+            }
+        }
+
+        &-awaiting {
+            display: flex;
+            align-items: center;
+
+            &-text {
+                @include h4;
+
+                &:first-child {
+                    margin-right: $indent-8;
+                    color: $color-gray-600;
+                }
+
+                &:last-child {
+                    color: $color-red-500;
+                }
+            }
+        }
+    }
+
+    &-right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        &-batch {
+            display: flex;
+            align-items: center;
+
+            &-text {
+                @include h4;
+
+                &:nth-child(1) {
+                    margin-right: $indent-8;
+                    color: $color-gray-600;
+                }
+
+                &:nth-child(2) {
+                    @include h2;
+                    margin-right: 44px;
+                    color: $color-gray-800;
+                }
+            }
+        }
+
+        &-act {
+            display: flex;
+            align-items: center;
+
+            &-reject,
+            &-sign {
+                min-width: 148px;
+            }
+
+            &-reject {
+                @include redButton;
+                margin-right: $indent-16;
+                
+                &--inactive {
+                    background: $color-red-200;
+                }
+            }
+
+            &-sign {
+                @include blueButton;
+                
+                &--inactive {
+                    background: $color-blue-200;
+                }
+            }
+        }
+    }
+}
+
+
+

@@ -1,0 +1,249 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.main-header-layout {
+    padding-top: $indent-12;
+}
+
+.main-header-container {
+    @include container;
+}
+
+.main-header {
+    @include box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: $indent-16;
+    padding-bottom: $indent-16;
+
+    @include tablet-mobile {
+        flex-direction: column;
+    }
+
+    &__left {
+        @include tablet-mobile {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &-burger {
+            display: none;
+
+            @include tablet-mobile {
+                display: block;
+            }
+        }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+
+        @include tablet-mobile {
+            width: 100%;
+            display: none;
+            margin-top: $indent-36;
+        }
+    }
+
+    &__logo {
+        @include logo;
+    }
+
+    &-menu {
+        display: flex;
+        align-items: center;
+
+        @include tablet-mobile {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        &__item {
+            position: relative;
+            border-radius: $indent-8;
+            padding: $indent-8 $indent-12;
+            margin-right: $indent-24;
+            cursor: pointer;
+
+            @include tablet-mobile {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: $indent-12;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &-link {
+                display: flex;
+                align-items: center;
+                color: $color-gray-400;
+
+                &:hover {
+                    color: $color-sky-blue-500;
+                }
+
+                &-dropdown,
+                &-counter {
+                    @include square-icon(24px);
+                    margin-left: $indent-8;
+
+                    @include tablet-mobile {
+                        margin-left: auto;
+                    }
+                }
+
+                &-counter {
+                    @include label;
+                    border-radius: 50%;
+                    background: $color-red-400;
+                    line-height: 20px;
+                    color: $color-white;
+                    text-align: center;
+                    padding-top: $indent-4;
+                }
+
+                &-submenu,
+                &-submenu-payment {
+                    position: absolute;
+                    width: 160px;
+                    top: 40px;
+                    right: 0;
+                    padding: $indent-8 1px;
+                    border: 1px solid $color-sky-blue-200;
+                    border-radius: 8px;
+                    color: $color-gray-600;
+                    background-color: $color-white;
+                    box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+                    z-index: 10;
+
+                    @include tablet-mobile {
+                        top: 52px;
+                        padding: 0;
+                    }
+
+                    &__item {
+                        &:hover {
+                            color: $color-gray-900;
+                            background-color: $color-sky-blue-100;
+                        }
+
+                        &__icon {
+                            margin-right: $indent-8;
+                        }
+
+                        @include field;
+                        display: flex;
+                        padding: 16px;
+                    }
+                }
+
+                &-submenu {
+                    @include tablet-mobile {
+                        width: 100%;
+
+                        &-wrapper {
+                            height: 184px;
+                        }
+                    }
+                }
+
+                &-submenu-payment {
+                    width: 214px;
+
+                    @include tablet-mobile {
+                        width: 100%;
+
+                        &-wrapper {
+                            height: 135px;
+                        }
+                    }
+                }
+            }
+
+            &.main-header-menu__item--active {
+                background: $color-sky-blue-100;
+
+                .main-header-menu__item-link {
+                    color: $color-sky-blue-500;
+                }
+            }
+        }
+    }
+
+    &-wrapper {
+        display: flex;
+
+        @include tablet-mobile {
+            position: relative;
+        }
+    }
+
+    &-nav {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-left: $indent-12;
+        cursor: pointer;
+
+        @include tablet-mobile {
+            width: 54%;
+            position: unset;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-left: 0;
+        }
+
+        &__item {
+            @include buttonIconBig;
+            margin-right: $indent-12;
+            position: relative;
+
+            @include tablet-mobile {
+                position: unset;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &-icon {
+                width: 40px;
+                height: 40px;
+                display: block;
+                object-fit: cover;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &-profile {
+        margin-left: $indent-12;
+
+        @include tablet-mobile {
+            margin-left: auto;
+        }
+
+        &-avatar {
+            @include avatar;
+            position: relative;
+            cursor: pointer;
+
+            @include tablet-mobile {
+                position: unset;
+            }
+
+            &-wrapper {
+                position: relative;
+
+                @include tablet-mobile {
+                    position: unset;
+                }
+            }
+        }
+    }
+}

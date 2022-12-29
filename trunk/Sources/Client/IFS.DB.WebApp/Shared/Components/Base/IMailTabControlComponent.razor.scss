@@ -1,0 +1,30 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.imail {
+    &-main {
+        @include box;
+        width: calc(100% - 464px);
+        max-height: 844px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 $indent-24 0 0;
+
+        @media (max-width: 1260px) {
+            width: 100%;
+            margin: $indent-24 0 0 0;
+        }
+
+        &-tabs {
+            @include boxTabs;
+            margin-bottom: $indent-16;
+        }
+    }
+
+    &-messages {
+        @include customScroll;
+        flex: 1;
+        overflow-y: auto;
+        padding-right: $indent-16;
+    }
+}

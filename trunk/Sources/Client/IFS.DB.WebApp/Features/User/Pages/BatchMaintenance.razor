@@ -1,0 +1,494 @@
+@layout UserLayout
+@page "/maintenance"
+@using IFS.DB.WebApp.Models.Batch
+@using IFS.DB.WebApp.Models.SigningQueue
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Shared.BaseComponents.Tooltip
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Shared.BaseComponents.Datepicker
+
+
+<div class="maintenance-layout">
+<div class="maintenance-container">
+<div class="maintenance-header">
+    <div class="maintenance-header-wrapper">
+        <img src="/img/transactionTable/batchMaintenance.svg" alt="logo" class="maintenance-header__logo"/>
+        <p class="maintenance-header__title">Batch Maintenance</p>
+        <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="maintenance-header__tooltip-icon"/>
+    </div>
+
+    <div>
+        <button class="maintenance-header__button" onclick="@AddNewBatch">
+            <div class="iconBlock">
+                <img class="icon" src="/img/icons/add.svg" alt="plus"/>
+                <img class="iconHover icon" src="/img/icons/addHoverIcon.svg" alt="plus"/>
+            </div>
+            Add New Batch
+        </button>
+
+    </div>
+</div>
+
+<div class="maintenance">
+<div class="maintenance-search">
+    <div class="maintenance-search-body">
+        <div class="search maintenance-search-body__input">
+
+            <div class="search">
+                <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon"/>
+                <input placeholder="Search here" class="input search__input" value="@_searchString" @onchange="@OnSearchChange">
+            </div>
+
+            @*TODO <SearchComponent/> *@
+        </div>
+
+        <div class="formgroup">
+            <div class="select-layout">
+                <DropdownComponent TItem="AccountModel?"
+                                   MultiSelect="false"
+                                   OnSelectedItem="@OnSelectAccount"
+                                   InlineStyle="display:inline-block;width:244px;"
+                                   ButtonSelectInlineStyle="width:100%;">
+                    <InitialTip>Select account</InitialTip>
+                    <DropdownChildContent>
+                        <DropdownItemComponent TItem="AccountModel?" Item="@null">
+                            <DropdownItemChildContent>
+                                Select account
+                            </DropdownItemChildContent>
+                        </DropdownItemComponent>
+                        @foreach (AccountModel value in FakeData.Accounts)
+                        {
+                            <DropdownItemComponent Item="@value" TItem="AccountModel?">
+                                <DropdownItemChildContent>
+                                    Account No.:@value.AccountNumber
+                                </DropdownItemChildContent>
+                            </DropdownItemComponent>
+                        }
+                    </DropdownChildContent>
+                </DropdownComponent>
+            </div>
+        </div>
+    </div>
+
+    <div class="maintenance-search-icons">
+        <div class="maintenance-search-icons__filterIcon" id="filterIcon" @onclick="ToggleFilter">
+            <img class="icon" src="/img/icons/filterIcon.svg" alt="filter"/>
+            <img class="iconHover" src="/img/icons/filterHoverIcon.svg" alt="filter"/>
+        </div>
+        <div class="maintenance-search-icons__icon">
+            <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/>
+            <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+        </div>
+    </div>
+</div>
+<div class="maintenance-filters" id="filters" style="display: @(_showFilterPanel ? "flex" : "none")">
+    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent
+        TItem=@TransactionTypeEnum
+        MultiSelect=@true
+        ContainerInlineStyle="margin-right: 12px"
+        DropdownButtonInlineStyle="width:100%;"
+        SelectedListData=@_listSelectedTransactionSearchTypes
+        SelectedItems_Onclick=@((value) => _listSelectedTransactionSearchTypes = value)>
+        <InitialPlaceHolder>
+            Transaction type
+        </InitialPlaceHolder>
+        <ChildContent>
+
+            <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=TransactionTypeEnum
+                                                                                TValue="TransactionTypeEnum.All"
+                                                                                Context="_"
+                                                                                SelectAll=@true
+                                                                                                                                     @onclick=@(() => SelectAllTransactionTypesValue())>
+                @TransactionTypeEnum.All.ToDescription()
+            </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+            @foreach (var value in ((TransactionTypeEnum[])Enum.GetValues(typeof(TransactionTypeEnum))).Where(x => x != TransactionTypeEnum.All).ToArray())
+            {
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@TransactionTypeEnum
+                                                                                    TValue="value" Context="_">
+                    @value.ToDescription()
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+            }
+        </ChildContent>
+    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem="int"
+                                                                    ContainerInlineStyle="margin-right: 12px"
+                                                                    DropdownButtonInlineStyle="width:100%;"
+                                                                    SelectedValue=@(0)>
+        <InitialPlaceHolder>Amount</InitialPlaceHolder>
+        <ChildContent>
+            <EditForm Model="_rangeAmount">
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem="int"
+                                                                                           Context="_"
+                                                                                           InlineStyle="width:49%;display: inline-block;"
+                                                                                           KeepState="true">
+                    <AmountComponent LabelText="From"
+                                     @bind-Value="@_rangeAmount.From"
+                                     class="input"
+                                     ValidationFor="@(() => _rangeAmount.From)"/>
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem="int"
+                                                                                           Context="_"
+                                                                                           InlineStyle="width:49%;display: inline-block;"
+                                                                                           KeepState="true">
+                    <AmountComponent LabelText="To"
+                                     @bind-Value="@_rangeAmount.To"
+                                     class="input"
+                                     ValidationFor="@(() => _rangeAmount.To)"/>
+
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>
+            </EditForm>
+        </ChildContent>
+    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+    <div style="width: 100%;">
+        <EditForm Model="_dateTest">
+            <Daterangepicker @bind-From="_dateTest.FromDate" @bind-To="_dateTest.ToDate" placeholder="_/_/__ - _/_/__"></Daterangepicker>
+        </EditForm>
+    </div>
+</div>
+
+<div class="maintenance-table">
+    @* <QuickGrid ItemsProvider="_batchesProvider" Pagination="_pagination"> *@
+    <QuickGrid TGridItem="BatchModel" Items="_batches.AsQueryable()" Pagination="_pagination" @ref="_gridRef">
+        <TemplateColumn TGridItem="BatchModel" Title="User Reference" Align="Align.Center">
+            <span style="font-weight: 600">
+                @context.UserReference
+            </span>
+        </TemplateColumn>
+        <TemplateColumn TGridItem="BatchModel" Title="Debit Account">
+            <span>
+                Account No. @context.DebitAccount
+            </span>
+        </TemplateColumn>
+        <TemplateColumn TGridItem="BatchModel" Align="Align.Right" SortBy="_sortByAmount" Title="Amount">
+            <span style="font-weight: 600">
+                @context.Amount.ToNumberFormat()
+            </span>
+        </TemplateColumn>
+        <PropertyColumn TGridItem="BatchModel" TProp="DateTime" Property="c => c.SubmittedDate" Format="@("dd MMMM, yyyy")"
+                        Sortable="true" IsDefaultSort="SortDirection.Descending"/>
+        <TemplateColumn TGridItem="BatchModel" Title="Status">
+            <span class="maintenanceTable-status  @(context.Status switch 
+                                                  {
+                                                      BatchStatus.Submitted => "maintenanceTable-status--success",
+                                                      BatchStatus.Waiting => "maintenanceTable-status--error",
+                                                      _ => ""
+                                                      })">
+                @context.Status
+            </span>
+        </TemplateColumn>
+        <TemplateColumn TGridItem="BatchModel" Title="">
+            @if (context.Status == BatchStatus.Draft)
+            {
+                <button class="maintenanceTable-button" @onclick:stopPropagation onclick="@(() => SubmitBatch(context))">
+                    Submit
+                </button>
+            }
+
+            @if (context.Status == BatchStatus.Waiting)
+            {
+                CommonQueueModel commonQueueModel = FakeData
+                    .CommonSigningQueues
+                    .FirstOrDefault(x => x.ProductType is ProductTypeQueue.Batch
+                                         && x.ItemId == context.Id)!;
+                @if (commonQueueModel?.CanSign is true)
+                {
+                    <button class="maintenanceTable-button maintenanceTable-button--disabled" @onclick:stopPropagation onclick="@(() => SignOffBatch(context))">
+                        @($"{commonQueueModel?.Signatories.Count}/{commonQueueModel?.TotalSignOff}") signs
+                    </button>
+                }
+            }
+        </TemplateColumn>
+        <TemplateColumn TGridItem="BatchModel" Title="">
+            <div class="maintenanceTable-action">
+                @* <div class="maintenanceTable-action-icon"> *@
+                @*     <img class="icon" src="/img/icons/dotsIcon.svg" alt="action"/> *@
+                @*     <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/> *@
+                @* </div> *@
+                @* <div class="maintenanceTable-action-dropdown" id="SubmitDropdown"> *@
+                @*     <div class="maintenanceTable-action-dropdown-item">Batch details</div> *@
+                @*     <div class="maintenanceTable-action-dropdown-item">Edit</div> *@
+                @*     <div class="maintenanceTable-action-dropdown-item" onclick="onTriggerModalDelete()">Delete</div> *@
+                @* </div> *@
+                <Tooltip AutoClose="true" Width="156">
+                    <TooltipHeader Context="isShow">
+                        <div class="maintenanceTable-action-icon">
+                            <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                            <img class="icon" src="@(isShow ? "/img/icons/dotsHoverIcon.svg" : "/img/icons/dotsIcon.svg")" alt="action"/>
+                        </div>
+                    </TooltipHeader>
+                    <TooltipBody Context="_">
+                        <ListItem OnItemClick="@(() => BatchDetailClick(context))">Batch details</ListItem>
+
+                        @if (context.Status is BatchStatus.Draft)
+                        {
+                            <ListItem OnItemClick="@(() => EditBatchClick(context))">Edit</ListItem>
+                        }
+
+                        @if (context.Status is BatchStatus.Submitted)
+                        {
+                            <ListItem>Export CSV</ListItem>
+                        }
+                    </TooltipBody>
+                </Tooltip>
+
+            </div>
+        </TemplateColumn>
+    </QuickGrid>
+    <Paginator Value="@_pagination"/>
+</div>
+
+</div>
+</div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    IModalService ModalSvc { get; set; } = default!;
+
+    private string? _searchString;
+    private string? _selectedAccount;
+    private bool _showFilterPanel;
+
+    private TestDateTimeModel _dateTest = new()
+    {
+        FromDate = null,
+        ToDate = null
+    };
+
+    // filter
+    private List<TransactionTypeEnum> _listSelectedTransactionSearchTypes = new();
+    private bool _selectAllTransactionType;
+    private RangeAmount _rangeAmount = new RangeAmount();
+    // filter
+
+    private QuickGrid<BatchModel> _gridRef;
+
+    private readonly GridSort<BatchModel> _sortByAmount = GridSort<BatchModel>
+        .ByAscending(x => x.Amount)
+        .ThenDescending(x => x.Amount);
+
+    private IList<BatchModel> _batches = new List<BatchModel>();
+
+    private GridItemsProvider<BatchModel>? _batchesProvider;
+    private readonly PaginationState _pagination = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized()
+    {
+        _batches = FakeData.BatchQueues;
+
+        _batchesProvider = async req =>
+        {
+            var sortBy = req.GetSortByProperties().SingleOrDefault();
+    // return await DataService.GetCountriesAsync(req.StartIndex, req.Count, sortBy.PropertyName, sortBy.Direction == SortDirection.Ascending, req.CancellationToken);
+            return GridItemsProviderResult.From(
+                FakeData.BatchQueues.OrderByDescending(x => x.SubmittedDate)
+                    .ToList(),
+                FakeData.BatchQueues.Count);
+        };
+    }
+
+    private async Task OnSelectAccount(AccountModel? selected)
+    {
+        _selectedAccount = selected?.AccountNumber;
+        await GetBatches();
+    }
+
+    private async Task OnSearchChange(ChangeEventArgs args)
+    {
+        _searchString = args.Value?.ToString();
+        await GetBatches();
+    }
+
+    private async Task GetBatches()
+    {
+        _batches = FakeData.BatchQueues;
+
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            _batches = _batches.Where(x => x.UserReference?.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase) ?? false).ToList();
+        }
+
+        if (!string.IsNullOrEmpty(_selectedAccount))
+        {
+            _batches = _batches.Where(x => x.DebitAccount?.Equals(_selectedAccount, StringComparison.CurrentCultureIgnoreCase) ?? false).ToList();
+        }
+
+        await _gridRef.RefreshDataAsync();
+    }
+
+    private void ToggleFilter()
+    {
+        _showFilterPanel = !_showFilterPanel;
+    }
+
+    // private Task OnRowClicked((MouseEventArgs _, BatchModel item) param)
+    // {
+    //     _appStore.BatchStore = param.item;
+    //     _navigateManager.NavigateTo("/maintenance/overview");
+    //     return Task.CompletedTask;
+    // }
+
+    private Task EditBatchClick(BatchModel item)
+    {
+        _appStore.BatchStore = item;
+        _navigateManager.NavigateTo("/maintenance/new");
+        return Task.CompletedTask;
+    }
+
+    private Task BatchDetailClick(BatchModel item)
+    {
+        _appStore.BatchStore = item;
+        _navigateManager.NavigateTo("/maintenance/overview");
+        return Task.CompletedTask;
+    }
+
+    private void AddNewBatch()
+    {
+        _appStore.BatchStore = null;
+        _navigateManager.NavigateTo("/maintenance/new");
+    }
+
+    private async Task SubmitBatch(BatchModel item)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(BatchSubmitConfirmationComponent.BatchModel), item);
+
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+
+        IModalReference confirmModal = ModalSvc
+            .Show<BatchSubmitConfirmationComponent>(
+                title: $"Submit {item.UserReference} Batch",
+                parameters: parameters,
+                options: options);
+
+        ModalResult confirmModalResult = await confirmModal.Result;
+
+        if (confirmModalResult.Confirmed)
+        {
+            var index = FakeData.BatchQueues.FindIndex(x => x.Id == item.Id);
+            if (index == -1) throw new InvalidOperationException();
+
+            FakeData.BatchQueues[index] = item 
+                with 
+            {
+                Status = BatchStatus.Waiting,   
+                CurrentSignatures = 0,
+                RequiredSignatures = 3,
+                CanSign = true
+                };
+
+            await GetBatches();
+
+            ModalSvc
+                .Show<BatchSubmitSuccessAnnoucementComponent>(
+                    title: $"{item.UserReference} Batch was submitted",
+                    parameters: new ModalParameters { { "BatchName", item.UserReference } },
+                    options: options);
+        }
+    }
+
+    private async Task SignOffBatch(BatchModel item)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(BatchSubmitConfirmationComponent.BatchModel), item);
+
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+
+        IModalReference confirmModal = ModalSvc
+            .Show<BatchSignOffConfirmationComponent>(
+                title: $"Submit {item.UserReference} Batch",
+                parameters: parameters,
+                options: options);
+
+        ModalResult confirmModalResult = await confirmModal.Result;
+
+        if (confirmModalResult.Confirmed)
+        {
+            var index = FakeData.BatchQueues.FindIndex(x => x.Id == item.Id);
+
+            if (index == -1) throw new InvalidOperationException("");
+
+            item.CurrentSignatures += 1;
+
+            FakeData.BatchQueues[index] = item 
+                with {
+                CurrentSignatures = item.CurrentSignatures,
+                CanSign = false
+                };
+
+    // update sign-off list
+
+            if (item.CurrentSignatures == item.RequiredSignatures)
+            {
+                FakeData.BatchQueues[index] = item 
+                    with {
+                    Status = BatchStatus.Submitted
+                    };
+            }
+
+            await GetBatches();
+
+            ModalSvc
+                .Show<BatchSignOffSuccessAnnoucementComponent>(
+                    title: $"{item.UserReference} Batch was submitted",
+                    parameters: new ModalParameters { { "BatchName", item.UserReference } },
+                    options: options);
+        }
+    }
+
+
+    private async Task SelectAllTransactionTypesValue(bool isRemoveItem = false)
+    {
+        _selectAllTransactionType = !_selectAllTransactionType;
+        List<TransactionTypeEnum> listTxnTypesEnums = ((TransactionTypeEnum[])Enum.GetValues(typeof(TransactionTypeEnum))).Where(x => x != TransactionTypeEnum.All).ToList();
+        if (isRemoveItem)
+        {
+            _listSelectedTransactionSearchTypes.ForEach(x =>
+            {
+                if (!listTxnTypesEnums.Contains(x))
+                {
+                    _selectAllTransactionType = false;
+                }
+            });
+        }
+
+        if (_selectAllTransactionType)
+        {
+            _listSelectedTransactionSearchTypes = new();
+
+            foreach (var txnType in listTxnTypesEnums)
+            {
+                _listSelectedTransactionSearchTypes.Add(txnType);
+            }
+        }
+        else
+        {
+            _listSelectedTransactionSearchTypes = new();
+        }
+
+        StateHasChanged();
+    }
+
+    public record RangeAmount
+    {
+        public decimal From { get; set; }
+        public decimal To { get; set; }
+    }
+
+    public record TestDateTimeModel
+    {
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+    }
+
+}

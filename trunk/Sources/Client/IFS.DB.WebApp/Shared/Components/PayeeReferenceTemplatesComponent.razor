@@ -1,0 +1,111 @@
+@using IFS.DB.WebApp.Models.PayeeTemplate
+@using IFS.DB.WebApp.Shared.BaseComponents.Tooltip
+
+@if (PayeeTemplate is not null)
+{
+    <div class="payee-reference" @onclick="@(() => SetPayeeTemplate(PayeeTemplate))">
+        <div class="payee-reference-description">
+            <p class="payee-reference__title">
+                @PayeeTemplate.HostReference
+            </p>
+            <div class="payee-reference-description__text">
+                <div class="payee-reference-description__icon" @onclick=@SetPinnedPayeeTemplate @onclick:stopPropagation>
+                    @if (PayeeTemplate.Pinned)
+                    {
+                        <img class="icon" src="/img/icons/starIcon.svg" alt="star" />
+                        <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="star" />
+
+                    }
+                    else
+                    {
+                        <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                        <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                    }
+                </div>
+                <Tooltip AutoClose="true" Width="156">
+                    <TooltipHeader>
+                        <div class="payee-reference-description__icon">
+                            <img class="icon" src="/img/icons/dotsIcon.svg" alt="menu" />
+                            <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="menu" />
+                        </div>
+                    </TooltipHeader>
+                    <TooltipBody>
+                        <ListItem OnItemClick=@AmendPayeeTemplate_OnclickAsync>Edit template</ListItem>
+                        <ListItem OnItemClick=@DeletePayeeTemplate_OnclickAsync>Delete template</ListItem>
+                    </TooltipBody>
+                </Tooltip>
+
+            </div>
+        </div>
+        <div class="payee-reference-description">
+            <p class="payee-reference-description__text">
+                Debit Account No.: @PayeeTemplate.DebitAccount
+            </p>
+            <span class="payee-reference-description__type">@PayeeTemplate.PaymentTemplateType.ToString()</span>
+        </div>
+        <div class="payee-reference-description">
+            <div class="payee-reference-description__text">
+                <p>@PayeeTemplate.BeneficiaryReference</p>
+                <img class="payee-reference-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                <p>@PayeeTemplate.DebitAccount</p>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [CascadingParameter] IModalService BlazoredModalSvc { get; set; } = default!;
+    [Parameter] public PayeeTemplateModel PayeeTemplate { get; set; }
+    [Parameter] public EventCallback<PayeeTemplateModel> OnSetPayeeTemplate { get; set; }
+    [Parameter] public EventCallback<PayeeTemplateModel> OnDeletePayeeTemplate { get; set; }
+    [Parameter] public EventCallback<PayeeTemplateModel> OnPinnedItem { get; set; }
+
+    private async Task SetPayeeTemplate(PayeeTemplateModel payeeTemplate)
+    {
+        if (OnSetPayeeTemplate.HasDelegate)
+        {
+            await OnSetPayeeTemplate.InvokeAsync(payeeTemplate);
+        }
+    }
+
+    private async Task SetPinnedPayeeTemplate()
+    {
+        if (OnPinnedItem.HasDelegate)
+        {
+            PayeeTemplate.Pinned = !PayeeTemplate.Pinned ;
+            await OnPinnedItem.InvokeAsync(PayeeTemplate);
+        }
+    }
+
+    private async Task AmendPayeeTemplate_OnclickAsync()
+    {
+        
+    }
+
+    private async Task DeletePayeeTemplate_OnclickAsync()
+    {
+        IModalReference confirmModal = BlazoredModalSvc.Show<SimplePasswordConfirmModalComponent>(
+            string.Empty,
+            new ModalParameters
+                {
+                { nameof(SimplePasswordConfirmModalComponent.HeaderTitle), $"Delete template {PayeeTemplate.HostReference}" },
+                { nameof(SimplePasswordConfirmModalComponent.HeaderSubtitle), "Please enter your password to delete template" },
+                { nameof(SimplePasswordConfirmModalComponent.IsNegative), true},
+                { nameof(SimplePasswordConfirmModalComponent.ConfirmText), "Delete" }
+                },
+            new ModalOptions
+                {
+                    UseCustomLayout = true
+                });
+
+        ModalResult modalResult = await confirmModal.Result;
+
+        if (modalResult.Confirmed is false)
+            return;
+
+        await ConfirmedDeleteAsync();
+    }
+
+    private async Task ConfirmedDeleteAsync()
+        => await OnDeletePayeeTemplate.InvokeAsync(PayeeTemplate);
+}

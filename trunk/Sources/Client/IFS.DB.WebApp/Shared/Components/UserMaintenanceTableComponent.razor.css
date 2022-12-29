@@ -1,0 +1,185 @@
+.user-main {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.user-main:last-child {
+  margin-bottom: 0;
+}
+.user-main-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.user-main-title-name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #121217;
+}
+.user-main-title-right {
+  display: flex;
+}
+.user-main-title-right__input {
+  min-width: 260px;
+  margin-right: 12px;
+  position: relative;
+}
+.user-main-title-right__selector {
+  min-width: 260px;
+}
+
+.userTable td {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 12px 16px;
+}
+.userTable thead td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  background: #f2f7fd;
+  color: #81afed;
+}
+.userTable thead td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.userTable thead td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.userTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+.userTable tbody td .userTable-user {
+  display: flex;
+  align-items: center;
+}
+.userTable tbody td .userTable-user__name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #212121;
+}
+.userTable tbody td .userTable-user__image {
+  margin-right: 8px;
+}
+.userTable tbody td .userTable-user .user-profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #cddff8;
+  padding: 2px;
+  object-fit: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  position: relative;
+}
+.userTable tbody td:first-child {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #212121;
+}
+.userTable tbody td:first-child .user-profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #cddff8;
+  padding: 2px;
+  object-fit: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  position: relative;
+}
+.userTable tbody td:nth-child(2), .userTable tbody td:nth-child(3), .userTable tbody td:nth-child(4), .userTable tbody td:nth-child(5) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.userTable tbody td:last-child {
+  display: flex;
+}
+.userTable tbody td .userTable-button {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.userTable tbody td .userTable-button:hover .icon {
+  opacity: 0;
+}
+.userTable tbody td .userTable-button:hover .iconHover {
+  opacity: 1;
+}
+.userTable tbody td .userTable-button:hover.active .iconActive {
+  opacity: 0;
+}
+.userTable tbody td .userTable-button:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.userTable tbody td .userTable-button.active .icon {
+  opacity: 0;
+}
+.userTable tbody td .userTable-button.active .iconActive {
+  opacity: 1;
+}
+.userTable tbody td .userTable-button .icon,
+.userTable tbody td .userTable-button .iconHover,
+.userTable tbody td .userTable-button .iconActive,
+.userTable tbody td .userTable-button .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.userTable tbody td .userTable-button .iconHover,
+.userTable tbody td .userTable-button .iconActive,
+.userTable tbody td .userTable-button .iconActiveHover {
+  opacity: 0;
+}
+.userTable-status {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #fc4c16;
+  background-color: #fff1ed;
+}
+.userTable__image {
+  cursor: pointer;
+}

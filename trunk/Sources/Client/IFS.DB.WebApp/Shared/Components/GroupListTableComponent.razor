@@ -1,0 +1,179 @@
+@using IFS.DB.WebApp.Models.GroupMaintenance
+
+
+<DataGridComponent @ref="_dataSourceGrid" TItem=@GroupInfoModel
+                   Columns="_columnsDefinition"
+                   DataItems="@_groupMaintenanceModel.Groups"
+                   TotalItems="@_groupMaintenanceModel.TotalRecords"
+                   ChangablePageSize=@true
+                   OnPageSizeChangedCallback=@OnPageSizeChanged
+                   OnNextPageClickCallback="OnNextPageChanged"
+                   OnPrevPageClickCallback="OnPrevPageChanged"
+                   OnPageIndexClickCallback="OnPageIndexChanged"
+                   PagingConfig=@_pagingConfig
+                   TableClass="groupTable">
+</DataGridComponent>
+
+
+@*<table class="groupTable">
+    <thead>
+        <tr>
+            <td>Group name</td>
+            <td>Description</td>
+            <td>Amount of members</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Developers</td>
+            <td>Users who work with system developing</td>
+            <td>26</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Sales & Marketing</td>
+            <td>The group has the responsibility for deciding where the company should s...</td>
+            <td>18</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Marketing</td>
+            <td>A co-operative, consortium, franchise or other profit-motivated grouping o...</td>
+            <td>12</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Executive</td>
+            <td>An executive chairman of the company and the closest employees</td>
+            <td>6</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Procurement / Purchasing</td>
+            <td>All members of the Procurement and Purchasing departments</td>
+            <td>41</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Housekeeping</td>
+            <td>Housekeeping supervisor, manager or inspector</td>
+            <td>28</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Accounting</td>
+            <td>All members of the department who are responsible for identifying, trackin...</td>
+            <td>34</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Food & Beverage</td>
+            <td>Restaurant manager/supervisor, receptionist, head waiter</td>
+            <td>15</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>Security</td>
+            <td>All members of the security department</td>
+            <td>3</td>
+            <td>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button type="button" class="groupTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>*@
+
+@code{
+    private RenderFragment ButtonActionTemplate(GroupInfoModel groupInfo)
+    =>
+    @<text>
+        <button class="groupTable-button" @onclick=@(() => _navigateManager.NavigateTo($"/admin/group-maintenance/edit?groupID={groupInfo.ID}"))>
+            <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+            <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+        </button>
+        <button class="groupTable-button" @onclick=@(() => Delete(groupInfo))>
+            <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+            <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+        </button>
+    </text>;
+}

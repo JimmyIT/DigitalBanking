@@ -1,0 +1,26 @@
+@layout BasicLayout
+@page "/company-admin/user-maintenance"
+
+<div class="user-layout">
+    <div class="user-container">
+        <div class="user">
+            <div class="user-header">
+                <div class="user-header-wrapper">
+                    <img src="/img/user/userIcon.svg" alt="logo" class="user-header__logo" />
+                    <p class="user-header__title">User Maintenance</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="user-header__tooltip-icon" />
+                </div>
+
+                <div>
+                    <button class="user-header__button" @onclick=@(() => _navigateManager.NavigateTo("/admin/user-maintenance/create"))>Add user</button>
+                </div>
+            </div>
+
+            <div class="user-main">               
+
+                <UserMaintenanceTableComponent ChangablePageSize=@true />
+
+            </div>
+        </div>
+    </div>
+</div>

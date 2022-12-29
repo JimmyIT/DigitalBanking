@@ -1,0 +1,57 @@
+﻿<div class="modal-layout" id="uploadModal">
+    <div class="modal-scroll">
+        <div class="modal-background" @onclick=@CancelAsync></div>
+        <div class="common-modal-layout">
+            <div class="common-modal">
+                <div class="common-modal-header-wrapper">
+                    <div class="common-modal-header">
+                        <p class="common-modal-header__title">
+                            Upload your photo
+                        </p>
+                        <div class="common-modal-header__icon" @onclick=@CancelAsync>
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                    </div>
+                </div>
+                <div class="common-modal-main">
+                    <EditForm EditContext=@_editContext>
+                        <div class="common-modal-main-info-card">
+                            @if (_isUploaded)
+                            {
+                                <div class="image-container">
+                                    <img src="@_fileBase64Encode" />
+                                </div>
+                            }
+                            <div class="file-drop-zone @_hoverClass">
+                                <InputFile @ref=@_inputFile accept="@(string.Join(",", _acceptedFileTypes))"
+                                           OnChange=@OnFileChange @ondragenter=@OnDragEnter @ondragleave=@OnDragLeave></InputFile>
+                            </div>
+
+                        </div>
+                    </EditForm>
+
+                    @if (_fileTypeError)
+                    {
+                        <div class="input-error">Please upload a new photo, accepted file type: @(string.Join(",", _acceptedFileTypes)).</div>
+                    }
+
+                    @if (_fileSizeError)
+                    {
+                        <div class="input-error">file length is @_fileSize mb, it is larger than the limit of @_maxAllowFileSize mb</div>
+                    }
+
+                </div>
+                <div class="common-modal-footer">
+                    <button class="common-modal-footer__buttonCancel" type="button" @onclick=@CancelAsync>
+                        Cancel
+                    </button>
+
+                    <button class="common-modal-footer__buttonSuccess" type="button" @onclick=@OkAsync>
+                        Ok
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@if(ProfileMenuTabControl.ActiveTabContent == this)
+{
+    @ProfileMenuContent
+}
+
+@code {
+    [CascadingParameter] private ProfileMenuTabControlComponent ProfileMenuTabControl { get; set; }
+    [Parameter] public RenderFragment ProfileMenuContent { get; set; }    
+    [Parameter] public string Icon { get; set; }   
+    [Parameter] public string IconHover { get; set; }
+    [Parameter] public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (ProfileMenuTabControl == null)
+            throw new ArgumentNullException(nameof(ProfileMenuTabControl), "ProfileMenuTabContentComponent must exist within a ProfileMenuTabControlComponent");
+        base.OnInitialized();
+        ProfileMenuTabControl.AddPage(this);
+    }
+}

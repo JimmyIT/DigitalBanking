@@ -1,0 +1,48 @@
+﻿@if (_pairValueOfFormula != null)
+{
+    <EditForm EditContext=@_editContext style="display:flex;">
+        <div class="mandates-value-item-first-formula-cards-info-number">
+            <p class="mandates-value-item-first-formula-cards-info-number-name">
+                Number of signatures
+            </p>
+            <InputNumber placeholder="0" class="input mandates-value-item-first-point-number-input" @bind-Value=@_pairValueOfFormula.NumberSignatures></InputNumber>
+            <CustomValidationMessage For="@(() => _pairValueOfFormula.NumberSignatures)"></CustomValidationMessage>
+        </div>
+        <!---->
+        <!---->
+        <div class="mandates-value-item-first-formula-cards-info-selector">
+            <p class="mandates-value-item-first-formula-cards-info-number-name">
+                Level of User
+            </p>
+            <InputSelect @bind-Value="_pairValueOfFormula.LevelOfUser" class="select">
+                <option>Level of User</option>
+                @foreach (var value in (LevelOfUserEnum[])Enum.GetValues(typeof(LevelOfUserEnum)))
+                {
+                <option value="@value">@value.ToDescription()</option>
+                }
+        </InputSelect>
+    </div>
+    @*<div class="mandates-value-item-first-formula-cards-info-selector">
+    <p class="mandates-value-item-first-formula-cards-info-selector-name">
+    Level of User
+    </p>
+    <div class="customSelector">
+    <div class="customSelector-input" onclick="onClickFilterIcon()" id="filtersSelector">
+    <p class="customSelector-input__placeholder admin-box-selections-customer-name">
+    Select level
+    </p>
+    <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+    </div>
+
+    <div class="customSelector-dropdown" id="filters">
+    <div class="customSelector-dropdown-item">
+    <p>A</p>
+    </div>
+    <div class="customSelector-dropdown-item">
+    <p>B</p>
+    </div>
+    </div>
+    </div>
+    </div>*@
+</EditForm>
+}

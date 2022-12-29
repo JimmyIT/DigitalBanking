@@ -1,0 +1,22 @@
+@layout LogonLayout
+
+@page "/individual-signin"
+
+<CascadingValue Name="UserSignInModel" Value="_userSignInModel">
+@switch (_currentSignInStep)
+    {
+        case SigninStepsEnum.FirstStep:
+        {
+            <IndividualSigninStep1Component OnValueChanged="@ValidationOnValueChange" SetSseCustomerIdentify="@SetSseCustomerValue"></IndividualSigninStep1Component>
+            break;
+        }
+        case SigninStepsEnum.SecondStep:
+        {
+            <IndividualSigninStep2Component OnValueChanged="@ValidationOnValueChange" SseCustomerIdentify="@_sseCustomerIdentify"></IndividualSigninStep2Component>
+            break;
+        }
+
+        default:
+            throw new ArgumentOutOfRangeException();
+    }
+</CascadingValue>

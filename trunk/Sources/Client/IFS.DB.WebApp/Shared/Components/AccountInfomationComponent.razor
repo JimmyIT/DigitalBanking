@@ -1,0 +1,68 @@
+﻿<div class="modal-layout" id="ModalConfirm">
+    <div class="modal-scroll">
+        <div class="modal-background" @onclick=@Cancel></div>
+        <div class="common-modal-layout">
+            <div class="common-modal">
+                <div class="common-modal-header-wrapper">
+                    <div class="common-modal-header">
+                        <p class="common-modal-header__title">
+                            Account Information
+                        </p>
+                        <div class="common-modal-header__icon" @onclick=@Cancel>
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="common-modal-main">
+                    <div class="common-modal-main-info-card-content margin-x-1">
+                        <div class="common-modal-main-info-card-content-item width-fit-content min-width-150">
+                            <p>Current Balance &nbsp;:&nbsp;</p>
+                        </div>
+                        <div class="common-modal-main-info-card-content-item width-fit-content min-width-120">
+                            <p class="float-right">@AccountItem.CurrentBalance.ToNumberFormat()</p>
+                        </div>
+                    </div>
+                    <div class="common-modal-main-info-card-content margin-x-1">
+                        <div class="common-modal-main-info-card-content-item width-fit-content min-width-150">
+                            <p>Available Balance &nbsp;:&nbsp;</p>
+                        </div>
+                        <div class="common-modal-main-info-card-content-item width-fit-content min-width-120">
+                            <p class="float-right">@AccountItem.AvailableBalance.ToNumberFormat()</p>
+                        </div>
+                    </div>
+                    <div class="common-modal-main-info-card-content margin-x-1">
+                        <div class="common-modal-main-info-card-content-item width-fit-content min-width-150">
+                            <p>Overdraft Limit &nbsp;:&nbsp;</p>
+                        </div>
+                        <div class="common-modal-main-info-card-content-item width-fit-content min-width-120">
+                            <p class="float-right">@AccountItem.OverdraftLimit.ToNumberFormat()</p>
+                        </div>
+                    </div>
+                    <div class="common-modal-main-info-card-content margin-x-1">
+                        <div class="common-modal-main-info-card-content-item width-fit-content min-width-150">
+                            <p>Overdraft Available &nbsp;:&nbsp;</p>
+                        </div>
+                        <div class="common-modal-main-info-card-content-item width-fit-content min-width-120">
+                            <p class="float-right">@AccountItem.OverdraftAvailable.ToNumberFormat()</p>
+                        </div>
+                    </div>
+                    <div class="common-modal-main-info-card-content">
+                        <p class="min-width-90 font-weight-bold">Important &nbsp;:&nbsp;</p>
+                        <div class="common-modal-main-info-card-content-item">
+                            <p>The above available balance includes your overdraft facility.</p>
+                            <p>Please refer to your account terms and conditions for the current overdraft charges.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="common-modal-footer">
+                    <button class="common-modal-footer__buttonSuccess" @onclick=@Cancel>
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

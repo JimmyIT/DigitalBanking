@@ -1,0 +1,108 @@
+@using IFS.DB.WebApp.Helpers.Enums
+@using IFS.DB.WebApp.Models.iMails
+@if (iMailMessageItem != null)
+{
+    <div class="imail-message @(_isActiveAnswerMsgs ? "imail-message--active" : "")" @onclick=@(() => _isActiveAnswerMsgs = !_isActiveAnswerMsgs)>
+        <div class="imail-message-header">
+            <div class="imail-message-header-info">
+                @if (AuthenticatedUserID == iMailMessageItem.SenderID)
+                {
+                    <div class="imail-message-header-info-about">
+                        <div class="imail-message-header-info-about__top">
+                            <p class="imail-message-header-info-about__name">To: @_userInfos.FirstOrDefault(x => x.UserID == iMailMessageItem.ReceiverID).UserName</p>
+                            @if (@iMailMessageItem.Status == IMailStatusEnum.New)
+                            {
+                                <p class="imail-message-header-info-about__status">@iMailMessageItem.Status.ToDescription()</p>
+                            }
+                        </div>
+                        <p class="imail-message-header-info-about__date">@iMailMessageItem.CreatedDate?.ToString("dd MMMM yyyy hh:mm tt")</p>
+                        @*<p class="imail-message-header-info-about__date">@iMailMessageItem.CreatedDate 10 June, 2021 at 09:00 am</p>*@
+                    </div>
+                }
+                else
+                {
+                    <div class="imail-message-header-info-avatar">
+                        <img src="@_userInfos.FirstOrDefault(x => x.UserID == iMailMessageItem.SenderID).AvartaUrl" alt="avatar" class="imail-message-header-info-avatar__image" />
+                    </div>
+                    <div class="imail-message-header-info-about">
+                        <div class="imail-message-header-info-about__top">
+                            <p class="imail-message-header-info-about__name">@_userInfos.FirstOrDefault(x => x.UserID == iMailMessageItem.SenderID).UserName</p>
+                            <p class="imail-message-header-info-about__position">@_userInfos.FirstOrDefault(x => x.UserID == iMailMessageItem.SenderID).Role</p>
+                            @if (@iMailMessageItem.Status == IMailStatusEnum.New)
+                            {
+                                <p class="imail-message-header-info-about__status">@iMailMessageItem.Status.ToDescription()</p>
+                            }
+                        </div>
+                        <p class="imail-message-header-info-about__date">@iMailMessageItem.CreatedDate?.ToString("dd MMMM yyyy hh:mm tt")</p>
+                        @*<p class="imail-message-header-info-about__date">@iMailMessageItem.CreatedDate 10 June, 2021 at 09:00 am</p>*@
+                    </div>
+                }
+            </div>
+            <div class="imail-message-header-buttons">
+                <button type="button" class="imail-message-header-buttons__delete" @onclick=@(() => DeleteiMailMessage(iMailMessageItem)) @onclick:preventDefault @onclick:stopPropagation>
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+                @if (AuthenticatedUserID != iMailMessageItem.SenderID)
+                {
+                    <button class="imail-message-header-buttons__answer" @onclick=@(() => AnsweriMailMessage(iMailMessageItem)) @onclick:preventDefault @onclick:stopPropagation>Answer</button>
+                }
+            </div>
+        </div>
+        <div class="imail-message-main">
+            <div class="imail-message-main__top">
+                <p class="imail-message-main__priority">
+                    @iMailMessageItem.Priority.ToDescription()
+                </p>
+                <p class="imail-message-main__subject">Subject: @iMailMessageItem.Subject</p>
+            </div>
+            <p class="imail-message-main__text">
+                @iMailMessageItem.Message
+            </p>
+        </div>
+
+        @if (_hasAnswerMsgs)
+        {
+            @if (_isActiveAnswerMsgs)
+            {
+                <hr class="imail-message__hr" />
+                @foreach (AnswerIMailMessageModel answerMsg in iMailMessageItem.AnswerIMailMessages)
+                {
+                    <div class="imail-message-header" style="margin-top:12px;">
+                        <div class="imail-message-header-info">
+                            <div class="imail-message-header-info-avatar">
+                                <img src="@_userInfos.FirstOrDefault(x => x.UserID == answerMsg.SenderID).AvartaUrl" alt="avatar" class="imail-message-header-info-avatar__image" />
+                            </div>
+
+                            <div class="imail-message-header-info-about">
+                                <div class="imail-message-header-info-about__top">
+                                    <p class="imail-message-header-info-about__name">@_userInfos.FirstOrDefault(x => x.UserID == answerMsg.SenderID).UserName</p>
+                                </div>
+                                <p class="imail-message-header-info-about__date">@answerMsg.CreatedDate?.ToString("dd MMMM yyyy hh:mm tt")</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imail-message-main">
+                        <div class="imail-message-main__top">
+                            <p class="imail-message-main__priority">@answerMsg.Priority.ToDescription()</p>
+                            <p class="imail-message-main__subject">Subject: @answerMsg.Subject</p>
+                        </div>
+                        <p class="imail-message-main__text">
+                            @answerMsg.Message
+                        </p>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="imail-message-answer">
+                    <p class="imail-message-answer__text">
+                        Answer
+                    </p>
+                    <img src="/img/icons/dotIcon.svg" alt="dot" />
+                    <p class="imail-message-answer__button">@_totalAnswerMsgs</p>
+                </div>
+            }
+        }
+    </div>
+}

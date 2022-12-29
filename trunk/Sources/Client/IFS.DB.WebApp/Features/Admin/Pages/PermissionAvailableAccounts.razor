@@ -1,0 +1,387 @@
+@layout AdminLayout
+@page "/admin/{Role}/{Id:int}/permission/{Path}"
+@using static PermissionAvailableAccounts.TabPath;
+@using Z.Collections.Extensions
+@using IFS.DB.WebApp.Shared.BaseComponents.TabLoigcal
+@using IFS.DB.WebApp.Models.Permission
+@using IFS.DB.WebApp.Models
+
+<div class="overview-layout">
+    <div class="overview-container">
+        <div class="overview">
+            <div class="overview-header">
+                <div class="overview-header-breadcrumbs">
+                    <p class="overview-header-breadcrumbs__item">Permission</p>
+                    @if (Role is GroupRole.Group)
+                    {
+                        <p class="overview-header-breadcrumbs__item active">@_groupInfo.Name permissions</p>
+                    }
+
+                    @if (Role is GroupRole.User)
+                    {
+                        <p class="overview-header-breadcrumbs__item active">@_userInfo.User?.Name permissions</p>
+                    }
+                </div>
+                <div class="overview-header-wrapper">
+                    <img src="/img/icons/return.svg" alt="return" class="overview-header__logo" @onclick="Back"/>
+                    @if (Role is GroupRole.Group)
+                    {
+                        <p class="overview-header__title">@_groupInfo.Name permissions </p>
+                    }
+                    @if (Role is GroupRole.User)
+                    {
+                        <p class="overview-header__title">@_userInfo.User?.Name permissions</p>
+                    }
+                </div>
+            </div>
+
+            @if (Role is GroupRole.User)
+            {
+                <div class="overview-info-box">
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="overview-info-box-icon"/>
+                    <p class="overview-info-box-text">
+                        @_userInfo.User?.Name belongs to the @_userInfo.Group?.Name group, but now he has Personal Permissions set up. If you want
+                        to decline Personal Permission for this user, please
+                        <a class="overview-info-box-text__link">
+                            click
+                        </a>
+                    </p>
+                </div>
+            }
+
+            <div class="overview-wrapper">
+                <Tab Context="tabState" @ref="_tabRef">
+                    <div class="menu-box">
+                        <a class="menu-box-item @tabState.ClassStatus(AvailableAccount.TabIndex, "active")"
+                           @onclick="@(() => _navigateManager.NavigateTo($"/admin/{Role}/{Id}/permission/accounts"))" href=""
+                           @onclick:preventDefault>
+                            Available Accounts
+                        </a>
+                        <a class="menu-box-item @tabState.ClassStatus(Transfer.TabIndex, "active")"
+                           @onclick="@(() => _navigateManager.NavigateTo($"/admin/{Role}/{Id}/permission/transfers"))" href=""
+                           @onclick:preventDefault>
+                            Transfers
+                        </a>
+                        <a class="menu-box-item @tabState.ClassStatus(Payment.TabIndex, "active")"
+                           @onclick="@(() => _navigateManager.NavigateTo($"/admin/{Role}/{Id}/permission/payments"))" href=""
+                           @onclick:preventDefault>
+                            Payments
+                        </a>
+                        <a class="menu-box-item @tabState.ClassStatus(Payee.TabIndex, "active")"
+                           @onclick="@(() => _navigateManager.NavigateTo($"/admin/{Role}/{Id}/permission/payees"))" href=""
+                           @onclick:preventDefault>
+                            Payees
+                        </a>
+                        <a class="menu-box-item @tabState.ClassStatus(BatchPayment.TabIndex, "active")"
+                           @onclick="@(() => _navigateManager.NavigateTo($"/admin/{Role}/{Id}/permission/batch-payments"))" href=""
+                           @onclick:preventDefault>
+                            Batch Payments
+                        </a>
+                    </div>
+
+                    <div class="overview-box">
+                        <div class="check">
+                            <p class="overview-box-title">
+                                @(tabState.CurrentActive switch {
+                                    AvailableAccount.TabIndex => "Viewing accounts for Jacob",
+                                    Transfer.TabIndex => "Transfers",
+                                    Payment.TabIndex => "Payments",
+                                    Payee.TabIndex => "Payees",
+                                    BatchPayment.TabIndex => "Batch Payments",
+                                    _ => string.Empty
+                                    })
+                            </p>
+
+                            @if (Path != AvailableAccount.PathName && _permissions?.Count == 0)
+                            {
+                                <p class="overview-box-description">
+                                    This user doesn’t have visible accounts. Check
+                                    <a
+                                        class="overview-box-description__link">
+                                        Available Accounts
+                                    </a> settings before set up
+                                    @(tabState.CurrentActive switch {
+                                        Transfer.TabIndex => "Transfers",
+                                        Payment.TabIndex => "Payments",
+                                        Payee.TabIndex => "Payees",
+                                        BatchPayment.TabIndex => "Batch Payments",
+                                        _ => string.Empty
+                                        }).
+                                </p>
+                            }
+                            @if (_permissions?.Count > 0)
+                            {
+                                <CascadingValue Value="this">
+                                    <TabPanel Index="AvailableAccount.TabIndex">
+                                        <PermissionAvailableAccountComponent Permissions="_permissions"/>
+                                    </TabPanel>
+                                    <TabPanel Index="Transfer.TabIndex">
+                                        <PermissionTransferComponent Permissions="_permissions"/>
+                                    </TabPanel>
+                                    <TabPanel Index="Payment.TabIndex">
+                                        <PermissionTransferComponent Permissions="_permissions"/>
+                                    </TabPanel>
+                                    <TabPanel Index="Payee.TabIndex">
+                                        <PermissionPayeesComponent Permissions="_permissions"/>
+                                    </TabPanel>
+                                    <TabPanel Index="BatchPayment.TabIndex">
+                                        <PermissionTransferComponent Permissions="_permissions"/>
+                                    </TabPanel>
+                                </CascadingValue>
+                            }
+                        </div>
+                        <div class="overview-box-footer">
+                            <div class="overview-box-footer-hr"></div>
+                            @if (_saved)
+                            {
+                                <div class="overview-box-footer-saved" id="saved">
+                                    <img src="/img/icons/checkIcon.svg" alt="check"/>
+                                    <p class="overview-box-footer-saved-name">Updates were saved</p>
+                                </div>
+                            }
+                            <button class="overview-box-footer-button" @onclick="SaveUpdate">Save Updates</button>
+                        </div>
+                    </div>
+                </Tab>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public struct TabPath
+    {
+        public struct AvailableAccount
+        {
+            public const string PathName = "accounts";
+            public const int TabIndex = 0;
+        }
+
+        public struct Transfer
+        {
+            public const string PathName = "transfers";
+            public const int TabIndex = 1;
+        }
+
+        public struct Payment
+        {
+            public const string PathName = "payments";
+            public const int TabIndex = 2;
+        }
+
+        public struct Payee
+        {
+            public const string PathName = "payees";
+            public const int TabIndex = 3;
+        }
+
+        public struct BatchPayment
+        {
+            public const string PathName = "batch-payments";
+            public const int TabIndex = 4;
+        }
+    }
+
+    public struct GroupRole
+    {
+        public const string Group = "group";
+        public const string User = "user";
+    }
+
+}
+
+@code {
+
+    [Parameter, EditorRequired]
+    public string Path { get; set; } = null!;
+
+    [Parameter, EditorRequired]
+    public int Id { get; set; }
+
+    [Parameter, EditorRequired]
+    public string Role { get; set; } = null!;
+
+    private int _tabIndex;
+
+    private Tab? _tabRef;
+
+    private GroupPermissionModel _groupInfo = null!;
+    private UserPermissionModel _userInfo = null!;
+
+    private List<PermissionModel>? _permissions;
+
+    private string _oldPath = null!;
+
+    private bool _saved;
+
+    private readonly List<EditContext> _childEditCtxList = new();
+
+    internal void AddChildEditCtx(EditContext editCtx) => _childEditCtxList.Add(editCtx);
+    internal void RemoveChildEditCtx(EditContext editCtx) => _childEditCtxList.Remove(editCtx);
+
+    protected override void OnInitialized()
+    {
+        _oldPath = Path;
+
+        if (Role is GroupRole.Group)
+            _groupInfo = FakeData.GroupPermissions
+                .FirstOrDefault(x => x.Id == Id) ?? throw  new ArgumentNullException();
+
+        if (Role is GroupRole.User)
+            _userInfo = FakeData.UserPermissions
+                .FirstOrDefault(x => x.Id == Id) ?? throw  new ArgumentNullException();
+
+        _permissions = GetPermissions();
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (_oldPath != Path)
+        {
+            _oldPath = Path;
+            _tabIndex = Path switch {
+                AvailableAccount.PathName => AvailableAccount.TabIndex,
+                Transfer.PathName => Transfer.TabIndex,
+                Payment.PathName => Payment.TabIndex,
+                Payee.PathName => Payee.TabIndex,
+                BatchPayment.PathName => BatchPayment.TabIndex,
+                _ => throw new ArgumentOutOfRangeException()};
+
+            _tabRef?.State.SetActive(_tabIndex).Invoke();
+            _permissions = GetPermissions();
+            _saved = false;
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _tabRef?.State.SetActive(_tabIndex).Invoke();
+            StateHasChanged();
+        }
+    }
+
+    private void SaveUpdate()
+    {
+        if (_permissions is null || _permissions.Count == 0)
+            return;
+
+        var validateResult = true;
+        _childEditCtxList.ForEach(x => validateResult &= x.Validate());
+
+        if (validateResult is false)
+            return;
+
+        var currentPermissions =
+            LoadPermissions() ?? new List<PermissionModel>();
+
+        if (Path == AvailableAccount.PathName)
+        {
+            currentPermissions = SaveAccountViewing(currentPermissions);
+        }
+        else
+        {
+            PermissionType currentTypeEdit = Path switch {
+                Transfer.PathName => PermissionType.Transfer,
+                Payment.PathName => PermissionType.Payment,
+                Payee.PathName => PermissionType.Payee,
+                BatchPayment.PathName => PermissionType.BatchPayment,
+                _ => throw new ArgumentOutOfRangeException()
+                };
+
+            currentPermissions.RemoveWhere(x => x.Type == currentTypeEdit);
+            currentPermissions.AddRange(_permissions);
+        }
+
+        if (Role is GroupRole.Group)
+            FakeData.GroupPermissions.First(x => x.Id == Id).Permissions = currentPermissions;
+
+        if (Role is GroupRole.User)
+            FakeData.UserPermissions.First(x => x.Id == Id).Permissions = currentPermissions;
+
+        _saved = true;
+    }
+
+    private List<PermissionModel> SaveAccountViewing(IReadOnlyList<PermissionModel> currentPermissions)
+    {
+        var result = new List<PermissionModel>(currentPermissions);
+
+        var listViewingAccount = currentPermissions
+            .Where(x => x.Type is PermissionType.AccountViewing && x.IsViewingAccount)
+            .ToList();
+
+        foreach (PermissionModel item in _permissions ?? new List<PermissionModel>())
+        {
+            if (item.IsViewingAccount &&
+                listViewingAccount?.Any(x => x.Account.AccountNumber == item.Account.AccountNumber) is not true)
+            {
+                result.AddRange(
+                    item with { Type = PermissionType.Payee },
+                    item with { Type = PermissionType.Transfer },
+                    item with { Type = PermissionType.Payment },
+                    item with { Type = PermissionType.BatchPayment }
+                    );
+                result.Add(item);
+            }
+
+            if (!item.IsViewingAccount &&
+                listViewingAccount?.Any(x => x.Account.AccountNumber == item.Account.AccountNumber) is true)
+            {
+                result.RemoveWhere(x => x.Account.AccountNumber == item.Account.AccountNumber);
+            }
+        }
+
+        return result;
+    }
+
+    private List<PermissionModel>? GetPermissions()
+    {
+        var permission = LoadPermissions();
+
+        if (Path == AvailableAccount.PathName)
+        {
+            return (permission ?? new List<PermissionModel>())
+                .UnionBy(LoadPermissionByCorporateAccount(), model => model.Account.AccountNumber)
+                .ToList();
+        }
+
+        if (permission is null)
+        {
+            return Enumerable.Empty<PermissionModel>().ToList();
+        }
+
+        return (Path switch {
+            AvailableAccount.PathName => permission.Where(x => x.Type is PermissionType.AccountViewing),
+            Transfer.PathName => permission.Where(x => x.Type is PermissionType.Transfer),
+            Payment.PathName => permission.Where(x => x.Type is PermissionType.Payment),
+            Payee.PathName => permission.Where(x => x.Type is PermissionType.Payee),
+            BatchPayment.PathName => permission.Where(x => x.Type is PermissionType.BatchPayment),
+            _ => throw new ArgumentOutOfRangeException()
+            }).Select(x => x with { }).ToList();
+    }
+
+    private List<PermissionModel>? LoadPermissions()
+        => Role switch {
+            GroupRole.Group => FakeData.GroupPermissions.FirstOrDefault(x => x.Id == Id)?.Permissions,
+            GroupRole.User => FakeData.UserPermissions.FirstOrDefault(x => x.Id == Id)?.Permissions,
+            _ => throw new ArgumentOutOfRangeException()
+            };
+
+    private List<PermissionModel> LoadPermissionByCorporateAccount() => (from account in FakeData.CorporateAccounts
+        select new PermissionModel
+        {
+            Type = PermissionType.AccountViewing,
+            Account = account
+        }).ToList();
+
+
+    private void Back()
+    {
+        if (Role is GroupRole.User)
+            _navigateManager.NavigateTo("/admin/permission?tab=user");
+        if (Role is GroupRole.Group)
+            _navigateManager.NavigateTo("/admin/permission?tab=group");
+    }
+}   

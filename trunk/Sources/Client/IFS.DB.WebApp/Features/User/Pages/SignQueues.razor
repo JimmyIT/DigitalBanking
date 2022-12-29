@@ -1,0 +1,89 @@
+@layout UserLayout
+@page "/sign-queues"
+@using IFS.DB.WebApp.Models.SigningQueue
+@using IFS.DB.WebApp.Models
+
+<div class="sign-layout">
+    <div class="sign-container">
+        <div class="sign">
+            <div class="sign-header">
+                <div class="sign-header-wrapper">
+                    <img src="/img/sign/iconSign.svg" alt="logo" class="sign-header__logo"/>
+                    <p class="sign-header__title">Sign Queues</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="sign-header__tooltip-icon"/>
+                </div>
+            </div>
+
+            <div class="sign-table">
+                <div class="sign-table-back">
+                    <p class="sign-table-name">Queue list</p>
+                    <table class="signTable">
+                        <thead>
+                        <tr>
+                            <td>Product</td>
+                            <td>Total Sign-off</td>
+                            <td>Awaiting Sign-off</td>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <img src="/img/transactionTable/payment.svg" alt="payment"/>Payment
+                            </td>
+                            <td>@(_signingQueues.FirstOrDefault(x => x.ProductType is ProductTypeQueue.Payment)?.TotalSignOff)</td>
+                            <td>@(_signingQueues.FirstOrDefault(x => x.ProductType is ProductTypeQueue.Payment)?.AwaitingSignOff)</td>
+                            <td>
+                                <button class="signTable-button" onclick="@(() => GoTo("/sign-queues/payment"))">Details</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="/img/transactionTable/payeeTemplates.svg" alt="template"/>Payee template
+                            </td>
+                            <td>@(_signingQueues.FirstOrDefault(x => x.ProductType is ProductTypeQueue.PayeeTemplate)?.TotalSignOff)</td>
+                            <td>@(_signingQueues.FirstOrDefault(x => x.ProductType is ProductTypeQueue.PayeeTemplate)?.AwaitingSignOff)</td>
+                            <td>
+                                <button class="signTable-button" onclick="@(() => GoTo("/sign-queues/payee-template"))">Details</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="/img/transactionTable/transfer.svg" alt="transfer"/>Transfer
+                            </td>
+                            <td>@(_signingQueues.FirstOrDefault(x => x.ProductType is ProductTypeQueue.Transfer)?.TotalSignOff)</td>
+                            <td>@(_signingQueues.FirstOrDefault(x => x.ProductType is ProductTypeQueue.Transfer)?.AwaitingSignOff)</td>
+                            <td>
+                                <button class="signTable-button" onclick="@(() => GoTo("/sign-queues/transfer"))">Details</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="/img/transactionTable/batchMaintenance.svg" alt="batch"/>Batch
+                            </td>
+                            <td>@(_signingQueues.FirstOrDefault(x => x.ProductType is ProductTypeQueue.Batch)?.TotalSignOff)</td>
+                            <td>@(_signingQueues.FirstOrDefault(x => x.ProductType is ProductTypeQueue.Batch)?.AwaitingSignOff)</td>
+                            <td>
+                                <button class="signTable-button" onclick="@(() => GoTo("/sign-queues/batch"))">Details</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private IList<SigningQueueModel> _signingQueues = new List<SigningQueueModel>();
+
+    protected override void OnInitialized()
+    {
+        _signingQueues = FakeData.SigningQueues;
+    }
+
+    private void GoTo(string url) => _navigateManager.NavigateTo(url);
+
+}

@@ -1,0 +1,118 @@
+::deep .transfersTable td,
+::deep .transfersTable th {
+  vertical-align: middle;
+  width: 100%;
+}
+::deep .transfersTable td:nth-child(2), ::deep .transfersTable td:nth-child(3),
+::deep .transfersTable th:nth-child(2),
+::deep .transfersTable th:nth-child(3) {
+  min-width: 268px;
+}
+::deep .transfersTable td:last-child,
+::deep .transfersTable th:last-child {
+  min-width: 120px;
+}
+@media (max-width: 1260px) and (min-width: 740px) {
+  ::deep .transfersTable td:last-child,
+  ::deep .transfersTable th:last-child {
+    width: 120px;
+  }
+}
+::deep .transfersTable thead th {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: #f2f7fd;
+  color: #81afed;
+}
+::deep .transfersTable thead th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+::deep .transfersTable thead th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+::deep .transfersTable thead th .col-header-content .col-title-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #81afed;
+}
+::deep .transfersTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+::deep .transfersTable tbody tr:last-child {
+  border-bottom: 0;
+}
+::deep .transfersTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+::deep .transfersTable tbody td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 20px;
+  color: #212121;
+}
+::deep .transfersTable-item {
+  display: flex;
+  align-items: center;
+}
+::deep .transfersTable-item-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 12px;
+}
+::deep .transfersTable-item__input {
+  margin-right: 8px;
+}
+::deep .transfersTable-item__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #6a6a6a;
+  word-break: normal;
+}
+::deep .transfersTable-item__amount {
+  max-width: 140px;
+  text-align: right;
+}
+::deep .transfersTable-item .formgroup.formgroup--inactive label {
+  color: #9d9d9d;
+}
+::deep .transfersTable-item .formgroup.formgroup--inactive input {
+  border-color: #ededed;
+  background: #f7f7f7;
+  color: #9d9d9d;
+}
+::deep .transfersTable-item .formgroup.formgroup--inactive input:hover, ::deep .transfersTable-item .formgroup.formgroup--inactive input:focus, ::deep .transfersTable-item .formgroup.formgroup--inactive input:active {
+  border-color: #ededed;
+  background: #f7f7f7;
+  color: #9d9d9d;
+}
+::deep .transfersTable-item .formgroup.formgroup--inactive input:hover::placeholder, ::deep .transfersTable-item .formgroup.formgroup--inactive input:focus::placeholder, ::deep .transfersTable-item .formgroup.formgroup--inactive input:active::placeholder {
+  color: #9d9d9d;
+}
+::deep .transfersTable-item .formgroup.formgroup--inactive:hover label {
+  color: #9d9d9d;
+}
+::deep .transfersTable-item .formgroup.formgroup--inactive:hover input {
+  border-color: #ededed;
+  background: #f7f7f7;
+  color: #9d9d9d;
+}

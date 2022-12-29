@@ -1,0 +1,37 @@
+﻿@layout LogonLayout
+
+@page "/"
+@page "/corporate-signin"
+
+<CascadingValue Name="UserSignInModel" Value="_userSignInModel">
+    <CascadingValue Name="MseAuth" Value="_mseAuth">
+        <CascadingValue Name="UserIdModel" Value="_userIdModel">
+            @switch (_currentSignInStep)
+            {
+                case SigninStepsEnum.FirstStep:
+                {
+                    <CorporateSigninStep1Component OnValueChanged="@ValidationOnValueChange"></CorporateSigninStep1Component>
+                    break;
+                }
+                case SigninStepsEnum.SecondStep:
+                {
+                    <CorporateSigninStep2Component OnValueChanged="@ValidationOnValueChange"></CorporateSigninStep2Component>
+                    break;
+                }
+                case SigninStepsEnum.ThirdStep:
+                {
+                    <CorporateSigninStep3Component OnValueChanged="@ValidationOnValueChange"></CorporateSigninStep3Component>
+                    break;
+                }
+                case SigninStepsEnum.FourthStep:
+                {
+                    <CorporateSigninStep4Component OnValueChanged="@ValidationOnValueChange"></CorporateSigninStep4Component>
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+        </CascadingValue>
+    </CascadingValue>
+</CascadingValue>

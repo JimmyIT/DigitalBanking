@@ -1,0 +1,107 @@
+@keyframes test {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+.batch-items-card {
+  padding: 16px;
+  border: 2px solid #f7f7f7;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: 0.4s;
+}
+.batch-items-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+.batch-items-card-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  flex: 1;
+  cursor: pointer;
+}
+.batch-items-card-header-info {
+  display: flex;
+}
+.batch-items-card-header__sum, .batch-items-card-header__type, .batch-items-card-header__label {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  padding-top: 6px;
+  margin-right: 24px;
+}
+.batch-items-card-header__sum:last-child, .batch-items-card-header__type:last-child, .batch-items-card-header__label:last-child {
+  margin-right: 0;
+}
+.batch-items-card-header__sum--inactive {
+  color: #6a6a6a;
+}
+.batch-items-card-header__type {
+  padding: 6px 26px 2px;
+  color: #0360db;
+  background-color: #f2f7fd;
+  border-radius: 4px;
+}
+.batch-items-card-header__type--transfer {
+  color: #0360db;
+  background-color: #f2f7fd;
+}
+.batch-items-card-header__type--payment {
+  color: #9882fe;
+  background-color: #f4f0ff;
+}
+.batch-items-card-header__type--inactive {
+  color: #6a6a6a;
+  background-color: #ededed;
+}
+.batch-items-card-header__label {
+  color: #9d9d9d;
+}
+.batch-items-card-header__label--inactive {
+  color: #b8b8b8;
+}
+.batch-items-card-form {
+  margin-top: 16px;
+  display: none;
+}
+.batch-items-card-form-row {
+  display: flex;
+  align-items: center;
+  align-items: flex-start;
+}
+.batch-items-card-form-row .formgroup {
+  margin-right: 16px;
+}
+.batch-items-card-form-row .formgroup:last-child {
+  margin-right: 0;
+}
+.batch-items-card-form-row .formgroup {
+  width: 100%;
+}
+.batch-items-card-form-row__amount {
+  text-align: end;
+}
+.batch-items-card-form-row__label {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  margin-top: 4px;
+  color: #6a6a6a;
+}
+.batch-items-card-form-textarea {
+  margin-top: 16px;
+}
+.batch-items-card-form.active {
+  display: block;
+}

@@ -1,0 +1,89 @@
+@* <table class="transactionTable"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <td>Type</td> *@
+@*             <td> *@
+@*                 Date *@
+@*                 <img src="/img/icons/blueArrow.svg" alt="arrow" class="history-table__arrow" /> *@
+@*             </td> *@
+@*             <td> *@
+@*                 Reference *@
+@*                 <img src="/img/icons/blueArrow.svg" alt="arrow" class="history-table__arrow" /> *@
+@*             </td> *@
+@*             <td>Narrative</td> *@
+@*             <td>In</td> *@
+@*             <td>Out</td> *@
+@*             <td>Balance</td> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*         <tr> *@
+@*             <td class="transactionTable-date" colspan="7">October 2021</td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td> *@
+@*                 <img src="/img/transactionTable/payment.svg" alt="payment" /> *@
+@*             </td> *@
+@*             <td>October 30, 2020</td> *@
+@*             <td>PMS00234</td> *@
+@*             <td>Paid invoice #564 for Sept</td> *@
+@*             <td>$900.00</td> *@
+@*             <td></td> *@
+@*             <td>$1600.00</td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td> *@
+@*                 <img src="/img/transactionTable/transfer.svg" alt="transfer" /> *@
+@*             </td> *@
+@*             <td>September 25, 2021</td> *@
+@*             <td>PMS00234</td> *@
+@*             <td>Paid invoice #564 for Sept</td> *@
+@*             <td></td> *@
+@*             <td>- $100.00</td> *@
+@*             <td>$1 900.00</td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td> *@
+@*                 <img src="/img/transactionTable/income.svg" alt="income" /> *@
+@*             </td> *@
+@*             <td>May 9, 2021</td> *@
+@*             <td>PMS00234</td> *@
+@*             <td>Paid invoice #564 for Sept</td> *@
+@*             <td></td> *@
+@*             <td>- $1200.00</td> *@
+@*             <td>$700.00</td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <td> *@
+@*                 <img src="/img/transactionTable/income.svg" alt="income" /> *@
+@*             </td> *@
+@*             <td>October 24, 2020</td> *@
+@*             <td>PMS00234</td> *@
+@*             <td>Paid invoice #564 for Sept</td> *@
+@*             <td>$800.00</td> *@
+@*             <td></td> *@
+@*             <td>$1 900.00</td> *@
+@*         </tr> *@
+@*     </tbody> *@
+@* </table> *@
+
+
+@using IFS.DB.WebApp.Helpers.CompnentConfiguration.DataGrid
+@using IFS.DB.WebApp.Models.Transactions
+
+<DataGridComponent 
+    @ref="_dataSourceGridRef"
+    TItem="TransactionModel"
+    Columns="_columnsDefinition"
+    DataItems="_paginatedTrans.Items"
+    TotalItems="_paginatedTrans.TotalRecord"
+    CurrentPageNumber="_pageIndex"
+    OnPageSizeChangedCallback="OnPageSizeChanged"
+    OnSortDataChangedCallback="OnSortDataChanged"
+    CustomPageSize="CustomPageSize"
+    PagingConfig="_pagingConfig"
+    OnPrevPageClickCallback="OnPrevPageChanged"
+    OnNextPageClickCallback="OnNextPageChanged"
+    OnPageIndexClickCallback="OnPageIndexChanged"
+    >
+</DataGridComponent>

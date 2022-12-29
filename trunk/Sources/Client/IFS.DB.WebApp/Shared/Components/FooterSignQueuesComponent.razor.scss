@@ -1,0 +1,103 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.sign-queues-footer-layout {
+	background: $color-white;
+	padding: $indent-24 0;
+}
+
+.sign-queues-footer-container {
+	@include container;
+}
+
+.sign-queues-footer {
+	display: flex;
+	justify-content: space-between;
+
+	&-left {
+		display: flex;
+		align-items: center;
+
+		&-total {
+			display: flex;
+			align-items: center;
+			margin-right: 40px;
+
+			&-text {
+				@include h4;
+
+				&:first-child {
+					margin-right: $indent-8;
+					color: $color-gray-600;
+				}
+
+				&:last-child {
+					color: $color-gray-800;
+				}
+			}
+		}
+
+		&-awaiting {
+			display: flex;
+			align-items: center;
+
+			&-text {
+				@include h4;
+
+				&:first-child {
+					margin-right: $indent-8;
+					color: $color-gray-600;
+				}
+
+				&:last-child {
+					color: $color-red-500;
+				}
+			}
+		}
+	}
+
+	&-right {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		&-batch {
+			display: flex;
+			align-items: center;
+
+			&-text {
+				@include h4;
+
+				&:nth-child(1) {
+					margin-right: $indent-8;
+					color: $color-gray-600;
+				}
+
+				&:nth-child(2) {
+					@include h2;
+					margin-right: 44px;
+					color: $color-gray-800;
+				}
+			}
+		}
+
+		&-act {
+			display: flex;
+			align-items: center;
+
+			&-reject,
+			&-sign {
+				min-width: 148px;
+			}
+
+			&-reject {
+				@include redButton;
+				margin-right: $indent-16;
+			}
+
+			&-sign {
+				@include blueButton;
+			}
+		}
+	}
+}

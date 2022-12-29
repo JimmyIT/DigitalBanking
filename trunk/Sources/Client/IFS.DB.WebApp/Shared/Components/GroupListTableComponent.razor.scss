@@ -1,0 +1,65 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.groupTable {
+	td {
+		@include textWithDots;
+		vertical-align: middle;
+		padding: $indent-12 $indent-16;
+
+		&:nth-child(3) {
+			text-align: center;
+		}
+	}
+
+	thead {
+		td {
+			@include label2;
+			background: $color-sky-blue-100;
+			color: $color-sky-blue-300;
+
+			&:first-child {
+				border-radius: 8px 0 0 8px;
+			}
+
+			&:last-child {
+				border-radius: 0 8px 8px 0;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid $color-sky-blue-100;
+		}
+
+		td {
+			&:nth-child(1) {
+				@include h5;
+			}
+
+			&:nth-child(2),
+			&:nth-child(3) {
+				@include body;
+			}
+
+			&:nth-child(2) {
+				color: $color-gray-600;
+			}
+
+			&:nth-child(1),
+			&:nth-child(3) {
+				color: $color-gray-900;
+			}
+
+			&:last-child {
+				display: flex;
+				justify-content: flex-end;
+			}
+		}
+	}
+
+	&-button {
+		@include buttonIcon;
+	}
+}

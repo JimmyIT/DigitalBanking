@@ -1,0 +1,140 @@
+﻿@using IFS.DB.WebApp.Models.Batch
+@using IFS.DB.WebApp.Models.Payment
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Models
+
+<div class="modal-layout" id="ModalConfirm" style="display:block!important">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalConfirm()"></div>
+        <div class="batch-modal-layout">
+            <div class="batch-modal">
+                <div class="batch-modal-header-wrapper">
+                    <div class="batch-modal-header">
+                        <p class="batch-modal-header__title">Submit @(BatchModel.UserReference) Batch</p>
+                        <div class="batch-modal-header__icon" onclick="@Close">
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close"/>
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close"/>
+                        </div>
+                    </div>
+                    <p class="batch-modal-header__subtitle">This batch is password protected. Enter the password, to submit this batch</p>
+                </div>
+
+                <EditForm EditContext="@_confirmPasswordContext" OnSubmit="@Confirm">
+                    <DataAnnotationsValidator/>
+                    <div class="batch-modal-main">
+                        <div class="formgroup batch-modal-main-input">
+                            <label>Password</label>
+                            <div class="password">
+                                <InputText
+                                    @bind-Value="@_confirmPasswordModel.Password"
+                                    placeholder="Enter here"
+                                    class="input"
+                                    id="password"
+                                    type="@(_showPassword ? "text" : "password")">
+                                </InputText>
+                                <div
+                                    class="password__icon"
+                                    id="passwordIcon"
+                                    @onclick="OnClickVisiblePassword">
+                                    @PasswordIcon()
+                                </div>
+                            </div>
+                            <CustomValidationMessage For="@(() => _confirmPasswordModel.Password)"></CustomValidationMessage>
+                        </div>
+                    </div>
+                </EditForm>
+
+                <div class="batch-modal-footer">
+                    <button class="batch-modal-footer__buttonCancel" onclick="@Close">Cancel</button>
+                    <button class="batch-modal-footer__buttonSuccess" onclick="@Confirm">Submit batch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private RenderFragment PasswordIcon()
+        => @<text>
+               @if (IsPasswordError)
+               {
+                   <img
+                       src="@(_showPassword ? "/img/icons/openEyeRedIcon.svg" : "/img/icons/eyeRedIcon.svg")"
+                       alt="eye"
+                       class="icon"/>
+                   <img
+                       src="@(_showPassword ? "/img/icons/openEyeRedIcon.svg" : "/img/icons/eyeRedIcon.svg")"
+                       alt="eye"
+                       class="iconHover"/>
+               }
+               else
+               {
+                   <img
+                       src="@(_showPassword ? "/img/icons/eyeIcon.svg" : "/img/icons/closeEyeIcon.svg")"
+                       alt="eye"
+                       class="icon"/>
+                   <img
+                       src="@(_showPassword ? "/img/icons/eyeIconHover.svg" : "/img/icons/closeEyeIconHover.svg")"
+                       alt="eye"
+                       class="iconHover"/>
+               }
+            </text>;
+
+}
+
+@code {
+
+    [CascadingParameter]
+    BlazoredModalInstance BlazoredModal { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public BatchModel BatchModel { get; set; } = default!;
+
+    private readonly ConfirmPasswordModel _confirmPasswordModel;
+    private readonly EditContext _confirmPasswordContext;
+    private readonly ValidationMessageStore _messageStore;
+
+    private bool _showPassword;
+
+    public BatchSubmitConfirmationComponent()
+    {
+        _confirmPasswordModel = new ConfirmPasswordModel();
+        _confirmPasswordContext = new EditContext(_confirmPasswordModel);
+        _confirmPasswordContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _messageStore = new ValidationMessageStore(_confirmPasswordContext);
+    }
+
+    protected override void OnInitialized()
+    {
+        _confirmPasswordContext.OnFieldChanged += (_, args) => { _messageStore.Clear(args.FieldIdentifier); };
+    }
+
+
+    private bool IsPasswordError => _confirmPasswordContext.GetValidationMessages(_confirmPasswordContext.Field(nameof(_confirmPasswordModel.Password))).Any();
+
+    private async Task Confirm()
+    {
+        if (!_confirmPasswordContext.Validate())
+            return;
+
+        if (!_confirmPasswordModel.Password.Equals(FakeData.Password))
+        {
+            _messageStore.Add(_confirmPasswordContext.Field(nameof(_confirmPasswordModel.Password)), "Incorrect password");
+            _confirmPasswordContext.NotifyValidationStateChanged();
+            return;
+        }
+
+        await BlazoredModal.CloseAsync(ModalResult.Ok());
+    }
+
+
+    private async Task Close() => await BlazoredModal.CloseAsync(ModalResult.Cancel());
+
+
+    private void OnClickVisiblePassword()
+    {
+        _showPassword = !_showPassword;
+    }
+
+}

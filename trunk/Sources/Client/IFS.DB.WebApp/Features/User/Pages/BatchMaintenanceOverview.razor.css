@@ -1,0 +1,943 @@
+.batch-layout {
+  padding: 24px 0 36px;
+}
+
+.batch-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.batch-breadcrumbs {
+  display: flex;
+  margin-bottom: 8px;
+}
+.batch-breadcrumbs__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #6a6a6a;
+  padding: 4px 0;
+  margin-right: 8px;
+}
+.batch-breadcrumbs__item::after {
+  content: "/";
+  margin-left: 8px;
+}
+.batch-breadcrumbs__item:last-child {
+  margin-right: 0;
+}
+.batch-breadcrumbs__item:last-child::after {
+  display: none;
+}
+.batch-breadcrumbs__item.active {
+  color: #212121;
+}
+
+.batch-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.batch-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.batch-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.batch-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.batch-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.batch-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.batch-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-header__button .iconBlock .icon,
+.batch-header__button .iconBlock .iconHover,
+.batch-header__button .iconBlock .iconActive,
+.batch-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-header__button .iconBlock .iconHover,
+.batch-header__button .iconBlock .iconActive,
+.batch-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-header__button .iconBlock,
+.batch-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-header__button .iconBlock:first-child,
+.batch-header__button > img:first-child {
+  margin-left: 0;
+}
+.batch-header__button .iconBlock:last-child,
+.batch-header__button > img:last-child {
+  margin-right: 0;
+}
+.batch-header__button:hover {
+  color: #0248a4;
+}
+
+.batch-main {
+  display: flex;
+}
+.batch-main__left {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 440px;
+  margin-bottom: 0;
+  display: flex;
+  border: 1px solid #ededed;
+}
+.batch-main__left:last-child {
+  margin-bottom: 0;
+}
+.batch-main__right {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  flex: 1;
+  padding-right: 12px;
+  margin-left: 24px;
+  border: 1px solid #ededed;
+}
+.batch-main__right:last-child {
+  margin-bottom: 0;
+}
+.batch-main__right:first-child {
+  margin-left: 0;
+}
+.batch-details, .batch-items {
+  height: 706px;
+  display: flex;
+  flex-direction: column;
+  height: 706px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.batch-details::-webkit-scrollbar, .batch-items::-webkit-scrollbar {
+  width: 4px;
+  cursor: pointer;
+}
+.batch-details::-webkit-scrollbar-track, .batch-items::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.batch-details::-webkit-scrollbar-thumb, .batch-items::-webkit-scrollbar-thumb {
+  background-color: #ededed;
+  border-radius: 4px;
+}
+.batch-details::-webkit-scrollbar-thumb:window-inactive, .batch-items::-webkit-scrollbar-thumb:window-inactive {
+  background-color: #d2d2d2;
+}
+.batch-details-wrapper, .batch-items-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  justify-content: space-between;
+}
+.batch-details-header, .batch-items-header {
+  margin-bottom: 16px;
+}
+.batch-details-header__title, .batch-items-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+}
+.batch-details-form .formgroup, .batch-items-form .formgroup {
+  margin-top: 16px;
+}
+.batch-details-form .formgroup:first-child, .batch-items-form .formgroup:first-child {
+  margin-top: 0;
+}
+.batch-details-form-row, .batch-items-form-row {
+  display: flex;
+  align-items: center;
+}
+.batch-details-form-row .formgroup, .batch-items-form-row .formgroup {
+  margin-right: 16px;
+}
+.batch-details-form-row .formgroup:last-child, .batch-items-form-row .formgroup:last-child {
+  margin-right: 0;
+}
+.batch-details-form__text, .batch-items-form__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  min-width: 188px;
+  color: #212121;
+}
+.batch-items-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.batch-items-card {
+  padding: 16px;
+  border: 2px solid #f7f7f7;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.batch-items-card:last-child {
+  margin-bottom: 0;
+}
+.batch-items-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+.batch-items-card-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  flex: 1;
+  cursor: pointer;
+}
+.batch-items-card-header__content {
+  display: flex;
+}
+.batch-items-card-header__sum, .batch-items-card-header__typeTransfer, .batch-items-card-header__typePayment, .batch-items-card-header__label {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  padding-top: 6px;
+  margin-right: 24px;
+}
+.batch-items-card-header__sum:last-child, .batch-items-card-header__typeTransfer:last-child, .batch-items-card-header__typePayment:last-child, .batch-items-card-header__label:last-child {
+  margin-right: 0;
+}
+.batch-items-card-header__typeTransfer, .batch-items-card-header__typePayment {
+  padding: 6px 26px 2px;
+  color: #0360db;
+  background-color: #f2f7fd;
+  border-radius: 4px;
+}
+.batch-items-card-header__typePayment {
+  color: #9882fe;
+  background-color: #f4f0ff;
+}
+.batch-items-card-header__label {
+  color: #9d9d9d;
+}
+
+.batch-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  position: relative;
+}
+.batch-modal-layout {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+  max-width: 744px;
+}
+.batch-modal-header-wrapper {
+  margin-bottom: 16px;
+}
+.batch-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.batch-modal-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #121217;
+}
+.batch-modal-header__subtitle {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 4px;
+  color: #212121;
+}
+.batch-modal-header__icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-modal-header__icon:hover .icon {
+  opacity: 0;
+}
+.batch-modal-header__icon:hover .iconHover {
+  opacity: 1;
+}
+.batch-modal-header__icon:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-header__icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-header__icon.active .icon {
+  opacity: 0;
+}
+.batch-modal-header__icon.active .iconActive {
+  opacity: 1;
+}
+.batch-modal-header__icon .icon,
+.batch-modal-header__icon .iconHover,
+.batch-modal-header__icon .iconActive,
+.batch-modal-header__icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-modal-header__icon .iconHover,
+.batch-modal-header__icon .iconActive,
+.batch-modal-header__icon .iconActiveHover {
+  opacity: 0;
+}
+.batch-modal-main {
+  margin-bottom: 16px;
+}
+.batch-modal-main-input {
+  margin-right: 0;
+  margin-bottom: 16px;
+}
+.batch-modal-main-input:last-child {
+  margin-bottom: 0;
+}
+.batch-modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.batch-modal-footer__buttonCancel {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  min-width: 144px;
+}
+.batch-modal-footer__buttonCancel:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-modal-footer__buttonCancel .iconBlock .icon,
+.batch-modal-footer__buttonCancel .iconBlock .iconHover,
+.batch-modal-footer__buttonCancel .iconBlock .iconActive,
+.batch-modal-footer__buttonCancel .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-modal-footer__buttonCancel .iconBlock .iconHover,
+.batch-modal-footer__buttonCancel .iconBlock .iconActive,
+.batch-modal-footer__buttonCancel .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-modal-footer__buttonCancel > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-modal-footer__buttonCancel .iconBlock,
+.batch-modal-footer__buttonCancel > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-modal-footer__buttonCancel .iconBlock:first-child,
+.batch-modal-footer__buttonCancel > img:first-child {
+  margin-left: 0;
+}
+.batch-modal-footer__buttonCancel .iconBlock:last-child,
+.batch-modal-footer__buttonCancel > img:last-child {
+  margin-right: 0;
+}
+.batch-modal-footer__buttonCancel:hover {
+  color: #0248a4;
+}
+.batch-modal-footer__buttonSuccess {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  min-width: 144px;
+}
+.batch-modal-footer__buttonSuccess:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-modal-footer__buttonSuccess .iconBlock .icon,
+.batch-modal-footer__buttonSuccess .iconBlock .iconHover,
+.batch-modal-footer__buttonSuccess .iconBlock .iconActive,
+.batch-modal-footer__buttonSuccess .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-modal-footer__buttonSuccess .iconBlock .iconHover,
+.batch-modal-footer__buttonSuccess .iconBlock .iconActive,
+.batch-modal-footer__buttonSuccess .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-modal-footer__buttonSuccess > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-modal-footer__buttonSuccess .iconBlock,
+.batch-modal-footer__buttonSuccess > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:first-child,
+.batch-modal-footer__buttonSuccess > img:first-child {
+  margin-left: 0;
+}
+.batch-modal-footer__buttonSuccess .iconBlock:last-child,
+.batch-modal-footer__buttonSuccess > img:last-child {
+  margin-right: 0;
+}
+.batch-modal-footer__buttonSuccess:hover {
+  background-color: #0248a4;
+}
+
+.batch-footer-layout {
+  background: #ffffff;
+  padding: 24px 0;
+}
+
+.batch-footer-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.batch-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.batch-footer-left {
+  display: flex;
+  align-items: center;
+}
+.batch-footer-left-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.batch-footer-left-info:first-child {
+  cursor: pointer;
+}
+.batch-footer-left-info:last-child {
+  margin-right: 0;
+}
+.batch-footer-left-info-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.batch-footer-left-info-text:first-child {
+  margin-right: 8px;
+  color: #6a6a6a;
+}
+.batch-footer-left-info-text:last-child {
+  color: #393939;
+}
+.batch-footer-left-info-tooltip {
+  position: absolute;
+  width: 180px;
+  display: none;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  bottom: 30px;
+  border: 1px solid #ededed;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.08);
+}
+.batch-footer-left-info-tooltip--show {
+  display: block;
+}
+.batch-footer-left-info-tooltip-item {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+.batch-footer-left-info-tooltip-item__image {
+  margin-right: 8px;
+}
+.batch-footer-left-info-tooltip-item__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  color: #393939;
+}
+.batch-footer-left-info-tooltip-item__name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.batch-footer-left-info-tooltip-icon {
+  position: absolute;
+  display: none;
+  bottom: 22px;
+  left: 10px;
+}
+.batch-footer-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.batch-footer-right-batch {
+  display: flex;
+  align-items: center;
+}
+.batch-footer-right-batch-text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+}
+.batch-footer-right-batch-text:nth-child(1) {
+  margin-right: 8px;
+  color: #6a6a6a;
+}
+.batch-footer-right-batch-text:nth-child(2) {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  margin-right: 44px;
+  color: #393939;
+}
+.batch-footer-right-buttons {
+  display: flex;
+  align-items: center;
+}
+.batch-footer-right-buttons-reject, .batch-footer-right-buttons-confirm {
+  min-width: 148px;
+}
+.batch-footer-right-buttons-reject {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  margin-right: 16px;
+}
+.batch-footer-right-buttons-reject:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-footer-right-buttons-reject:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-footer-right-buttons-reject:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-footer-right-buttons-reject:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-footer-right-buttons-reject .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-footer-right-buttons-reject .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-footer-right-buttons-reject .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-footer-right-buttons-reject .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-footer-right-buttons-reject .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-footer-right-buttons-reject .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-footer-right-buttons-reject .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-footer-right-buttons-reject .iconBlock .icon,
+.batch-footer-right-buttons-reject .iconBlock .iconHover,
+.batch-footer-right-buttons-reject .iconBlock .iconActive,
+.batch-footer-right-buttons-reject .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-footer-right-buttons-reject .iconBlock .iconHover,
+.batch-footer-right-buttons-reject .iconBlock .iconActive,
+.batch-footer-right-buttons-reject .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-footer-right-buttons-reject > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-footer-right-buttons-reject .iconBlock,
+.batch-footer-right-buttons-reject > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-footer-right-buttons-reject .iconBlock:first-child,
+.batch-footer-right-buttons-reject > img:first-child {
+  margin-left: 0;
+}
+.batch-footer-right-buttons-reject .iconBlock:last-child,
+.batch-footer-right-buttons-reject > img:last-child {
+  margin-right: 0;
+}
+.batch-footer-right-buttons-reject:hover {
+  color: #0248a4;
+}
+.batch-footer-right-buttons-confirm {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+}
+.batch-footer-right-buttons-confirm:hover .iconBlock .icon {
+  opacity: 0;
+}
+.batch-footer-right-buttons-confirm:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.batch-footer-right-buttons-confirm:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.batch-footer-right-buttons-confirm:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-footer-right-buttons-confirm .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.batch-footer-right-buttons-confirm .iconBlock:hover .icon {
+  opacity: 0;
+}
+.batch-footer-right-buttons-confirm .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.batch-footer-right-buttons-confirm .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.batch-footer-right-buttons-confirm .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.batch-footer-right-buttons-confirm .iconBlock.active .icon {
+  opacity: 0;
+}
+.batch-footer-right-buttons-confirm .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.batch-footer-right-buttons-confirm .iconBlock .icon,
+.batch-footer-right-buttons-confirm .iconBlock .iconHover,
+.batch-footer-right-buttons-confirm .iconBlock .iconActive,
+.batch-footer-right-buttons-confirm .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.batch-footer-right-buttons-confirm .iconBlock .iconHover,
+.batch-footer-right-buttons-confirm .iconBlock .iconActive,
+.batch-footer-right-buttons-confirm .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.batch-footer-right-buttons-confirm > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.batch-footer-right-buttons-confirm .iconBlock,
+.batch-footer-right-buttons-confirm > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.batch-footer-right-buttons-confirm .iconBlock:first-child,
+.batch-footer-right-buttons-confirm > img:first-child {
+  margin-left: 0;
+}
+.batch-footer-right-buttons-confirm .iconBlock:last-child,
+.batch-footer-right-buttons-confirm > img:last-child {
+  margin-right: 0;
+}
+.batch-footer-right-buttons-confirm:hover {
+  background-color: #0248a4;
+}
+.batch-footer-right-buttons-confirm:disabled {
+  background-color: #CDDFF8;
+  box-shadow: unset;
+}
+.batch-footer-right-buttons-confirm:disabled:hover {
+  background-color: #CDDFF8;
+  box-shadow: unset;
+}

@@ -1,0 +1,71 @@
+﻿<div @ref=@_notificationContainer class="notification"
+    id="notification" style="@_activeInlineStyleCss">
+    <div class="notification-main" 
+         @onmousedown=@(() => NotificationContent_OnClick(true))>
+        <div class="notification-main-header">Welcome, Jane!</div>
+        <div class="notification-main-description">
+            To further enhance our range of products and service, the online banking service will be unavailable from GMT 01:00 am to 2:00 pm on June 25, 2020.
+            This period of downtime is scheduled for necessary updates to be applied to the network.
+        </div>
+    </div>
+
+    <div class="notification-info" 
+         @onmousedown=@(() => NotificationContent_OnClick(true))>
+        <p class="notification-info__title">
+            [Payee reference]
+        </p>
+        <div class="notification-info-description">
+            <div class="notification-info-description__text">
+                <p>Domestic</p>
+                <img class="notification-info-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+                <p>BASK</p>
+            </div>
+            <p class="notification-info-description__text">Account No.: 00256001</p>
+        </div>
+        <div class="notification-info-description">
+            <p class="notification-info-description__text">08/07/2021</p>
+            <p class="notification-info-description__sum">$1200.00</p>
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] public HeaderComponent? HeaderComponent { get; set; }
+    internal ElementReference _notificationContainer;
+    private string _activeInlineStyleCss = "display: none";
+    internal bool isOpening = false;
+    internal bool isKeepState = false;
+    internal async Task SetOnFocus_NotificationAsync() =>
+            await _notificationContainer.FocusAsync();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        //if(isOpening)
+        //{
+        //    await _notificationContainer.FocusAsync();
+        //}
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    internal async Task SetActiveNotificationAsync(bool isActive)
+    {
+        await Task.Delay(200);
+        isOpening = isActive;
+        _activeInlineStyleCss = isActive ? "display: block" : "display: none";
+        StateHasChanged();
+    }
+
+    private async Task NotificationContent_OnClick(bool keepState)
+    {
+        if(await IsMobileAsync())
+            await HeaderComponent.BurgerMenu_OnFocusOutAsync();
+        //isKeepState = keepState;
+        //if(!keepState) await SetActiveNotificationAsync(false);
+    }    
+
+    public async Task<bool> IsMobileAsync()
+    {
+        return await _jsRuntime.InvokeAsync<bool>("mobileAndTabletCheck", new object[] { });
+
+    }
+}

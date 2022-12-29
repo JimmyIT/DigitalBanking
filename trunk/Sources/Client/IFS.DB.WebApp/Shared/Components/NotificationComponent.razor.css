@@ -1,0 +1,367 @@
+.notification {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 416px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #CDDFF8;
+  box-shadow: 4px 4px 32px rgba(40, 49, 61, 0.18);
+  margin: 0;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 10;
+}
+.notification:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 1260px) {
+  .notification {
+    left: 0;
+  }
+}
+.notification-main {
+  flex: 1;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: #f7f7f7;
+}
+.notification-main-header {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 8px;
+}
+.notification-main-description {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  margin-bottom: 8px;
+}
+.notification-info {
+  background: #ffffff;
+  border: 2px solid #f4f0ff;
+  border-radius: 12px;
+  padding: 16px;
+  transition: 0.4s;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.notification-info__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+.notification-info-description {
+  display: flex;
+  justify-content: space-between;
+}
+.notification-info-description__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  display: flex;
+  color: #6a6a6a;
+}
+.notification-info-description__sum {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.notification-info-description__icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin-right: 12px;
+  cursor: pointer;
+}
+.notification-info-description__icon:hover .icon {
+  opacity: 0;
+}
+.notification-info-description__icon:hover .iconHover {
+  opacity: 1;
+}
+.notification-info-description__icon:hover.active .iconActive {
+  opacity: 0;
+}
+.notification-info-description__icon:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.notification-info-description__icon.active .icon {
+  opacity: 0;
+}
+.notification-info-description__icon.active .iconActive {
+  opacity: 1;
+}
+.notification-info-description__icon .icon,
+.notification-info-description__icon .iconHover,
+.notification-info-description__icon .iconActive,
+.notification-info-description__icon .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.notification-info-description__icon .iconHover,
+.notification-info-description__icon .iconActive,
+.notification-info-description__icon .iconActiveHover {
+  opacity: 0;
+}
+.notification-info-description__icon:last-child {
+  margin-right: 0;
+}
+.notification-info-description__type {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #9882fe;
+  background-color: #f4f0ff;
+}
+.notification-info-description__type--2 {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  padding: 6px 21px 2px;
+  border-radius: 4px;
+  color: #1199d6;
+  background-color: #f2f7fd;
+}
+.notification-info__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  padding: 8px 16px;
+  width: 100%;
+}
+.notification-info__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.notification-info__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.notification-info__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.notification-info__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.notification-info__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.notification-info__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.notification-info__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.notification-info__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.notification-info__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.notification-info__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.notification-info__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.notification-info__button .iconBlock .icon,
+.notification-info__button .iconBlock .iconHover,
+.notification-info__button .iconBlock .iconActive,
+.notification-info__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.notification-info__button .iconBlock .iconHover,
+.notification-info__button .iconBlock .iconActive,
+.notification-info__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.notification-info__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.notification-info__button .iconBlock,
+.notification-info__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.notification-info__button .iconBlock:first-child,
+.notification-info__button > img:first-child {
+  margin-left: 0;
+}
+.notification-info__button .iconBlock:last-child,
+.notification-info__button > img:last-child {
+  margin-right: 0;
+}
+.notification-info__button:hover {
+  color: #0248a4;
+}
+.notification-info:last-child {
+  margin-bottom: 0;
+}
+.notification-info:hover:not(:disabled) {
+  border-color: #dfd7fe;
+}
+.notification-info-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  width: 100%;
+  margin-top: 16px;
+}
+.notification-info-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.notification-info-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.notification-info-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.notification-info-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.notification-info-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.notification-info-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.notification-info-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.notification-info-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.notification-info-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.notification-info-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.notification-info-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.notification-info-button .iconBlock .icon,
+.notification-info-button .iconBlock .iconHover,
+.notification-info-button .iconBlock .iconActive,
+.notification-info-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.notification-info-button .iconBlock .iconHover,
+.notification-info-button .iconBlock .iconActive,
+.notification-info-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.notification-info-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.notification-info-button .iconBlock,
+.notification-info-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.notification-info-button .iconBlock:first-child,
+.notification-info-button > img:first-child {
+  margin-left: 0;
+}
+.notification-info-button .iconBlock:last-child,
+.notification-info-button > img:last-child {
+  margin-right: 0;
+}
+.notification-info-button:hover {
+  color: #0248a4;
+}

@@ -1,0 +1,127 @@
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.GroupMaintenance
+@using IFS.DB.WebApp.Models.Users
+
+<div class="details">
+
+    <EditForm EditContext=@_userCreationDetailsContext>
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+
+        <p class="details-head">General details</p>
+        <div class="details-formgroup @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            <p class="details-formgroup-name">User ID</p>
+            <InputNumber placeholder="Enter here" class="input" @bind-Value=@_userCreationRequestDetails.UserId disabled=@_isJustConfirmLocked />
+            <CustomValidationMessage For="@(() => _userCreationRequestDetails.UserId)" />
+        </div>
+        <div class="details-formgroup @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            <p class="details-formgroup-name">User Name</p>
+            <InputText placeholder="Enter here" class="input" @bind-Value=@_userCreationRequestDetails.UserName disabled=@_isJustConfirmLocked />
+            <CustomValidationMessage For="@(() => _userCreationRequestDetails.UserName)" />
+        </div>
+        <div class="details-formgroup @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            @*TODO*@
+            @*<EmailComponent />*@
+            <div>
+                <label>Email</label>
+                <div class="input-layout input-layout--email">
+                    <InputText placeholder="Email" class="input" @bind-Value=@_userCreationRequestDetails.EmailAddress disabled=@_isJustConfirmLocked />
+                </div>
+                <CustomValidationMessage For="@(() => _userCreationRequestDetails.EmailAddress)" />
+            </div>
+        </div>
+        <div class="details-formgroup @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            @*TODO*@
+            @*<PhoneNumberComponent/>*@
+            <div>
+                <label>Mobile phone number</label>
+                <div class="phone">
+                    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@CultureInfoModel
+                                                                                    FieldId="@( new FieldIdentifier(_userCreationRequestDetails, nameof(UserCreationRequestModel.PhoneNumberIDD)) )"
+                                                                                    SelectedItem_Onclick=@OnSelectedPhoneNumberIDD>
+                        <InitialPlaceHolder>@(_userCreationRequestDetails.PhoneNumberIDD ?? "IDD")</InitialPlaceHolder>
+                        <ChildContent>
+                            @foreach (var cultureInfo in _listCulturesModel)
+                            {
+                                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@CultureInfoModel
+                                                                                                TValue="cultureInfo" Context="_">
+                                    @cultureInfo.PhoneNumberIDD
+                                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                            }
+                        </ChildContent>
+                    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+                    <DropdownComponent TItem="CultureInfoModel" IsDisabled=@_isJustConfirmLocked
+                                       OnSelectedItem=@OnSelectedPhoneNumberIDD>
+                        <InitialTip>@(_userCreationRequestDetails.PhoneNumberIDD ?? "IDD")</InitialTip>
+                        <DropdownChildContent>
+                            @foreach (var cultureInfo in _listCulturesModel)
+                            {
+                                <DropdownItemComponent TItem="CultureInfoModel" Item="@cultureInfo" Context="_">
+                                    <DropdownItemChildContent>
+                                        @cultureInfo.PhoneNumberIDD
+                                    </DropdownItemChildContent>
+                                </DropdownItemComponent>
+                            }
+                        </DropdownChildContent>
+                    </DropdownComponent>
+                    <InputText placeholder="000 000 000" class="input" @bind-Value=@_userCreationRequestDetails.PhoneNumber disabled=@_isJustConfirmLocked />
+
+                </div>
+                <CustomValidationMessage For="@(() => _userCreationRequestDetails.PhoneNumberIDD)" />
+                <CustomValidationMessage For="@(() => _userCreationRequestDetails.PhoneNumber)" />
+            </div>
+        </div>
+        <div class="details-formgroup @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            <label>Language</label>
+            <DropdownComponent TItem="CultureInfoModel" IsDisabled=@_isJustConfirmLocked
+                               OnSelectedItem=@OnSelectedLanguage>
+                <InitialTip>@(_userCreationRequestDetails.Language ?? "Language")</InitialTip>
+                <DropdownChildContent>
+                    @foreach (var cultureInfo in _listCulturesModel)
+                    {
+                        <DropdownItemComponent TItem="CultureInfoModel" Item="@cultureInfo" Context="_">
+                            <DropdownItemChildContent>
+                                @cultureInfo.Country
+                            </DropdownItemChildContent>
+                        </DropdownItemComponent>
+                    }
+                </DropdownChildContent>
+            </DropdownComponent>
+
+            <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@CultureInfoModel
+                                                                            FieldId="@( new FieldIdentifier(_userCreationRequestDetails, nameof(UserCreationRequestModel.Language)) )"
+                                                                            SelectedItem_Onclick=@OnSelectedLanguage>
+                <InitialPlaceHolder>@(_userCreationRequestDetails.Language ?? "Language")</InitialPlaceHolder>
+                <ChildContent>
+                    @foreach (var cultureInfo in _listCulturesModel)
+                    {
+                        <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@CultureInfoModel
+                                                                                        TValue="cultureInfo" Context="_">
+                            @cultureInfo.Country
+                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                    }
+                </ChildContent>
+            </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+            <CustomValidationMessage For="@(() => _userCreationRequestDetails.Language)" />
+        </div>
+        <div class="details-formgroup @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            <div class="details-formgroup-title">
+                <p class="details-formgroup-title-name">Assign user to group</p>
+                <p class="details-formgroup-title-subtitle">Optional</p>
+            </div>
+            <DropdownComponent TItem="GroupInfoModel" IsDisabled=@_isJustConfirmLocked
+                               OnSelectedItem=@OnSelectedGroup>
+                <InitialTip>@(_listGroupMaintenanceModel.FirstOrDefault(x => x.ID == _userCreationRequestDetails.GroupID.GetValueOrDefault())?.Name  ?? "Assign user to group")</InitialTip>
+                <DropdownChildContent>
+                    @foreach (var group in _listGroupMaintenanceModel)
+                    {
+                        <DropdownItemComponent TItem="GroupInfoModel" Item="@group" Context="_">
+                            <DropdownItemChildContent>
+                                @group.Name
+                            </DropdownItemChildContent>
+                        </DropdownItemComponent>
+                    }
+                </DropdownChildContent>
+            </DropdownComponent>
+        </div>
+    </EditForm>
+</div>

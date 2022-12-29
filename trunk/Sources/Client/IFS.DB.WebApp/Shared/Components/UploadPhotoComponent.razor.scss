@@ -1,0 +1,110 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.common-modal {
+    @include modalDefault;
+
+    &-layout {
+        @include modalDefaultContainer;
+    }
+
+    &-header-wrapper {
+        margin-bottom: $indent-16;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__title {
+            @include h2;
+            color: $color-wireframes-900;
+        }
+
+        &__subtitle {
+            @include h5;
+            margin-top: $indent-4;
+            color: $color-gray-900;
+        }
+
+        &__icon {
+            @include buttonIconSmall;
+        }
+    }
+
+    &-main {
+        margin-bottom: $indent-16;
+
+        &-info-card {
+            @include cardLightBlue;
+            margin-bottom: $indent-16;
+
+            &-content {
+                display: flex;
+
+                &-item {
+                    width: 200px;
+                    margin-right: 12px;
+                }
+            }
+        }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: space-between;
+
+        &__buttonCancel {
+            @include lightBlueButton;
+            min-width: 144px;
+        }
+
+        &__buttonSuccess {
+            @include blueButton;
+            min-width: 144px;
+        }
+    }
+}
+
+.file-drop-zone {
+    display: flex;
+    width: 100%;
+    border: 3px dotted #94d5e5;
+    align-items: center;
+    margin-bottom: 2px;
+    background-color: #eee;
+    cursor: pointer;
+    position: relative;
+    border-radius: inherit;
+
+    &:hover {
+        background-color: #f3f3f3;
+        color: #333;
+    }
+}
+
+::deep input[type=file] {
+    width: 100%;
+    min-height: 150px;
+    text-align-last: center;
+    padding: 65px 0px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-height: 150px;
+    min-height: 150px;
+    margin: 5px 0px;
+}
+
+img {
+    width: 150px;
+    object-fit:contain;
+}
+
+.hover {
+    background-color: #fffdfd;
+}

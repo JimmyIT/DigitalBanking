@@ -1,0 +1,32 @@
+<IMailTabControlComponent>
+    <IMailTabPageComponent Text="Unread mails"
+                           ContentName="IMailTabPageEnum.UnreadMails"
+                           TabPageHeaderIcon="/img/imail/mailAll.svg">
+        @foreach (var item in _listiMailMessages.Where(x => x.Status == IMailStatusEnum.New).ToList())
+        {
+            <ImailMessageComponent iMailMessageItem="@item"
+                    OnAnsweriMailMessageItem=@AnsweriMail_Clicked
+                    OnDeleteiMailMessageItem=@DeleteiMail_Clicked></ImailMessageComponent>
+        }
+    </IMailTabPageComponent>
+    <IMailTabPageComponent Text="Inbox mails"
+                           ContentName="IMailTabPageEnum.InboxMails"
+                           TabPageHeaderIcon="/img/imail/mailInbox.svg">
+        @foreach (var item in _listiMailMessages.Where(x => x.SenderID != _AuthenticatedUserID).ToList())
+        {
+            <ImailMessageComponent iMailMessageItem="@item"
+                    OnAnsweriMailMessageItem=@AnsweriMail_Clicked
+                    OnDeleteiMailMessageItem=@DeleteiMail_Clicked></ImailMessageComponent>
+        }
+    </IMailTabPageComponent>
+    <IMailTabPageComponent Text="Sent mails"
+                           ContentName="IMailTabPageEnum.SentMails"
+                           TabPageHeaderIcon="/img/imail/mailSent.svg">
+        @foreach (var item in _listiMailMessages.Where(x => x.SenderID == _AuthenticatedUserID).ToList())
+        {
+            <ImailMessageComponent iMailMessageItem="@item"
+                    OnAnsweriMailMessageItem=@AnsweriMail_Clicked
+                    OnDeleteiMailMessageItem=@DeleteiMail_Clicked></ImailMessageComponent>
+        }
+    </IMailTabPageComponent>
+</IMailTabControlComponent>

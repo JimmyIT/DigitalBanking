@@ -1,0 +1,24 @@
+﻿<div @ref=_submenuContainer class="main-header-menu__item @GetActive()">
+    <div @ref=@_buttonSubmenu class="main-header-menu__item-link">
+        <button class="submenu-button" @onclick=@(() => ToggleSubMenu(!_isActive))>
+            @Header
+            <img src="/img/icons/dropdown.svg" alt="dropdown"
+                 class="main-header-menu__item-link-dropdown" />
+        </button>
+    </div>
+    @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+    <div @ref=@_linkMenusContainer class="main-header-menu__item-link-submenu-payment-wrapper"
+         @onfocusout=@OutFocusAsync tabindex="0"
+         style="@(_isActive ? "display:block;" : "display:none;")">
+        <div class="main-header-menu__item-link-submenu-payment"
+             @onmousedown=@(() => KeepStateWhenClickItemAsync(true))>
+            <CascadingValue Name="SubMenuComponent" Value="this">
+                @foreach (var item in MenuItems)
+                {
+                    <MenuItemComponent CssClass="main-header-menu__item"
+                                   MenuItem="@item"></MenuItemComponent>
+                }
+            </CascadingValue>
+        </div>
+    </div>
+</div>

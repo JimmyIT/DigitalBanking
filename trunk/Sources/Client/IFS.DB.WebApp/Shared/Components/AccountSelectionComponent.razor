@@ -1,0 +1,72 @@
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.Account
+@typeparam TValue
+@inherits InputSelect<TValue>
+
+@if (!string.IsNullOrEmpty(Label))
+{
+    <label>@Label</label>
+}
+
+<InputSelect Value="Value"
+             class="select"
+             ValueChanged="async (TValue value) => await OnValueChangedInternal(value)"
+             ValueExpression=@ValidationFor>
+    <option value="">@DefaultOption</option>
+    @foreach (var item in _listAccount.OrderBy(a => a.AccountDescription) ?? Enumerable.Empty<AccountModel>())
+    {
+        <option value="@item.AccountNumber">@item.AccountDescription - @item.CurrencyCode - @item.AccountNumber</option>
+    }
+</InputSelect>
+
+@*TODO*@
+@*<div class="customSelector">
+    <div class="customSelector-input" onclick="onClickFilterIcon()"
+         id="filtersSelector">
+        <p class="customSelector-input__placeholder admin-box-selections-customer-name">
+            Select account
+        </p>
+        <img src="/img/icons/dropdown.svg" alt="dropdown" class="admin-box-selections-customer-icon" />
+    </div>
+
+    <div class="customSelector-dropdown" id="filters">
+        <div class="customSelector-dropdown-item">
+            <p>Account 1</p>
+        </div>
+        <div class="customSelector-dropdown-item">
+            <p>Account 2</p>
+        </div>
+    </div>
+</div>
+*@
+
+@if (!string.IsNullOrEmpty(Description))
+{
+    <p class="underline-text">@Description</p>
+}
+
+<CustomValidationMessage For="ValidationFor"></CustomValidationMessage>
+
+@code {
+    [Parameter] public string Label { get; set; }
+    [Parameter] public string DefaultOption { get; set; } = "Select";
+    [Parameter] public string Description { get; set; }
+    [Parameter] public EventCallback<TValue> OnValueChanged { get; set; }
+    [Parameter, EditorRequired] public Expression<Func<TValue>> ValidationFor { get; set; } = default!;
+
+    private IReadOnlyCollection<AccountModel>? _listAccount;
+    protected override async Task OnInitializedAsync()
+    {
+        _listAccount = FakeData.Accounts;
+    }
+
+    private async Task OnValueChangedInternal(TValue value)
+    {
+        Value = value;
+        if (ValueChanged.HasDelegate)
+            await ValueChanged.InvokeAsync(value)!;
+
+        if (OnValueChanged.HasDelegate)
+            await OnValueChanged.InvokeAsync(value);
+    }
+}

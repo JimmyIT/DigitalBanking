@@ -1,0 +1,21 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+@import "Sass/shared/header";
+
+.submenu-button {
+    display: flex;
+    align-items: center;
+    color: #b8b8b8;
+
+    &:hover {
+        color: $color-sky-blue-500;
+    }
+}
+
+.main-header-submenu__item--active {
+    background: $color-sky-blue-100;
+
+    .submenu-button {
+        color: $color-sky-blue-500;
+    }
+}

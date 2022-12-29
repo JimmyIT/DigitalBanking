@@ -1,0 +1,158 @@
+@layout HostAdminLayout
+@page "/mandates-maintenance"
+@using IFS.DB.WebApp.Models.Mandates
+
+<div class="mandates-layout">
+    <div class="mandates-container">
+        <div class="mandates-header">
+            <div class="mandates-header-wrapper">
+                <img src="/img/icons/mandatesIcon.svg" alt="logo" class="mandates-header__logo" />
+                <p class="mandates-header__title">Mandates</p>
+                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="mandates-header__tooltip-icon" />
+            </div>
+
+            <div>
+                <button class="mandates-header__button" @onclick=@(() => _navigateManager.NavigateTo("/mandates-maintenance/edit")) id="amount">Edit</button>
+            </div>
+        </div>
+
+        <!---->
+        <!---->
+        <div class="mandates">
+            <p class="mandates-subtitle">Default settings for all customers and products</p>
+            <div class="maximum-amount">
+                <p class="maximum-amount-name">Maximum amount</p>
+                <p class="maximum-amount-subtitle">Maximum amount for a single item</p>
+                <p class="maximum-amount-item">
+                    @(_mandatesMaintenanceModel.MaximumAmount.HasValue ? (_mandatesMaintenanceModel.MaximumAmount.Value).ToNumberFormat() : $"-")
+                </p>
+            </div>
+            <!---->
+            <!---->
+            <div class="mandates-value">
+                <p class="mandates-value-name">Value items</p>
+                <p class="mandates-value-subtitle">
+                    This section will reflect the conditions under which mandates can be
+                    implemented
+                </p>
+                <!---->
+                <!---->
+                @if (_mandatesMaintenanceModel.MandatesItems != null)
+                {
+                    <div class="mandates-value-item">
+                        @foreach (MandatesItemModel mandatesItem in _mandatesMaintenanceModel.MandatesItems)
+                        {
+                            <div class="mandates-value-item-first">
+                                <div class="mandates-value-item-first-head">
+                                    <p class="mandates-value-item-first-head-name">@($"Value item No.{mandatesItem.MandatesItemId}")</p>
+                                </div>
+                                <!---->
+                                <!---->
+                                <hr class="mandates-value-item-first-line" />
+                                <!---->
+                                <!---->
+                                @switch (mandatesItem.ItemType)
+                                {
+                                    case MandatesItemTypeEnum.Simple:
+                                        {
+                                            @if (mandatesItem.SimpleValueItem != null)
+                                            {
+                                                <div style="display:flex;">
+                                                    <div class="mandates-value-item-first-point-content" style="min-width:300px;">
+                                                        <p class="mandates-value-item-first-point-content-name">@($"Items up to a value of ({mandatesItem.SimpleValueItem.CurrencyCode})")</p>
+                                                        <p class="maximum-amount-item">
+                                                            @(mandatesItem.SimpleValueItem.Amount.ToNumberFormat())
+                                                        </p>
+                                                    </div>
+                                                    <div class="mandates-value-item-first-point-content" style="min-width:300px;">
+                                                        <p class="mandates-value-item-first-point-content-name">@($"Number of signatures")</p>
+                                                        <p class="maximum-amount-item">
+                                                            @(mandatesItem.SimpleValueItem.NumberOfSignatures)
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            }
+                                            break;
+                                        }
+                                    case MandatesItemTypeEnum.Formula:
+                                        {
+                                            @if (mandatesItem.Formula != null)
+                                            {
+                                                @foreach (FormulaItemModel formulaItem in mandatesItem.Formula.Items)
+                                                {
+                                                    <div style="display:flex;">
+                                                        <div class="mandates-value-item-first-point-content" style="min-width:300px;">
+                                                            <p class="mandates-value-item-first-point-content-name">@($"Items up to a value of ({formulaItem.CurrencyCode})")</p>
+                                                            <p class="maximum-amount-item">
+                                                                @(formulaItem.Amount.ToNumberFormat())
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    @if (formulaItem.FormulaValues != null)
+                                                    {
+                                                        @for (int formulaValueIndex = 0; formulaValueIndex < formulaItem.FormulaValues.Count; formulaValueIndex++)
+                                                        {
+                                                            FormulaValuesModel tempFormulaValue = formulaItem.FormulaValues[formulaValueIndex];
+
+                                                            <div class="mandates-value-item-first-formula-cards" style="border:none;">
+                                                                <div class="mandates-value-item-first-formula-cards-title">
+                                                                    <p class="mandates-value-item-first-formula-cards-title-text">@($"FORMULA {tempFormulaValue.ValueId}")</p>
+                                                                </div>
+                                                                <!---->
+                                                                <!---->
+                                                                <div class="mandates-value-item-first-formula-cards-info">
+                                                                    @for (int valuePairIndex = 0; valuePairIndex < tempFormulaValue.PairOfValues.Count; valuePairIndex++)
+                                                                    {
+                                                                        var tempValuePair = tempFormulaValue.PairOfValues.ElementAt(valuePairIndex);
+
+                                                                        <div class="mandates-value-item-first-formula-cards-info-number">
+                                                                            <p class="mandates-value-item-first-formula-cards-info-number-name">
+                                                                                Number of signatures
+                                                                            </p>
+                                                                            <p>@(tempValuePair.NumberSignatures)</p>
+                                                                        </div>
+
+                                                                        <div class="mandates-value-item-first-formula-cards-info-selector">
+                                                                            <p class="mandates-value-item-first-formula-cards-info-selector-name">
+                                                                                User level
+                                                                            </p>
+                                                                            <p>@(((LevelOfUserEnum)tempValuePair.LevelOfUser).ToDescription())</p>
+                                                                        </div>
+
+                                                                        <!---->
+                                                                        <!--do not add "and" text for last formula value -->
+                                                                        <!---->
+                                                                        @if (valuePairIndex < tempFormulaValue.PairOfValues.Count - 1)
+                                                                        {
+                                                                            <p class="mandates-value-item-first-formula-cards-info-and">and</p>
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                            <!---->
+                                                            @if (formulaValueIndex < formulaItem.FormulaValues.Count - 1)
+                                                            {
+                                                                <div class="mandates-value-item-first-formula-or">
+                                                                    <p class="mandates-value-item-first-formula-or-text">or</p>
+                                                                    <hr class="mandates-value-item-first-line" />
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        }
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+                <!---->
+                <!---->
+            </div>
+        </div>        
+    </div>
+</div>

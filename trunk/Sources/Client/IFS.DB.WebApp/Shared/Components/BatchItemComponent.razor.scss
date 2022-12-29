@@ -1,0 +1,127 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+@keyframes test {
+    0% {
+        transform: scaleY(0);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+.batch {
+
+    &-items {
+        //display: flex;
+        //flex-direction: column;
+
+        &-card {
+            padding: $indent-16;
+            border: 2px solid $color-gray-100;
+            border-radius: 12px;
+            margin-bottom: $indent-12;
+
+            transition: $transitionDuration;
+
+
+            &-header {
+                display: flex;
+                justify-content: space-between;
+
+                &__title {
+                    @include h5;
+                    flex: 1;
+                    cursor: pointer;
+                }
+
+                &-info {
+                    display: flex;
+                }
+
+                &__sum,
+                &__type,
+                &__label {
+                    @include h5;
+                    padding-top: 6px;
+                    margin-right: $indent-24;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+
+                &__sum--inactive {
+                    color: $color-gray-600;
+                }
+
+                &__type {
+                    padding: 6px 26px 2px;
+                    color: $color-sky-blue-500;
+                    background-color: $color-sky-blue-100;
+                    border-radius: 4px;
+
+                    &--transfer {
+                        color: $color-sky-blue-500;
+                        background-color: $color-sky-blue-100;
+                    }
+
+                    &--payment {
+                        color: $color-violet-400;
+                        background-color: $color-violet-100;
+                    }
+
+                    &--inactive {
+                        color: $color-gray-600;
+                        background-color: $color-gray-200;
+                    }
+                }
+
+                &__label {
+                    color: $color-gray-500;
+
+                    &--inactive {
+                        color: $color-gray-400;
+                    }
+                }
+            }
+
+            &-form {
+                margin-top: $indent-16;
+                display: none;
+
+                &-row {
+                    @include formHorizontal;
+
+                    align-items: flex-start;
+
+                    .formgroup {
+                        width: 100%;
+                    }
+
+                    &__amount {
+                        text-align: end;
+                    }
+
+                    &__label {
+                        @include caption1;
+                        margin-top: $indent-4;
+                        color: $color-gray-600;
+                    }
+                }
+
+                &-textarea {
+                    margin-top: $indent-16;
+                }
+
+                &.active {
+                    display: block;
+                }
+            }
+   
+        }
+    }
+
+
+}

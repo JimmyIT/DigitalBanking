@@ -1,0 +1,8 @@
+.menu-box {
+    @include menu;
+    width: 208px;
+    margin-right: $indent-24;
+    @include tablet-mobile {
+        margin: 0 0 $indent-16;
+    }
+}

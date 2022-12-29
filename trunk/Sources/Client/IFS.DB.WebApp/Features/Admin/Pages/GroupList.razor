@@ -1,0 +1,81 @@
+@layout AdminLayout
+@page "/admin/group-maintenance"
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.GroupMaintenance
+
+<div class="group-layout">
+    <div class="group-container">
+        <div class="group">
+            <div class="group-header">
+                <div class="group-header-wrapper">
+                    <img src="/img/group/groupIcon.svg" alt="logo" class="group-header__logo" />
+                    <p class="group-header__title">Group Maintenance</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="group-header__tooltip-icon" />
+                </div>
+
+                <div>
+                    <button class="group-header__button" @onclick=@(() => _navigateManager.NavigateTo("/admin/group-maintenance/create"))>Add group</button>
+                </div>
+            </div>
+
+            <div class="group-main">
+                <div class="group-main-title">
+                    <p class="group-main-title-name">Group List</p>
+                    <div class="group-main-title-right">
+                        <div class="group-main-title-right__input">
+                            <!--TODO-->
+                            @*<SearchComponent />*@
+                            <div class="search">
+                                <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon" />
+                                <input placeholder="Search" class="input search__input" @oninput=@((e) => SearchStringOnChange(e)) />
+                            </div>
+                        </div>
+
+                        <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@GroupInfoModel
+                                                                                        MultiSelect=@true
+                                                                                        ContainerInlineStyle="margin-right: 6px;min-width: 260px;"
+                                                                                        DropdownButtonInlineStyle="width:100%;"
+                                                                                        SelectedListData=@_searchGroupModel.Groups
+                                                                                        SelectedItems_Onclick=@SelectedSearchGroupValue>
+                            <InitialPlaceHolder>Group</InitialPlaceHolder>
+                            <ChildContent>
+                                @*<IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem=@GroupMaintenanceModel
+                                TValue="null" Context="_">
+                                Group
+                                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>*@
+                                @foreach (var group in _listGroups)
+                                {
+                                    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@GroupInfoModel
+                                                                                                    TValue="group" Context="_">
+                                        @group.Name
+                                    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                                }
+                            </ChildContent>
+                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+                    </div>
+                </div>
+
+                <GroupListTableComponent SearchData=@_searchGroupModel ChangablePageSize=@true></GroupListTableComponent>                               
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<GroupInfoModel> _listGroups = new();
+    private SearchGroupModel _searchGroupModel = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _listGroups = FakeData.GroupMaintenance.Groups;
+    }
+
+    private async Task SelectedSearchGroupValue(List<GroupInfoModel> selectedGroups)
+    {
+        _searchGroupModel.Groups = selectedGroups;
+    }
+
+    private async Task SearchStringOnChange(ChangeEventArgs e) => _searchGroupModel.SearchString = e.Value as string;
+}

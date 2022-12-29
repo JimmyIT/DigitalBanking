@@ -1,0 +1,153 @@
+﻿@namespace IFS.DB.WebApp.Shared.BaseComponents.Datepicker
+
+@implements IAsyncDisposable
+@using System.Diagnostics
+@using System.Diagnostics.CodeAnalysis
+@using Z.Core.Extensions
+
+<div class="datepicker">
+    <img src="/img/icons/calendar.svg" alt="search" class="datepicker__icon"/>
+    <input
+        @attributes="@AdditionalAttributes"
+        type="text"
+        class="input datepicker__input @CssClass"
+        value="@DisplayText"
+        readonly
+        @ref="Element"/>
+</div>
+        @* @onfocus="EventCallback.Factory.Create(this, ShowDatePicker)" *@
+
+@code {
+
+    [Parameter]
+    public DateTime? From { get; set; }
+
+    [Parameter]
+    public DateTime? To { get; set; }
+
+    [Parameter]
+    public InputDateType Type { get; set; } = InputDateType.Date;
+
+    [Parameter]
+    public string ParsingErrorMessage { get; set; } = string.Empty;
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object>? AdditionalAttributes { get; set; }
+
+    [Parameter]
+    public EventCallback OnSelect { get; set; }
+
+    [Parameter]
+    public EventCallback<DateTime?> FromChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<DateTime?> ToChanged { get; set; }
+
+    private string DisplayText => From is null || To is null ? string.Empty : $"{CurrentFromAsString} - {CurrentToAsString}";
+
+    public ElementReference? Element { get; set; }
+
+    private string _typeAttributeValue = default!;
+    private string _format = "dd/MM/yyyy";
+    private string _parsingErrorMessage = default!;
+
+    private IJSObjectReference _jsModule = default!;
+    private DotNetObjectReference<Daterangepicker> _dotnetRef = default!;
+
+    private string CssClass
+    {
+        get
+        {
+            if (AdditionalAttributes != null &&
+                AdditionalAttributes.TryGetValue("class", out var @class) &&
+                !string.IsNullOrEmpty(Convert.ToString(@class, CultureInfo.InvariantCulture)))
+            {
+                return $"{@class}";
+            }
+
+            return string.Empty;
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        _dotnetRef = DotNetObjectReference.Create(this);
+    }
+
+    protected override void OnParametersSet()
+    {
+    }
+
+    private string FormatValueAsString(DateTime? value)
+    {
+        var returnValue =  BindConverter.FormatValue(value, _format, CultureInfo.CurrentCulture) ?? string.Empty;
+        return returnValue;
+    }
+
+    private bool TryParseDatetimeFromString(string? value, out DateTime? result)
+    {
+        var returnValue = BindConverter.TryConvertTo(value, CultureInfo.InvariantCulture, out result);
+        return returnValue;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", $"./js/modules/Daterangepicker.js");
+            await ShowDatePicker();
+        }
+    }
+
+    private async Task ShowDatePicker() => await _jsModule.InvokeVoidAsync("showDatepicker",  Element, _dotnetRef, From, To, _format);
+
+    [JSInvokable]
+    public async Task SetDatetimeValue(string start, string end, string label)
+    {
+        CurrentFromAsString = start;
+        CurrentToAsString = end;
+        // await Element!.Value.FocusAsync();
+        await OnSelect.InvokeAsync();
+    }
+
+    private string? CurrentFromAsString
+    {
+        get => FormatValueAsString(From);
+        set
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                From = null;
+            }
+            else if (TryParseDatetimeFromString(value, out var parsedValue))
+            {
+                From = parsedValue;
+            }
+            InvokeAsync(async () => await FromChanged.InvokeAsync(From));
+        }
+    }
+
+    private string? CurrentToAsString
+    {
+        get => FormatValueAsString(To);
+        set
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                From = null;
+            }
+            else if (TryParseDatetimeFromString(value, out var parsedValue))
+            {
+                To = parsedValue;
+            }
+            InvokeAsync(async () => await ToChanged.InvokeAsync(To));
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        _dotnetRef.Dispose();
+        await _jsModule.DisposeAsync();
+    }
+
+}

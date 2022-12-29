@@ -1,0 +1,169 @@
+@layout UserLayout
+@page "/sign-queues/{Path}"
+
+@using IFS.DB.WebApp.Models.SigningQueue
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Models
+
+<div class="payment-layout">
+    <div class="payment-container">
+        <div class="payment">
+            <div class="payment-header">
+                <div class="payment-header-breadcrumbs">
+                    <p class="payment-header-breadcrumbs__item">Sign Queues</p>
+                    <p class="payment-header-breadcrumbs__item active">@(Path switch {
+                                                                           PathName.Payment => "Payment",
+                                                                           PathName.Payee => "Payee template",
+                                                                           PathName.Transfer => "Transfer",
+                                                                           PathName.Batch => "Batch payment",
+                                                                           })</p>
+                </div>
+
+                <div class="payment-header-wrapper">
+                    <button @onclick="@(() => _navigateManager.NavigateTo("/sign-queues"))">
+                        <img src="/img/icons/return.svg" alt="logo" class="payment-header__logo"/>
+                    </button>
+                    <p class="payment-header__title">@(Path switch {
+                                                                    PathName.Payment => "Payment",
+                                                                    PathName.Payee => "Payee template",
+                                                                    PathName.Transfer => "Transfer",
+                                                                    PathName.Batch => "Batch payment",
+                                                                    })</p>
+                </div>
+            </div>
+
+            <div class="payment-table">
+                <div class="payment-table-back">
+                    <p class="payment-table-name">Queue list</p>
+                    <QuickGrid TGridItem="CommonQueueModel" Items="_signingQueues.AsQueryable()" Class="paymentTable" Pagination="_pagination" @ref="_gridRef">
+                        <PropertyColumn TGridItem="CommonQueueModel" TProp="string" Property="x => x.DebitAccount" Title="Debit Account">
+                        </PropertyColumn>
+                        <PropertyColumn TGridItem="CommonQueueModel" TProp="string" Property="x => x.Reference" Title="Reference">
+                        </PropertyColumn>
+                        <TemplateColumn TGridItem="CommonQueueModel" Title="Created By">
+                            <img src="@context.CreatedBy?.AvatarUrl" alt="avatar"/>@context.CreatedBy?.Name
+                        </TemplateColumn>
+                        <PropertyColumn TGridItem="CommonQueueModel" TProp="int" Property="x => x.TotalSignOff" Title="Total Sign-off" Align="Align.Center">
+                        </PropertyColumn>
+                        <PropertyColumn TGridItem="CommonQueueModel" TProp="int" Property="x => x.AwaitingSignOff" Title="Awaiting Sign-off" Align="Align.Center">
+                        </PropertyColumn>
+                        <TemplateColumn TGridItem="CommonQueueModel" Title="" Align="Align.Center">
+                            <button class="paymentTable__image" onclick="@(() => ViewSignatoryDetail(context))">
+                                <img src="/img/icons/eyeIcon.svg" alt="eye" class="icon"/>
+                                <img src="/img/icons/eyeIconHover.svg" alt="eye" class="iconHover"/>
+                            </button>
+                        </TemplateColumn>
+                        <TemplateColumn TGridItem="CommonQueueModel" Title="" Align="Align.Center">
+                            <button class="paymentTable-button @(context.CanSign ? "" : "paymentTable-button--inactive")" disabled="@(context.CanSign is false)" onclick="@(() => ViewDetail(context))">Sign</button>
+                        </TemplateColumn>
+                    </QuickGrid>
+                    <Paginator Value="@_pagination"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+    public struct PathName
+    {
+        public const string Payment = "payment";
+        public const string Transfer = "transfer";
+        public const string Payee = "payee-template";
+        public const string Batch = "batch";
+    }
+    
+}
+
+@code {
+
+    [CascadingParameter]
+    public IModalService ModalSvc { get; set; } = default!;
+    
+    [Parameter]
+    public string? Path { get; set; }
+
+    private QuickGrid<CommonQueueModel> _gridRef = null!;
+    
+    private string? _searchString;
+    private ProductTypeQueue _productTypeQueue;
+
+    private IList<CommonQueueModel> _signingQueues = new List<CommonQueueModel>();
+
+    private GridItemsProvider<CommonQueueModel>? _gridItemsProvider;
+
+    private readonly PaginationState _pagination = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrEmpty(Path))
+            _navigateManager.NavigateTo("/sign-queues");
+
+        _productTypeQueue = Path switch {
+            PathName.Payment => ProductTypeQueue.Payment,
+            PathName.Transfer => ProductTypeQueue.Transfer,
+            PathName.Payee => ProductTypeQueue.PayeeTemplate,
+            PathName.Batch => ProductTypeQueue.Batch
+            };
+
+        _signingQueues = FakeData.CommonSigningQueues.Where(x => x.ProductType == _productTypeQueue).ToList();
+
+        _gridItemsProvider = async req =>
+        {
+            var sortBy = req.GetSortByProperties().SingleOrDefault();
+    // return await DataService.GetCountriesAsync(req.StartIndex, req.Count, sortBy.PropertyName, sortBy.Direction == SortDirection.Ascending, req.CancellationToken);
+            return GridItemsProviderResult.From(
+                FakeData.CommonSigningQueues.Where(x => x.ProductType == _productTypeQueue).ToList(),
+                FakeData.CommonSigningQueues.Where(x => x.ProductType == _productTypeQueue).ToList().Count);
+        };
+    }
+
+    private async Task LoadPaymentQueue()
+    {
+        _signingQueues = FakeData.CommonSigningQueues.Where(x => x.ProductType == _productTypeQueue).ToList();
+
+        // if (!string.IsNullOrEmpty(_searchString))
+        // {
+        //     _signingQueues = _signingQueues
+        //         .Where(x => x.DebitNarrative?.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase) ?? false)
+        //         .ToList();
+        // }
+
+        await _gridRef.RefreshDataAsync();
+    }
+
+    private void ViewDetail(CommonQueueModel item)
+    {
+        _appStore.CommonSigningQueueStore = item;
+        if (_productTypeQueue is ProductTypeQueue.Batch)
+        {
+            _appStore.BatchStore = FakeData.BatchQueues.FirstOrDefault(x => item.ItemId == x.Id);
+            _navigateManager.NavigateTo("/maintenance/overview");
+            return;
+        }
+        
+        _navigateManager.NavigateTo($"/sign-queues/{Path}/single");
+    }
+
+    private void ViewSignatoryDetail(CommonQueueModel item)
+    {
+        var parameters = new ModalParameters
+        {
+            { nameof(SignatoriesModalComponent.Model), item }
+        };
+
+        var options = new ModalOptions
+        {
+            UseCustomLayout = true
+        };
+
+        _ = ModalSvc
+            .Show<SignatoriesModalComponent>(
+                title: "",
+                parameters: parameters,
+                options: options);
+    }
+
+}

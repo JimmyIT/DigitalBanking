@@ -1,0 +1,61 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.admin-company-changer {
+    @include box;
+
+    max-height: 245px;
+    overflow:auto;
+    &-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $indent-8 6px $indent-8 0;
+        border-bottom: 1px solid $color-sky-blue-100;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        &-left {
+            display: flex;
+
+            &__icon {
+                margin-right: $indent-12;
+            }
+
+            &-text {
+                &-title {
+                    display: flex;
+                    align-items: center;
+
+                    &-name,
+                    &-status {
+                        @include h5;
+                        margin-right: $indent-8;
+                        color: $color-gray-900;
+                    }
+
+                    &-status {
+                        color: $color-red-400;
+                    }
+
+                    &-time {
+                        @include h5;
+                        margin-left: $indent-8;
+                        color: $color-gray-500;
+                    }
+                }
+
+                &-subtitle {
+                    @include body;
+                    color: $color-gray-600;
+                }
+            }
+        }
+
+        &-button {
+            @include transparentButton;
+        }
+    }
+}

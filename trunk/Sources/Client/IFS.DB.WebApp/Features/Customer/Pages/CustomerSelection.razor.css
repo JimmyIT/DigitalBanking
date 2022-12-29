@@ -1,0 +1,305 @@
+.admin-layout {
+  padding: 24px 0 36px;
+}
+
+.admin-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.admin-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.admin-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.admin-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.admin-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.admin-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.admin-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.admin-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.admin-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.admin-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.admin-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.admin-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.admin-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.admin-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.admin-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.admin-header__button .iconBlock .icon,
+.admin-header__button .iconBlock .iconHover,
+.admin-header__button .iconBlock .iconActive,
+.admin-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.admin-header__button .iconBlock .iconHover,
+.admin-header__button .iconBlock .iconActive,
+.admin-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.admin-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.admin-header__button .iconBlock,
+.admin-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.admin-header__button .iconBlock:first-child,
+.admin-header__button > img:first-child {
+  margin-left: 0;
+}
+.admin-header__button .iconBlock:last-child,
+.admin-header__button > img:last-child {
+  margin-right: 0;
+}
+.admin-header__button:hover {
+  color: #0248a4;
+}
+
+.admin-box {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.admin-box:last-child {
+  margin-bottom: 0;
+}
+.admin-box-selections {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.admin-box-selections__name {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  color: #121217;
+}
+.admin-box-selections-input-group {
+  max-width: 816px;
+}
+.admin-box-selections-input-group-input {
+  max-width: 264px;
+  margin-right: 12px;
+}
+.admin-box-selections-input-group-input:last-child {
+  margin: 0;
+}
+.admin-box-selections-input-group-input__checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1.25px solid #0360db;
+  border-radius: 2px;
+}
+.admin-box-selections-input-group-selector {
+  max-width: 264px;
+}
+.admin-box-filter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.admin-box-filter-type {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  margin-right: 8px;
+  background: #f2f7fd;
+  color: #81afed;
+  border-radius: 8px;
+}
+.admin-box-filter-type:nth-child(4) {
+  margin-right: 16px;
+}
+.admin-box-filter-type-text {
+  margin-right: 8px;
+}
+.admin-box-filter-clear {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.admin-box-filter-clear:hover .iconBlock .icon {
+  opacity: 0;
+}
+.admin-box-filter-clear:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.admin-box-filter-clear:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.admin-box-filter-clear:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-box-filter-clear .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.admin-box-filter-clear .iconBlock:hover .icon {
+  opacity: 0;
+}
+.admin-box-filter-clear .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.admin-box-filter-clear .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.admin-box-filter-clear .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-box-filter-clear .iconBlock.active .icon {
+  opacity: 0;
+}
+.admin-box-filter-clear .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.admin-box-filter-clear .iconBlock .icon,
+.admin-box-filter-clear .iconBlock .iconHover,
+.admin-box-filter-clear .iconBlock .iconActive,
+.admin-box-filter-clear .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.admin-box-filter-clear .iconBlock .iconHover,
+.admin-box-filter-clear .iconBlock .iconActive,
+.admin-box-filter-clear .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.admin-box-filter-clear > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.admin-box-filter-clear .iconBlock,
+.admin-box-filter-clear > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.admin-box-filter-clear .iconBlock:first-child,
+.admin-box-filter-clear > img:first-child {
+  margin-left: 0;
+}
+.admin-box-filter-clear .iconBlock:last-child,
+.admin-box-filter-clear > img:last-child {
+  margin-right: 0;
+}
+.admin-box-filter-clear:hover {
+  color: #0248a4;
+}
+.admin-box-filter__close {
+  margin-left: 8px;
+}

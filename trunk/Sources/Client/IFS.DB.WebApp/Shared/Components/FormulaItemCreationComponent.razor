@@ -1,0 +1,57 @@
+﻿@using IFS.DB.WebApp.Models.Mandates
+
+@if (_formulaItem != null)
+{
+    <!---->
+    <!---->
+    <div class="mandates-value-item-first-formula mandates-value-item-first-point" id="Template">
+        <EditForm EditContext=@_formulaItemAmountCxt>
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <div class="mandates-value-item-first-formula-content">
+                <p class="mandates-value-item-first-formula-content-name">
+                    Items up to a value of (@(_formulaItem.CurrencyCode))
+                </p>
+                <AmountComponent placeholder="0,00" class="mandates-value-item-first-formula-content-input"
+                             @bind-Value=@_formulaItem.Amount
+                             ValidationFor="@(() => _formulaItem.Amount)"></AmountComponent>
+            </div>
+        </EditForm>
+
+        <!---->
+        <!---->
+        @if (_formulaItem.FormulaValues != null)
+        {
+            <CascadingValue Value="this">
+                @for (int formulaValueIndex = 0; formulaValueIndex < _formulaItem.FormulaValues.Count; formulaValueIndex++)
+                {
+                    <FormulaValuesCreationComponent FormulaValues=@(_formulaItem.FormulaValues[formulaValueIndex] with { })
+                                        FormulaValuesCreation_OnDelete=@DeleteFormulaValuesAsync></FormulaValuesCreationComponent>
+
+                    @if (formulaValueIndex < _formulaItem.FormulaValues.Count - 1)
+                    {
+                        <div class="mandates-value-item-first-formula-or">
+                            <p class="mandates-value-item-first-formula-or-text">or</p>
+                            <hr class="mandates-value-item-first-line" />
+                        </div>
+                    }
+                    <!---->
+                    <!---->
+                }
+            </CascadingValue>
+        }
+
+        <!---->
+        <!---->
+        <div class="mandates-value-item-first-formula-new">
+            <button class="mandates-value-item-first-formula-new-button" @onclick=@AddNewFormulaValueItemAsync>
+                <span class="iconBlock">
+                    <img src="/img/icons/add.svg" alt="add" class="icon" />
+                    <img src="/img/icons/addHoverIcon.svg" alt="add" class="iconHover" />
+                </span>
+                <span>Add formula</span>
+            </button>
+        </div>
+    </div>
+    <!---->
+    <!---->
+}

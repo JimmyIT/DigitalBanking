@@ -1,0 +1,40 @@
+﻿<nav @ref=@_mainHeaderNavComponent class="main-header-nav">
+    <div @ref=@_notificationItemContainerRef @onfocusout=@OnNotification_OutFocusAsync
+         class="main-header-nav__item">
+        <button @onclick="@(() => OnNotification_ClickAsync())">
+            <img src="/img/icons/bell.svg" alt="bell" class="main-header-nav__item-icon icon" />
+            <img src="/img/icons/bellBlue.svg" alt="bellBlue" class="main-header-nav__item-icon iconHover" />
+        </button>
+
+        @* U need go inside in this component and change "style="display: none;"" to "style="display: block;"" for open Notification *@
+        <NotificationComponent @ref="@_notificationComponent" />
+    </div>
+
+    <div class="main-header-nav__item" @ref=@_messengerRef
+         @onfocusout=@(() => MessengerMenu_OnFocusOut())>
+        <button @onclick="@(() => OnMessenger_ClickAsync())">
+            <img src="/img/icons/notification.svg" alt="notification" class="main-header-nav__item-icon icon" />
+            <img src="/img/icons/notificationBlue.svg" alt="notification" class="main-header-nav__item-icon iconHover" />
+        </button>
+
+        @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+        <div @ref=@_messengerMenuContainerRef class="main-header-menu__item-link-submenu-wrapper" style="@_styleDisplayLiveChatSubmenu" @onmousedown:stopPropagation @onmousedown:preventDefault>
+            <div class="main-header-menu__item-link-submenu">
+                <a class="main-header-menu__item-link-submenu__item" @onmousedown=@(() => MessengerMenu_iMailMenuItemClickAsync())>
+                    <img src="/img/header/emailIcon.svg" alt="email" class="main-header-menu__item-link-submenu__item__icon" />
+                    <p>
+                        iMail
+                    </p>
+                </a>
+
+                <a class="main-header-menu__item-link-submenu__item" style="cursor:pointer;" @onmousedown=@MessengerMenu_OpenLiveChatBoxAsync>
+                    <img src="/img/header/chatIcon.svg" alt="chat" class="main-header-menu__item-link-submenu__item__icon" />
+                    <p>
+                        Live Chat
+                    </p>
+
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

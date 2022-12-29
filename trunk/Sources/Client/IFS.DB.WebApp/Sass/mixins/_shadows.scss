@@ -1,0 +1,29 @@
+﻿@import '../common/variables';
+
+@mixin shadowBlue {
+    box-shadow: 4px 4px 16px rgba(49, 136, 250, 0.08);
+}
+
+@mixin shadowRed {
+    box-shadow: 2px 2px 6px rgba(253, 94, 116, 0.2);
+}
+
+@mixin shadowGreen {
+    box-shadow: 2px 2px 8px rgba(30, 178, 0, 0.1);
+}
+
+@mixin shadowButton {
+    box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+}
+
+@mixin shadowViolet {
+    box-shadow: 4px 4px 16px rgba(80, 60, 214, 0.09);
+}
+
+@mixin shadowGray {
+    box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+}
+
+@mixin shadowDropdown {
+    box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+}

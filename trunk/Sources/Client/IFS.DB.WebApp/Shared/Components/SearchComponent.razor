@@ -1,0 +1,48 @@
+<div class="@ContainerCssClass">
+    @if (IconPosition == SearchIconPosition.Left)
+    {
+        @if (UseSearchButton)
+        {
+            <button type="button" class="search__button__icon @ButtonCssClass" @onclick=@Search_Click>
+                <img src="@IconUrl" alt="@AltText" class="@IconCssClass" />
+            </button>
+        }
+        else
+        {
+            <img src="@IconUrl" alt="@AltText" class="@IconCssClass" />
+        }
+    }
+
+    <input placeholder="@PlaceHolder" class="input search__input">
+
+    @if (IconPosition == SearchIconPosition.Right)
+    {
+        @if (UseSearchButton)
+        {
+            <button type="button" class="search__right__button__icon @ButtonCssClass" @onclick=@Search_Click>
+                <img src="@IconUrl" alt="@AltText" class="@IconCssClass" />
+            </button>
+        }
+        else
+        {
+            <img src="@IconUrl" alt="@AltText" class="@IconCssClass" />
+        }
+    }
+</div>
+
+@code {
+    [Parameter] public bool UseSearchButton { get; set; } = false;
+    [Parameter] public string PlaceHolder { get; set; }
+    [Parameter] public string ContainerCssClass { get; set; } = "search";
+    [Parameter] public string ButtonCssClass { get; set; }
+    [Parameter] public string IconCssClass { get; set; } = "search__icon";
+    [Parameter] public string IconUrl { get; set; } = "/img/icons/searchIcon.svg";
+    [Parameter] public string AltText { get; set; } = "search";
+    [Parameter] public SearchIconPosition IconPosition { get; set; }
+    [Parameter] public EventCallback OnSearchClick { get; set; }
+
+    private async Task Search_Click()
+    {
+        await OnSearchClick.InvokeAsync();
+    }
+}

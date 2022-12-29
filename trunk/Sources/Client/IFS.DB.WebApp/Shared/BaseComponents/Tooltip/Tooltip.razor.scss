@@ -1,0 +1,25 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.menu {
+  position: relative;
+  box-sizing: border-box;
+
+  &-content-wrapper {
+    position: absolute;
+    top: 45px;
+    right: 10px;
+    display: none;
+    padding: 8px 0;
+    border: 1px solid $color-sky-blue-200;
+    border-radius: 8px;
+    background-color: $color-white;
+    box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+    z-index: 2;
+    
+    &.show {
+      display: block;
+    }
+    
+  }
+}

@@ -1,0 +1,74 @@
+.paymentTable td {
+  vertical-align: middle;
+  width: 100%;
+}
+.paymentTable td:nth-child(2), .paymentTable td:nth-child(3) {
+  min-width: 268px;
+}
+.paymentTable td:last-child {
+  min-width: 120px;
+}
+.paymentTable thead td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: #f2f7fd;
+  color: #81afed;
+}
+.paymentTable thead td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.paymentTable thead td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.paymentTable tbody tr {
+  border-bottom: 1px solid #f2f7fd;
+}
+.paymentTable tbody tr:last-child {
+  border-bottom: 0;
+}
+.paymentTable tbody tr:last-child td {
+  padding-bottom: 0;
+}
+.paymentTable tbody td {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 20px;
+  color: #212121;
+}
+.paymentTable-item {
+  display: flex;
+  align-items: center;
+}
+.paymentTable-item-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 12px;
+}
+.paymentTable-item__input {
+  margin-right: 8px;
+}
+.paymentTable-item__text {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #6a6a6a;
+  word-break: normal;
+}
+.paymentTable-item__amount {
+  max-width: 140px;
+  text-align: right;
+}

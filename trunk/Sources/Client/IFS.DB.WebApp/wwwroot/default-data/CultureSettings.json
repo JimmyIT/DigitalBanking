@@ -1,0 +1,34 @@
+﻿[
+  {
+    "CultureInfoCode": "en-US",
+    "Country": "United States",
+    "TwoLetterCountryCode": "US",
+    "ThreeLetterCountryCode": "USA",
+    "Language": "English [US]",
+    "PhoneNumberIDD" :  "+1"
+  },
+  {
+    "CultureInfoCode": "en-GB",
+    "Country": "United Kingdom",
+    "TwoLetterCountryCode": "GB",
+    "ThreeLetterCountryCode": "GBR",
+    "Language": "English [UK]",
+    "PhoneNumberIDD": "+44"
+  },
+  {
+    "CultureInfoCode": "ja-JP",
+    "Country": "Japan",
+    "TwoLetterCountryCode": "JP",
+    "ThreeLetterCountryCode": "JPN",
+    "Language": "Japanese",
+    "PhoneNumberIDD": "+81"
+  },
+  {
+    "CultureInfoCode": "vi-VN",
+    "Country": "Vietnam",
+    "TwoLetterCountryCode": "VN",
+    "ThreeLetterCountryCode": "VNM",
+    "Language": "Vietnamese",
+    "PhoneNumberIDD": "+84"
+  }
+]

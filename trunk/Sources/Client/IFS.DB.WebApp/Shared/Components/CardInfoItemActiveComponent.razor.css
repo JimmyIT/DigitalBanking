@@ -1,0 +1,218 @@
+.card-info {
+  min-width: 364px;
+  width: 364px;
+  min-height: 184px;
+  background: #f7f7f7;
+  border: 2px solid #ededed;
+  border-radius: 16px;
+  color: #6a6a6a;
+  padding: 24px;
+  cursor: pointer;
+  transition: 0.4s;
+  margin-right: 24px;
+}
+.card-info:last-child {
+  margin-right: 0;
+}
+.card-info:hover:not(.card-info--active) {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-color: #8bbdff;
+  background: #ffffff;
+  color: #212121;
+}
+.card-info__header-1, .card-info__header-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-info__header-1 {
+  margin-bottom: 4px;
+}
+.card-info__caption {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+}
+.card-info__currency {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+.card-info__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+}
+.card-info__title-copy {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-left: 4px;
+  cursor: pointer;
+}
+.card-info__title__copy {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.card-info__title__copy:hover .icon {
+  opacity: 0;
+}
+.card-info__title__copy:hover .iconHover {
+  opacity: 1;
+}
+.card-info__title__copy:hover.active .iconActive {
+  opacity: 0;
+}
+.card-info__title__copy:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.card-info__title__copy.active .icon {
+  opacity: 0;
+}
+.card-info__title__copy.active .iconActive {
+  opacity: 1;
+}
+.card-info__title__copy .icon,
+.card-info__title__copy .iconHover,
+.card-info__title__copy .iconActive,
+.card-info__title__copy .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.card-info__title__copy .iconHover,
+.card-info__title__copy .iconActive,
+.card-info__title__copy .iconActiveHover {
+  opacity: 0;
+}
+.card-info__favorite {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.card-info__favorite:hover .icon {
+  opacity: 0;
+}
+.card-info__favorite:hover .iconHover {
+  opacity: 1;
+}
+.card-info__favorite:hover.active .iconActive {
+  opacity: 0;
+}
+.card-info__favorite:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.card-info__favorite.active .icon {
+  opacity: 0;
+}
+.card-info__favorite.active .iconActive {
+  opacity: 1;
+}
+.card-info__favorite .icon,
+.card-info__favorite .iconHover,
+.card-info__favorite .iconActive,
+.card-info__favorite .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.card-info__favorite .iconHover,
+.card-info__favorite .iconActive,
+.card-info__favorite .iconActiveHover {
+  opacity: 0;
+}
+.card-info__hr {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #dcdcdc 0.34%, #d2d2d2 49.35%, rgba(227, 227, 227, 0) 100%);
+  margin: 12px 0;
+}
+.card-info-balance__title__box {
+  width: 100%;
+  display: inline-flex;
+}
+.card-info-balance__title__box .card-info-balance__title {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  text-transform: uppercase;
+  display: inline-flex;
+  width: 50%;
+  align-items: center;
+}
+.card-info-balance__title__box .card-info-tooltip__button {
+  margin-left: 4px;
+  width: 50%;
+  display: inline-flex;
+  text-align: right;
+  justify-content: end;
+}
+.card-info-balance__title {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  text-transform: uppercase;
+}
+.card-info-balance-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card-info-balance-list__item {
+  margin: 8px 36px 0 0;
+}
+.card-info-balance-list__item:last-child {
+  margin-right: 0;
+}
+.card-info-balance-list__item-caption {
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+.card-info-balance-list__item-number {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+.card-info.card-info--active {
+  box-shadow: 4px 4px 16px rgba(49, 136, 250, 0.08);
+  background: radial-gradient(100% 493.08% at 2.16% 0%, #3188fa 0%, #3f51b5 100%);
+  color: #ffffff;
+}
+.card-info.card-info--active .card-info__hr {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #dcdcdc 0.34%, #d2d2d2 49.35%, rgba(227, 227, 227, 0) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0.34%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+}

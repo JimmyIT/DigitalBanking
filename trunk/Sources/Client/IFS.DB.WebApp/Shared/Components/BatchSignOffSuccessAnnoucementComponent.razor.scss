@@ -1,0 +1,65 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+
+.batch-modal {
+  @include modalDefault;
+
+  &-layout {
+    @include modalDefaultContainer;
+  }
+
+  &-header-wrapper {
+    margin-bottom: $indent-16;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__title {
+      @include h2;
+      color: $color-wireframes-900;
+    }
+
+    &__subtitle {
+      @include h5;
+      margin-top: $indent-4;
+      color: $color-gray-900;
+    }
+
+    &__icon {
+      @include buttonIconSmall;
+    }
+  }
+
+  &-main {
+    margin-bottom: $indent-16;
+
+    &-input {
+      margin-right: 0;
+      margin-bottom: $indent-16;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+
+    &__buttonCancel {
+      @include lightBlueButton;
+      min-width: 144px;
+    }
+
+    &__buttonSuccess {
+      @include blueButton;
+      min-width: 144px;
+    }
+  }
+}
+

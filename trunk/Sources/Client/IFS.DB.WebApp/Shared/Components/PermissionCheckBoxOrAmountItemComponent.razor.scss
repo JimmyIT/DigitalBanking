@@ -1,0 +1,63 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+::deep .item {
+  display: flex;
+  align-items: center;
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: $indent-12;
+  }
+
+  &__input {
+    margin-right: $indent-8;
+  }
+
+  &__text {
+    @include label2;
+    color: $color-gray-600;
+  }
+
+  &__amount {
+    max-width: 140px;
+    text-align: right;
+  }
+
+  & .formgroup.formgroup--inactive {
+
+    @mixin disabledInput {
+      border-color: $color-gray-200;
+      background: $color-gray-100;
+      color: $color-gray-500;
+    }
+
+    label {
+      color: $color-gray-500;
+    }
+
+    input {
+      @include disabledInput;
+
+      &:hover, &:focus, &:active {
+        @include disabledInput;
+
+        &::placeholder {
+          color: $color-gray-500;
+        }
+      }
+    }
+
+    &:hover {
+      label {
+        color: $color-gray-500;
+      }
+
+      input {
+        @include disabledInput
+      }
+    }
+  }
+}

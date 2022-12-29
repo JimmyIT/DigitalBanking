@@ -1,0 +1,32 @@
+@using IFS.DB.WebApp.Models.Transfer
+@using IFS.DB.WebApp.Helpers.Extensions
+<div class="transfers-history-info" @onclick="OnClick">
+    <p class="transfers-history-info__title">
+        Account No.: @Transfer.CreditAccount
+    </p>
+    <div class="transfers-history-info-description">
+        <p class="transfers-history-info-description__text">From Account No.: @Transfer.DebitAccount</p>
+    </div>
+    <div class="transfers-history-info-description">
+        <p class="transfers-history-info-description__text">@Transfer.TransferDate</p>
+        <p class="transfers-history-info-description__sum">@Transfer.Amount.ToNumberFormat()</p>
+    </div>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public CreateTransferRequestModel Transfer { get; set; } = default!;
+    
+    [Parameter]
+    public EventCallback<CreateTransferRequestModel> SetTransfer { get; set; }
+
+    private async Task OnClick()
+    {
+        if (SetTransfer.HasDelegate)
+        {
+            await SetTransfer.InvokeAsync(Transfer);
+        }
+    }
+
+}

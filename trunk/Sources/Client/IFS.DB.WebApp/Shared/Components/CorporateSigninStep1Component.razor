@@ -1,0 +1,42 @@
+<EditForm id="individualSigninForm"
+          EditContext="@_editContext"
+          OnSubmit="@ProcessStep">
+    <DataAnnotationsValidator/>
+    <div class="auth-layout">
+        <div class="auth-container">
+            <div class="auth">
+                <p class="auth__title">@L["sign_in"]</p>
+                <div class="auth-box">
+                    <div class="auth-box-header">
+                        <div class="auth-box-header__item active">@L["step"] 1</div>
+                        <div class="auth-box-header__item disabled">@L["step"] 2</div>
+                        <div class="auth-box-header__item disabled">@L["step"] 3</div>
+                        <div class="auth-box-header__item disabled">@L["step"] 4</div>
+                    </div>
+                    <div class="auth-box-main">
+                        <p class="auth-box-main__title">@L["customer_identification"]</p>
+                        <div class="auth-box-main__subtitle">
+                            <p class="auth-box-main__subtitle-text">@L["step1_instruction"]</p>
+                           <div class="auth-box-main__subtitle-info" style="cursor: pointer" @onclick="@(() => _jsRuntime.InvokeVoidAsync("open", "http://support.ifinancial.systems/help/ibank/v8/ibankhome.htm", "_blank",  "height=780,width=540"))">
+                                <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payments-header__tooltip-icon"/>
+                            </div>
+                        </div>
+                        <div class="auth-box-form">
+                            <div class="formgroup">
+                                <label>@L["customer_id"]</label>
+                                <div class="input-layout">
+                                    <InputText id="txtCustomerID" @ref="_txtCustomerID" placeholder="@L["enter_here"]" class="input" @bind-Value="@UserSignInModel.CustomerID" />
+                                </div>
+                                <CustomValidationMessage For="@(() => UserSignInModel.CustomerID)"/>
+                            </div>
+                            <div class="auth-box-form__footer">
+                                <div></div>
+                                <button type="submit" class="auth-box-form__footer-next">@L["next"]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>

@@ -1,0 +1,94 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.overview-layout {
+	padding: $indent-24 0 $indent-36;
+}
+
+.overview-container {
+	@include container;
+}
+
+.overview-header {
+	@include pageTitle;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	&-breadcrumbs {
+		@include breadcrumbs;
+	}
+}
+
+.overview-info-box {
+	display: flex;
+	align-items: center;
+	padding: $indent-16;
+	margin-bottom: $indent-16;
+	background: $color-gray-100;
+	border: 1px solid $color-gray-300;
+	border-radius: 12px;
+
+	&-icon {
+		margin-right: $indent-4;
+	}
+
+	&-text {
+		@include caption1;
+		color: $color-gray-800;
+
+		&__link {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+}
+
+.overview-wrapper {
+	display: flex;
+	align-items: flex-start;
+	@include tablet-mobile {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}
+
+.overview-box {
+	@include box;
+	flex: 1;
+
+	&-title {
+		@include h2;
+		margin-bottom: $indent-16;
+	}
+
+	&-description {
+		@include h5;
+		color: $color-gray-600;
+
+		&__link {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+
+	&-footer {
+		position: relative;
+		display: flex;
+		justify-content: end;
+		padding: $indent-24 $indent-12 0;
+		margin-top: $indent-36;
+
+		&-hr {
+			position: absolute;
+			width: calc(100% + $indent-24 * 2);
+			top: 0;
+			left: -24px;
+			border-top: 1px solid $color-gray-200;
+		}
+
+		&-button {
+			@include blueButton;
+		}
+	}
+}

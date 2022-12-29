@@ -1,0 +1,30 @@
+﻿@if (_isSubMenu)
+{
+    <a class="main-header-menu__item-link-submenu-payment__item" @onclick=@ToggleSubMenuItem>
+        @if (!string.IsNullOrEmpty(MenuItem.Icon))
+        {
+            <img src="@MenuItem.Icon" alt="@MenuItem.Title" class="main-header-menu__item-link-submenu-payment__item__icon" />
+        }
+        @MenuItem.Title
+        @if (!string.IsNullOrEmpty(SubText))
+        {
+            <span class="main-header-menu__item-link-counter">@SubText</span>
+        }
+    </a>
+}
+else
+{
+    <div class="@CssString @GetActive()">
+        <a class="main-header-menu__item-link" @onclick=@ToggleMenuItem>
+            @if (!string.IsNullOrEmpty(MenuItem.Icon))
+            {
+                <img src="@MenuItem.Icon" alt="@MenuItem.Title" class="main-header-menu__item-link" />
+            }
+            @MenuItem.Title
+            @if (!string.IsNullOrEmpty(SubText))
+            {
+                <span class="main-header-menu__item-link-counter">@SubText</span>
+            }
+        </a>
+    </div>
+}

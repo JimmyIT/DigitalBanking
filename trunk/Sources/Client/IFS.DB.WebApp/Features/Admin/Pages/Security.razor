@@ -1,0 +1,230 @@
+@layout BasicLayout
+@page "/admin/security"
+@using IFS.DB.WebApp.Shared.BaseComponents.TabLoigcal
+
+<div class="security-layout">
+    <div class="security-container">
+        <div class="security">
+            <div class="security-header">
+                <div class="security-header-wrapper">
+                    <img src="/img/security/securityIcon.svg" alt="logo" class="security-header__logo"/>
+                    <p class="security-header__title">Security</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="security-header__tooltip-icon"/>
+                </div>
+            </div>
+
+            <div class="security-main">
+                <Tab @ref="_tabRef" Context="tabState">
+                    <div class="security-main-menu">
+                        <button
+                            class="security-main-menu-item @(tabState.ClassStatus(0, "active"))"
+                            @onclick="tabState.SetActive((int)AdminSecurityTab.BatchLock)" id="defaultOpen">
+                            Password Locks
+                        </button>
+                        <button
+                            class="security-main-menu-item @(tabState.ClassStatus(1, "active"))"
+                            @onclick="tabState.SetActive((int)AdminSecurityTab.MseAuthorityCode)">
+                            MSE Authority Code
+                        </button>
+                    </div>
+                    <TabPanel Index="(int)AdminSecurityTab.BatchLock">
+                        <SecurityPasswordComponent/>
+                    </TabPanel>
+                    <TabPanel Index="(int)AdminSecurityTab.MseAuthorityCode">
+                        <SecurityCodeComponent/>
+                    </TabPanel>
+                </Tab>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+        
+        private const string QueryParamTab = "tab";
+
+    public enum AdminSecurityTab
+    {
+        BatchLock = 0,
+        MseAuthorityCode = 1
+    }
+
+}
+
+@code {
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = QueryParamTab)]
+    public string? Tab { get; set; }
+
+    private int _tabIndex = 0;
+
+    private Tab? _tabRef;
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrEmpty(Tab))
+        {
+            _tabIndex = Tab switch {
+                "batch" => (int)AdminSecurityTab.BatchLock,
+                "code" => (int)AdminSecurityTab.MseAuthorityCode,
+                _ => 0
+                };
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _tabRef?.State.SetActive(_tabIndex).Invoke();
+            StateHasChanged();
+        }
+    }
+
+}
+
+@* <div class="modal-layout" id="ModalUnlock"> *@
+@*     <div class="modal-scroll"> *@
+@*         <div class="modal-background" onclick="onTriggerModalUnlock()"></div> *@
+@*         <div class="unlock-modal-layout"> *@
+@*             <div class="unlock-modal"> *@
+@*                 <div class="unlock-modal-header-wrapper"> *@
+@*                     <div class="unlock-modal-header"> *@
+@*                         <p class="unlock-modal-header__title">Unlock batch</p> *@
+@*                         <img class="unlock-modal-header__icon" src="/img/icons/closeIcon.svg" alt="close" onclick="onTriggerModalUnlock()"/> *@
+@*                     </div> *@
+@*                     <p class="unlock-modal-header__subtitle">Please enter your password to unlock batch</p> *@
+@*                 </div> *@
+@* *@
+@*                 <div class="unlock-modal-main"> *@
+@*                     <div class="unlock-modal-main-input"> *@
+@*                         <label>Password</label> *@
+@*                         <div class="password"> *@
+@*                             <input placeholder="Enter here" class="input" id="passwordUnlock" type="password"/> *@
+@*                             <img class="password__icon" src="/img/icons/closeEyeIcon.svg" alt="eye" id="passwordIconUnlock" onclick="onClickVisiblePassword()"/> *@
+@*                         </div> *@
+@*                         <div class="input-alert" id="inputAlertUnlock"> *@
+@*                             <span class="input-alert__icon"></span> *@
+@*                             <p class="input-alert__text">Incorrect password</p> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@* *@
+@*                 <div class="unlock-modal-footer"> *@
+@*                     <button class="unlock-modal-footer__buttonCancel" onclick="onTriggerModalUnlock()">Cancel</button> *@
+@*                     <button class="unlock-modal-footer__buttonUnlock" onclick="onSuccessModalUnlock()">Unlock batch</button> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* <div class="modal-layout" id="ModalSubmit"> *@
+@*     <div class="modal-scroll"> *@
+@*         <div class="modal-background" onclick="onTriggerModalSubmit()"></div> *@
+@*         <div class="submit-modal-layout"> *@
+@*             <div class="submit-modal"> *@
+@*                 <div class="submit-modal-header-wrapper"> *@
+@*                     <div class="submit-modal-header"> *@
+@*                         <p class="submit-modal-header__title">Submit MSE Authority Code</p> *@
+@*                         <img class="submit-modal-header__icon" src="/img/icons/closeIcon.svg" alt="close" onclick="onTriggerModalSubmit()"/> *@
+@*                     </div> *@
+@*                     <p class="submit-modal-header__subtitle">Please enter your password to sumbit MSE Authority Code</p> *@
+@*                 </div> *@
+@* *@
+@*                 <div class="submit-modal-main"> *@
+@*                     <div class="submit-modal-main-input"> *@
+@*                         <label>Password</label> *@
+@*                         <div class="password"> *@
+@*                             <input placeholder="Enter here" class="input" id="passwordSubmit" type="password"/> *@
+@*                             <img class="password__icon" src="/img/icons/closeEyeIcon.svg" alt="eye" id="passwordIconSubmit" onclick="onClickVisiblePasswordSubmit()"/> *@
+@*                         </div> *@
+@*                         <div class="input-alert" id="inputAlertSubmit"> *@
+@*                             <span class="input-alert__icon"></span> *@
+@*                             <p class="input-alert__text">Incorrect password</p> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@* *@
+@*                 <div class="submit-modal-footer"> *@
+@*                     <button class="submit-modal-footer__buttonCancel" onclick="onTriggerModalSubmit()">Cancel</button> *@
+@*                     <button class="submit-modal-footer__buttonConfirm" onclick="onSuccessModalSubmit()">Submit</button> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* <div class="modal-layout" id="ModalReject"> *@
+@*     <div class="modal-scroll"> *@
+@*         <div class="modal-background" onclick="onTriggerModalReject()"></div> *@
+@*         <div class="reject-modal-layout"> *@
+@*             <div class="reject-modal"> *@
+@*                 <div class="reject-modal-header-wrapper"> *@
+@*                     <div class="reject-modal-header"> *@
+@*                         <p class="reject-modal-header__title">Reject MSE Authority Code</p> *@
+@*                         <img class="reject-modal-header__icon" src="/img/icons/closeIcon.svg" alt="close" onclick="onTriggerModalReject()"/> *@
+@*                     </div> *@
+@*                     <p class="reject-modal-header__subtitle">Please enter your password to reject MSE Authority Code</p> *@
+@*                 </div> *@
+@* *@
+@*                 <div class="reject-modal-main"> *@
+@*                     <div class="reject-modal-main-input"> *@
+@*                         <label>Password</label> *@
+@*                         <div class="password"> *@
+@*                             <input placeholder="Enter here" class="input" id="passwordReject" type="password"/> *@
+@*                             <img class="password__icon" src="/img/icons/closeEyeIcon.svg" alt="eye" id="passwordIconReject" onclick="onClickVisiblePasswordReject()"/> *@
+@*                         </div> *@
+@*                         <div class="input-alert" id="inputAlertReject"> *@
+@*                             <span class="input-alert__icon"></span> *@
+@*                             <p class="input-alert__text">Incorrect password</p> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@* *@
+@*                 <div class="reject-modal-footer"> *@
+@*                     <button class="reject-modal-footer__buttonCancel" onclick="onTriggerModalReject()">Cancel</button> *@
+@*                     <button class="reject-modal-footer__buttonReject" onclick="onSuccessModalReject()">Reject</button> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* <div class="modal-layout" id="ModalConfirm"> *@
+@*     <div class="modal-scroll"> *@
+@*         <div class="modal-background" onclick="onTriggerModalConfirm()"></div> *@
+@*         <div class="confirm-modal-layout"> *@
+@*             <div class="confirm-modal"> *@
+@*                 <div class="confirm-modal-header-wrapper"> *@
+@*                     <div class="confirm-modal-header"> *@
+@*                         <p class="confirm-modal-header__title">Confirm MSE Authority Code</p> *@
+@*                         <img class="confirm-modal-header__icon" src="/img/icons/closeIcon.svg" alt="close" onclick="onTriggerModalConfirm()"/> *@
+@*                     </div> *@
+@*                     <p class="confirm-modal-header__subtitle">Please enter your password to confirm MSE Authority Code</p> *@
+@*                 </div> *@
+@* *@
+@*                 <div class="confirm-modal-main"> *@
+@*                     <div class="confirm-modal-main-input"> *@
+@*                         <label>Password</label> *@
+@*                         <div class="password"> *@
+@*                             <input placeholder="Enter here" class="input" id="passwordConfirm" type="password"/> *@
+@*                             <img class="password__icon" src="/img/icons/closeEyeIcon.svg" alt="eye" id="passwordIconConfirm" onclick="onClickVisiblePasswordConfirm()"/> *@
+@*                         </div> *@
+@*                         <div class="input-alert" id="inputAlertConfirm"> *@
+@*                             <span class="input-alert__icon"></span> *@
+@*                             <p class="input-alert__text">Incorrect password</p> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@* *@
+@*                 <div class="confirm-modal-footer"> *@
+@*                     <button class="confirm-modal-footer__buttonCancel" onclick="onTriggerModalConfirm()">Cancel</button> *@
+@*                     <button class="confirm-modal-footer__buttonConfirm" onclick="onSuccessModalConfirm()">Confirm</button> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@

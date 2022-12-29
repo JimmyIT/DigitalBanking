@@ -1,0 +1,311 @@
+.mandates-footer-layout {
+  padding: 24px 0;
+  background-color: #ffffff;
+}
+
+.mandates-footer-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.mandates-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mandates-footer-cancel {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  padding: 16px;
+}
+.mandates-footer-cancel:hover .iconBlock .icon {
+  opacity: 0;
+}
+.mandates-footer-cancel:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.mandates-footer-cancel:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.mandates-footer-cancel:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.mandates-footer-cancel .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.mandates-footer-cancel .iconBlock:hover .icon {
+  opacity: 0;
+}
+.mandates-footer-cancel .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.mandates-footer-cancel .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.mandates-footer-cancel .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.mandates-footer-cancel .iconBlock.active .icon {
+  opacity: 0;
+}
+.mandates-footer-cancel .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.mandates-footer-cancel .iconBlock .icon,
+.mandates-footer-cancel .iconBlock .iconHover,
+.mandates-footer-cancel .iconBlock .iconActive,
+.mandates-footer-cancel .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.mandates-footer-cancel .iconBlock .iconHover,
+.mandates-footer-cancel .iconBlock .iconActive,
+.mandates-footer-cancel .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.mandates-footer-cancel > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.mandates-footer-cancel .iconBlock,
+.mandates-footer-cancel > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.mandates-footer-cancel .iconBlock:first-child,
+.mandates-footer-cancel > img:first-child {
+  margin-left: 0;
+}
+.mandates-footer-cancel .iconBlock:last-child,
+.mandates-footer-cancel > img:last-child {
+  margin-right: 0;
+}
+.mandates-footer-cancel:hover {
+  color: #0248a4;
+}
+.mandates-footer-button__start {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  height: 56px;
+  margin-right: 16px;
+}
+.mandates-footer-button__start:hover .iconBlock .icon {
+  opacity: 0;
+}
+.mandates-footer-button__start:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.mandates-footer-button__start:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.mandates-footer-button__start:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.mandates-footer-button__start .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.mandates-footer-button__start .iconBlock:hover .icon {
+  opacity: 0;
+}
+.mandates-footer-button__start .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.mandates-footer-button__start .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.mandates-footer-button__start .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.mandates-footer-button__start .iconBlock.active .icon {
+  opacity: 0;
+}
+.mandates-footer-button__start .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.mandates-footer-button__start .iconBlock .icon,
+.mandates-footer-button__start .iconBlock .iconHover,
+.mandates-footer-button__start .iconBlock .iconActive,
+.mandates-footer-button__start .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.mandates-footer-button__start .iconBlock .iconHover,
+.mandates-footer-button__start .iconBlock .iconActive,
+.mandates-footer-button__start .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.mandates-footer-button__start > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.mandates-footer-button__start .iconBlock,
+.mandates-footer-button__start > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.mandates-footer-button__start .iconBlock:first-child,
+.mandates-footer-button__start > img:first-child {
+  margin-left: 0;
+}
+.mandates-footer-button__start .iconBlock:last-child,
+.mandates-footer-button__start > img:last-child {
+  margin-right: 0;
+}
+.mandates-footer-button__start:hover {
+  color: #0248a4;
+}
+.mandates-footer-button__save {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  height: 56px;
+}
+.mandates-footer-button__save:hover .iconBlock .icon {
+  opacity: 0;
+}
+.mandates-footer-button__save:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.mandates-footer-button__save:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.mandates-footer-button__save:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.mandates-footer-button__save .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.mandates-footer-button__save .iconBlock:hover .icon {
+  opacity: 0;
+}
+.mandates-footer-button__save .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.mandates-footer-button__save .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.mandates-footer-button__save .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.mandates-footer-button__save .iconBlock.active .icon {
+  opacity: 0;
+}
+.mandates-footer-button__save .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.mandates-footer-button__save .iconBlock .icon,
+.mandates-footer-button__save .iconBlock .iconHover,
+.mandates-footer-button__save .iconBlock .iconActive,
+.mandates-footer-button__save .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.mandates-footer-button__save .iconBlock .iconHover,
+.mandates-footer-button__save .iconBlock .iconActive,
+.mandates-footer-button__save .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.mandates-footer-button__save > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.mandates-footer-button__save .iconBlock,
+.mandates-footer-button__save > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.mandates-footer-button__save .iconBlock:first-child,
+.mandates-footer-button__save > img:first-child {
+  margin-left: 0;
+}
+.mandates-footer-button__save .iconBlock:last-child,
+.mandates-footer-button__save > img:last-child {
+  margin-right: 0;
+}
+.mandates-footer-button__save:hover {
+  background-color: #0248a4;
+}

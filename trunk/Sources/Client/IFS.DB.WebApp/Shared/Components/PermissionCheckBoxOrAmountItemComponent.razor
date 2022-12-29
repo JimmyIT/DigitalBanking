@@ -1,0 +1,117 @@
+﻿@using IFS.DB.WebApp.Models.Permission
+@using IFS.DB.WebApp.Shared.BaseComponents.Input
+@using IFS.DB.WebApp.Helpers.FieldCssClassProviders
+@using IFS.DB.WebApp.Helpers.FluentValidator
+@using IFS.DB.WebApp.Features.Admin.Pages
+@using IFS.DB.WebApp.Helpers.EventHanderBinding
+@using Microsoft.EntityFrameworkCore.ValueGeneration.Internal
+@using Z.Core.Extensions
+
+@implements IDisposable
+
+<div>
+    <EditForm EditContext="_editCtx">
+        <div class="item">
+            <EnableFluentValidator TValidator="PermissionModelValidator" MessageStore="_validationMessageStore"/>
+            <div class="item-wrapper">
+                <input type="checkbox" class="item__input" checked="@Checked" @onchange="OnCheck"/>
+                <span class="item__text">or</span>
+            </div>
+            <div class="formgroup @(Checked ? "formgroup--inactive" : string.Empty)">
+                <label>Max. Signing Amount</label>
+                <Amount
+                    TValue="decimal?"
+                    disabled="@Checked"
+                    placeholder="0.00"
+                    Value="@(Checked ? null : Amount)"
+                    ValueChanged="AmountChanged"
+                    ValueExpression="ValidationFor"
+                    class="input-amount item__amount">
+                </Amount>
+                <CustomValidationMessage TValue="decimal?" For="@ValidationFor"></CustomValidationMessage>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    
+    [CascadingParameter]
+    public PermissionTransferComponent Owner { get; set; }
+
+    [Parameter]
+    public bool Checked { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> CheckedChanged { get; set; }
+
+    [Parameter]
+    public decimal? Amount { get; set; }
+
+    [Parameter]
+    public EventCallback<decimal?> AmountChanged { get; set; }
+
+    [Parameter]
+    public PermissionModel Model { get; set; } = default!;
+
+    [Parameter]
+    public Expression<Func<decimal?>> ValidationFor { get; set; } = default!;
+    
+    [Parameter]
+    public ChangeEventBinding? BindChangeEvent { get; set; }
+    
+    [Parameter]
+    public EventCallback<EditContext> ForwardEditContext { get; set; }
+
+    private EditContext _editCtx = default!;
+
+    private ValidationMessageStore _validationMessageStore = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _editCtx = new EditContext(Model);
+        _editCtx.SetFieldCssClassProvider(new CustomFieldClassProvider());
+        _validationMessageStore = new ValidationMessageStore(_editCtx);
+        if (BindChangeEvent is { })
+        {
+            BindChangeEvent.ChangeEventHandler += OnParentCheck;
+        }
+
+        await ForwardEditContext.InvokeAsync(_editCtx);
+    }
+
+    // Since it used for event, should avoid "async void" in most of the cases
+    private async void OnParentCheck(object? sender, ChangeEventArgs args) 
+        => await OnCheck(args);
+
+    private async Task OnCheck(ChangeEventArgs args)
+    {
+        var value = bool.Parse(args.Value?.ToString() ?? bool.FalseString);
+
+        if (value)
+        {
+            await AmountChanged.InvokeAsync(null);
+            _validationMessageStore.Clear(FieldIdentifier.Create(ValidationFor));
+        }
+        
+        await CheckedChanged.InvokeAsync(value);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (BindChangeEvent is { })
+            {
+                BindChangeEvent.ChangeEventHandler -= OnParentCheck;
+            }
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+}

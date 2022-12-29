@@ -1,0 +1,451 @@
+@layout UserLayout
+@page "/payee"
+@using IFS.DB.WebApp.Models.Transactions
+@using IFS.DB.WebApp.Helpers.CompnentConfiguration.DataGrid
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Models.PayeeTemplate
+@using IFS.DB.WebApp.Helpers.CompnentConfiguration
+@using System.Text.Json
+
+<div class="payee-layout">
+    <div class="payee-container">
+        <div class="payee">
+            <div class="payee-header">
+                <div class="payee-header-wrapper">
+                    <img src="/img/payee/payeeIcon.svg" alt="logo"
+                         class="payee-header__logo"/>
+                    <p class="payee-header__title">Payee’s templates</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="payee-header__tooltip-icon"/>
+                </div>
+                <button class="payee-header__button" @onclick=@onShowModalNewPayee>
+                    <div class="iconBlock">
+                        <img class="icon" src="/img/icons/add.svg" alt="arrow"/>
+                        <img class="iconHover icon" src="/img/icons/addHoverIcon.svg" alt="arrow"/>
+                    </div>
+                    Add Payee template
+                </button>
+            </div>
+
+
+            <div class="payee-box">
+                <div class="payee-filters">
+                    <div class="payee-filters__left">
+                        <div class="search payee-search">
+                            <div class="search">
+                                <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon"/>
+                                <input placeholder="Search here" class="input search__input" value="@_searchString" @onchange="@OnSearchChange">
+                            </div>
+                        </div>
+
+                        <div class="select-layout payee-account-selector">
+                            <DropdownComponent TItem="AccountModel?"
+                                               MultiSelect="false"
+                                               OnSelectedItem="@OnSelectAccount"
+                                               InlineStyle="display:inline-block;width:244px;"
+                                               ButtonSelectInlineStyle="width:100%;">
+                                <InitialTip>Select account</InitialTip>
+                                <DropdownChildContent>
+                                    <DropdownItemComponent TItem="AccountModel?" Item="@null">
+                                        <DropdownItemChildContent>
+                                            Select account
+                                        </DropdownItemChildContent>
+                                    </DropdownItemComponent>
+                                    @foreach (AccountModel value in FakeData.Accounts)
+                                    {
+                                        <DropdownItemComponent Item="@value" TItem="AccountModel?">
+                                            <DropdownItemChildContent>
+                                                Account No.:@value.AccountNumber
+                                            </DropdownItemChildContent>
+                                        </DropdownItemComponent>
+                                    }
+                                </DropdownChildContent>
+                            </DropdownComponent>
+                        </div>
+                    </div>
+                    <div class="payee-filters__right">
+                        <div class="payee-filters-buttons">
+                            <button class="payee-filters-button" id="payeeRowsButton" @onclick="ToggleViewMode" style="display: @(_showCardMode ? "block" : "none")">
+                                <img src="/img/icons/layoutRowsIcon.svg" alt="layout" class="icon"/>
+                                <img src="/img/icons/layoutRowsHover.svg" alt="layout" class="iconHover"/>
+                            </button>
+                            <button class="payee-filters-button" id="payeeCardsButton" @onclick="ToggleViewMode" style="display: @(_showCardMode ? "none" : "block")">
+                                <img src="/img/icons/layoutBoxes.svg" alt="layout" class="icon"/>
+                                <img src="/img/icons/layoutBoxesHover.svg" alt="layout" class="iconHover"/>
+                            </button>
+                            <button class="payee-filters-button">
+                                <img src="/img/icons/dotsIcon.svg" alt="action" class="icon"/>
+                                <img src="/img/icons/dotsHoverIcon.svg" alt="action" class="iconHover"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payee-table" id="payeeTable" style="display: @(_showCardMode ? "none" : "block")">
+                    <DataGridComponent
+                        @ref="_dataSourceGridRef"
+                        TItem="TransactionModel"
+                        Columns="_columnsDefinition"
+                        DataItems="_paginatedTrans.Items"
+                        TotalItems="_paginatedTrans.TotalRecord"
+                        CurrentPageNumber="_pageIndex"
+                        CustomPageSize="_customPageSize"
+                        PagingConfig="_pagingConfig"
+                        OnPageSizeChangedCallback="OnPageSizeChanged"
+                        OnSortDataChangedCallback="OnSortDataChanged"
+                        OnPrevPageClickCallback="OnPrevPageChanged"
+                        OnNextPageClickCallback="OnNextPageChanged"
+                        OnPageIndexClickCallback="OnPageIndexChanged"
+                        TableClass="transactionTable">
+                    </DataGridComponent>
+                </div>
+
+                <div class="payee-cards" id="payeeCards" style="display: @(_showCardMode ? "flex" : "none")">
+                    @foreach (PayeeTemplateModel item in _paginatedPayeeTemplates.Items)
+                    {
+                        <PayeeCardComponent PayeeTemplateModel="@item" OnDeletePayeeTemplate=@DeletePayeeItem/>
+                    }
+                </div>
+
+                <PaginatorComponent
+                    CurrentIndex="_pageIndex"
+                    CurrentIndexChanged="OnCurrentIndexChanged"
+                    Size="_pageSize"
+                    Total="_paginatedPayeeTemplates.TotalRecord">
+                </PaginatorComponent>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--    -->
+<!--TODO-->
+<!--    -->
+@*
+<div class="modal-layout" id="modalNewPayee">
+    <div class="modal-scroll">
+        <div class="modal-background" onclick="onTriggerModalNewPayee()"></div>
+        <div class="payee-add-modal-layout">
+            <div class="payee-add-modal">
+                <div class="payee-add-modal-header-wrapper">
+                    <div class="payee-add-modal-header">
+                        <p class="payee-add-modal-header__title">Add Payee template</p>
+                        <div class="payee-add-modal-header__close" onclick="onCloseModalNewPayee()">
+                            <img class="icon" src="/img/icons/closeIcon.svg" alt="close"/>
+                            <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payee-add-modal-main">
+                    <div class="payee-add-modal-form">
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Template reference</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input"/>
+                                </div>
+                                <legend class="formgroup__caption">Has to be explanation of this template</legend>
+                            </div>
+                        </div>
+
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Debit account</label>
+                                <div class="select-layout">
+                                    <select class="select">
+                                        <option disabled selected>Select an account</option>
+                                        <option>Account 1</option>
+                                        <option>Account 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Payment type</label>
+                                <div class="select-layout">
+                                    <select class="select">
+                                        <option disabled selected>Select type</option>
+                                        <option>SWIFT</option>
+                                        <option>Domestic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="payee-add-modal__subtitle">Payment information</p>
+
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Account name</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input"/>
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Account No.</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Payment reference</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input"/>
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Sort code</label>
+                                <div class="input-layout">
+                                    <input placeholder="_ _ _" class="input"/>
+                                </div>
+                            </div>
+                            <div class="formgroup">
+                                <label>Currency</label>
+                                <div class="select-layout">
+                                    <select class="select">
+                                        <option disabled selected>Select currency</option>
+                                        <option>USD</option>
+                                        <option>EUR</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formrow">
+                            <div class="formgroup">
+                                <label>Statement narrative</label>
+                                <div class="input-layout">
+                                    <input placeholder="Enter here" class="input"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payee-add-modal-footer">
+                    <button class="payee-add-modal-footer__buttonCancel" onclick="onCloseModalNewPayee()">Cancel</button>
+                    <button class="payee-add-modal-footer__buttonSuccess" onclick="onCloseModalNewPayee()">Save Payee template</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@code {
+
+    private bool _showCardMode;
+
+    private void ToggleViewMode()
+    {
+        _showCardMode = !_showCardMode;
+    }
+
+    private DataGridComponent<TransactionModel> _dataSourceGridRef;
+    private List<ColumnDefinition<TransactionModel>> _columnsDefinition;
+    private PagingConfig _pagingConfig;
+
+    private PaginatedModel<TransactionModel>? _paginatedTrans;
+
+    private PaginatedModel<PayeeTemplateModel> _paginatedPayeeTemplates = new();
+
+    private string? _selectedAccount;
+
+    private int _pageIndex = 1;
+    private int _pageSize = 5;
+    private string? _searchString;
+    private List<string> _customPageSize = new() { "5", "10" };
+
+    protected override async Task OnInitializedAsync()
+    {
+        ConfigGrid();
+        await GetTransactions();
+        await GetPayeeTemplate();
+    }
+
+    private void ConfigGrid()
+    {
+        _columnsDefinition = new List<ColumnDefinition<TransactionModel>>();
+        _columnsDefinition.AddRange(
+            new ColumnDefinition<TransactionModel>[]
+            {
+                new()
+                {
+                    DataField = "CreatedDate", Caption = "DATE", SortDirection = SortDirection.Desc, Sortable = true,
+                    DataType = DataType.DateTime, Format = "MMMM dd, yyyy"
+                },
+                new() { DataField = "Reference", Caption = "REFERENCE", Sortable = false },
+                new() { DataField = "Narrative", Caption = "NARRATIVE", Sortable = false },
+                new()
+                {
+                    DataField = "CreditAmount", Caption = "IN", SortDirection = SortDirection.NotSet, Sortable = true,
+                    HeaderAlignment = Alignment.Right, BodyAlignment = Alignment.Right,
+                    ShowValueFunc = (trans) =>
+                    {
+                        if (trans.CreditAmount == decimal.Zero)
+                            return string.Empty;
+                        return trans.CreditAmount.ToNumberFormat();
+                    }
+                },
+                new()
+                {
+                    DataField = "DebitAmount", Caption = "OUT", SortDirection = SortDirection.NotSet, Sortable = true,
+                    HeaderAlignment = Alignment.Right, BodyAlignment = Alignment.Right,
+                    ShowValueFunc = (trans) =>
+                    {
+                        if (trans.DebitAmount == decimal.Zero)
+                            return string.Empty;
+                        return trans.DebitAmount.ToNumberFormat();
+                    }
+                },
+                new()
+                {
+                    DataField = "Balance", Caption = "BALANCE", SortDirection = SortDirection.NotSet, Sortable = true,
+                    DataType = DataType.Currency, HeaderAlignment = Alignment.Right, BodyAlignment = Alignment.Right,
+                    Format = "N2"
+                }
+            });
+
+        _pagingConfig = new PagingConfig
+        {
+            Enabled = true,
+            PageSize = _pageSize,
+            CustomPager = true
+        };
+    }
+
+    private async Task GetTransactions()
+    {
+        string jsonSize5Page1 = File.ReadAllText("wwwroot/default-data/txns.json");
+        var result = JsonSerializer.Deserialize<PaginatedModel<TransactionModel>>(jsonSize5Page1);
+
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            result.Items = result.Items
+                .Where(x => x.Reference.ToLower().Contains(_searchString.ToLower()) ||
+                            x.Narrative.ToLower().Contains(_searchString.ToLower())).ToList();
+        }
+
+        result.Items = result.Items.Skip((_pageIndex - 1) * _pageSize).Take(_pageSize).ToList();
+
+        _paginatedTrans = result;
+    }
+
+    private async Task GotoTransactionPage()
+    {
+        //_navigateManager.NavigateTo("/");
+    }
+
+    #region Invoke Pagination CallBack
+
+    private async Task OnPrevPageChanged()
+    {
+        _pageIndex = _dataSourceGridRef.GotoPrevPage();
+        await GetTransactions();
+    }
+
+    private async Task OnNextPageChanged()
+    {
+        _pageIndex = _dataSourceGridRef.GotoNextPage();
+        await GetTransactions();
+    }
+
+    private async Task OnPageSizeChanged(int pageSize)
+    {
+        _pageSize = pageSize;
+        await GetTransactions();
+    }
+
+    private async Task GetPayeeTemplate()
+    {
+        var fetchData = FakeData.PayeeTemplates;
+
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            fetchData = fetchData.Where(
+                x => x.HostReference.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase)
+                     || x.DebitAccount.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase)
+                     || x.BeneficiaryName.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase)
+                     || x.BeneficiaryAccountNumber.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+        }
+
+        if (!string.IsNullOrEmpty(_selectedAccount))
+        {
+            fetchData = fetchData.Where(x => x.DebitAccount.Equals(_selectedAccount, StringComparison.CurrentCultureIgnoreCase)).ToList();
+        }
+
+        _paginatedPayeeTemplates.Items = fetchData.Skip(_pageIndex - 1).Take(_pageSize).ToList();
+        _paginatedPayeeTemplates.TotalRecord = fetchData.Count != FakeData.PayeeTemplates.Count
+            ? fetchData.Count
+            : FakeData.PayeeTemplates.Count;
+    }
+
+    private async Task OnPageIndexChanged(int pageIndex)
+    {
+        _pageIndex = pageIndex;
+        await GetTransactions();
+    }
+
+    private async void OnSortDataChanged(ColumnDefinition<TransactionModel> columnDefinition)
+    {
+        await GetTransactions();
+
+        if (columnDefinition.SortDirection == SortDirection.Desc)
+        {
+            _paginatedTrans.Items = _paginatedTrans.Items
+                .OrderByDescending(x => x.GetType().GetProperty(columnDefinition.DataField).GetValue(x, null)).ToList();
+        }
+
+        if (columnDefinition.SortDirection == SortDirection.Asc)
+        {
+            _paginatedTrans.Items = _paginatedTrans.Items
+                .OrderBy(x => x.GetType().GetProperty(columnDefinition.DataField).GetValue(x, null)).ToList();
+        }
+
+        // _dataSourceGridRef.OnStateHasChanged(columnDefinition.SortDirection);
+        StateHasChanged();
+    }
+
+    private async void OnSearchDataChanged(ChangeEventArgs e)
+    {
+        _searchString = e.Value.ToString();
+        await GetTransactions();
+
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            _paginatedTrans.Items = _paginatedTrans.Items
+                .Where(x => x.Reference.ToLower().Contains(_searchString.ToLower()) ||
+                            x.Narrative.ToLower().Contains(_searchString.ToLower())).ToList();
+        }
+
+        StateHasChanged();
+    }
+
+    #endregion
+
+    private async Task OnCurrentIndexChanged(int index)
+    {
+        _pageIndex = index;
+        await GetPayeeTemplate();
+    }
+
+    private async Task OnSelectAccount(AccountModel? selected)
+    {
+        _selectedAccount = selected?.AccountNumber;
+        await GetPayeeTemplate();
+    }
+
+    private async Task OnSearchChange(ChangeEventArgs args)
+    {
+        _searchString = args.Value?.ToString();
+        await GetPayeeTemplate();
+    }
+
+    private async Task DeletePayeeItem(PayeeTemplateModel item)
+    {
+        FakeData.PayeeTemplates.Remove(item);
+        await GetPayeeTemplate();
+    }
+}

@@ -1,0 +1,165 @@
+﻿<div class="modal-layout" id="ModalConfirm" style="display:block!important">
+    <div class="modal-scroll">
+        <div class="modal-background" @onclick=@Cancel></div>
+        <div class="common-modal-layout">
+            <div class="common-modal">
+                <div class="common-modal-header-wrapper">
+                    <div class="common-modal-header">
+                        <p class="common-modal-header__title">
+                            @HeaderLabel
+                        </p>
+
+                        @if (IsEventCloseSet)
+                        {
+                            <div class="common-modal-header__icon" @onclick=@OnCloseButton_Click>
+                                <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                            </div>
+                        }
+                        else
+                        {
+                            @if (ReloadPageWhenClose)
+                            {
+                                <div class="common-modal-header__icon" @onclick=@Ok>
+                                    <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                    <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="common-modal-header__icon" @onclick=@Cancel>
+                                    <img class="icon" src="/img/icons/closeIcon.svg" alt="close" />
+                                    <img class="iconHover" src="/img/icons/closeIconHover.svg" alt="close" />
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+
+                @if (string.IsNullOrEmpty(Message))
+                {
+                    <div class="common-modal-main">
+                        @ModalChildContent
+                    </div>
+                }
+                else
+                {
+                    <div class="common-modal-main">
+                        @Message
+                    </div>
+                }
+
+                @if (UseButtonCancel || UseButtonOk)
+                {
+                    <div class="common-modal-footer">
+                        @if (UseButtonCancel)
+                        {
+                            @if (IsEventCancelSet)
+                            {
+                                <button class="common-modal-footer__buttonCancel" @onclick=@OnCancelButton_Click @onclick:preventDefault>
+                                    @ButtonCancelText
+                                </button>
+                            }
+                            else
+                            {
+                                @if (ReloadPageWhenClose)
+                                {
+                                    <button class="common-modal-footer__buttonCancel" @onclick=@Ok @onclick:preventDefault>
+                                        @ButtonCancelText
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button class="common-modal-footer__buttonCancel" @onclick=@Cancel @onclick:preventDefault>
+                                        @ButtonCancelText
+                                    </button>
+                                }
+                            }
+                        }
+
+                        @if (UseButtonOk)
+                        {
+                            @if (IsEventOkSet)
+                            {
+                                <button class="common-modal-footer__buttonSuccess" type="button" @onclick=@OnOkButton_Click @onclick:preventDefault>
+                                    @ButtonOkText
+                                </button>
+                            }
+                            else
+                            {
+                                @if (ReloadPageWhenClose)
+                                {
+                                    <button class="common-modal-footer__buttonCancel" @onclick=@OkThenReloadPage @onclick:preventDefault>
+                                        @ButtonCancelText
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button class="common-modal-footer__buttonSuccess" type="button" @onclick=@Ok @onclick:preventDefault>
+                                        @ButtonOkText
+                                    </button>
+                                }
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
+
+    /// <summary>
+    /// Modal header
+    /// </summary>
+    [Parameter] public string? HeaderLabel { get; set; }
+    /// <summary>
+    /// use this instead of ModalChildContent
+    /// </summary>
+    [Parameter] public string? Message { get; set; }
+    /// <summary>
+    /// use this instead of Message
+    /// </summary>
+    [Parameter] public RenderFragment ModalChildContent { get; set; }
+    /// <summary>
+    /// enable to show button cancel
+    /// </summary>
+    [Parameter] public bool UseButtonCancel { get; set; } = false;
+    [Parameter] public string ButtonCancelText { get; set; } = "Cancel";
+    /// <summary>
+    /// enable to show button cancel
+    /// </summary>
+    [Parameter] public bool UseButtonOk { get; set; } = false;
+    [Parameter] public string ButtonOkText { get; set; } = "Ok";
+
+    [Parameter] public bool ReloadPageWhenClose { get; set; } = false;
+
+    [Parameter] public EventCallback EventOkClick { get; set; }
+    [Parameter] public EventCallback EventCancelClick { get; set; }
+    [Parameter] public EventCallback EventCloseClick { get; set; }
+
+    private async Task Close() => await BlazoredModal.CloseAsync(ModalResult.Ok(true));
+    private async Task Cancel() => await BlazoredModal.CancelAsync();
+    private async Task Ok() =>  BlazoredModal.CloseAsync(ModalResult.Ok(true));
+    private async Task OkThenReloadPage() => _navigateManager.NavigateTo(_navigateManager.Uri, forceLoad: true);
+
+    private bool IsEventOkSet => EventOkClick.HasDelegate;
+    private bool IsEventCancelSet => EventCancelClick.HasDelegate;
+    private bool IsEventCloseSet => EventCloseClick.HasDelegate;
+
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    private async Task OnCancelButton_Click()
+        => await EventCancelClick.InvokeAsync();
+
+    private async Task OnOkButton_Click()
+        => await EventOkClick.InvokeAsync();
+
+    private async Task OnCloseButton_Click()
+        => await EventCloseClick.InvokeAsync();
+}

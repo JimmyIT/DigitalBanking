@@ -1,0 +1,15 @@
+﻿@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.menu-item {
+  @include field;
+  padding: 14px 16px;
+  text-align: left;
+  color: $color-gray-600;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-gray-900;
+    background-color: $color-sky-blue-100;
+  }
+}

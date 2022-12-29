@@ -1,0 +1,335 @@
+﻿@import "../common/variables";
+@import "./shadows";
+
+@mixin box {
+    @include shadowGray;
+    border-radius: $indent-16;
+    background: $color-white;
+    padding: $indent-24;
+    margin-bottom: $indent-24;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@mixin textBox {
+    @include label;
+    padding: 6px 21px 2px;
+    border-radius: $indent-4;
+}
+
+@mixin violetTextBox {
+    @include textBox;
+    color: $color-violet-400;
+    background-color: $color-violet-100;
+}
+
+@mixin blueTextBox {
+    @include textBox;
+    color: $color-blue-500;
+    background-color: $color-sky-blue-100;
+}
+
+@mixin grayTextBox {
+    @include textBox;
+    color: $color-gray-600;
+    background-color: $color-gray-200;
+}
+
+@mixin greenTextBox {
+    @include textBox;
+    color: $color-green-500;
+    background-color: $color-green-100;
+}
+
+@mixin redTextBox {
+    @include textBox;
+    color: $color-red-500;
+    background-color: $color-red-100;
+}
+
+@mixin card {
+    background: $color-white;
+    border: 2px solid $color-violet-100;
+    border-radius: 12px;
+    padding: $indent-16;
+    transition: $transitionDuration;
+}
+
+@mixin cardLightBlue {
+    @include card;
+    border-color: $color-blue-100;
+}
+
+@mixin paymentCard {
+    @include card;
+
+    &__title {
+        @include h3;
+    }
+
+    &-description {
+        display: flex;
+        justify-content: space-between;
+
+        &__text {
+            @include body;
+            display: flex;
+            color: $color-gray-600;
+        }
+
+        &__sum {
+            @include h4;
+            color: $color-gray-600;
+        }
+
+        &__icon {
+            @include buttonIconSmall;
+            margin-right: 12px;
+            cursor: pointer;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &__type {
+            @include violetTextBox;
+
+            &--2 {
+                @include blueTextBox;
+            }
+        }
+    }
+
+    &__button {
+        @include transparentButton2;
+        width: 100%;
+    }
+}
+
+@mixin boxTabs {
+    display: flex;
+    background: $color-sky-blue-100;
+    border-radius: 16px;
+    padding: $indent-8;
+
+    &__item {
+        @include lightBlueButton;
+        flex: 1;
+        text-align: center;
+        padding: 7px $indent-12 5px;
+        margin-right: $indent-8;
+        transition: $transitionDuration;
+        &:hover:not(.active):not(.disabled) {
+            background-color: $color-sky-blue-200;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &-icon {
+            @include square-icon(24px);
+            margin: 0 $indent-4;
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &.active {
+            background-color: $color-white;
+        }
+
+        &.disabled {
+            cursor: default;
+        }
+    }
+}
+
+@mixin pageTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $indent-24;
+
+    &-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        @include shadowGray;
+        @include square-icon(40px);
+        margin-right: $indent-12;
+    }
+
+    &__title {
+        @include h1;
+    }
+
+    &__tooltip-icon {
+        padding: $indent-8;
+        margin-left: $indent-4;
+    }
+
+    &__button {
+        @include transparentButton;
+    }
+}
+
+@mixin breadcrumbs {
+    display: flex;
+
+    &__item {
+        @include label;
+        color: $color-gray-600;
+        padding: $indent-4 0;
+        margin-right: $indent-8;
+        &::after {
+            content: "/";
+            margin-left: $indent-8;
+        }
+
+        &:last-child {
+            margin-right: 0;
+            &::after {
+                display: none;
+            }
+        }
+
+        &.active {
+            color: $color-gray-900;
+        }
+    }
+}
+@mixin line {
+    height: 1px;
+    border: none;
+    background: $color-gray-200;
+}
+
+@mixin avatar {
+    @include square-icon(40px);
+    border-radius: 50%;
+    background: $color-sky-blue-200;
+    padding: 2px;
+
+    &__image {
+        @include square-icon(100%);
+        display: block;
+        border-radius: inherit;
+    }
+
+    &:hover {
+        background: $color-sky-blue-500;
+    }
+}
+
+@mixin menu {
+    @include shadowGray;
+    width: 324px;
+    background: $color-white;
+    border-radius: 16px;
+    padding: $indent-8 0;
+    @include tablet-mobile {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &-item {
+        @include field;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        color: $color-gray-600;
+        padding: $indent-16 $indent-24 $indent-16 $indent-20;
+        transition: $transitionDuration;
+        @include tablet-mobile {
+            width: initial;
+        }
+        &:hover,
+        &.active {
+            color: $color-gray-900;
+        }
+
+        &:hover {
+            .iconBlock {
+                .icon {
+                    opacity: 0;
+                }
+                .iconHover {
+                    opacity: 1;
+                }
+
+                &.active {
+                    .iconActive {
+                        opacity: 0;
+                    }
+
+                    .iconActiveHover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .iconBlock {
+            @include buttonIconSmall;
+        }
+
+        > img {
+            @include square-icon(24px);
+        }
+
+        .iconBlock,
+        > img {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 $indent-8;
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &.active {
+            background: $color-sky-blue-100;
+        }
+    }
+}
+
+@mixin dropdown {
+    @include shadowGray;
+    display: none;
+    background: $color-white;
+    border: 1px solid $color-sky-blue-200;
+    border-radius: 8px;
+    padding: $indent-8 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 5;
+    white-space: nowrap;
+
+    &__item {
+        @include field;
+        color: $color-gray-600;
+        padding: 14px $indent-16;
+        cursor: pointer;
+        transition: $transitionDuration;
+        &:hover {
+            color: $color-gray-900;
+        }
+    }
+
+    &.active {
+        display: block;
+    }
+}

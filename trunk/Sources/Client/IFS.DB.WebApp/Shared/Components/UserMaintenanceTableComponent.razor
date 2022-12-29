@@ -1,0 +1,445 @@
+@using IFS.DB.WebApp.Models
+@using IFS.DB.WebApp.Models.GroupMaintenance
+@using IFS.DB.WebApp.Models.Users
+
+<EditForm EditContext="_searchEditContext" OnValidSubmit="OnValidSubmit" OnInvalidSubmit="OnInValidSubmit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <div class="user-main-title">
+        <p class="user-main-title-name">User List</p>
+        <div class="user-main-title-right">
+            <div class="search user-main-title-right__input">
+                @*<SearchComponent />*@
+
+                <div class="search">
+                    <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon" />
+                    <input placeholder="Search by User name or ID" class="input search__input" @onchange=@((e) => SearchStringOnChange(e)) />
+                </div>
+            </div>
+            <div style="display: flex">
+
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@GroupInfoModel
+                                                                                MultiSelect=@true
+                                                                                ContainerInlineStyle="margin-right: 6px;min-width: 260px;"
+                                                                                DropdownButtonInlineStyle="width:100%;"
+                                                                                SelectedListData=@_searchUserModel.Groups
+                                                                                SelectedItems_Onclick=@SelectedSearchGroupValue>
+                    <InitialPlaceHolder>Group</InitialPlaceHolder>
+                    <ChildContent>
+                        @*<IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem=@GroupMaintenanceModel
+                        TValue="null" Context="_">
+                        Group
+                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>*@
+                        @foreach (var group in _listGroups)
+                        {
+                            <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@GroupInfoModel
+                                                                                            TValue="group" Context="_">
+                                @group.Name
+                            </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                        }
+                    </ChildContent>
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@(UserActionStatusEnum?)
+                                                                                FieldId="@( new FieldIdentifier(_searchUserModel, nameof(SearchUserModel.ActionStatus)) )"
+                                                                                ContainerInlineStyle="margin-right: 6px;min-width: 260px;"
+                                                                                DropdownButtonInlineStyle="width:100%;"
+                                                                                SelectedValue=@_searchUserModel.ActionStatus
+                                                                                SelectedItem_Onclick=@SelectedSearchUserActionValue>
+                    <InitialPlaceHolder>Status</InitialPlaceHolder>
+                    <ChildContent>
+                        @*<IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem=@(UserActionStatusEnum?)
+                        TValue="null" Context="_">
+                        Status
+                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>*@
+                        @foreach (var value in (UserActionStatusEnum[])Enum.GetValues(typeof(UserActionStatusEnum)))
+                        {
+                            <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@(UserActionStatusEnum?)
+                                                                                            TValue="value" Context="_">
+                                @value.ToDescription()
+                            </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                        }
+                    </ChildContent>
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@if (_userMaintenanceModel.UserInfos != null)
+{
+    <DataGridComponent @ref="_dataSourceGrid" TItem="UserInfoModel"
+                   Columns="_columnsDefinition"
+                   DataItems="@_userMaintenanceModel.UserInfos"
+                   TotalItems="@_userMaintenanceModel.TotalRecords"
+                   OnPageSizeChangedCallback=@OnPageSizeChanged
+                   PagingConfig=@_pagingConfig
+                   ChangablePageSize=@ChangablePageSize
+                   TableClass="userTable">
+    </DataGridComponent>
+}
+
+@*
+<table class="userTable">
+    <thead>
+        <tr>
+            <td>User Name</td>
+            <td>User ID</td>
+            <td>Last Logged on</td>
+            <td>Phone number</td>
+            <td>Group</td>
+            <td>Status</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208402</td>
+            <td>—</td>
+            <td>077 6764 8570</td>
+            <td>—</td>
+            <td><span class="userTable-status">Awaiting Sign-off</span></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208490</td>
+            <td>—</td>
+            <td>077 6764 8570</td>
+            <td>—</td>
+            <td><span class="userTable-status">Awaiting Sign-off</span></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208456</td>
+            <td>—</td>
+            <td>077 6764 8570</td>
+            <td>—</td>
+            <td><span class="userTable-status">Awaiting Sign-off</span></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208489</td>
+            <td>9 June 2021 at 19:00:54</td>
+            <td>077 6764 8570</td>
+            <td>
+                <div class="formgroup">
+                    <div class="select-layout">
+                        <select class="select">
+                            <option disabled selected>Add to group</option>
+                            <option>Account No.:00256001</option>
+                            <option>Account No.:00256002</option>
+                            <option>Account No.:00256003</option>
+                            <option>Account No.:00256004</option>
+                            <option>Account No.:00256005</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208491</td>
+            <td>10 June 2021 at 22:54:09</td>
+            <td>077 6764 8570</td>
+            <td>
+                <div class="formgroup">
+                    <div class="select-layout">
+                        <select class="select">
+                            <option disabled selected>Add to group</option>
+                            <option>Account No.:00256001</option>
+                            <option>Account No.:00256002</option>
+                            <option>Account No.:00256003</option>
+                            <option>Account No.:00256004</option>
+                            <option>Account No.:00256005</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208402</td>
+            <td>19 June 2021 at 09:09:23</td>
+            <td>077 6764 8570</td>
+            <td>
+                <div class="formgroup">
+                    <div class="select-layout">
+                        <select class="select">
+                            <option disabled selected>Add to group</option>
+                            <option>Account No.:00256001</option>
+                            <option>Account No.:00256002</option>
+                            <option>Account No.:00256003</option>
+                            <option>Account No.:00256004</option>
+                            <option>Account No.:00256005</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" onclick="onTriggerModalDelete()" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208492</td>
+            <td>20 June 2021 at 10:01:58</td>
+            <td>077 6764 8570</td>
+            <td>Developers</td>
+            <td></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208493</td>
+            <td>16 June 2021 at 13:09:32</td>
+            <td>077 6764 8570</td>
+            <td>Sales</td>
+            <td><span class="userTable-status">Awaiting Sign-off</span></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="userTable-user">
+                    <img src="/img/sign/avatar1.svg" alt="avatar" class="userTable-user__image" />
+                    <p class="userTable-user__name">Lindsey Mango</p>
+                </div>
+            </td>
+            <td>840284208494</td>
+            <td>16 June 2021 at 13:53:03</td>
+            <td>077 6764 8570</td>
+            <td>Marketing</td>
+            <td></td>
+            <td>
+                <button class="userTable-button">
+                    <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+                    <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+                </button>
+                <button class="userTable-button">
+                    <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+                    <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>*@
+
+@code {
+    private RenderFragment UserNameWithAvartaTemplate(UserInfoModel userInfo)
+    =>
+    @<text>
+        <div class="userTable-user">
+            @if (!string.IsNullOrEmpty(userInfo.AvartaUrl))
+            {
+                <img src="@userInfo.AvartaUrl" alt="avatar" class="userTable-user__image" />
+            }
+            else
+            {
+                <div class="user-profile-avatar">  
+                    @($"{userInfo.UserName.Substring(0, 1).ToUpper()}")
+                </div>
+            }
+            <p class="userTable-user__name">@($"{userInfo.UserName}")</p>
+        </div>
+        </text>;
+
+    private RenderFragment PhoneNumberTemplate(UserInfoModel userInfo)
+    =>
+    @<text>
+        @($"{userInfo.PhoneNumberIDD} {userInfo.PhoneNumber}")
+    </text>
+        ;
+
+    private RenderFragment GroupNameTemplate(UserInfoModel userInfo)
+    {
+        string groupName = string.Empty;
+        @if (userInfo.GroupID.HasValue)
+        {
+            groupName = FakeData.Groups.FirstOrDefault(x => x.ID == userInfo.GroupID)?.Name;
+            return
+    @<text>
+        <div style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+            @groupName
+        </div>
+    </text>
+        ;
+        }
+        else
+        {
+            return
+    @<text>
+        <div class="formgroup">
+            <div class="select-layout">
+                <DropdownComponent TItem="GroupInfoModel"
+                               OnSelectedItem=@SelectedGroup
+                               InlineStyle="margin-right: 12px"
+                               DropdownSelectInlineStyle="width: 180px">
+                    <InitialTip>Add to group</InitialTip>
+                    <DropdownChildContent>
+                        <DropdownItemComponent TItem=@GroupInfoModel Item="null" Context="searchGroupContext" CustomAction=true DropdownItemIndex="99999">
+                            <CustomDropdownItemContent>
+                                    <img src="/img/icons/searchIcon.svg" alt="search"
+                                        class="search__icon customSelector-dropdown-item-input__icon" />
+                                    <input placeholder="Search" class="input search__input customSelector-dropdown-item-input__input" type="text" @bind-value=@_searchGroup @oninput=@OnSearchGroup>
+                            </CustomDropdownItemContent>
+                        </DropdownItemComponent>
+                        @foreach (var value in _listGroups)
+                        {
+                            <DropdownItemComponent Item="@value" Context="_" CustomAction=true DropdownItemIndex="value.ID">
+                                <DropdownItemChildContent>
+                                    @value.Name
+                                </DropdownItemChildContent>
+                            </DropdownItemComponent>
+                        }
+                        <DropdownItemComponent TItem=@GroupInfoModel Item="null" Context="saveUserContext" CustomAction=true>
+                            <CustomDropdownItemButtonContent>
+                                <button class="customSelector-dropdown-item-button__button" @onclick=@(() => SaveSelectedGroup(userInfo.UserID))>Apply</button>
+                            </CustomDropdownItemButtonContent>
+                        </DropdownItemComponent>
+                    </DropdownChildContent>
+                </DropdownComponent>
+            </div>
+        </div>
+        </text>;
+        }
+    }
+
+    private RenderFragment StatusTemplate(UserInfoModel userInfo)
+    =>
+    @<text>
+        @if (userInfo.ActionStatus != UserActionStatusEnum.Confirmed)
+        {
+                <span class="userTable-status">@userInfo.ActionStatus.ToDescription()</span>
+        }
+        </text>;
+
+    private RenderFragment ButtonActionTemplate(UserInfoModel userInfo)
+    =>
+    @<text>
+        <button class="userTable-button" @onclick=@(() => _navigateManager.NavigateTo($"/admin/user-maintenance/edit?userID={userInfo.UserID}"))>
+            <img src="/img/icons/editIcon.svg" alt="edit" class="icon" />
+            <img src="/img/icons/editHover.svg" alt="edit" class="iconHover" />
+        </button>
+        <button class="userTable-button" @onclick=@(() => ShowModalConfirmDeletion(userInfo))>
+            <img src="/img/icons/delete.svg" alt="delete" class="icon" />
+            <img src="/img/icons/deleteHover.svg" alt="delete" class="iconHover" />
+        </button>
+    </text>;
+}

@@ -1,0 +1,295 @@
+.admin-permission-layout {
+  padding: 24px 0 36px;
+}
+
+.admin-permission-container {
+  width: 100%;
+  max-width: calc(1368px + 36px * 2);
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.admin-permission-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.admin-permission-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.admin-permission-header__logo {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 12px;
+}
+.admin-permission-header__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+}
+.admin-permission-header__tooltip-icon {
+  padding: 8px;
+  margin-left: 4px;
+}
+.admin-permission-header__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.admin-permission-header__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.admin-permission-header__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.admin-permission-header__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.admin-permission-header__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-permission-header__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.admin-permission-header__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.admin-permission-header__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.admin-permission-header__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.admin-permission-header__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-permission-header__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.admin-permission-header__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.admin-permission-header__button .iconBlock .icon,
+.admin-permission-header__button .iconBlock .iconHover,
+.admin-permission-header__button .iconBlock .iconActive,
+.admin-permission-header__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.admin-permission-header__button .iconBlock .iconHover,
+.admin-permission-header__button .iconBlock .iconActive,
+.admin-permission-header__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.admin-permission-header__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.admin-permission-header__button .iconBlock,
+.admin-permission-header__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.admin-permission-header__button .iconBlock:first-child,
+.admin-permission-header__button > img:first-child {
+  margin-left: 0;
+}
+.admin-permission-header__button .iconBlock:last-child,
+.admin-permission-header__button > img:last-child {
+  margin-right: 0;
+}
+.admin-permission-header__button:hover {
+  color: #0248a4;
+}
+
+.admin-permission-box {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.admin-permission-box:last-child {
+  margin-bottom: 0;
+}
+.admin-permission-box-selections {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.admin-permission-box-selections-radio {
+  display: flex;
+  background: #f2f7fd;
+  border-radius: 16px;
+  padding: 8px;
+}
+.admin-permission-box-selections-radio__item {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  background: #f2f7fd;
+  color: #0360db;
+  flex: 1;
+  text-align: center;
+  padding: 7px 12px 5px;
+  margin-right: 8px;
+  transition: 0.4s;
+}
+.admin-permission-box-selections-radio__item:hover .iconBlock .icon {
+  opacity: 0;
+}
+.admin-permission-box-selections-radio__item:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.admin-permission-box-selections-radio__item:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.admin-permission-box-selections-radio__item:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-permission-box-selections-radio__item .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.admin-permission-box-selections-radio__item .iconBlock:hover .icon {
+  opacity: 0;
+}
+.admin-permission-box-selections-radio__item .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.admin-permission-box-selections-radio__item .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.admin-permission-box-selections-radio__item .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-permission-box-selections-radio__item .iconBlock.active .icon {
+  opacity: 0;
+}
+.admin-permission-box-selections-radio__item .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.admin-permission-box-selections-radio__item .iconBlock .icon,
+.admin-permission-box-selections-radio__item .iconBlock .iconHover,
+.admin-permission-box-selections-radio__item .iconBlock .iconActive,
+.admin-permission-box-selections-radio__item .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.admin-permission-box-selections-radio__item .iconBlock .iconHover,
+.admin-permission-box-selections-radio__item .iconBlock .iconActive,
+.admin-permission-box-selections-radio__item .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.admin-permission-box-selections-radio__item > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.admin-permission-box-selections-radio__item .iconBlock,
+.admin-permission-box-selections-radio__item > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.admin-permission-box-selections-radio__item .iconBlock:first-child,
+.admin-permission-box-selections-radio__item > img:first-child {
+  margin-left: 0;
+}
+.admin-permission-box-selections-radio__item .iconBlock:last-child,
+.admin-permission-box-selections-radio__item > img:last-child {
+  margin-right: 0;
+}
+.admin-permission-box-selections-radio__item:hover {
+  color: #0248a4;
+}
+.admin-permission-box-selections-radio__item:hover:not(.active):not(.disabled) {
+  background-color: #CDDFF8;
+}
+.admin-permission-box-selections-radio__item:last-child {
+  margin-right: 0;
+}
+.admin-permission-box-selections-radio__item-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin: 0 4px;
+}
+.admin-permission-box-selections-radio__item-icon:first-child {
+  margin-left: 0;
+}
+.admin-permission-box-selections-radio__item-icon:last-child {
+  margin-right: 0;
+}
+.admin-permission-box-selections-radio__item.active {
+  background-color: #ffffff;
+}
+.admin-permission-box-selections-radio__item.disabled {
+  cursor: default;
+}
+.admin-permission-box-selections-radio__item {
+  min-width: 116px;
+}
+.admin-permission-box-selections-input-group-input {
+  max-width: 260px;
+  margin-right: 12px;
+}
+.admin-permission-box-selections-input-group-input:last-child {
+  margin: 0;
+}

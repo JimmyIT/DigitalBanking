@@ -1,0 +1,8 @@
+﻿@typeparam TItem
+
+<div @ref=@_dropdownItemEle id="@ElementId" class="customSelector-dropdown-item @CssClass" style="@InlineStyle"
+     @onmousedown="@(() => DropdownComponent.ToggleDropdownDefaultItemComponentAsync(this, ChildContent, TValue))"     
+     @onmousedown:stopPropagation
+     @attributes="@Attributes">
+    @ChildContent(TValue)
+</div>

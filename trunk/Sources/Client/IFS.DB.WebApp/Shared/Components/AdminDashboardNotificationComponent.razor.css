@@ -1,0 +1,158 @@
+.admin-company-changer {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  max-height: 245px;
+  overflow: auto;
+}
+.admin-company-changer:last-child {
+  margin-bottom: 0;
+}
+.admin-company-changer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 6px 8px 0;
+  border-bottom: 1px solid #f2f7fd;
+}
+.admin-company-changer-item:last-child {
+  border-bottom: 0;
+}
+.admin-company-changer-item-left {
+  display: flex;
+}
+.admin-company-changer-item-left__icon {
+  margin-right: 12px;
+}
+.admin-company-changer-item-left-text-title {
+  display: flex;
+  align-items: center;
+}
+.admin-company-changer-item-left-text-title-name, .admin-company-changer-item-left-text-title-status {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  margin-right: 8px;
+  color: #212121;
+}
+.admin-company-changer-item-left-text-title-status {
+  color: #fd693b;
+}
+.admin-company-changer-item-left-text-title-time {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  margin-left: 8px;
+  color: #9d9d9d;
+}
+.admin-company-changer-item-left-text-subtitle {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6a6a6a;
+}
+.admin-company-changer-item-button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+}
+.admin-company-changer-item-button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.admin-company-changer-item-button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.admin-company-changer-item-button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.admin-company-changer-item-button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-company-changer-item-button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.admin-company-changer-item-button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.admin-company-changer-item-button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.admin-company-changer-item-button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.admin-company-changer-item-button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.admin-company-changer-item-button .iconBlock.active .icon {
+  opacity: 0;
+}
+.admin-company-changer-item-button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.admin-company-changer-item-button .iconBlock .icon,
+.admin-company-changer-item-button .iconBlock .iconHover,
+.admin-company-changer-item-button .iconBlock .iconActive,
+.admin-company-changer-item-button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.admin-company-changer-item-button .iconBlock .iconHover,
+.admin-company-changer-item-button .iconBlock .iconActive,
+.admin-company-changer-item-button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.admin-company-changer-item-button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.admin-company-changer-item-button .iconBlock,
+.admin-company-changer-item-button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.admin-company-changer-item-button .iconBlock:first-child,
+.admin-company-changer-item-button > img:first-child {
+  margin-left: 0;
+}
+.admin-company-changer-item-button .iconBlock:last-child,
+.admin-company-changer-item-button > img:last-child {
+  margin-right: 0;
+}
+.admin-company-changer-item-button:hover {
+  color: #0248a4;
+}

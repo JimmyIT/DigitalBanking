@@ -1,0 +1,37 @@
+﻿<div class="main-header-profile">
+    <div @ref=@_profileMenuContainer class="main-header-profile-avatar-wrapper"
+         @onfocusout=@(() => ProfileMenu_OnFocusOutAsync())>
+        <div>
+            <button @onclick="@(() => ProfileMenu_OnclickAsync())" class="main-header-profile-avatar">
+                @if (!string.IsNullOrEmpty(_AuthorisedUser.AvartaUrl))
+                {
+                    <img src="@_AuthorisedUser.AvartaUrl" alt="avatar" class="main-header-profile-avatar__image" />
+                }
+                else
+                {
+                    @($"{_AuthorisedUser.FirstName.Substring(0, 1).ToUpper()}{_AuthorisedUser.LastName.Substring(0, 1).ToUpper()}")
+                }
+            </button>
+        </div>
+
+        @* U need change "style="display: none;"" to "style="display: block;"" for open this menu *@
+        <div @ref=@_profileMenuItemsContainer class="main-header-menu__item-link-submenu-wrapper" style="@_styleDisplayProfileSubmenu"
+             @onmousedown:stopPropagation @onmousedown:preventDefault>
+            <div class="main-header-menu__item-link-submenu">
+                <button class="main-header-menu__item-link-submenu__item" style="width:100%;" @onclick=@ProfileMenuItemButton_OnclickAsync>
+                    <img src="/img/header/profileIcon.svg" alt="Profile" class="main-header-menu__item-link-submenu__item__icon" />
+                    <p>
+                        Profile
+                    </p>
+                </button>
+
+                <button class="main-header-menu__item-link-submenu__item" style="width:100%;" @onclick=@ProfileMenu_OnclickSignOutAsync>
+                    <img src="/img/header/logoutIcon.svg" alt="Logout" class="main-header-menu__item-link-submenu__item__icon" />
+                    <p>
+                        Log out
+                    </p>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.imail-sidebar {
+    @include box;
+    width: 440px;
+
+    @media (max-width: 1260px) {
+        width: 100%;
+    }
+
+    &__title {
+        @include h2;
+    }
+
+    &-form {
+        margin-top: $indent-16;
+
+        &__submit {
+            @include blueButton;
+            width: 100%;
+            margin-top: $indent-16;
+        }
+    }
+
+    &-formgroup {
+        margin-top: $indent-16;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &-attach {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: $indent-16;
+
+        &__button,
+        &__file {
+            margin: $indent-16 $indent-12 0 0;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &__button {
+            @include transparentButton;
+            padding: $indent-8 $indent-12 $indent-8 $indent-8;
+        }
+
+        &__file {
+            min-width: 112px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            background: $color-sky-blue-100;
+            padding: $indent-8 $indent-12;
+
+            &-text {
+                flex: 1;
+                color: $color-sky-blue-400;
+            }
+
+            &-remove {
+                @include buttonIcon;
+            }
+
+            &-icon {
+                @include square-icon(24px);
+                margin-left: $indent-8;
+            }
+        }
+    }
+}

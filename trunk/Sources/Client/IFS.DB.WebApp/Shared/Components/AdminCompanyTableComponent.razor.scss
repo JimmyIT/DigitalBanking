@@ -1,0 +1,70 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.adminTable {
+	td {
+		@include textWithDots;
+		vertical-align: middle;
+		padding: $indent-12 $indent-16;
+
+		&:last-child {
+			text-align: left;
+		}
+	}
+
+	thead {
+		td {
+			@include label2;
+			background: $color-sky-blue-100;
+			color: $color-sky-blue-300;
+
+			&:first-child {
+				border-radius: 8px 0 0 8px;
+			}
+
+			&:last-child {
+				border-radius: 0 8px 8px 0;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			border-bottom: 1px solid $color-sky-blue-100;
+		}
+
+		td {
+			.adminTable-user {
+				display: flex;
+				align-items: center;
+
+				&__name {
+					@include body;
+					color: $color-gray-900;
+				}
+
+				&__image {
+					margin-right: $indent-8;
+				}
+			}
+
+			&:nth-child(2) {
+				@include body;
+				color: $color-gray-600;
+			}
+
+			&:last-child {
+				display: flex;
+				justify-content: flex-end;
+			}
+		}
+	}
+
+	&-status {
+		@include redTextBox;
+	}
+
+	&-button {
+		@include buttonIcon;
+	}
+}

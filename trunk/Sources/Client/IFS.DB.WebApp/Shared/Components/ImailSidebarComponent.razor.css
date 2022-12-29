@@ -1,0 +1,302 @@
+.imail-sidebar {
+  box-shadow: 2px 2px 8px rgba(78, 78, 92, 0.15);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 24px;
+  width: 440px;
+}
+.imail-sidebar:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 1260px) {
+  .imail-sidebar {
+    width: 100%;
+  }
+}
+.imail-sidebar__title {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+}
+.imail-sidebar-form {
+  margin-top: 16px;
+}
+.imail-sidebar-form__submit {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  background: #0360db;
+  color: #ffffff;
+  width: 100%;
+  margin-top: 16px;
+}
+.imail-sidebar-form__submit:hover .iconBlock .icon {
+  opacity: 0;
+}
+.imail-sidebar-form__submit:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-form__submit:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-form__submit:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-form__submit .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.imail-sidebar-form__submit .iconBlock:hover .icon {
+  opacity: 0;
+}
+.imail-sidebar-form__submit .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-form__submit .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-form__submit .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-form__submit .iconBlock.active .icon {
+  opacity: 0;
+}
+.imail-sidebar-form__submit .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.imail-sidebar-form__submit .iconBlock .icon,
+.imail-sidebar-form__submit .iconBlock .iconHover,
+.imail-sidebar-form__submit .iconBlock .iconActive,
+.imail-sidebar-form__submit .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-sidebar-form__submit .iconBlock .iconHover,
+.imail-sidebar-form__submit .iconBlock .iconActive,
+.imail-sidebar-form__submit .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.imail-sidebar-form__submit > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.imail-sidebar-form__submit .iconBlock,
+.imail-sidebar-form__submit > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.imail-sidebar-form__submit .iconBlock:first-child,
+.imail-sidebar-form__submit > img:first-child {
+  margin-left: 0;
+}
+.imail-sidebar-form__submit .iconBlock:last-child,
+.imail-sidebar-form__submit > img:last-child {
+  margin-right: 0;
+}
+.imail-sidebar-form__submit:hover {
+  background-color: #0248a4;
+}
+.imail-sidebar-formgroup {
+  margin-top: 16px;
+}
+.imail-sidebar-formgroup:first-child {
+  margin-top: 0;
+}
+.imail-sidebar-attach {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.imail-sidebar-attach__button, .imail-sidebar-attach__file {
+  margin: 16px 12px 0 0;
+}
+.imail-sidebar-attach__button:last-child, .imail-sidebar-attach__file:last-child {
+  margin-right: 0;
+}
+.imail-sidebar-attach__button {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  box-shadow: 2px 2px 8px rgba(49, 136, 250, 0.2);
+  display: inline-block;
+  border-radius: 8px;
+  text-align: center;
+  padding: 16px;
+  box-shadow: none;
+  color: #0360db;
+  padding: 0;
+  padding: 8px 12px 8px 8px;
+}
+.imail-sidebar-attach__button:hover .iconBlock .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__button:hover .iconBlock .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__button:hover .iconBlock.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-attach__button:hover .iconBlock.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__button .iconBlock {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+.imail-sidebar-attach__button .iconBlock:hover .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__button .iconBlock:hover .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__button .iconBlock:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-attach__button .iconBlock:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__button .iconBlock.active .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__button .iconBlock.active .iconActive {
+  opacity: 1;
+}
+.imail-sidebar-attach__button .iconBlock .icon,
+.imail-sidebar-attach__button .iconBlock .iconHover,
+.imail-sidebar-attach__button .iconBlock .iconActive,
+.imail-sidebar-attach__button .iconBlock .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-sidebar-attach__button .iconBlock .iconHover,
+.imail-sidebar-attach__button .iconBlock .iconActive,
+.imail-sidebar-attach__button .iconBlock .iconActiveHover {
+  opacity: 0;
+}
+.imail-sidebar-attach__button > img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.imail-sidebar-attach__button .iconBlock,
+.imail-sidebar-attach__button > img {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 8px;
+}
+.imail-sidebar-attach__button .iconBlock:first-child,
+.imail-sidebar-attach__button > img:first-child {
+  margin-left: 0;
+}
+.imail-sidebar-attach__button .iconBlock:last-child,
+.imail-sidebar-attach__button > img:last-child {
+  margin-right: 0;
+}
+.imail-sidebar-attach__button:hover {
+  color: #0248a4;
+}
+.imail-sidebar-attach__file {
+  min-width: 112px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  background: #f2f7fd;
+  padding: 8px 12px;
+}
+.imail-sidebar-attach__file-text {
+  flex: 1;
+  color: #4288e4;
+}
+.imail-sidebar-attach__file-remove {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: block;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.imail-sidebar-attach__file-remove:hover .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__file-remove:hover .iconHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__file-remove:hover.active .iconActive {
+  opacity: 0;
+}
+.imail-sidebar-attach__file-remove:hover.active .iconActiveHover {
+  opacity: 1;
+}
+.imail-sidebar-attach__file-remove.active .icon {
+  opacity: 0;
+}
+.imail-sidebar-attach__file-remove.active .iconActive {
+  opacity: 1;
+}
+.imail-sidebar-attach__file-remove .icon,
+.imail-sidebar-attach__file-remove .iconHover,
+.imail-sidebar-attach__file-remove .iconActive,
+.imail-sidebar-attach__file-remove .iconActiveHover {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.4s;
+}
+.imail-sidebar-attach__file-remove .iconHover,
+.imail-sidebar-attach__file-remove .iconActive,
+.imail-sidebar-attach__file-remove .iconActiveHover {
+  opacity: 0;
+}
+.imail-sidebar-attach__file-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-left: 8px;
+}

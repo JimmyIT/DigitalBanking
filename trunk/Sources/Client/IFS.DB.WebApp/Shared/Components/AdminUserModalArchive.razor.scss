@@ -1,0 +1,39 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.archive-modal {
+    @include modalDefault;
+
+    &-layout {
+        @include modalDefaultContainer;
+    }
+
+    &-header-wrapper {
+        margin-bottom: $indent-16;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__title {
+            @include h2;
+            color: $color-wireframes-900;
+        }
+
+        &__icon {
+            cursor: pointer;
+        }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: flex-start;
+
+        &__buttonOk {
+            @include blueButton;
+            min-width: 144px;
+        }
+    }
+}

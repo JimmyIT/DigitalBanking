@@ -1,0 +1,100 @@
+@using IFS.DB.WebApp.Models.Transactions
+@using IFS.DB.WebApp.Models.PayeeTemplate
+@using IFS.DB.WebApp.Helpers.Enums
+@using IFS.DB.WebApp.Shared.BaseComponents.Tooltip
+
+<div class="payee-card">
+    <div class="payee-card-description">
+        <p class="payee-card__title">
+            @PayeeTemplateModel.HostReference
+        </p>
+        <div class="payee-card-description__text">
+            <div class="payee-card-description__icon" @onclick="@(() => PayeeTemplateModel.Pinned = !PayeeTemplateModel.Pinned)">
+                @if (PayeeTemplateModel.Pinned)
+                {
+                    <img class="icon" src="/img/icons/favorite.svg" alt="star"/>
+                    <img class="iconHover" src="/img/icons/favoriteHover.svg" alt="star"/>
+                }
+                else
+                {
+                    <img class="icon" src="/img/icons/inactiveStarIcon.svg" alt="star" />
+                    <img class="iconHover" src="/img/icons/inactiveStarIconHover.svg" alt="star" />
+                }
+            </div>
+            <Tooltip AutoClose="true" Width="156">
+                <TooltipHeader>
+                    <div class="payee-reference-description__icon">
+                        <img class="icon" src="/img/icons/dotsIcon.svg" alt="menu" />
+                        <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="menu" />
+                    </div>
+                </TooltipHeader>
+                <TooltipBody>
+                    <ListItem OnItemClick=@AmendPayeeTemplate_OnclickAsync>Edit template</ListItem>
+                    <ListItem OnItemClick=@DeletePayeeTemplate_OnclickAsync>Delete template</ListItem>
+                </TooltipBody>
+            </Tooltip>
+        </div>
+    </div>
+    <div class="payee-card-description">
+        <p class="payee-card-description__text">
+            Debit Account No.: @PayeeTemplateModel.DebitAccount
+        </p>
+        <span class="payee-card-description__type payee-card-description__type@(PayeeTemplateModel.PaymentTemplateType switch{
+                                                                                  PaymentTypeEnum.International => "--2",
+                                                                                  _ => ""
+                                                                                  })">@PayeeTemplateModel.PaymentTemplateType.ToString().ToUpper()</span>
+    </div>
+    <div class="payee-card-description">
+        <div class="payee-card-description__text">
+            <p>@PayeeTemplateModel.BeneficiaryName</p>
+            <img class="payee-card-description__text-dot" src="/img/icons/dotIcon.svg" alt="dot" />
+            <p>@PayeeTemplateModel.BeneficiaryAccountNumber</p>
+        </div>
+    </div>
+    <button class="payee-card__button" @onclick="GoToPaymentPage">Make payment</button>
+</div>
+
+@code {
+    [CascadingParameter] IModalService BlazoredModalSvc { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public PayeeTemplateModel PayeeTemplateModel { get; set; } = default!;
+    [Parameter] public EventCallback<PayeeTemplateModel> OnDeletePayeeTemplate { get; set; }
+    
+    private void GoToPaymentPage()
+    {
+        _appStore.PayeeTemplateStore = PayeeTemplateModel;
+        _navigateManager.NavigateTo("/payments");
+    }
+
+    private async Task AmendPayeeTemplate_OnclickAsync()
+    {
+        
+    }
+
+    private async Task DeletePayeeTemplate_OnclickAsync()
+    {
+        IModalReference confirmModal = BlazoredModalSvc.Show<SimplePasswordConfirmModalComponent>(
+            string.Empty,
+            new ModalParameters
+                {
+                { nameof(SimplePasswordConfirmModalComponent.HeaderTitle), $"Delete template {PayeeTemplateModel.HostReference}" },
+                { nameof(SimplePasswordConfirmModalComponent.HeaderSubtitle), "Please enter your password to delete template" },
+                { nameof(SimplePasswordConfirmModalComponent.IsNegative), true},
+                { nameof(SimplePasswordConfirmModalComponent.ConfirmText), "Delete" }
+                },
+            new ModalOptions
+                {
+                    UseCustomLayout = true
+                });
+
+        ModalResult modalResult = await confirmModal.Result;
+
+        if (modalResult.Confirmed is false)
+            return;
+
+        await ConfirmedDeleteAsync();
+    }
+    private async Task ConfirmedDeleteAsync()
+        => await OnDeletePayeeTemplate.InvokeAsync(PayeeTemplateModel);
+}

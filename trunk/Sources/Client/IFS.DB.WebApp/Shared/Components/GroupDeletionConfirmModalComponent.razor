@@ -1,0 +1,30 @@
+﻿@using IFS.DB.WebApp.Models.GroupMaintenance
+<div class="modal-layout" id="ModalDelete">
+    <div class="modal-scroll">
+        <div class="modal-background" @onclick=@Cancel></div>
+        <div class="delete-modal-layout">
+            <div class="delete-modal">
+                <div class="delete-modal-header-wrapper">
+                    <div class="delete-modal-header">
+                        <p class="delete-modal-header__title">Do you want to delete group @GroupInfo.Name?</p>
+                        <img class="delete-modal-header__icon" src="/img/icons/closeIcon.svg" alt="close" @onclick=@Cancel />
+                    </div>
+                    <p class="delete-modal-header__subtitle">All users, that are in this group will be disbanded</p>
+                </div>
+
+                <div class="delete-modal-footer">
+                    <button class="delete-modal-footer__buttonCancel" @onclick=@Cancel>No, leave it</button>
+                    <button class="delete-modal-footer__buttonSuccess" @onclick=@Ok>Delete group</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
+    [Parameter] public GroupInfoModel GroupInfo { get; set; }
+
+    private async Task Cancel() => await BlazoredModal.CancelAsync();
+    private async Task Ok() =>  BlazoredModal.CloseAsync(ModalResult.Ok(true));    
+}

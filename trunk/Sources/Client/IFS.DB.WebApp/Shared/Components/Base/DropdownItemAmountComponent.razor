@@ -1,0 +1,42 @@
+﻿@typeparam TItem
+
+@if (Item != null)
+{
+    if (Dropdown.MultiSelect)
+    {
+        <div class="customSelector-dropdown-item">
+            <label>@DropdownItemChildContent(Item)</label>
+            <input class="input" style="margin-right: 8px;" value="0.00"/>
+        </div>
+    }
+    else
+    {
+        <div class="customSelector-dropdown-item" @onclick="@(() => Dropdown.HandleSelect(Item, DropdownItemChildContent))">
+            <p>@DropdownItemChildContent(Item)</p>
+        </div>
+    }
+}
+
+@code {
+    [CascadingParameter(Name = "DropdownComponent")] public DropdownComponent<TItem> Dropdown { get; set; }
+    [Parameter] public TItem Item { get; set; }    
+    [Parameter] public RenderFragment<TItem> DropdownItemChildContent { get; set; }
+
+    private bool _isActive = false;
+    List<TItem> SelectedItems = new List<TItem>();
+
+    private async Task ToggleItem(ChangeEventArgs args, TItem item)
+    {
+        bool IsSelected = (bool)args.Value;
+        await ChangeCheckboxState(item, IsSelected);       
+    }
+
+    private async Task  ChangeCheckboxState(TItem item, bool isActive)
+    {
+         _isActive = isActive;
+        if (isActive) SelectedItems.Add(item);
+        else SelectedItems.Remove(item);
+
+        await Dropdown.HandleMultiSelect(Item, DropdownItemChildContent, isActive);
+    }
+}

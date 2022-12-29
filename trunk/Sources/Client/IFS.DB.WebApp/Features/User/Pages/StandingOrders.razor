@@ -1,0 +1,481 @@
+@layout UserLayout
+@page "/standings-orders"
+@using Base = IFS.DB.WebApp.Shared.BaseComponents.Dropdown
+@using Z.Collections.Extensions
+@using IFS.DB.WebApp.Models.StandingOrder
+@using IFS.DB.WebApp.Shared.BaseComponents.QuickGrid
+@using IFS.DB.WebApp.Shared.BaseComponents.Tooltip
+@using IFS.DB.WebApp.Models.Account
+@using IFS.DB.WebApp.Models
+
+<div class="standing-orders-layout">
+<div class="standing-orders-container">
+<div class="standing-orders">
+<div class="standing-orders-header">
+
+    <div class="standing-orders-header-wrapper">
+        <img src="/img/standingOrders/standingOrdersIcon.svg" alt="logo"
+             class="standing-orders-header__logo"/>
+        <p class="standing-orders-header__title">Standing Orders</p>
+        <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="standing-orders-header__tooltip-icon"/>
+    </div>
+    <button
+        class="standing-orders-header__button" @onclick="@(() => _navigateManager.NavigateTo("/standings-orders/new"))">
+        <img src="/img/icons/add.svg" alt="arrow"/> Add Standing Order
+    </button>
+</div>
+
+<div class="standing-orders-box">
+<div class="standing-orders-search">
+    <div class="standing-orders-search__left">
+        <div class="search standing-orders-search-body">
+            @* <SearchComponent/> *@
+            <div class="standing-orders-search-body__input">
+                <div class="search">
+                    <img src="/img/icons/searchIcon.svg" alt="search" class="search__icon"/>
+                    <input placeholder="Search here" class="input search__input" value="@_searchString" @onchange="@OnSearchChange">
+                </div>
+            </div>
+
+            <div class="formgroup">
+                <div class="select-layout">
+                    <DropdownComponent TItem="AccountModel?"
+                                       MultiSelect="false"
+                                       OnSelectedItem="@OnSelectAccount"
+                                       InlineStyle="display:inline-block;width:244px;"
+                                       ButtonSelectInlineStyle="width:100%;">
+                        <InitialTip>Select account</InitialTip>
+                        <DropdownChildContent>
+                            <DropdownItemComponent TItem="AccountModel?" Item="@null">
+                                <DropdownItemChildContent>
+                                    Select account
+                                </DropdownItemChildContent>
+                            </DropdownItemComponent>
+                            @foreach (AccountModel value in FakeData.Accounts)
+                            {
+                                <DropdownItemComponent Item="@value" TItem="AccountModel?">
+                                    <DropdownItemChildContent>
+                                        Account No.:@value.AccountNumber
+                                    </DropdownItemChildContent>
+                                </DropdownItemComponent>
+                            }
+                        </DropdownChildContent>
+                    </DropdownComponent>
+                </div>
+            </div>
+
+            <button type="button" class="standing-orders-search-body__button" @onclick="@Search">
+                <img src="/img/icons/searchIcon.svg" alt="search" class="shistory-search-body__button-icon"/>
+                Search
+            </button>
+
+        </div>
+    </div>
+    <div class="standing-orders-filters__right">
+        <button class="standing-orders-soring-button" @onclick="@(ToggleFilterPanel)">
+            <img src="/img/icons/filterIcon.svg" alt="filter" class="icon"/>
+            <img src="/img/icons/filterHoverIcon.svg" alt="filter" class="iconHover"/>
+        </button>
+    </div>
+</div>
+
+<div class="standing-orders-filter" style="display: @(_showFilterPanel ? "flex" : "none")">
+    <!-- -->
+    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent
+        TItem="TransactionTypeEnum"
+        MultiSelect="true"
+        ContainerInlineStyle="margin-right: 12px"
+        DropdownButtonInlineStyle="width:100%;"
+        SelectedListData="@_listSelectedTransactionSearchTypes"
+        SelectedItems_Onclick="@(value => _listSelectedTransactionSearchTypes = value)">
+        <InitialPlaceHolder>
+            Transaction type
+        </InitialPlaceHolder>
+        <ChildContent>
+
+            <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent 
+                TItem="TransactionTypeEnum"
+                TValue="TransactionTypeEnum.All"
+                Context="_"
+                SelectAll="true"
+                @onclick="@(() => SelectAllTransactionTypesValue())">
+                @TransactionTypeEnum.All.ToDescription()
+            </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+            @foreach (TransactionTypeEnum value in ((TransactionTypeEnum[])Enum.GetValues(typeof(TransactionTypeEnum))).Where(x => x != TransactionTypeEnum.All).ToArray())
+            {
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@TransactionTypeEnum
+                                                                                    TValue="value" Context="_">
+                    @value.ToDescription()
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+            }
+        </ChildContent>
+    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem="int"
+                                                                    ContainerInlineStyle="margin-right: 12px"
+                                                                    DropdownButtonInlineStyle="width:100%;"
+                                                                    SelectedValue="@(0)">
+        <InitialPlaceHolder>Amount</InitialPlaceHolder>
+        <ChildContent>
+            <EditForm Model="_rangeAmount">
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem="int"
+                                                                                           Context="_"
+                                                                                           InlineStyle="width:49%;display: inline-block;"
+                                                                                           KeepState="true">
+                    <AmountComponent LabelText="From"
+                                     @bind-Value="@_rangeAmount.From"
+                                     class="input"
+                                     ValidationFor="@(() => _rangeAmount.From)"/>
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent TItem="int"
+                                                                                           Context="_"
+                                                                                           InlineStyle="width:49%;display: inline-block;"
+                                                                                           KeepState="true">
+                    <AmountComponent LabelText="To"
+                                     @bind-Value="@_rangeAmount.To"
+                                     class="input"
+                                     ValidationFor="@(() => _rangeAmount.To)"/>
+
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownDefaultItemComponent>
+            </EditForm>
+        </ChildContent>
+    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+
+    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent
+        TItem="StandingOrderStatus"
+        MultiSelect="true"
+        ContainerInlineStyle="margin-right: 12px"
+        DropdownButtonInlineStyle="width:100%;"
+        SelectedListData="@_listSelectedStandingOrderStatus"
+        SelectedItems_Onclick="@(value => _listSelectedStandingOrderStatus = value)">
+        <InitialPlaceHolder>
+            Status
+        </InitialPlaceHolder>
+        <ChildContent>
+
+            <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent
+                TItem="StandingOrderStatus"
+                TValue="@StandingOrderStatus.All"
+                Context="_"
+                SelectAll="true"
+                @onclick="@(() => SelectAllStandingOrderStatusValue())">
+                All
+            </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+            @foreach (StandingOrderStatus value in Enum.GetValues<StandingOrderStatus>().Where(x => x is not StandingOrderStatus.All))
+            {
+                <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent
+                    TItem=@StandingOrderStatus
+                    TValue="value" Context="_">
+                    @value
+                </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+            }
+
+        </ChildContent>
+    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+</div>
+
+@if (_listSelectedStandingOrderStatus.Any() || _listSelectedTransactionSearchTypes.Any())
+{
+    <div class="standing-orders-filter-tag">
+
+        @foreach (TransactionTypeEnum item in _listSelectedTransactionSearchTypes)
+        {
+            <div class="standing-orders-filter-tag-type">
+                <p class="standing-orders-filter-tag-type-text">@item.ToDescription()</p>
+                <img src="/img/icons/closeIcon.svg" alt="close" class="standing-orders-filter-tag-type__close" @onclick=@(() => _listSelectedTransactionSearchTypes.Remove(item))/>
+            </div>
+        }
+
+        @foreach (StandingOrderStatus item in _listSelectedStandingOrderStatus)
+        {
+            <div class="standing-orders-filter-tag-type">
+                <p class="standing-orders-filter-tag-type-text">@item.ToString()</p>
+                <img src="/img/icons/closeIcon.svg" alt="close" class="standing-orders-filter-tag-type__close" @onclick=@(() => _listSelectedStandingOrderStatus.Remove(item))/>
+            </div>
+        }
+
+        <div class="standing-orders-filter-tag-clear" @onclick=@ClearFilters>
+            <p>Clear filters</p>
+        </div>
+    </div>
+}
+
+<div class="standing-orders-table">
+
+    <QuickGrid TGridItem="StandingOrderModel" Items="_standingOrders.AsQueryable()" Class="standingOrdersTable" Pagination="_pagination" @ref="_gridRef">
+        <TemplateColumn TGridItem="StandingOrderModel" Title="Type" Align="Align.Center">
+            @type(context)
+        </TemplateColumn>
+        <TemplateColumn TGridItem="StandingOrderModel" Title="Debit Narrative">
+            Account No. @context.DebitNarrative
+        </TemplateColumn>
+        <TemplateColumn TGridItem="StandingOrderModel" Title="Debit Account">
+            Account No. @context.DebitAccount
+        </TemplateColumn>
+        <TemplateColumn TGridItem="StandingOrderModel" Align="Align.Center" SortBy="_sortByAmount" Title="Regular Amount">
+            @context.RegularAmount.ToNumberFormat()
+        </TemplateColumn>
+
+        <TemplateColumn TGridItem="StandingOrderModel" Title="Status">
+            <span class="standingOrdersTable-button  @(context.Status switch 
+                                                     {
+                                                         StandingOrderStatus.Executing => "standingOrdersTable-button--success",
+                                                         StandingOrderStatus.Paused => "standingOrdersTable-button--error",
+                                                         _ => ""
+                                                         })">
+                @context.Status
+            </span>
+        </TemplateColumn>
+        <TemplateColumn TGridItem="StandingOrderModel" Title="" Align="Align.Right">
+            <div class="standingOrdersTable-action">
+                <Tooltip AutoClose="true" Width="156">
+                    <TooltipHeader Context="isShow">
+                        <div class="standingOrdersTable-action-icon">
+                            <img class="iconHover" src="/img/icons/dotsHoverIcon.svg" alt="action"/>
+                            <img class="icon" src="@(isShow ? "/img/icons/dotsHoverIcon.svg" : "/img/icons/dotsIcon.svg")" alt="action"/>
+                        </div>
+                    </TooltipHeader>
+                    <TooltipBody Context="_">
+                        @if (context.Status is StandingOrderStatus.Executing)
+                        {
+                            <ListItem>Pause order</ListItem>
+                        }
+
+                        @if (context.Status is StandingOrderStatus.Paused)
+                        {
+                            <ListItem>Continue order</ListItem>
+                        }
+
+                        <ListItem OnItemClick="@(() => EditOrder(context))">Edit order</ListItem>
+                        <ListItem OnItemClick="@(() => DeleteOrder(context))">Delete order</ListItem>
+                    </TooltipBody>
+                </Tooltip>
+            </div>
+        </TemplateColumn>
+    </QuickGrid>
+    <Paginator Value="@_pagination"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+@code {
+
+    private readonly RenderFragment<StandingOrderModel> type = item => item.TransactionType switch { 
+        TransactionType.Payment => @<img src="/img/transactionTable/payment.svg" alt="payment"/>,
+        TransactionType.Transfer => @<img src="/img/transactionTable/transfer.svg" alt="payment"/>,
+        _ => @<text></text>
+        };
+
+}
+
+@code {
+
+    [CascadingParameter]
+    public IModalService ModalSvc { get; set; } = default!;
+
+    private QuickGrid<StandingOrderModel> _gridRef = default!;
+    private string? _searchString;
+
+    private readonly GridSort<StandingOrderModel> _sortByAmount = GridSort<StandingOrderModel>
+        .ByAscending(x => x.RegularAmount)
+        .ThenDescending(x => x.RegularAmount);
+
+    private IList<StandingOrderModel> _standingOrders = new List<StandingOrderModel>();
+
+    private GridItemsProvider<StandingOrderModel>? _gridItemsProvider;
+
+    private string? _selectedAccount;
+
+    private readonly PaginationState _pagination = new();
+
+    #region Filter
+
+    private bool _showFilterPanel;
+    private List<TransactionTypeEnum> _listSelectedTransactionSearchTypes = new();
+    private bool _selectAllTransactionType;
+
+    private readonly RangeAmount _rangeAmount = new();
+
+    private List<StandingOrderStatus> _listSelectedStandingOrderStatus = new();
+    private bool _selectAllStandingOrderStatus;
+
+    #endregion Filter
+
+    protected override void OnInitialized()
+    {
+        _standingOrders = FakeData.StandingOrders;
+
+        _gridItemsProvider = async req =>
+        {
+            (string PropertyName, SortDirection Direction) sortBy = req.GetSortByProperties().SingleOrDefault();
+    // return await DataService.GetCountriesAsync(req.StartIndex, req.Count, sortBy.PropertyName, sortBy.Direction == SortDirection.Ascending, req.CancellationToken);
+            return GridItemsProviderResult.From(
+                FakeData.StandingOrders.OrderByDescending(x => x.CreatedOn)
+                    .ToList(),
+                FakeData.StandingOrders.Count);
+        };
+    }
+
+
+    private Task OnRowClicked((MouseEventArgs _, StandingOrderModel item) param)
+    {
+        return Task.CompletedTask;
+    }
+
+    private async Task LoadStandingOrders()
+    {
+        var standingOrdersQuery = FakeData.StandingOrders.AsQueryable();
+
+
+        if (!string.IsNullOrEmpty(_searchString))
+        {
+            standingOrdersQuery = 
+                standingOrdersQuery
+                .Where(x => x.DebitAccount.Contains(_searchString, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        if (!string.IsNullOrEmpty(_selectedAccount))
+        {
+            standingOrdersQuery = 
+                standingOrdersQuery
+                .Where(x => x.DebitAccount.Equals(_selectedAccount, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        _standingOrders = standingOrdersQuery.ToList();
+        
+        StateHasChanged();
+
+        await _gridRef.RefreshDataAsync();
+    }
+
+    private async Task OnSearchChange(ChangeEventArgs args)
+    {
+        _searchString = args.Value?.ToString();
+        await LoadStandingOrders();
+    }
+
+    private async Task DeleteOrder(StandingOrderModel item)
+    {
+        IModalReference confirmModal = ModalSvc.Show<SimplePasswordConfirmModalComponent>(
+            string.Empty,
+            new ModalParameters
+            {
+                { nameof(SimplePasswordConfirmModalComponent.HeaderTitle), "Delete Standing Order" },
+                { nameof(SimplePasswordConfirmModalComponent.HeaderSubtitle), "Please enter your password to delete Standing Order" },
+                { nameof(SimplePasswordConfirmModalComponent.IsNegative), true },
+                { nameof(SimplePasswordConfirmModalComponent.ConfirmText), "Delete" }
+            },
+            new ModalOptions
+            {
+                UseCustomLayout = true
+            });
+
+        ModalResult modalResult = await confirmModal.Result;
+
+        if (modalResult.Confirmed is false)
+            return;
+
+        FakeData.StandingOrders.RemoveWhere(x => x.Id == item.Id);
+        await _gridRef.RefreshDataAsync();
+    }
+
+    private Task EditOrder(StandingOrderModel item)
+    {
+        _appStore.StandingOrderStore = item;
+        _navigateManager.NavigateTo("/standings-orders/new");
+        return Task.CompletedTask;
+    }
+
+    private async Task OnSelectAccount(AccountModel? selected)
+    {
+        _selectedAccount = selected?.AccountNumber;
+        await LoadStandingOrders();
+    }
+
+    private async Task SelectAllTransactionTypesValue(bool isRemoveItem = false)
+    {
+        _selectAllTransactionType = !_selectAllTransactionType;
+        var listTxnTypesEnums = ((TransactionTypeEnum[])Enum.GetValues(typeof(TransactionTypeEnum))).Where(x => x != TransactionTypeEnum.All).ToList();
+        if (isRemoveItem)
+        {
+            _listSelectedTransactionSearchTypes.ForEach(x =>
+            {
+                if (!listTxnTypesEnums.Contains(x))
+                {
+                    _selectAllTransactionType = false;
+                }
+            });
+        }
+
+        if (_selectAllTransactionType)
+        {
+            _listSelectedTransactionSearchTypes = new List<TransactionTypeEnum>();
+
+            foreach (TransactionTypeEnum txnType in listTxnTypesEnums)
+            {
+                _listSelectedTransactionSearchTypes.Add(txnType);
+            }
+        }
+        else
+        {
+            _listSelectedTransactionSearchTypes = new List<TransactionTypeEnum>();
+        }
+
+        StateHasChanged();
+    }
+
+    private Task SelectAllStandingOrderStatusValue(bool isRemoveItem = false)
+    {
+        _selectAllStandingOrderStatus = !_selectAllStandingOrderStatus;
+
+        var allStandingOrderStatus =
+            Enum.GetValues<StandingOrderStatus>()
+                .Where(x => x is not StandingOrderStatus.All)
+                .ToList();
+
+        if (isRemoveItem)
+        {
+            _selectAllStandingOrderStatus =
+                !allStandingOrderStatus.Except(_listSelectedStandingOrderStatus).Any();
+        }
+
+        _listSelectedStandingOrderStatus.Clear();
+
+        if (_selectAllStandingOrderStatus)
+        {
+            _listSelectedStandingOrderStatus
+                .AddRange(allStandingOrderStatus);
+        }
+
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private void ClearFilters()
+    {
+    // _isClearFilter = !_isClearFilter;
+        _listSelectedStandingOrderStatus.Clear();
+        _listSelectedTransactionSearchTypes.Clear();
+        _rangeAmount.From = 0;
+        _rangeAmount.To = 0;
+    }
+
+    public record RangeAmount
+    {
+        public decimal From { get; set; }
+        public decimal To { get; set; }
+    }
+
+    private Task Search()
+    {
+        return Task.CompletedTask;
+    }
+
+    private void ToggleFilterPanel()
+    {
+        _showFilterPanel = !_showFilterPanel;
+    }
+
+}

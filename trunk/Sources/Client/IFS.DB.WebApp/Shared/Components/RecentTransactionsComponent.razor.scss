@@ -1,0 +1,24 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+@import "Sass/shared/home-transactions";
+
+.view-more__section {
+    display: flex;
+    justify-content: end;
+
+    .view-more {
+        &__button {
+            font-family: "Overpass", sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 28px;
+            display: inline-block;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: none;
+            color: #0360db;
+            padding: 0;
+        }
+    }
+}

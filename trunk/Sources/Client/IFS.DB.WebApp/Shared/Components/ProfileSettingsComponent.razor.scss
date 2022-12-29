@@ -1,0 +1,9 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+@import "Sass/pages/profile";
+
+@media (max-width: 1260px) {
+    .profile-info-main__column {
+        width: 92px;
+    }
+}

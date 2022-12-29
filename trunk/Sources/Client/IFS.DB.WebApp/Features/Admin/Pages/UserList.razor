@@ -1,0 +1,58 @@
+@layout AdminLayout
+@page "/admin/user-maintenance"
+
+<div class="user-layout">
+    <div class="user-container">
+        <div class="user">
+            <div class="user-header">
+                <div class="user-header-wrapper">
+                    <img src="/img/user/userIcon.svg" alt="logo" class="user-header__logo" />
+                    <p class="user-header__title">User Maintenance</p>
+                    <img src="/img/icons/tooltipIcon.svg" alt="tooltip" class="user-header__tooltip-icon" />
+                </div>
+
+                <div>
+                    <button class="user-header__button">Add user</button>
+                </div>
+            </div>
+
+            <div class="user-main">
+                <div class="user-main-title">
+                    <p class="user-main-title-name">User List</p>
+                    <div class="user-main-title-right">
+                        <div class="search user-main-title-right__input">
+                            <SearchComponent/>
+                        </div>
+
+                        <div class="formgroup">
+                            <div class="select-layout">
+                                <select class="select user-main-title-right__selector">
+                                    <option disabled selected>Group</option>
+                                    <option>Account No.:00256001</option>
+                                    <option>Account No.:00256002</option>
+                                    <option>Account No.:00256003</option>
+                                    <option>Account No.:00256004</option>
+                                    <option>Account No.:00256005</option>
+                                </select>
+
+                                <select class="select user-main-title-right__selector">
+                                    <option disabled selected>Status</option>
+                                    <option>Account No.:00256001</option>
+                                    <option>Account No.:00256002</option>
+                                    <option>Account No.:00256003</option>
+                                    <option>Account No.:00256004</option>
+                                    <option>Account No.:00256005</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <UserListTableComponent/>
+
+                <Paginator/>
+
+            </div>
+        </div>
+    </div>
+</div>

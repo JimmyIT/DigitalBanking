@@ -1,0 +1,11 @@
+﻿<div class="menu-item" @onclick="OnItemClick">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback OnItemClick { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

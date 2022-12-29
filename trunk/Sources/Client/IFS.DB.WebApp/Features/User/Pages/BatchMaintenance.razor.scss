@@ -1,0 +1,125 @@
+@import "Sass/common/variables";
+@import "Sass/mixins/";
+
+.maintenance-layout {
+    padding: $indent-24 0 $indent-36;
+}
+
+.maintenance-container {
+    @include container;
+}
+
+.maintenance-header {
+    @include pageTitle;
+}
+
+.maintenance {
+    @include box;
+
+    &-search {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+
+        &-body {
+            display: flex;
+            flex: 1;
+            &__input {
+                max-width: 508px;
+                margin-right: $indent-12;
+            }
+        }
+
+        &-icons {
+            display: flex;
+
+            &__filterIcon,
+            &__icon {
+                @include buttonIconMedium;
+            }
+
+            &__filterIcon {
+                &.activeFilter {
+                    background: $color-sky-blue-100;
+                    border-radius: $indent-4;
+                }
+            }
+        }
+    }
+
+    &-filters {
+        display: none;
+        margin-top: $indent-16;
+    }
+
+    &-table {
+        margin-top: $indent-16;
+
+        & ::deep {
+            th {
+                &:nth-child(5) {
+                    width: 120px;
+                }
+                &:nth-child(6) {
+                    width: 100px;
+                }
+                &:last-child {
+                    width: 52px;
+                }
+            }
+        }
+
+        & .maintenanceTable-status {
+            @include grayTextBox;
+
+            &--error {
+                @include redTextBox;
+            }
+
+            &--success {
+                @include greenTextBox;
+            }
+        }
+
+        & .maintenanceTable-button {
+            @include transparentButton;
+
+            &.maintenanceTable-button--disabled {
+                @include transparentDisabledButton;
+            }
+        }
+
+        & .maintenanceTable-action {
+            position: relative;
+            box-sizing: border-box;
+
+            &-icon {
+                @include buttonIcon;
+                margin-left: auto;
+            }
+
+            &-dropdown {
+                position: absolute;
+                top: 45px;
+                right: 10px;
+                width: 156px;
+                display: none;
+                padding: 8px 1px;
+                border: 1px solid $color-sky-blue-200;
+                border-radius: 8px;
+                background-color: $color-white;
+                box-shadow: 4px 4px 16px rgba(3, 60, 135, 0.08);
+                z-index: 2;
+
+                &-item {
+                    @include field;
+                    padding: 14px 16px;
+                    text-align: left;
+                    color: $color-gray-600;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

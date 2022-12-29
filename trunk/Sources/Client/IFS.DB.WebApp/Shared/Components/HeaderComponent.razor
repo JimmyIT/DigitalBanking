@@ -1,0 +1,233 @@
+@using IFS.DB.WebApp.Helpers.Constants
+@using IFS.DB.WebApp.Shared.BaseComponents.Menu
+@using Microsoft.AspNetCore.Components.Authorization
+
+<CascadingValue Value="this">
+    <div class="main-header-layout">
+        <div class="main-header-container">
+            <div class="main-header" @ref=@_divMenuContainerRef>
+                <div class="main-header__left" @ref=@_divMenuBurgerButtonsRef>
+                    <a href="/" class="main-header__logo"></a>
+
+                    <img src="/img/header/burgerMenuIcon.svg" alt="Burger Menu" class="main-header__left-burger"
+                         style="@(_isDeviceMode ? (!_isActiveBurgerMenu ? "display: block;" : "display: none;") : "")"
+                         @onclick=@(() => BurgerMenu_OnclickAsync(true)) />
+                    @* !!! For using close icon, u need change "style="display: none;"" to style="display: block;" for "closeIcon"
+                    and u need use "style="display: none;"" for burgerMenuIcon when menu opened *@
+                    <img src="/img/header/closeIcon.svg" alt="Close" class="main-header__left-burger"
+                         style="@(_isDeviceMode ? (_isActiveBurgerMenu ? "display: block;" : "display: none;") : "")"
+                         @onclick=@(() => BurgerMenu_OnclickAsync(false)) />
+                </div>
+
+                @* !!! To open menu for tablet layout u need go to "_header.scss" file and change style for line 45, from "display: none" to "display: block" *@
+                <div @ref=@_divMenuItemsContainerRef class="main-header__right"
+                     style="@(_isDeviceMode ? (_isActiveBurgerMenu ? _styleToShowMenuWhenClickBurgerButton : "") : "")">
+                    <AuthorizeView Roles="@($"{UserRoles.MSECustomer}, {UserRoles.SSECustomer}")">
+                        <Authorized>
+                            <!---->
+                            <!---->
+                            <MenuComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/user/dashboard",
+                                                                            Title = L["dashboard"],
+                                                                            Match = NavLinkMatch.All
+                                                                         })"></MenuItemComponent>
+                                <SubMenuComponent Header="@L["payments"]" MenuItems="@(new List<MenuItem>(){
+                                                                            new MenuItem(){
+                                                                                Link = "/payments",
+                                                                                Title = "Make a payment",
+                                                                                Match = NavLinkMatch.All,
+                                                                                Icon = "/img/header/makePaymentIcon.svg"
+                                                                            },
+                                                                            new MenuItem(){
+                                                                                Link = "/maintenance",
+                                                                                Title = "Batch Maintenance",
+                                                                                Match = NavLinkMatch.All,
+                                                                                Icon = "/img/header/batchMaintenanceIcon.svg",
+                                                                                BreadcrumbLinks = new(){
+                                                                                 "/maintenance", "/maintenance/new", "/maintenance/overview"
+                                                                            }
+                                                                            }})">
+                                </SubMenuComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/transfers",
+                                                                            Title = L["transfers"],
+                                                                            Match = NavLinkMatch.All
+                                                                         })"></MenuItemComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/standings-orders",
+                                                                            Title = L["standing_orders"],
+                                                                            Match = NavLinkMatch.All,
+                                                                            BreadcrumbLinks = new(){
+                                                                                 "/standings-orders", "/standings-orders/new"
+                                                                            }
+                                                                         })"></MenuItemComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/history",
+                                                                            Title = L["history"],
+                                                                            Match = NavLinkMatch.All
+                                                                         })"></MenuItemComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/sign-queues",
+                                                                            Title = L["signing_queues"],
+                                                                            Match = NavLinkMatch.All,
+                                                                            BreadcrumbLinks = new(){
+                                                                                 "/sign-queues", 
+                                                                                 "/sign-queues/payment", 
+                                                                                 "/sign-queues/payee-template", 
+                                                                                 "/sign-queues/batch"
+                                                                            }
+                                                                         })"
+                                                   SubText="4"></MenuItemComponent>
+                                <SubMenuComponent Header="@L["other"]" MenuItems="@(new List<MenuItem>(){
+                                                                            new MenuItem(){
+                                                                                Link = "/payee",
+                                                                                Title = "Payee's templates",
+                                                                                Match = NavLinkMatch.All,
+                                                                                Icon = "/img/payee/payeeMenuIcon.svg"
+                                                                            }})">
+                                </SubMenuComponent>
+                            </MenuComponent>
+                            <!---->
+                            <!---->
+                            <div class="main-header-wrapper">
+                                <!---->
+                                <!---->
+                                <MainHeaderNavComponent></MainHeaderNavComponent>
+                                <!---->
+                                <!---->
+                                <MainHeaderProfileComponent></MainHeaderProfileComponent>
+                                <!---->
+                                <!---->
+                            </div>
+                            <!---->
+                            <!---->
+                        </Authorized>
+                    </AuthorizeView>
+                    <!---->
+                    <!---->
+                    <!-- Administrator menu -->
+                    <!---->
+                    <!---->
+                    <AuthorizeView Roles="@($"{UserRoles.Admin}")">
+                        <Authorized>
+                            <MenuComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/admin/dashboard",
+                                                                            Title = L["dashboard"],
+                                                                            Match = NavLinkMatch.All
+                                                                         })"></MenuItemComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                             Link = "/company-admin/user-maintenance",
+                                                                             Title = L["users"],
+                                                                             Match = NavLinkMatch.All,
+                                                                             BreadcrumbLinks = new List<string>(){
+                                                                                "/company-admin/user-maintenance", "/admin/user-maintenance/create", "/admin/user-maintenance/edit"
+                                                                                 }
+                                                                         })"></MenuItemComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/admin/group-maintenance",
+                                                                            Title = L["groups"],
+                                                                            Match = NavLinkMatch.All,
+                                                                            BreadcrumbLinks = new List<string>(){
+                                                                                "/admin/group-maintenance", "/admin/group-maintenance/create", "/admin/group-maintenance/edit" 
+                                                                                }
+                                                                         })"></MenuItemComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/admin/permission",
+                                                                            Title = L["permissions"],
+                                                                            Match = NavLinkMatch.All,
+                                                                            BreadcrumbLinks = new List<string>{
+                                                                                "/admin/permission", "/permission"
+                                                                                }
+                                                                         })"></MenuItemComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/admin/security",
+                                                                            Title = L["security"],
+                                                                            Match = NavLinkMatch.All,
+                                                                            BreadcrumbLinks = new List<string>()
+                                                                                {
+                                                                                    "/admin/security",
+                                                                                }
+                                                                         })"></MenuItemComponent>
+                            </MenuComponent>
+                            <!---->
+                            <!---->
+                            <div class="main-header-wrapper">
+                                <!---->
+                                <!---->
+                                <MainHeaderNavComponent></MainHeaderNavComponent>
+                                <!---->
+                                <!---->
+                                <MainHeaderProfileComponent></MainHeaderProfileComponent>
+                                <!---->
+                                <!---->
+                            </div>
+                            <!---->
+                            <!---->
+                        </Authorized>
+                    </AuthorizeView>
+
+                    <AuthorizeView Roles="@($"{UserRoles.Host}")">
+                        <Authorized>
+                            <MenuComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                            Link = "/customer-maintenance",
+                                                                            Title = L["customersmaintenance"],
+                                                                            Match = NavLinkMatch.All,
+                                                                            BreadcrumbLinks = new(){
+                                                                                 "/customer-maintenance", "/customer-maintenance/dashboard"
+                                                                            }
+                                                                         })"></MenuItemComponent>
+                                <MenuItemComponent CssClass="main-header-menu__item"
+                                                   MenuItem="@(new MenuItem(){
+                                                                             Link = "/mandates-maintenance",
+                                                                             Title = L["mandatesmaintenance"],
+                                                                             Match = NavLinkMatch.All,
+                                                                             BreadcrumbLinks = new(){
+                                                                                 "/mandates-maintenance", "/mandates-maintenance/edit"
+                                                                             }
+                                                                         })"></MenuItemComponent>
+                            </MenuComponent>
+                            <!---->
+                            <!---->
+                            <div class="main-header-wrapper">
+                                <!---->
+                                <!---->
+                                <MainHeaderNavComponent></MainHeaderNavComponent>
+                                <!---->
+                                <!---->
+                                <MainHeaderProfileComponent></MainHeaderProfileComponent>
+                                <!---->
+                                <!---->
+                            </div>
+                            <!---->
+                            <!---->
+                        </Authorized>
+                    </AuthorizeView>
+
+                    <AuthorizeView>
+                        <NotAuthorized>
+                            <CultureSelectorComponent></CultureSelectorComponent>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </div>
+
+
+                @* U need go inside in this component and change "style="display: none;"" to "style="display: flex;"" for open Chat *@
+                <LiveChatComponent @ref="@_liveChatComponent" />
+            </div>
+        </div>
+    </div>
+</CascadingValue>

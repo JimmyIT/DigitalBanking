@@ -1,0 +1,56 @@
+@layout AdminLayout
+@page "/admin/user-maintenance/create"
+
+<div class="new-user-layout">
+    <div class="new-user-container">
+        <div class="new-user">
+            <div class="new-user-breadcrumbs">
+                <p class="new-user-breadcrumbs__item">
+                    <a @onclick=@(() => _navigateManager.NavigateTo("/company-admin/user-maintenance"))>
+                        User Maintenance
+                    </a>
+                </p>
+                <p class="new-user-breadcrumbs__item active">New User</p>
+            </div>
+
+            <div class="new-user-header">
+                <div class="new-user-header-wrapper">
+                    <button @onclick=@(() => _navigateManager.NavigateTo("/company-admin/user-maintenance"))>
+                        <img src="/img/icons/return.svg" alt="return" class="new-user-header__logo" />
+                    </button>
+                    <p class="new-user-header__title">New User</p>
+                </div>
+            </div>
+
+            <div class="new-user-info">
+                <div class="new-user-info-left">
+                    <p class="new-user-info-left-title">Profile status:</p>
+                    <p class="new-user-info-left-subtitle">—</p>
+                </div>
+
+                <div class="new-user-info-right">
+                    <button class="new-user-info-right-button">
+                        <img src="/img/user/lockedIcon.svg" alt="locked" class="new-user-info-right__img" />
+                        <span>Lock profile</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="new-user-main">
+                <CascadingValue Name="UserCreation" Value=@this>
+                    <UserCreationDetailsComponent />
+                    <UserCreationPreferenceComponent />
+                </CascadingValue>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="new-user-footer-layout">
+    <div class="new-user-footer-container">
+        <div class="new-user-footer">
+            <button class="new-user-footer__button  @(IsContextInValid ? "new-user-footer__button--inactive" : "" )" disabled="@IsContextInValid" @onclick=@OnSave>Save User</button>
+        </div>
+    </div>
+</footer>

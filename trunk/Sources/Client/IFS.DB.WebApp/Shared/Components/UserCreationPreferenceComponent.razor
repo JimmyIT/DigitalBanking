@@ -1,0 +1,73 @@
+@using IFS.DB.WebApp.Models.Users
+
+<div class="preference">
+    <EditForm EditContext=@_userPreferenceCreationDetailsContext>
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+
+        <p class="preference-head">User preference</p>
+        <div class="preference-formgroup @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            <p class="preference-formgroup-name">User Access Level</p>
+
+            <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent TItem=@(UserAccessLevelEnum?)
+                                                                            FieldId="@( new FieldIdentifier(_userPreference, nameof(UserPreferenceModel.AccessLevel)) )"
+                                                                            SelectedItem_Onclick=@AccessLevel_OnSelected>
+                <InitialPlaceHolder>@(_userPreference.AccessLevel.HasValue ? _userPreference.AccessLevel.Value.ToDescription() : "Select")</InitialPlaceHolder>
+                <ChildContent>
+                    <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@(UserAccessLevelEnum?)
+                                                                                        TValue="null" Context="_">
+                        Select
+                    </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                    @foreach (var value in (UserAccessLevelEnum[])Enum.GetValues(typeof(UserAccessLevelEnum)))
+                    {
+                        <IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent TItem=@(UserAccessLevelEnum?)
+                                                                                        TValue="value" Context="_">
+                            @value.ToDescription()
+                        </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownItemComponent>
+                    }
+                </ChildContent>
+            </IFS.DB.WebApp.Shared.BaseComponents.Dropdown.DropdownComponent>
+            @*<InputSelect class="select " @bind-Value=@_userPreference.AccessLevel disabled=@_isJustConfirmLocked>
+            <option disabled selected>Select</option>
+            @foreach (var value in (UserAccessLevelEnum[])Enum.GetValues(typeof(UserAccessLevelEnum)))
+            {
+            <option value="@value">@value.ToDescription()</option>
+            }
+            </InputSelect>*@
+            <CustomValidationMessage For="@(() => _userPreference.AccessLevel)" />
+        </div>
+
+        <div class="preference-list @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            <p class="preference-list-title">Payment</p>
+            @foreach (var value in (UsePaymentPreferenceEnum[])Enum.GetValues(typeof(UsePaymentPreferenceEnum)))
+            {
+                <div class="preference-list-item">
+                    <input type="checkbox" class="preference-list-item-box" @onchange=@((eventArgs ) => PaymentPreferencesCheckboxes_Clicked(value, eventArgs.Value)) disabled=@_isJustConfirmLocked />
+                    <p class="preference-list-item-name">@value.ToDescription()</p>
+                </div>
+            }
+        </div>
+
+        <div class="preference-list @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            <p class="preference-list-title">Transfer</p>
+            @foreach (var value in (UseTransferPreferenceEnum[])Enum.GetValues(typeof(UseTransferPreferenceEnum)))
+            {
+                <div class="preference-list-item">
+                    <input type="checkbox" class="preference-list-item-box" @onchange=@((eventArgs ) => TransferPreferencesCheckboxes_Clicked(value, eventArgs.Value)) disabled=@_isJustConfirmLocked />
+                    <p class="preference-list-item-name">@value.ToDescription()</p>
+                </div>
+            }
+        </div>
+
+        <div class="preference-list @(_isJustConfirmLocked ? "formgroup--inactive" : "")">
+            <p class="preference-list-title">Customer access</p>
+
+            @foreach (var value in (CustomerAccessEnum[])Enum.GetValues(typeof(CustomerAccessEnum)))
+            {
+                <div class="preference-list-item">
+                    <input type="checkbox" class="preference-list-item-box" @onchange=@((eventArgs ) => CustomerAccessPreferencesCheckboxes_Clicked(value, eventArgs.Value)) disabled=@_isJustConfirmLocked />
+                    <p class="preference-list-item-name">@value.ToDescription()</p>
+                </div>
+            }
+        </div>
+    </EditForm>
+</div>
