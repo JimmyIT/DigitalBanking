@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/trunk/Sources/Client/IFS.DB.WebApp/.vs
+/trunk/Sources/Client/IFS.DB.WebApp/bin/Debug
+/trunk/Sources/Client/IFS.DB.WebApp/node_modules
+/trunk/Sources/Client/IFS.DB.WebApp/obj

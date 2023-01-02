@@ -17,17 +17,24 @@
                 <div class="common-modal-main">
                     <EditForm EditContext=@_editContext>
                         <div class="common-modal-main-info-card">
-                            @if (_isUploaded)
-                            {
-                                <div class="image-container">
-                                    <img src="@_fileBase64Encode" />
-                                </div>
-                            }
-                            <div class="file-drop-zone @_hoverClass">
-                                <InputFile @ref=@_inputFile accept="@(string.Join(",", _acceptedFileTypes))"
-                                           OnChange=@OnFileChange @ondragenter=@OnDragEnter @ondragleave=@OnDragLeave></InputFile>
+                            <div>
+                                <p>Upload a photo @string.Join(", ", _acceptedFileTypes).</p>
+                                <p>@_maxFileSizeMB MB max</p>
                             </div>
+                            <div class="file-drop-zone @_hoverClass">
+                                @if (_isUploaded)
+                                {
+                                    <div class="image-container">
+                                        <img src="@_fileBase64Encode" />
+                                    </div>
+                                }
 
+                                <InputFile @ref=@_inputFile id="input-file" accept="@(string.Join(", ", _acceptedFileTypes))"
+                                           OnChange=@OnFileChange @ondragenter=@OnDragEnter @ondragleave=@OnDragLeave></InputFile>
+                                <div>
+                                    <p>Drag & drop a file or <label for="input-file" class="btn-input-file">UPLOAD</label></p>
+                                </div>
+                            </div>
                         </div>
                     </EditForm>
 
@@ -38,7 +45,7 @@
 
                     @if (_fileSizeError)
                     {
-                        <div class="input-error">file length is @_fileSize mb, it is larger than the limit of @_maxAllowFileSize mb</div>
+                        <div class="input-error">file length is @_fileSize bytes, it is larger than the limit of @_maxAllowFileSize bytes</div>
                     }
 
                 </div>

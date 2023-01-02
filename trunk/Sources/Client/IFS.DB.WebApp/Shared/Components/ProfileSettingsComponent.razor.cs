@@ -89,7 +89,10 @@ public partial class ProfileSettingsComponent
     private async Task<string> HideDropdownAction()
         => _styleToShowDropdown = "display:none;";
     private async Task DeleteAvarta()
-        => _changeProfileSettingsRequestModel.AvartaUrl = string.Empty;
+    {
+        _changeProfileSettingsRequestModel.AvartaUrl = string.Empty;
+        _uploadedPhotoModel.Base64Encode = string.Empty;
+    }
 
     private async Task ShowChangePhotoModalAsync()
     {
@@ -103,6 +106,7 @@ public partial class ProfileSettingsComponent
         if(result.Confirmed)
         {
             _uploadedPhotoModel = (UploadPhotoModel)result.Data;
+            _changeProfileSettingsRequestModel.AvartaUrl = _uploadedPhotoModel.Base64Encode;
         }
     }
 }

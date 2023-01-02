@@ -304,26 +304,33 @@
 }
 
 .file-drop-zone {
-  display: flex;
+  display: inline-grid;
   width: 100%;
   border: 3px dotted #94d5e5;
   align-items: center;
   margin-bottom: 2px;
   background-color: #eee;
-  cursor: pointer;
   position: relative;
   border-radius: inherit;
+  min-height: 150px;
+  justify-content: center;
 }
 .file-drop-zone:hover {
   background-color: #f3f3f3;
   color: #333;
 }
+.file-drop-zone .btn-input-file {
+  display: contents;
+  font-weight: bolder;
+  cursor: pointer;
+}
 
 ::deep input[type=file] {
+  position: absolute;
   width: 100%;
-  min-height: 150px;
-  text-align-last: center;
-  padding: 65px 0px;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .image-container {

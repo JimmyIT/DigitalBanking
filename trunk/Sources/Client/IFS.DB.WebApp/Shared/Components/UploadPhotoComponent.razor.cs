@@ -9,7 +9,7 @@ using System.Drawing.Imaging;
 
 namespace IFS.DB.WebApp.Shared.Components;
 
-public partial class UploadPhotoComponent 
+public partial class UploadPhotoComponent
 {
     [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; } = default!;
 
@@ -46,13 +46,13 @@ public partial class UploadPhotoComponent
     private bool _fileSizeError = false;
     private bool _fileTypeError = false;
 
-    const int _maxFileSizeMB = 5;
+    const int _maxFileSizeMB = 10;
     const int _maxAllowFileSize = _maxFileSizeMB * 1024 * 1024; // 5MB
     private double _fileSize = 0;
     private string _hoverClass;
     private string _fileBase64Encode = string.Empty;
     private string _resizedFileBase64Encode = string.Empty;
-    List<string> _acceptedFileTypes = new List<string>() { "image/png", "image/jpeg" };
+    List<string> _acceptedFileTypes = new List<string>() { "image/png", "image/jpeg", "image/jpg" };
 
     #endregion
 
@@ -65,12 +65,19 @@ public partial class UploadPhotoComponent
     {
         _browserFile = e.File;
 
-        string fileRoute = @"E:\Testing-Places";
-        fileRoute = $"{fileRoute}\\{_browserFile.Name}";
-        int size = 0;
+        _fileTypeError = false;
+        _fileSizeError = false;
+
+        if (await IsValidImage(_browserFile) is false)
+        {
+            _isUploaded = false;
+            return;
+        }
+
+        int size = (int)_browserFile.Size;
 
         using MemoryStream memoryStream = new MemoryStream();
-        await _browserFile.OpenReadStream().CopyToAsync(memoryStream);
+        await _browserFile.OpenReadStream(_maxAllowFileSize).CopyToAsync(memoryStream);
         using (Image srcImg = Image.FromStream(memoryStream))
         {
             int min = Math.Min(srcImg.Width, srcImg.Height);
@@ -104,6 +111,26 @@ public partial class UploadPhotoComponent
         }
 
         await MapToFileUploadResultModelAsync();
+    }
+
+    private async Task<bool> IsValidImage(IBrowserFile? file)
+    {
+        bool result = true;
+
+        if (!_acceptedFileTypes.Contains(file.ContentType))
+        {
+            _fileTypeError = true;
+            return false;
+        }
+
+        _fileSize = file.Size; 
+        _fileSizeError = _fileSize > _maxAllowFileSize;
+        if (_fileSizeError)
+        {
+            return false;
+        }
+
+        return result;
     }
 
     private int CalXY(int widthOrHeight, int size)
@@ -145,5 +172,4 @@ public partial class UploadPhotoComponent
         await file.OpenReadStream(maxAllowedSize: _maxAllowFileSize).CopyToAsync(fs); // maxAllowedSize in bytes
         fs.Close();
     }
-
 }
